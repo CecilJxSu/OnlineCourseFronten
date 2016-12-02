@@ -49,15 +49,7 @@
   <!-- 以下资源不进行拦截 -->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/css/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/images/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/js/*</url-pattern>
+    <url-pattern>/static/*</url-pattern>
   </servlet-mapping>
   <!-- 除去上面指定跳过的资源,拦截其他请求 -->
   <servlet-mapping>
