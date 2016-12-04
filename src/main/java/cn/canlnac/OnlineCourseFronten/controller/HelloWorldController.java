@@ -17,4 +17,5 @@ public class HelloWorldController {
         modelAndView.setViewName("hw");
         return modelAndView;
     }
+
 }
