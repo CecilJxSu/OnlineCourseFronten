@@ -679,7 +679,7 @@ a:active, a:hover {
     display: block;
     height: 60px;
     width: 140px;
-    background: url(/html/static/img/common/logo.png?t=1) center center no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/logo.png?t=1) center center no-repeat;
     overflow: hidden
 }
 
@@ -713,7 +713,7 @@ a:active, a:hover {
     top: 4px;
     left: 20px;
     cursor: pointer;
-    background: url(/static/img/nlogin.png) no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/nlogin.png) no-repeat;
     transition: transform .2s;
     -webkit-transition: transform .2s;
     -moz-transition: transform .2s;
@@ -769,14 +769,14 @@ a:active, a:hover {
     top: -10px;
     width: 16px;
     height: 16px;
-    background: url(/static/img/common/new.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/new.png) no-repeat
 }
 
 .header-app-icon {
     display: inline-block;
     width: 11px;
     height: 16px;
-    background: url(/html/static/img/head-app-icon.png) no-repeat;
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/head-app-icon.png) no-repeat;
     vertical-align: -3px;
     margin-right: 5px;
     transition: .3s;
@@ -1158,7 +1158,7 @@ a:active, a:hover {
     border-radius: 22px;
     border: 2px solid #adb0b1;
     display: inline-block;
-    background: url(/static/img/menu_icon.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/menu_icon.png) no-repeat
 }
 
 #nav_list {
@@ -1176,7 +1176,7 @@ a:active, a:hover {
     height: 39px;
     line-height: 39px;
     font-size: 14px;
-    background-image: url(/static/img/menu_icon.png?t=10);
+    background-image: url(/OnlineCourseFronten/static/staticWEB/img/menu_icon.png?t=10);
     background-repeat: no-repeat;
     display: block;
     color: #fff;
@@ -1226,7 +1226,7 @@ a:active, a:hover {
 .myspace_remind {
     width: 10px;
     height: 10px;
-    background: url(/static/img/space-remind.png) no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/space-remind.png) no-repeat;
     top: 10px;
     right: 10px
 }
@@ -1256,7 +1256,7 @@ a:active, a:hover {
 .footer_logo {
     display: none;
     float: left;
-    background: url(/html/static/img/common/footer-sprite.png) 0 -230px no-repeat;
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png) 0 -230px no-repeat;
     height: 40px;
     width: 120px
 }
@@ -1275,7 +1275,7 @@ a:active, a:hover {
     position: relative;
     width: 32px;
     height: 32px;
-    background-image: url(/html/static/img/common/footer-sprite.png);
+    background-image: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png);
     background-repeat: no-repeat;
     margin: 3px 6px 0;
     opacity: .5;
@@ -1297,7 +1297,7 @@ a:active, a:hover {
     height: 220px;
     left: -69px;
     bottom: 35px;
-    background: url(/html/static/img/common/footer-sprite.png?1) no-repeat
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png?1) no-repeat
 }
 
 .followus .followus-weixin {
@@ -1464,7 +1464,7 @@ select:focus {
 
 a.btn-add-collection {
     display: block;
-    background: url(/static/img/course/new_add_collection.png) 46px top no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/new_add_collection.png) 46px top no-repeat;
     height: 32px;
     color: #909b9e;
     text-align: center;
@@ -1592,7 +1592,7 @@ progress::-webkit-progress-value {
     -webkit-transform-origin: 100% 95%;
     -ms-transform-origin: 100% 95%;
     transform-origin: 100% 95%;
-    background: url(/html/static/img/common/elevator.png) 0 -220px no-repeat
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) 0 -220px no-repeat
 }
 
 .elevator .elevator-app:hover .elevator-app-box {
@@ -1624,7 +1624,7 @@ progress::-webkit-progress-value {
     -webkit-transform-origin: 100% 95%;
     -ms-transform-origin: 100% 95%;
     transform-origin: 100% 95%;
-    background: url(/html/static/img/common/elevator.png) no-repeat
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) no-repeat
 }
 
 .elevator .elevator-weixin:hover .elevator-weixin-box {
@@ -1671,7 +1671,7 @@ input::-moz-focus-inner {
     min-width: 800px;
     height: 30px;
     line-height: 30px;
-    background: url(/static/img/iebg.gif) repeat-x;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/iebg.gif) repeat-x;
     z-index: 999999
 }
 
@@ -1686,7 +1686,7 @@ input::-moz-focus-inner {
     height: 14px;
     vertical-align: -2px;
     margin-right: 5px;
-    background: url(/static/img/iefixed-sprite.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/iefixed-sprite.png) no-repeat
 }
 
 .cpt-ct a {
@@ -1731,7 +1731,7 @@ input::-moz-focus-inner {
     height: 8px;
     width: 8px;
     vertical-align: 1px;
-    background: url(/static/img/iefixed-sprite.png) 0 -24px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/iefixed-sprite.png) 0 -24px no-repeat
 }
 
 .cpt-close:hover i {
@@ -1753,7 +1753,7 @@ input::-moz-focus-inner {
     top: -11px;
     width: 19px;
     height: 11px;
-    background: url(/static/img/dot_usercard.png)
+    background: url(/OnlineCourseFronten/static/staticWEB/img/dot_usercard.png)
 }
 
 .layer-usercard-header {
@@ -2161,7 +2161,7 @@ select[multiple].ipt, textarea.ipt {
 .g-user-card .card-top {
     padding-left: 100px;
     height: 100px;
-    background: url(/static/img/common/user_card_top.png) center 0 no-repeat #f34131;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/user_card_top.png) center 0 no-repeat #f34131;
     color: #fff;
     position: relative
 }
@@ -2558,7 +2558,7 @@ select[multiple].ipt, textarea.ipt {
         border-radius: 22px;
         vertical-align: middle;
         display: inline-block;
-        background: url(/static/img/menu_icon.png) no-repeat
+        background: url(/OnlineCourseFronten/static/staticWEB/img/menu_icon.png) no-repeat
     }
 
     body.slide-left .nav-item {
@@ -2574,8 +2574,8 @@ select[multiple].ipt, textarea.ipt {
 
 @font-face {
     font-family: icomoon;
-    src: url(/html/static/fonts/fonts/icomoon.eot?d849nx);
-    src: url(/html/static/fonts/fonts/icomoon.eot?d849nx#iefix) format('embedded-opentype'), url(/html/static/fonts/fonts/icomoon.ttf?d849nx) format('truetype'), url(/html/static/fonts/fonts/icomoon.woff?d849nx) format('woff'), url(/html/static/fonts/fonts/icomoon.svg?d849nx#icomoon) format('svg');
+    src: url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.eot?d849nx);
+    src: url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.eot?d849nx#iefix) format('embedded-opentype'), url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.ttf?d849nx) format('truetype'), url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.woff?d849nx) format('woff'), url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.svg?d849nx#icomoon) format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -3156,7 +3156,7 @@ body, html {
     width: 16px;
     height: 16px;
     vertical-align: -3px;
-    background: url(/static/img/course/v2/info_s.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/v2/info_s.png) no-repeat
 }
 
 .course-infos .learn-btn {
@@ -3274,7 +3274,7 @@ body, html {
     width: 14px;
     height: 14px;
     margin-right: 4px;
-    background: url(/static/img/course/v2/info_s.png) 0 -20px no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/v2/info_s.png) 0 -20px no-repeat;
     vertical-align: middle
 }
 
@@ -3291,7 +3291,7 @@ body, html {
 }
 
 .course-infos .statics .static-item .score-rl-tips .rule-arrow {
-    background: url(/static/img/common/rl-arrow.png) 0 -11px no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/rl-arrow.png) 0 -11px no-repeat;
     position: absolute;
     right: 62px;
     top: -6px;
@@ -3727,7 +3727,7 @@ body, html {
     width: 40px;
     height: 40px;
     margin: 5px 0 0;
-    background: url(/static/img/course_info_sprit.png) 0 -106px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course_info_sprit.png) 0 -106px no-repeat
 }
 
 .outline-list .chapter .chapter-bd {
@@ -4341,11 +4341,11 @@ body, html {
 }
 
 .icon-empty-ques, .unquestion span {
-    background: url(/static/img/unques.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/unques.png) no-repeat
 }
 
 .icon-empty-comment {
-    background: url(/static/img/course/v2/empty-comment.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/v2/empty-comment.png) no-repeat
 }
 
 a.from:hover {
@@ -4366,7 +4366,7 @@ a.from:hover {
 }
 
 .share-rl-tips .rule-arrow {
-    background: url(/static/img/common/rl-arrow.png) 0 -11px no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/rl-arrow.png) 0 -11px no-repeat;
     position: absolute;
     right: 51px;
     top: -6px;
@@ -4460,7 +4460,7 @@ a.from:hover {
     font-size: 0;
     line-height: 0;
     overflow: hidden;
-    background: url(/static/img/course/arrow.png) left top no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/arrow.png) left top no-repeat
 }
 
 .score-info {
@@ -4890,7 +4890,7 @@ a.from:hover {
 }
 
 .share-rl-tips .rule-arrow {
-    background: url(/static/img/common/rl-arrow.png) 0 -11px no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/rl-arrow.png) 0 -11px no-repeat;
     position: absolute;
     right: 51px;
     top: -6px;
@@ -4923,15 +4923,15 @@ i.hasOpen, i.hasOpenOn, i.unOpen {
 }
 
 i.hasOpen {
-    background: url(/static/img/learnicon.png?v3.1) 0 -37px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 -37px no-repeat
 }
 
 i.unOpen {
-    background: url(/static/img/learnicon.png?v3.1) 0 -82px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 -82px no-repeat
 }
 
 i.hasOpenOn {
-    background: url(/static/img/learnicon.png?v3.1) 0 8px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 8px no-repeat
 }
 
 @-moz-document url-prefix() {
@@ -5086,7 +5086,7 @@ i.hasOpenOn {
 }
 
 .mod-chapters .chapter .video li a.practise, .mod-chapters .chapter .video li a.programme, .mod-chapters .chapter .video li a.studyvideo {
-    background: url(/html/static/img/learnicon.png?v3.1) 0 -121px no-repeat
+    background: url(/html/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 -121px no-repeat
 }
 
 .mod-chapters .chapter .video li a.practise {
@@ -5201,7 +5201,7 @@ i.hasOpenOn {
 }
 
 .mod-chapters .chapter .state-expand, .mod-chapters .chapter .state-open, .mod-chapters .chapter .state-unopen {
-    background-image: url(/static/img/learnicon.png?v3.1);
+    background-image: url(/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1);
     background-repeat: no-repeat;
     width: 20px;
     height: 40px;
@@ -5253,7 +5253,7 @@ i.hasOpenOn {
 }
 
 .uncourse span {
-    background: url(/static/img/unlist.gif) no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/unlist.gif) no-repeat;
     width: 120px;
     height: 120px;
     display: block;
@@ -5311,7 +5311,7 @@ i.hasOpenOn {
     font-size: 0;
     line-height: 0;
     overflow: hidden;
-    background: url(/static/img/course/arrow.png) left top no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/course/arrow.png) left top no-repeat
 }
 
 .score-info {
@@ -5523,7 +5523,7 @@ i.hasOpenOn {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background: url(/static/img/u/gender.png) no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/u/gender.png) no-repeat;
     vertical-align: -3px
 }
 
@@ -6175,7 +6175,7 @@ i.hasOpenOn {
     font-weight: 400;
     font-variant: normal;
     text-transform: none;
-    line-height: 1;
+    line-height: 2.4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -6426,7 +6426,8 @@ fieldset, img {
 
 a.qa-author
 a:link, a:visited, body, html {
-    color: #14191e;
+    /*color: #14191e;*/
+    color: #787d82;
 }
 
 .qa-content {

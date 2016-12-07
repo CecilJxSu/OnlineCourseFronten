@@ -16,7 +16,7 @@ public class IndexController {
 
     @RequestMapping("showIndex")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        return "/frontend/index";
+        return "/frontend/course";
     }
 
 }

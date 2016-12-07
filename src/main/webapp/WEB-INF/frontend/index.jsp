@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -42,6 +42,7 @@
             </li>
         </ul>
         <div class="login-area" >
+            <!--未登录权限-->
             <ul class="header-unlogin clearfix">
                 <li class="header-app">
                     <a href="javascript:;">
@@ -60,6 +61,73 @@
                     <a href="#" id="js-signup-btn">注册</a>
                 </li>
             </ul>
+            <!--未登录权限end-->
+            <!--登录权限-->
+            <%--<ul class="clearfix logined">
+                <li class="header-app">
+                    <a href="javascript:;">
+                        <span class="icon-appdownload"></span>
+                    </a>
+                    <div class="QR-download">
+                        <p id="app-text">慕课网APP下载</p>
+                        <p id="app-type">iPhone / Android / iPad</p>
+                        <img src="/html/static/img/index/QR-code.jpg">
+                    </div>
+                </li>
+                <!--玲-->
+                <li class="remind_warp">
+                    <!-- <i class="msg_remind"></i> -->
+                    <a target="_blank" href="#">
+                        <i class="icon-notifi"></i>
+                        <span class="msg_icon" style="display: none;"></span>
+                    </a>
+                </li>
+                <!--玲end-->
+                <!--消息-->
+                <li class="my_message">
+                    <i class="msg_remind" style="display: none;"></i>
+                    <a href="#" title="我的消息" target="_blank">
+                        <!-- <span class="msg_icon" style="display: none;"></span> -->
+                        <i class="icon-mail"></i>
+                        <span style="display: none;">我的消息</span>
+                    </a>
+                </li>
+                <!--消息end-->
+                <!--用户-->
+                <li class="set_btn user-card-box">
+                    <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="#" target="_self">
+                        <img width="40" height="40" src="/html/static/img/home/552133900001743101800180-100-100.jpg">
+                        <i class="myspace_remind" style="display: none;"></i>
+                        <span style="display: none;">动态提醒</span>
+                    </a>
+                    <div class="g-user-card">
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <a href="#"><img src="/html/static/img/home/552133900001743101800180-100-100.jpg" alt="哈米的小宇宙" class="l"></a>
+                                <a href="#"><span class="name text-ellipsis">哈米的小宇宙</span></a>
+                                <p class="meta">
+                                    <a href="#">经验<b id="js-user-mp">5565</b></a>
+                                    <a href="#">积分<b id="js-user-credit">1</b></a></p>
+                                <a href="#" class="setup linkToMall">积分商城</a>
+                            </div><div class="card-history">
+                                    <span class="history-item">
+                                        <span class="tit text-ellipsis">HTML+CSS基础课程</span>
+                                        <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
+                                        <i class="icon-clock"></i>
+                                        <a href="#" class="continue">继续</a>
+                                    </span>
+                        </div>
+                            <div class="card-sets clearfix">
+                                <a href="#" target="_blank" class="l mr30">个人设置</a>
+                                <a href="#" class="r">退出</a>
+                            </div>
+                        </div>
+                        <i class="card-arr"></i>
+                    </div>
+                </li>
+                <!--用户end-->
+            </ul>--%>
+            <!--登录权限end-->
         </div>
         <!--查询-->
         <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
