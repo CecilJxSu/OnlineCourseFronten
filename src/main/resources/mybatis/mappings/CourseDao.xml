@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.canlnac.course.dao.CourseDao">
-    <resultMap id="course" type="cn.canlnac.course.entity.Course">
+<mapper namespace="cn.canlnac.OnlineCourseFronten.dao.CourseDao">
+    <resultMap id="course" type="cn.canlnac.OnlineCourseFronten.entity.Course">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="date" property="date" jdbcType="DATE"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
@@ -19,13 +19,13 @@
     </resultMap>
 
     <!--创建课程-->
-    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="cn.canlnac.course.entity.Course">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="cn.canlnac.OnlineCourseFronten.entity.Course">
         INSERT INTO course(date,status,name,introduction,user_id,department,watch_count,like_count,comment_count,favorite_count)
         VALUES (now(),#{status},#{name},#{introduction},#{userId},#{department},#{watchCount},#{likeCount},#{commentCount},#{favoriteCount})
     </insert>
 
     <!--更新课程-->
-    <update id="update" parameterType="cn.canlnac.course.entity.Course">
+    <update id="update" parameterType="cn.canlnac.OnlineCourseFronten.entity.Course">
         UPDATE course
         SET
             <trim suffixOverrides=",">

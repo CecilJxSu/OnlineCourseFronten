@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.canlnac.course.dao.FavoriteDao">
-    <resultMap id="favorite" type="cn.canlnac.course.entity.Favorite">
+<mapper namespace="cn.canlnac.OnlineCourseFronten.dao.FavoriteDao">
+    <resultMap id="favorite" type="cn.canlnac.OnlineCourseFronten.entity.Favorite">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="date" property="date" jdbcType="DATE"/>
         <result column="target_type" property="targetType" jdbcType="VARCHAR"/>
@@ -12,7 +12,7 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="profile" type="cn.canlnac.course.entity.Profile">
+    <resultMap id="profile" type="cn.canlnac.OnlineCourseFronten.entity.Profile">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="university_id" property="universityId" jdbcType="VARCHAR"/>

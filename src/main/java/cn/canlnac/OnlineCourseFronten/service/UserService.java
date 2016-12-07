@@ -1,6 +1,6 @@
-package cn.canlnac.course.service;
+package cn.canlnac.OnlineCourseFronten.service;
 
-import cn.canlnac.course.entity.User;
+import cn.canlnac.OnlineCourseFronten.entity.User;
 
 import java.util.List;
 import java.util.Map;

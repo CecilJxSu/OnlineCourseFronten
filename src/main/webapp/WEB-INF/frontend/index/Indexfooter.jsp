@@ -40,7 +40,7 @@
                 <a href="javascript:;" target="_blank" title="友情链接">友情链接</a>
             </div>
 
-            <div class="footer-copyright">     <p>©&nbsp;2016&nbsp;imooc.com&nbsp;&nbsp;京ICP备13046642号</p>    </div>
+            <div class="footer-copyright">     <p>©&nbsp;2016&nbsp;canlnac.cn&nbsp;&nbsp;粤ICP备16017948号-1</p>    </div>
 
             <!--右边导航栏-->
             <div id="J_GotoTop" class="elevator">

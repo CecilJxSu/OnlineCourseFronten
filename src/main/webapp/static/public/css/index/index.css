@@ -4928,7 +4928,8 @@ p {
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    left: 244px
+    /*left: 244px*/
+    left: 0px
 }
 
 .g-banner .next:hover, .g-banner .prev:hover {

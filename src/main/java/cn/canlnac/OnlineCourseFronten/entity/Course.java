@@ -1,4 +1,4 @@
-package cn.canlnac.course.entity;
+package cn.canlnac.OnlineCourseFronten.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

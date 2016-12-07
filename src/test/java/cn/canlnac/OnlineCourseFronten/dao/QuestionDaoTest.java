@@ -1,6 +1,7 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
-import cn.canlnac.course.entity.Question;
+
+import cn.canlnac.OnlineCourseFronten.entity.Question;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +10,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 /**
  * Created by can on 2016/10/2.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-context.xml"})
-@TransactionConfiguration(transactionManager="transactionManager", defaultRollback=true)
+@ContextConfiguration({"classpath:spring/applicationContext-*.xml"})
+@TransactionConfiguration(transactionManager="dataSourceTransactionManager", defaultRollback=true)
 @Transactional
 public class QuestionDaoTest {
     @Autowired

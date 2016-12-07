@@ -1,6 +1,7 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
-import cn.canlnac.course.entity.User;
+
+import cn.canlnac.OnlineCourseFronten.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,14 @@ import static org.junit.Assert.assertEquals;
  * Created by cecil on 2016/9/21.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-context.xml"})
-@TransactionConfiguration(transactionManager="transactionManager", defaultRollback=true)
-@Transactional
+@ContextConfiguration({"classpath:spring/applicationContext-*.xml"})
+//@TransactionConfiguration(transactionManager="dataSourceTransactionManager", defaultRollback=true)
+//@Transactional
 public class UserDaoTest {
     @Autowired
     private UserDao userDao;
 
-    List<Integer> ids = new ArrayList<>();
+    List<Integer> ids = new ArrayList<Integer>();
 
     @Test
     public void testCreate() throws Exception {
@@ -58,7 +59,7 @@ public class UserDaoTest {
     @Test
     public void testFindByID() throws Exception {
         testCreate();
-        List<User> users = new ArrayList<>();
+        List<User> users = new ArrayList<User>();
         for (int id:ids) {
             users.add(userDao.findByID(id));
         }
@@ -77,17 +78,17 @@ public class UserDaoTest {
     public void testGetList() throws Exception {
         testCreate();
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object>();
         //status数组，userStatus数组，username数组
-        List<String> status = new ArrayList<>();//正常：active；封号：lock；永久封号：dead
+        List<String> status = new ArrayList<String>();//正常：active；封号：lock；永久封号：dead
         status.add("active");
 
-        List<String> userStatus = new ArrayList<>();//学生：student；老师：teacher；管理员：admin
+        List<String> userStatus = new ArrayList<String>();//学生：student；老师：teacher；管理员：admin
         userStatus.add("student");
         userStatus.add("teacher");
 //        userStatus.add("admin");
 
-        List<String> username = new ArrayList<>();//登录用户名zhangsan
+        List<String> username = new ArrayList<String>();//登录用户名zhangsan
 
         map.put("status",status);
         map.put("userStatus",userStatus);
@@ -102,17 +103,17 @@ public class UserDaoTest {
     public void testCount() throws Exception {
         testCreate();
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object>();
         //status数组，userStatus数组，username数组
-        List<String> status = new ArrayList<>();//正常：active；封号：lock；永久封号：dead
+        List<String> status = new ArrayList<String>();//正常：active；封号：lock；永久封号：dead
         status.add("active");
 
-        List<String> userStatus = new ArrayList<>();//学生：student；老师：teacher；管理员：admin
+        List<String> userStatus = new ArrayList<String>();//学生：student；老师：teacher；管理员：admin
         userStatus.add("student");
         userStatus.add("teacher");
 //        userStatus.add("admin");
 
-        List<String> username = new ArrayList<>();//登录用户名zhangsan
+        List<String> username = new ArrayList<String>();//登录用户名zhangsan
 
         map.put("status",status);
         map.put("userStatus",userStatus);

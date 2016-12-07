@@ -1,6 +1,7 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
-import cn.canlnac.course.entity.Profile;
+
+import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by can on 2016/10/1.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-context.xml"})
-@TransactionConfiguration(transactionManager="transactionManager", defaultRollback=true)
+@ContextConfiguration({"classpath:spring/applicationContext-*.xml"})
+@TransactionConfiguration(transactionManager="dataSourceTransactionManager", defaultRollback=true)
 @Transactional
 public class ProfileDaoTest {
     @Autowired

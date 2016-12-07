@@ -1,8 +1,8 @@
-package cn.canlnac.course.service.impl;
+package cn.canlnac.OnlineCourseFronten.service.impl;
 
-import cn.canlnac.course.dao.UserDao;
-import cn.canlnac.course.entity.User;
-import cn.canlnac.course.service.UserService;
+import cn.canlnac.OnlineCourseFronten.dao.UserDao;
+import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
      * @param user          用户对象，必须的字段username,password,userStatus
      * @return              插入数目
      */
-    @Override
     public int create(User user) {
         return userDao.create(user);
     }
@@ -34,7 +33,6 @@ public class UserServiceImpl implements UserService {
      * @param id    用户ID
      * @return      登录用户数据
      */
-    @Override
     public User findByID(int id) {
         return userDao.findByID(id);
     }
@@ -44,7 +42,6 @@ public class UserServiceImpl implements UserService {
      * @param username  用户名
      * @return          登录用户信息
      */
-    @Override
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
@@ -58,7 +55,6 @@ public class UserServiceImpl implements UserService {
      *                       userStatus: teacher | student | admin
      * @return              登录用户列表
      */
-    @Override
     public List<User> getList(int start, int count, Map<String, Object> conditions) {
         return userDao.getList(start, count, conditions);
     }
@@ -70,7 +66,6 @@ public class UserServiceImpl implements UserService {
      *                       userStatus: teacher | student | admin
      * @return              登录用户列表的数目
      */
-    @Override
     public int count(Map<String, Object> conditions) {
         return userDao.count(conditions);
     }
@@ -80,7 +75,6 @@ public class UserServiceImpl implements UserService {
      * @param user      用户数据
      * @return          更新的数目
      */
-    @Override
     public int update(User user) {
         return userDao.update(user);
     }

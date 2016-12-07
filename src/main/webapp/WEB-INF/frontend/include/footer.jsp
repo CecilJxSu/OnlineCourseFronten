@@ -36,7 +36,7 @@
                          <li><a href="/about/us" target="_blank">关于我们</a></li> -->
                     </ul>
                 </div>
-                <p>Copyright © 2016 imooc.com All Rights Reserved | 京ICP备 13046642号-2</p>
+                <p>Copyright © 2016 canlnac.cn All Rights Reserved | 粤ICP备 16017948号-1</p>
             </div>
         </div>
     </div>

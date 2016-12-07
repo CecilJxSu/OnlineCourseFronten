@@ -1,6 +1,6 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
-import cn.canlnac.course.entity.Course;
+import cn.canlnac.OnlineCourseFronten.entity.Course;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 

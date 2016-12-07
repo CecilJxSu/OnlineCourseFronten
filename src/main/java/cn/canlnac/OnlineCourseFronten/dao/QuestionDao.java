@@ -1,6 +1,6 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
-import cn.canlnac.course.entity.Question;
+import cn.canlnac.OnlineCourseFronten.entity.Question;
 import org.springframework.stereotype.Component;
 
 /**

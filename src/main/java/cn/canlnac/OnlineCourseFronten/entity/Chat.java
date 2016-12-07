@@ -1,10 +1,9 @@
-package cn.canlnac.course.entity;
+package cn.canlnac.OnlineCourseFronten.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by cecil on 2016/9/18.

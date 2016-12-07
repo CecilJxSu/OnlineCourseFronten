@@ -1,11 +1,10 @@
-package cn.canlnac.course.dao;
+package cn.canlnac.OnlineCourseFronten.dao;
 
+import cn.canlnac.OnlineCourseFronten.entity.Message;
 import org.apache.ibatis.annotations.Param;
-import cn.canlnac.course.entity.Message;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 消息数据接口
@@ -17,7 +16,7 @@ public interface MessageDao {
      * @param message   消息
      * @return          创建成功数目
      */
-    int create (Message message);
+    int create(Message message);
 
     /**
      * 获取指定的消息
@@ -40,8 +39,8 @@ public interface MessageDao {
      * @return          消息数目
      */
     int count(
-            @Param("toUserId")int toUserId,
-            @Param("isRead")String isRead
+            @Param("toUserId") int toUserId,
+            @Param("isRead") String isRead
     );
 
     /**
@@ -53,10 +52,10 @@ public interface MessageDao {
      * @return          消息列表
      */
     List<Message> getMessages(
-            @Param("start")int start,
-            @Param("count")int count,
-            @Param("toUserId")int toUserId,
-            @Param("isRead")String isRead
+            @Param("start") int start,
+            @Param("count") int count,
+            @Param("toUserId") int toUserId,
+            @Param("isRead") String isRead
     );
 
     /**
@@ -64,5 +63,5 @@ public interface MessageDao {
      * @param id    消息ID
      * @return      删除成功数目
      */
-    int delete (int id);
+    int delete(int id);
 }
