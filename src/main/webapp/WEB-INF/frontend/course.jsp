@@ -9,7 +9,9 @@
     <title>header</title>
 </head>
 <body>
-
+<%--头部--%>
+<jsp:include page="include/header.jsp"></jsp:include>
+<%--头部end--%>
 <%--课程内容--%>
 <div class="main">
     <!--查询方向-->
@@ -231,7 +233,9 @@
     <!--显示最新最热end-->
 </div>
 <%--课程内容end--%>
-
+<%--尾部--%>
+<jsp:include page="include/footer.jsp"></jsp:include>
+<%--尾部end--%>
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">

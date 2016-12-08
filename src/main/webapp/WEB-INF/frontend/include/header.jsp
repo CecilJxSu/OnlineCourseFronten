@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
+    <link href="${pageContext.request.contextPath}/static/public/css/index/pologinless.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/learn/common.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/learn/layer.css" rel="stylesheet"/>
     <title>header</title>
@@ -45,10 +47,10 @@
                     </div>
                 </li>
                 <li class="header-signin">
-                    <a href="#" id="js-signin-btn">登录</a>
+                    <a href="#" id="js-signin-btn" onclick="ShowDiv('signin','fade')">登录</a>
                 </li>
                 <li class="header-signup">
-                    <a href="#" id="js-signup-btn">注册</a>
+                    <a href="#" id="js-signup-btn" onclick="ShowDiv('signup','fade')">注册</a>
                 </li>
             </ul>
             <!--权限未登陆-->
@@ -145,9 +147,87 @@
 </div>
 <!--header：结束-->
 
+<!--登陆与注册-->
+<!--登陆-->
+<div id="signin" class="hidecss rl-modal in" aria-hidden="flase">
+    <div class="rl-modal-header">
+        <h1>
+            <span name="signin"  class="active-title">登录</span>
+            <span name="signup" class="xa-showSignup">注册</span>
+        </h1>
+        <button type="button" class="rl-close" data-dismiss="modal" hidefocus="true" aria-hidden="true"
+                onclick="CloseDiv('signin', 'fade')"></button>
+    </div>
+    <div class="rl-modal-body js-loginWrap">
+        <div class="clearfix">
+            <div class="l-left-wrap l">
+                <form id="signup-form" autocomplete="off">
+                    <p class="rlf-tip-globle color-red" id="signin-globle-error"></p>
+                    <div class="rlf-group pr">
+                        <input style="height: 40px;" type="text" value="" maxlength="37" name="email" data-validate="require-mobile-phone"
+                               autocomplete="off" class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录邮箱/手机号">
+                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p></div>
+                    <div class="rlf-group  pr">
+                        <input style="height: 40px;" type="password" name="password" data-validate="require-password"
+                               class="ipt ipt-pwd js-loginPassword js-pass-pwd" placeholder="6-16位密码，区分大小写，不能用空格" maxlength="16" autocomplete="off">
+                        <p class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入6-16位密码，区分大小写，不能使用空格！"></p>
+                    </div>
+                    <div class="rlf-group rlf-appendix form-control  clearfix">
+                        <label for="auto-signin" class="rlf-autoin l" hidefocus="true">
+                            <input type="checkbox" checked="checked" class="auto-cbx" id="auto-signin">下次自动登录</label> <a
+                            href="#" class="rlf-forget r" target="_blank" hidefocus="true">忘记密码 </a>
+                    </div>
+                    <div class="rlf-group clearfix">
+                        <input type="button" value="登录" hidefocus="true" class="btn-red btn-full xa-login dengluzhucecss" style="width: 300px;
+    height: 50px;line-height: 50px;font-size: 16px;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--登陆end-->
+<!--注册-->
+<div id="signup" class="hidecss rl-modal  in" aria-hidden="false">
+    <div class="rl-modal-header">
+        <button type="button" class="rl-close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('signup', 'fade')"></button>
+        <h1>
+            <span  name="signin" class="xa-showSignin">登录</span>
+            <span  name="signup" class="active-title" >注册</span>
+        </h1>
+    </div>
+    <div class="rl-modal-body js-modal-body js-registerWrap">
+        <form id="signup-form pr"><p class="rlf-tip-globle color-red rlf-g-tip" id="signup-globle-error"></p>
+            <div class="rlf-group  pr">
+                <input style="height: 40px;"  type="text" maxlength="37" value="" name="email"
+                       data-callback="checkusername" data-validate="require-mobile-phone"
+                       autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
+                       placeholder="请输入注册邮箱/手机号">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p>
+            </div>
+            <div class="rlf-group clearfix form-control ">
+                <input style="height: 40px;" type="text" name="verify"class="ipt ipt-verify js-emailverify l"data-validate="require-string"
+                       data-callback="checkverity" maxlength="4" data-minlength="4" placeholder="请输入验证码"> <a
+                    href="javascript:void(0)" hidefocus="true" class="verify-img-wrap js-verify-refresh">
+                <img class="verify-img" src="${pageContext.request.contextPath}/static/staticWEB/img/verifycode.png"></a>
+                <a href="javascript:void(0)" hidefocus="true"class="icon-refresh js-verify-refresh" style="line-height: 1.2;
+    display: inline-block;"></a>
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="验证码错误"></p>
+            </div>
+            <div class="rlf-group clearfix">
+                <a href="javascript:void(0)" id="signup-btn" hidefocus="true" class="btn-red btn-full btn r " style="width: 300px;
+    height: 50px;line-height: 50px;font-size: 16px;"> 注册 </a>
+            </div>
+        </form>
+    </div>
+</div>
+<!--注册-->
+<div id="fade" class="hidecss modal-backdrop  in"></div>
+<!--登陆与注册-->
+
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
+
     $(function () {
         /*var a = $('[data-search="top-banner"]'), c = new v(a), h = $(".search-area"), g = $(".showhide-search"), b = $(".search-input"), k = function () {
          g.attr("data-show", "yes"), h.show(1, function () {
@@ -176,7 +256,40 @@
         });
         var y = function () {
         }
-    })
+    });
+
+
+    //弹出隐藏层
+    function ShowDiv(show_div, bg_div) {
+        document.getElementById(show_div).style.display = 'block';
+        document.getElementById(bg_div).style.display = 'block'
+    }
+    ;
+    //关闭弹出层
+    function CloseDiv(show_div, bg_div) {
+        document.getElementById(show_div).style.display = 'none';
+        document.getElementById(bg_div).style.display = 'none';
+    }
+    ;
+
+    /*注册和登陆转换*/
+    $('.rl-modal-header span').on('click', function () {
+        var name=$(this).attr('name');
+        if(name=='signin'){
+            var  parent=$('.rl-modal-header').parent();
+            if(parent!='signin'){
+                document.getElementById('signup').style.display = 'none';
+                document.getElementById('signin').style.display = 'block';
+            }
+        }
+        if(name=='signup'){
+            var  parent=$('.rl-modal-header').parent();
+            if(parent!='signup'){
+                document.getElementById('signin').style.display = 'none';
+                document.getElementById('signup').style.display = 'block';
+            }
+        }
+    });
 </script>
 </body>
 </html>

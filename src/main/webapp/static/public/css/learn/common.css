@@ -679,7 +679,7 @@ a:active, a:hover {
     display: block;
     height: 60px;
     width: 140px;
-    background: url(/OnlineCourseFronten/static/staticWEB/img/common/logo.png?t=1) center center no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/logo.png) center center no-repeat;
     overflow: hidden
 }
 
@@ -776,7 +776,7 @@ a:active, a:hover {
     display: inline-block;
     width: 11px;
     height: 16px;
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/head-app-icon.png) no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/head-app-icon.png) no-repeat;
     vertical-align: -3px;
     margin-right: 5px;
     transition: .3s;
@@ -1256,7 +1256,7 @@ a:active, a:hover {
 .footer_logo {
     display: none;
     float: left;
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png) 0 -230px no-repeat;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png) 0 -230px no-repeat;
     height: 40px;
     width: 120px
 }
@@ -1275,7 +1275,7 @@ a:active, a:hover {
     position: relative;
     width: 32px;
     height: 32px;
-    background-image: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png);
+    background-image: url(/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png);
     background-repeat: no-repeat;
     margin: 3px 6px 0;
     opacity: .5;
@@ -1297,7 +1297,7 @@ a:active, a:hover {
     height: 220px;
     left: -69px;
     bottom: 35px;
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png?1) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/footer-sprite.png?1) no-repeat
 }
 
 .followus .followus-weixin {
@@ -1569,7 +1569,9 @@ progress::-webkit-progress-value {
 .elevator a i:hover {
     color: #14191e
 }
-
+#main {
+    padding-top: 0;
+}
 .elevator .no-goto {
     border-bottom: none
 }
@@ -1592,7 +1594,7 @@ progress::-webkit-progress-value {
     -webkit-transform-origin: 100% 95%;
     -ms-transform-origin: 100% 95%;
     transform-origin: 100% 95%;
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) 0 -220px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) 0 -220px no-repeat
 }
 
 .elevator .elevator-app:hover .elevator-app-box {
@@ -1624,7 +1626,7 @@ progress::-webkit-progress-value {
     -webkit-transform-origin: 100% 95%;
     -ms-transform-origin: 100% 95%;
     transform-origin: 100% 95%;
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/common/elevator.png) no-repeat
 }
 
 .elevator .elevator-weixin:hover .elevator-weixin-box {
@@ -3080,10 +3082,6 @@ body, html {
 
 .wgt-ipt:focus {
     border-color: #93999f !important
-}
-
-#main {
-    padding-top: 0
 }
 
 .course-infos {
@@ -5086,7 +5084,7 @@ i.hasOpenOn {
 }
 
 .mod-chapters .chapter .video li a.practise, .mod-chapters .chapter .video li a.programme, .mod-chapters .chapter .video li a.studyvideo {
-    background: url(/html/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 -121px no-repeat
+    background: url(/OnlineCourseFronten/static/staticWEB/img/learnicon.png?v3.1) 0 -121px no-repeat
 }
 
 .mod-chapters .chapter .video li a.practise {

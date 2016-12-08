@@ -58,7 +58,7 @@
         <i class="icon-wxgzh"></i>
         <div class="elevator-weixin-box"></div>
     </a>
-    <a href="javascript:void(0)" class="elevator-top no-goto" style="" title="返回顶部" id="backTop">
+    <a href="javascript:void(0)" class="elevator-top no-goto" style="display: none" title="返回顶部" id="backTop">
         <i class="icon-up2"></i>
     </a>
 </div>
@@ -67,9 +67,7 @@
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
 
-    function c() {
-        h = $(window).height(), t = $(document).scrollTop(), t >= 768 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
-    }
+
     $(function () {
         $("#backTop").click(function () {
             $("html,body").animate({scrollTop: 0}, 200)
@@ -77,6 +75,10 @@
             c()
         })
     })
+
+    function c() {
+        h = $(window).height(), t = $(document).scrollTop(), t >= 768 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
+    }
 
 </script>
 </body>
