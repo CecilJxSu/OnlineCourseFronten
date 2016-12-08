@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,7 +13,7 @@
 </head>
 <body>
 <!--header-->
-<div id="header">
+<%--<div id="header">
     <div class="page-container" id="nav">
         <div class="logo" id="logo">
             <a href="javascript:;" target="_self" class="hide-text">课程学习网</a>
@@ -58,7 +59,7 @@
             </ul>
             <!--未登录权限end-->
             <!--登录权限-->
-            <%--<ul class="clearfix logined">
+            &lt;%&ndash;<ul class="clearfix logined">
                 <li class="header-app">
                     <a href="javascript:;">
                         <span class="icon-appdownload"></span>
@@ -121,14 +122,14 @@
                     </div>
                 </li>
                 <!--用户end-->
-            </ul>--%>
+            </ul>&ndash;%&gt;
             <!--登录权限end-->
         </div>
         <!--查询-->
         <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
             <div class="pa searchTags">
-                <%--<a href="javascript:;" target="_blank">安卓框架</a>--%>
-                <%--<a href="javascript:;" target="_blank">响应式</a>--%>
+                &lt;%&ndash;<a href="javascript:;" target="_blank">安卓框架</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank">响应式</a>&ndash;%&gt;
             </div>
 
             <div class="search-area" data-search="top-banner">
@@ -141,7 +142,8 @@
         </div>
         <!--查询end-->
     </div>
-</div>
+</div>--%>
+<jsp:include page="index/Indexheader.jsp"></jsp:include>
 <!--header结束-->
 <div class="bk"></div>
 <!--banner图-->
@@ -396,34 +398,34 @@
 <%--</div>--%>
 <%--<!--第二种div样式end-->--%>
 <!--底部-->
-<div class="footer bg-white idx-minwidth">
+<%--<div class="footer bg-white idx-minwidth">
     <div class="container">
         <div class="footer-wrap idx-width">
-            <%--<div class="footer-sns">--%>
-            <%--<a href="javascript:;" class="footer-sns-weibo hide-text" target="_blank" title="新浪微博">--%>
-            <%--新浪微博--%>
-            <%--</a>--%>
-            <%--<a href="javascript:void(0);" class="footer-sns-weixin" target="_blank" title="微信">--%>
-            <%--<i class="footer-sns-weixin-expand"></i>--%>
-            <%--</a>--%>
-            <%--<a href="javascript:;" class="footer-sns-qqweibo hide-text" target="_blank" title="腾讯微博">--%>
-            <%--腾讯微博--%>
-            <%--</a>--%>
-            <%--<a href="javascript:;" class="footer-sns-qzone hide-text" target="_blank" title="QQ空间">--%>
-            <%--QQ空间--%>
-            <%--</a>--%>
-            <%--</div>--%>
+            &lt;%&ndash;<div class="footer-sns">&ndash;%&gt;
+            &lt;%&ndash;<a href="javascript:;" class="footer-sns-weibo hide-text" target="_blank" title="新浪微博">&ndash;%&gt;
+            &lt;%&ndash;新浪微博&ndash;%&gt;
+            &lt;%&ndash;</a>&ndash;%&gt;
+            &lt;%&ndash;<a href="javascript:void(0);" class="footer-sns-weixin" target="_blank" title="微信">&ndash;%&gt;
+            &lt;%&ndash;<i class="footer-sns-weixin-expand"></i>&ndash;%&gt;
+            &lt;%&ndash;</a>&ndash;%&gt;
+            &lt;%&ndash;<a href="javascript:;" class="footer-sns-qqweibo hide-text" target="_blank" title="腾讯微博">&ndash;%&gt;
+            &lt;%&ndash;腾讯微博&ndash;%&gt;
+            &lt;%&ndash;</a>&ndash;%&gt;
+            &lt;%&ndash;<a href="javascript:;" class="footer-sns-qzone hide-text" target="_blank" title="QQ空间">&ndash;%&gt;
+            &lt;%&ndash;QQ空间&ndash;%&gt;
+            &lt;%&ndash;</a>&ndash;%&gt;
+            &lt;%&ndash;</div>&ndash;%&gt;
 
             <div class="footer-link">
-                <%--<!-- <a href="/about/us" target="_blank" title="关于我们">关于我们</a> -->--%>
-                <%--<a href="javascript:;" target="_blank" title="企业合作">企业合作</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="人才招聘">人才招聘</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="联系我们">联系我们</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="讲师招募">讲师招募</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="常见问题">常见问题</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="意见反馈">意见反馈</a>--%>
-                <%--<a href="javascript:;" target="_blank">慕课大学</a>--%>
-                <%--<a href="javascript:;" target="_blank" title="友情链接">友情链接</a>--%>
+                &lt;%&ndash;<!-- <a href="/about/us" target="_blank" title="关于我们">关于我们</a> -->&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="企业合作">企业合作</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="人才招聘">人才招聘</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="联系我们">联系我们</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="讲师招募">讲师招募</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="常见问题">常见问题</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="意见反馈">意见反馈</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank">慕课大学</a>&ndash;%&gt;
+                &lt;%&ndash;<a href="javascript:;" target="_blank" title="友情链接">友情链接</a>&ndash;%&gt;
             </div>
 
             <div class="footer-copyright">
@@ -454,7 +456,8 @@
         </div>
     </div>
 
-</div>
+</div>--%>
+<jsp:include page="index/Indexfooter.jsp"></jsp:include>
 <!--底部end-->
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
