@@ -77,7 +77,7 @@
     })
 
     function c() {
-        h = $(window).height(), t = $(document).scrollTop(), t >= 768 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
+        h = $(window).height(), t = $(document).scrollTop(), t >= 200 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
     }
 
 </script>

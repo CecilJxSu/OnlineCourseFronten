@@ -493,14 +493,6 @@
         var y = function () {
         }
     })
-
-    $(function () {
-        $("#backTop").click(function () {
-            $("html,body").animate({scrollTop: 0}, 200)
-        }), $(window).scroll(function () {
-            h = $(window).height(), t = $(document).scrollTop(), t >= 768 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
-        })
-    })
 </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,7 +41,7 @@
                 <a href="javascript:;" target="_blank" title="友情链接">友情链接</a>
             </div>
 
-            <div class="footer-copyright">     <p>©&nbsp;2016&nbsp;canlnac.cn&nbsp;&nbsp;粤ICP备16017948号-1</p>    </div>
+            <div class="footer-copyright">     <p>©&nbsp;2016&nbsp;canlnac.cn&nbsp;&nbsp;粤ICP备16017948号-1</p></div>
 
             <!--右边导航栏-->
             <div id="J_GotoTop" class="elevator">
@@ -58,7 +59,7 @@
                     <i class="icon-wxgzh"></i>
                     <div class="elevator-weixin-box"></div>
                 </a>
-                <a href="javascript:void(0)" class="elevator-top no-goto" style="" title="返回顶部" id="backTop">
+                <a href="javascript:void(0)" class="elevator-top no-goto" style="display: none;" title="返回顶部" id="backTop">
                     <i class="icon-up2"></i>
                 </a>
             </div>
@@ -71,14 +72,11 @@
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
-    function c() {
-        h = $(window).height(), t = $(document).scrollTop(), t >= 768 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
-    }
     $(document).ready(function () {
         $("#backTop").click(function () {
             $("html,body").animate({scrollTop: 0}, 200)
         }), $(window).scroll(function () {
-            c()
+            h = $(window).height(), t = $(document).scrollTop(), t >= 200 ? ($("#backTop").show(), $("#js-elevator-weixin").removeClass("no-goto")) : ($("#backTop").hide(), $("#js-elevator-weixin").addClass("no-goto"))
         })
     })
 </script>
