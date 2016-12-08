@@ -22,4 +22,11 @@ public class IndexController {
         return modelAndView;
     }
 
+    @RequestMapping("teach")
+    public ModelAndView showIndexteach() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("frontend/index");
+        return modelAndView;
+    }
+
 }
