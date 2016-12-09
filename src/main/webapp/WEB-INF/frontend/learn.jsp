@@ -34,8 +34,6 @@
                     <i style="line-height: 0;" class="follow-action js-follow-action icon-star_outline" data-cid="9" data-cmd="follow" title="收藏"></i>
                 </div>
 
-
-
                 <div class="static-item l">
                     <span class="meta">学习人数</span>
                     <span class="meta-value js-learn-num">563978</span>
