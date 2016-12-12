@@ -135,4 +135,10 @@ public class CourseDaoTest {
         List<Course> list = courseDao.findByUserId(1);
         assertEquals(18,list.size());
     }
+
+    @Test
+    public void getNumOfPeople(){
+        int count = courseDao.getNumOfPeople(3);
+        assertEquals(0,count);
+    }
 }

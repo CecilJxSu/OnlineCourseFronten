@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by HaMi on 2016/12/2.
@@ -32,13 +29,36 @@ public class IndexController {
         return modelAndView;
     }
 
+    /**
+     * 首页最热推荐、最新推荐
+     * @return
+     */
     @RequestMapping("user/hot-new")
     @ResponseBody
     public Map<String,Object> hotAndNew(){
         Map<String, Object> conditions = new HashMap();
         conditions.put("status", Arrays.asList("public"));
-        List<Course> hotList = courseService.getList(0,5,"rank",conditions);
-        List<Course> newList = courseService.getList(0,5,"date",conditions);
+        List hotList = new ArrayList();
+        //List hot =
+        for (Course course:courseService.getList(0,5,"rank",conditions)) {
+            Map hot = new HashMap();
+            hot.put("id",course.getId());
+            hot.put("name",course.getName());
+            hot.put("introduction",course.getIntroduction());
+            hot.put("complex",course.getWatchCount()+course.getLikeCount()+course.getCommentCount()+course.getFavoriteCount());
+            hot.put("numOfPeople",courseService.getNumOfPeople(course.getId()));
+            hotList.add(hot);
+        }
+        List newList = new ArrayList();
+        for (Course course:courseService.getList(0,5,"date",conditions)) {
+            Map newc = new HashMap();
+            newc.put("id",course.getId());
+            newc.put("name",course.getName());
+            newc.put("introduction",course.getIntroduction());
+            newc.put("numOfPeople",courseService.getNumOfPeople(course.getId()));
+            newc.put("complex",course.getWatchCount()+course.getLikeCount()+course.getCommentCount()+course.getFavoriteCount());
+            newList.add(newc);
+        }
         Map<String,Object> map = new HashMap();
         map.put("hotList",hotList);
         map.put("newList",newList);
