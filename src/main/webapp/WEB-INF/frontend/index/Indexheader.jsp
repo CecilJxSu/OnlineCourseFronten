@@ -197,13 +197,28 @@
         </h1>
     </div>
     <div class="rl-modal-body js-modal-body js-registerWrap">
-        <form id="signup-form pr"><p class="rlf-tip-globle color-red rlf-g-tip" id="signup-globle-error"></p>
+        <form id="signup-form pr" action="">
+            <p class="rlf-tip-globle color-red rlf-g-tip" id="signup-globle-error"></p>
             <div class="rlf-group  pr">
-                <input type="text" maxlength="37" value="" name="email"
+                <input type="text" maxlength="37" value="" name="username" id="username"
                        data-callback="checkusername" data-validate="require-mobile-phone"
                        autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
-                       placeholder="请输入注册邮箱/手机号">
-                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p>
+                       placeholder="请输入登录用户名">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="该登录用户名已被注册"></p>
+            </div>
+            <div class="rlf-group  pr">
+                <input type="text" maxlength="37" value="" name="password" id="password"
+                       data-callback="checkusername" data-validate="require-mobile-phone"
+                       autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
+                       placeholder="请输入密码">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的密码"></p>
+            </div>
+            <div class="rlf-group  pr">
+                <input type="text" maxlength="37" value="" name="repassword" id="repassword"
+                       data-callback="checkusername" data-validate="require-mobile-phone"
+                       autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
+                       placeholder="请输入确认密码">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的确认密码"></p>
             </div>
             <div class="rlf-group clearfix form-control ">
                 <input type="text" name="verify"class="ipt ipt-verify js-emailverify l"data-validate="require-string"
@@ -216,7 +231,7 @@
             </div>
             <div class="rlf-group clearfix">
                 <a href="javascript:void(0)" id="signup-btn" hidefocus="true" class="btn-red btn-full btn r " style="width: 300px;
-    height: 50px;line-height: 50px;font-size: 16px;"> 注册 </a>
+    height: 50px;line-height: 50px;font-size: 16px;" onclick="checkAndSubmit()"> 注册 </a>
             </div>
         </form>
     </div>
@@ -288,6 +303,97 @@
             }
         }
     });
+
+
+    /**
+     * 注册输入框内容改变时触发
+     */
+    $("#signup input").change(function(){
+        //checkAndSubmit();
+    });
+
+    function checkAndSubmit() {
+        $('#signup-btn').html('<img style="height: 50px;" src="${pageContext.request.contextPath}/static/staticWEB/img/box.gif">');
+        $("#signup-btn").attr("disabled","disabled");
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var repassword = $('#repassword').val();
+        if (!isLegal(username,6,16)){
+            $('#username').next('p').html('登录用户名不合法');
+            $('#signup-btn').html('注册');
+            $("#signup-btn").removeAttr("disabled");
+            return false;
+        } else {
+            $('#username').next('p').html('');
+        }
+        if (!isLegal(password,8,20)){
+            $('#password').next('p').html('密码不合法');
+            $('#signup-btn').html('注册');
+            $("#signup-btn").removeAttr("disabled");
+            return false;
+        } else {
+            $('#password').next('p').html('');
+        }
+        if (password!=repassword){
+            $('#repassword').next('p').html('密码 确认密码不一致');
+            $('#signup-btn').html('注册');
+            $("#signup-btn").removeAttr("disabled");
+            return false;
+        } else {
+            $('#repassword').next('p').html('');
+        }
+
+        $.ajax({
+            url:'/OnlineCourseFronten/register/register',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+                username    :   username,
+                password    :   password
+            },
+            success:function (data) {
+                if (data.msg == "errName"){
+                    $('#username').next('p').html('该登录用户名已注册');
+                    $('#signup-btn').html('注册');
+                    $("#signup-btn").removeAttr("disabled");
+                    return false;
+                } else if (data.msg == "success"){
+                    alert("注册成功!");
+                    $('#signup-btn').html('注册');
+                    $("#signup-btn").removeAttr("disabled");
+                    $('.xa-showSignin').trigger('click');
+                    return false;
+                } else {
+                    alert("注册失败!");
+                    $('#signup-btn').html('注册');
+                    $("#signup-btn").removeAttr("disabled");
+                    return false;
+                }
+            },
+            error:function (e) {
+                alert("注册失败!");
+                $('#signup-btn').html('注册');
+                $("#signup-btn").removeAttr("disabled");
+                return false;
+            }
+        });
+    }
+    
+    /**
+     * 验证文本由数字、26个英文字母或者下划线组成
+     * @param text 文本
+     * @param min 最小长度
+     * @param max 最大长度
+     */
+    function isLegal(text,min,max){
+        var reg=/^[a-zA-Z0-9_]+$/;
+        if(reg.test(text) && text.length<=max && text.length>=min){
+            return true;
+        }else{
+            return false;
+        }
+    }
 </script>
 </body>
 </html>

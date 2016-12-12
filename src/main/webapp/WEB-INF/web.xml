@@ -68,7 +68,7 @@
   </filter-mapping>
 
   <welcome-file-list>
-    <welcome-file>/WEB-INF/frontend/index.jsp</welcome-file>
+    <welcome-file>/index/user</welcome-file>
   </welcome-file-list>
 
 </web-app>

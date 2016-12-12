@@ -14,4 +14,7 @@
     </bean>
     <!--控制器映射器和控制器适配器-->
     <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- 指定欢迎页面路径(动态页面) -->
+    <mvc:view-controller path="/" view-name="redirect:/index/user"/>
 </beans>
