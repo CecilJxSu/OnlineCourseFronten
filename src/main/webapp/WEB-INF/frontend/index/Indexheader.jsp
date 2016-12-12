@@ -26,19 +26,13 @@
                 <a href="javascript:void (0)" target="_self">注册</a>
             </li>
             <li>
-                <a href="javascript:void (0)" class="nav-item-index">首页</a>
+                <a href="${pageContext.request.contextPath}/" class="nav-item-index">首页</a>
             </li>
             <li>
-                <a href="javascript:void (0)" target="_self">实战</a>
+                <a href="${pageContext.request.contextPath}/course/show" target="_self">课程</a>
             </li>
             <li>
-                <a href="javascript:void (0)" target="_self">路径</a>
-            </li>
-            <li>
-                <a href="javascript:void (0)" target="_self">猿问</a>
-            </li>
-            <li>
-                <a href="javascript:void (0)" target="_self">手记</a>
+                <a href="${pageContext.request.contextPath}/" target="_self">话题</a>
             </li>
         </ul>
         <div class="login-area" >
@@ -163,24 +157,25 @@
                 <form id="signup-form" autocomplete="off">
                     <p class="rlf-tip-globle color-red" id="signin-globle-error"></p>
                     <div class="rlf-group pr">
-                        <input type="text" value="" maxlength="37" name="email" data-validate="require-mobile-phone"
+                        <input type="text" value="" maxlength="37" name="signin-username" id="signin-username" data-validate="require-mobile-phone"
                                autocomplete="off"
-                               class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录邮箱/手机号">
-                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p></div>
+                               class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录用户名">
+                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的登录用户名"></p></div>
                     <div class="rlf-group  pr">
-                        <input type="password" name="password" data-validate="require-password"
+                        <input type="password" name="signin-password" id="signin-password" data-validate="require-password"
                                class="ipt ipt-pwd js-loginPassword js-pass-pwd"
-                               placeholder="6-16位密码，区分大小写，不能用空格" maxlength="16" autocomplete="off">
-                        <p class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入6-16位密码，区分大小写，不能使用空格！"></p>
+                               placeholder="8-20位,字母、数字、下划线" maxlength="16" autocomplete="off">
+                        <p class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入8-20位密码，字母、数字、下划线！"></p>
                     </div>
                     <div class="rlf-group rlf-appendix form-control  clearfix">
                         <label for="auto-signin" class="rlf-autoin l" hidefocus="true">
-                            <input type="checkbox" checked="checked" class="auto-cbx" id="auto-signin">下次自动登录</label> <a
-                            href="#" class="rlf-forget r" target="_blank" hidefocus="true">忘记密码 </a>
+                            <input type="checkbox" class="auto-cbx" id="auto-signin">下次自动登录</label>
+                            <a href="#" class="rlf-forget r" target="_blank" hidefocus="true">忘记密码 </a>
                     </div>
                     <div class="rlf-group clearfix">
-                        <input type="button" value="登录" hidefocus="true" class="btn-red btn-full xa-login dengluzhucecss" style="width: 300px;
-    height: 50px;line-height: 50px;font-size: 16px;"></div>
+                        <a href="javascript:void(0)" id="signin-btn" hidefocus="true" class="btn-red btn-full btn r " style="width: 300px;
+    height: 50px;line-height: 50px;font-size: 16px;" onclick="signin()"> 登录 </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -203,18 +198,18 @@
                 <input type="text" maxlength="37" value="" name="username" id="username"
                        data-callback="checkusername" data-validate="require-mobile-phone"
                        autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
-                       placeholder="请输入登录用户名">
+                       placeholder="请输入登录用户名(用于登录)">
                 <p class="rlf-tip-wrap errorHint color-red" data-error-hint="该登录用户名已被注册"></p>
             </div>
             <div class="rlf-group  pr">
-                <input type="text" maxlength="37" value="" name="password" id="password"
+                <input type="password" maxlength="37" value="" name="password" id="password"
                        data-callback="checkusername" data-validate="require-mobile-phone"
                        autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
-                       placeholder="请输入密码">
+                       placeholder="8-20位,字母、数字、下划线">
                 <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的密码"></p>
             </div>
             <div class="rlf-group  pr">
-                <input type="text" maxlength="37" value="" name="repassword" id="repassword"
+                <input type="password" maxlength="37" value="" name="repassword" id="repassword"
                        data-callback="checkusername" data-validate="require-mobile-phone"
                        autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
                        placeholder="请输入确认密码">
@@ -306,12 +301,8 @@
 
 
     /**
-     * 注册输入框内容改变时触发
+     * 注册时，检查并提交
      */
-    $("#signup input").change(function(){
-        //checkAndSubmit();
-    });
-
     function checkAndSubmit() {
         $('#signup-btn').html('<img style="height: 50px;" src="${pageContext.request.contextPath}/static/staticWEB/img/box.gif">');
         $("#signup-btn").attr("disabled","disabled");
@@ -392,6 +383,32 @@
             return true;
         }else{
             return false;
+        }
+    }
+
+    /**
+     * 登录
+     */
+    function signin() {
+        $('#signin-btn').html('<img style="height: 50px;" src="${pageContext.request.contextPath}/static/staticWEB/img/box.gif">');
+        $("#signin-btn").attr("disabled","disabled");
+        var username = $('#signin-username').val();
+        var password = $('#signin-password').val();
+        if (!isLegal(username,6,16)){
+            $('#signin-username').next('p').html('登录用户名不合法');
+            $('#signin-btn').html('登录');
+            $("#signin-btn").removeAttr("disabled");
+            return false;
+        } else {
+            $('#signin-username').next('p').html('');
+        }
+        if (!isLegal(password,8,20)){
+            $('#signin-password').next('p').html('密码不合法');
+            $('#signin-btn').html('登录');
+            $("#signin-btn").removeAttr("disabled");
+            return false;
+        } else {
+            $('#signin-password').next('p').html('');
         }
     }
 </script>

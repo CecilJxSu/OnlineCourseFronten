@@ -233,30 +233,23 @@
     <div class="contentwrap">
         <div class="recomend">
             最热推荐
-            <a class="fr" onclick="_hmt.push(['_trackEvent', '首页', 'click', '二屏实战推荐更多'])" href="javascript:void (0)" target="_blank"><span class="more">更多<i class="icon-right2"></i></span></a>
+            <a class="fr" style="height: 16px;" href="javascript:void (0)" target="_blank">
+                <span class="more">更多<i class="icon-right2"></i></span>
+            </a>
         </div>
-        <div class="recomendContent clearfix moco-course-list">
+        <div id="hot-list" class="recomendContent clearfix moco-course-list">
             <div class="moco-course-wrap">
-                <a onclick="_hmt.push(['_trackEvent', '首页', 'click', '二屏实战推荐'])" href="javascript:void (0)" target="_blank" data-track="sztj-1-1" data-ast="xiaomutj_1_71">
+                <a href="javascript:void (0)" target="_blank">
                     <div class="moco-course-box">
                         <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/580d752500019ca805400300-360-202.jpg" height="124" width="100%">
                         <div class="moco-course-intro">
-                            <h3> 算法与数据结构C++精解</h3>
-                            <p>  深入讲解面试和实际开发中都会遇到的算法和数据结构问题</p>
+                            <h3>算法与数据结构C++精解</h3>
+                            <p>深入讲解面试和实际开发中都会遇到的算法和数据结构问题</p>
                         </div>
-                        <div class="moco-course-bottom"><span class="l color-red">￥148.00</span> <span class="r">270人在学</span></div>
-                    </div>
-                </a>
-            </div>
-            <div class="moco-course-wrap">
-                <a onclick="_hmt.push(['_trackEvent', '首页', 'click', '二屏实战推荐'])" href="javascript:void (0)" target="_blank" data-track="sztj-1-2" data-ast="xiaomutj_1_71">
-                    <div class="moco-course-box">
-                        <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/580d752500019ca805400300-360-202.jpg" height="124" width="100%">
-                        <div class="moco-course-intro">
-                            <h3> 算法与数据结构C++精解</h3>
-                            <p>  深入讲解面试和实际开发中都会遇到的算法和数据结构问题</p>
+                        <div class="moco-course-bottom">
+                            <span class="l color-red">￥148.00</span>
+                            <span class="r">270人在学</span>
                         </div>
-                        <div class="moco-course-bottom"><span class="l color-red">￥148.00</span> <span class="r">270人在学</span></div>
                     </div>
                 </a>
             </div>
@@ -270,9 +263,11 @@
     <div class="contentwrap">
         <div class="recomend">
             最新推荐
-            <a class="fr" onclick="_hmt.push(['_trackEvent', '首页', 'click', '二屏实战推荐更多'])" href="javascript:void (0)" target="_blank"><span class="more">更多<i class="icon-right2"></i></span></a>
+            <a class="fr" style="height: 16px;" href="javascript:void (0)" target="_blank">
+                <span class="more">更多<i class="icon-right2"></i></span>
+            </a>
         </div>
-        <div class="recomendContent clearfix moco-course-list">
+        <div id="new-list" class="recomendContent clearfix moco-course-list">
             <div class="moco-course-wrap">
                 <a onclick="_hmt.push(['_trackEvent', '首页', 'click', '二屏实战推荐'])" href="javascript:void (0)" target="_blank" data-track="sztj-1-1" data-ast="xiaomutj_1_71">
                     <div class="moco-course-box">
@@ -493,6 +488,57 @@
         var y = function () {
         }
     })
+
+    $(function () {
+        $.ajax({
+            url:'/OnlineCourseFronten/index/user/hot-new',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+
+            },
+            success:function (data) {
+                var hotHtml = '';
+                $.each( data.hotList, function(index, content)
+                {
+                    hotHtml += '<div class="moco-course-wrap">';
+                    hotHtml += '<a href="/OnlineCourseFronten/learn/show?id='+content.id+'" target="_blank">';
+                    hotHtml += '<div class="moco-course-box">';
+                    hotHtml += '<img src="${pageContext.request.contextPath}/static/staticWEB/img/home/580d752500019ca805400300-360-202.jpg" height="124" width="100%">';
+                    hotHtml += '<div class="moco-course-intro">';
+                    hotHtml += '<h3>'+content.name+'</h3>';
+                    hotHtml += '<p>'+content.introduction+'</p>';
+                    hotHtml += '</div>';
+                    hotHtml += '<div class="moco-course-bottom">';
+                    hotHtml += '<span class="l color-red">￥148.00</span>';
+                    hotHtml += '<span class="r">270人在学</span>';
+                    hotHtml += '</div></div></a></div>';
+                });
+                $('#hot-list').html(hotHtml);
+                var newHtml = '';
+                $.each( data.newList, function(index, content)
+                {
+                    newHtml += '<div class="moco-course-wrap">';
+                    newHtml += '<a href="/OnlineCourseFronten/learn/show?id='+content.id+'" target="_blank">';
+                    newHtml += '<div class="moco-course-box">';
+                    newHtml += '<img src="${pageContext.request.contextPath}/static/staticWEB/img/home/580d752500019ca805400300-360-202.jpg" height="124" width="100%">';
+                    newHtml += '<div class="moco-course-intro">';
+                    newHtml += '<h3>'+content.name+'</h3>';
+                    newHtml += '<p>'+content.introduction+'</p>';
+                    newHtml += '</div>';
+                    newHtml += '<div class="moco-course-bottom">';
+                    newHtml += '<span class="l color-red">￥148.00</span>';
+                    newHtml += '<span class="r">270人在学</span>';
+                    newHtml += '</div></div></a></div>';
+                });
+                $('#new-list').html(newHtml);
+            },
+            error:function (e) {
+
+            }
+        });
+    });
 </script>
 </body>
 </html>

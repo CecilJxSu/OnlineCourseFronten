@@ -1,4 +1,4 @@
-package cn.canlnac.OnlineCourseFronten.controller;
+package cn.canlnac.OnlineCourseFronten.controller.course;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
  * Created by HaMi on 2016/12/8.
  */
 @Controller
-@RequestMapping("learn")
-public class LearnController {
-    @RequestMapping("showLearn")
+@RequestMapping("course")
+public class CourseController {
+
+    @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        return "/frontend/learn";
+        return "/frontend/course";
     }
 }
