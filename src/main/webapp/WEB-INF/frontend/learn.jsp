@@ -151,7 +151,7 @@
                         <!-- 章节小节 -->
                         <ul class="video">
                             <li data-media-id="49">
-                                <a href="${pageContext.request.contextPath}/video/showVideoF" class="J-media-item">
+                                <a href="${pageContext.request.contextPath}/video/showVideo" class="J-media-item">
                                     <i class="icon-code type"></i>
                                     1-1 代码初体验，制作我的第一个网页
 
