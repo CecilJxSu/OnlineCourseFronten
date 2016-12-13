@@ -236,9 +236,9 @@
                                             class="nickname">qq_凌安年_03253882 </a> 的回答] </span> <span class="replydet">div是分层用的，可以用class属性更好的控制该层内容</span>
                                     </div>
                                 </div>
-                                <div class="liulanqa replymegfooter clearfix">
+                                <div class=" replymegfooter clearfix">
                                     <div class="wenda-time l"><em>时间：2016-11-17</em></div>
-                                    <a href="/qadetail/182313" target="_blank" class="replynumber r hasanswernum">
+                                    <a href="${pageContext.request.contextPath}/qadetail/showQadetail" target="_blank" class="replynumber r hasanswernum">
                                         <span class="ys">
                                             <b class="numShow">2</b>
                                             <span class="number">回答</span>
