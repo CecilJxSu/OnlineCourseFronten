@@ -115,12 +115,13 @@
 }
 
 .setting-profile .wlfg-wrap .rlf-btn-green {
-    background-color: #00b33b;
+    /*background-color: #00b33b;*/
+    background: linear-gradient(#209FF9, #0095FF);
     border-radius: 2px
 }
 
 .setting-profile .wlfg-wrap .rlf-btn-green:hover {
-    background-color: #33a646
+    background: linear-gradient(#20D1F9, #0095FF);
 }
 
 .xubox_layer {
@@ -623,4 +624,63 @@ textarea.moco-form-control {
     border: 1px solid #ccc;
     border-radius: 2px;
     box-sizing: border-box;
+}
+
+.changePasswordForm {
+    width: 53%;
+    margin: 50px auto;
+}
+.formItems {
+    padding-bottom: 18px;
+}
+.inputText {
+    float: left;
+    margin-left: 8px;
+}
+.inputText input {
+    border: 1px solid #b7b7b7;
+    text-indent: 10px;
+    font-size: 16px;
+    line-height: 32px;
+    width: 320px;
+}
+.formItems label {
+    display: inline-block;
+    float: left;
+    text-align: right;
+    width: 96px;
+    font-size: 16px;
+    color: #5a5a5a;
+    line-height: 34px;
+}
+
+label {
+    cursor: default;
+}
+.passwordTip {
+    color: #9FA0A0;
+    margin-top: 28px;
+    margin-left: 106px;
+}
+.formBtn {
+    text-align: center;
+    margin-top: 30px;
+}
+.formBtn input {
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 4px 20px;
+    cursor: pointer;
+}
+
+.gradientColor {
+    background: linear-gradient(#209FF9, #0095FF);
+    color: #fff;
+}
+.gradientColor:hover{
+    background: linear-gradient(#20D1F9, #0095FF);
+    color: #fff;
 }

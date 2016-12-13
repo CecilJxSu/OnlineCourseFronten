@@ -12,7 +12,9 @@
     <title>setprofile</title>
 </head>
 <body>
-
+<%--头部--%>
+<jsp:include page="include/header.jsp"></jsp:include>
+<%--头部end--%>
 <!--内容-->
 <div id="main">
     <div class="page-settings">
@@ -23,13 +25,14 @@
         </div>
         <div class="setting pb10">
             <div class="nav-tabs pa">
-                <div class="baseinfo fl active">基本信息</div>
-                <!--<a href="/user/setbindsns" class="countinfo fl">帐户信息</a>
-                <a href="/user/address" class="countinfo fl">收货地址</a>
+                <div id="info" class="baseinfo fl active">基本信息</div>
+                <div id="modify" href="#" class="countinfo fl ">修改密码</div>
+                <!--<a href="/user/address" class="countinfo fl">收货地址</a>
                 <a href="/user/authenticate" class="countinfo fl">实名认证</a>-->
                 <div class="cb"></div>
             </div>
-            <div class="contentBox">
+            <%--基本信息--%>
+            <div id="personinfo" class="contentBox ">
                 <div class="formBox">
                     <div id="setting-profile" class="setting-wrap setting-profile">
 
@@ -172,18 +175,77 @@
                     </div>
                 </div>
             </div>
+            <%--基本信息--%>
+            <%--修改密码--%>
+            <div id="modifypassword" class="contentBox hide">
+                <div class="changePasswordForm">
+                    <div class="formItems clearfix">
+                        <label>原始密码：</label>
+                        <div class="inputText">
+                            <input type="password" maxlength="16" itemtype="sourcePassword">
+                        </div>
+                    </div>
+                    <div class="formItems clearfix">
+                        <label>新密码：</label>
+                        <div class="inputText">
+                            <input type="password" maxlength="16" itemtype="newPassword">
+
+                        </div>
+                    </div>
+                    <div class="formItems clearfix">
+                        <label>确认新密码：</label>
+                        <div class="inputText">
+                            <input type="password" maxlength="16" itemtype="againPassword">
+                        </div>
+                    </div>
+                    <p class="passwordTip">密码由6-16位的字母与数字组成，且以字母开头，区分字母大小写。</p>
+                    <div class="formBtn">
+                        <input type="button" style="height: 40px;" value="确认更新" class="gradientColor" onclick="sureChange()">
+                    </div>
+                    <!-- 密码修改成功弹窗-->
+                    <%--<div class="hide popupBg changeSuccessPopup">
+                        <div class="changeSuccess popupBox">
+                            <p>您的密码已经修改成功！</p>
+                            <a href="../login.html" class="gradientColor againLogin">点击重新登录</a>
+                        </div>
+                    </div>--%>
+                    <!-- 密码修改成功弹窗 end-->
+                </div>
+            </div>
+            <%--修改密码end--%>
         </div>
-    </div>
-
-
-
 </div>
 <!--内容end-->
-
+<%--尾部--%>
+<jsp:include page="include/footer.jsp"></jsp:include>
+<%--尾部end--%>
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/setprofile/uploadpicture.js"></script>
 <script type="text/javascript">
-
+    $('.nav-tabs div').on('click',function (e) {
+        e.preventDefault();
+        var id =$(this).attr('id');
+        if(id=='info'){
+            if($('#modify').hasClass('active')){
+                $('#modify').removeClass('active');
+                $('#modifypassword').addClass('hide');
+            }
+            $(this).addClass('active');
+            if($('#personinfo').hasClass('hide')){
+                $('#personinfo').removeClass('hide')
+            }
+        }
+        if(id=='modify'){
+            if($('#info').hasClass('active')){
+                $('#info').removeClass('active');
+                $('#personinfo').addClass('hide');
+            }
+            $(this).addClass('active');
+            if($('#modifypassword').hasClass('hide')){
+                $('#modifypassword').removeClass('hide')
+            }
+        }
+    });
 </script>
 </body>
 </html>
