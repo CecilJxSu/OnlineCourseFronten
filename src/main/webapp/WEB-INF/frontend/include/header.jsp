@@ -1,4 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String id = session.getAttribute("id")!=null?session.getAttribute("id").toString():null;
+    String userName = session.getAttribute("userName")!=null?session.getAttribute("userName").toString():null;
+    String userStatus = session.getAttribute("userStatus")!=null?session.getAttribute("userStatus").toString():null;
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,59 +20,66 @@
 <!--header-->
 <div id="header">
     <div class="page-container" id="nav">
-        <div id="logo" class="logo"><a href="/" target="_self" class="hide-text">慕课网</a></div>
+        <div id="logo" class="logo"><a href="/" target="_self" class="hide-text">课程学习网</a></div>
 
 
         <button type="button" class="navbar-toggle visible-xs-block js-show-menu">
             <i class="icon-menu"></i>
         </button>
         <ul class="nav-item">
-            <li class="set-btn visible-xs-block"><a href="javascript:void(0)" target="_self">登录</a> / <a href="javascript:void(0)" target="_self">注册</a></li>
-            <li id="nav-item-index">
-                <a href="/" target="_self">首页</a>
+            <li class="set-btn visible-xs-block">
+
+                <a href="javascript:void (0)" target="_self">登录</a>
+                <a href="javascript:void (0)" target="_self">注册</a>
             </li>
             <li>
-                <a href="javascript:void(0)" target="_self">实战</a>
+                <a href="${pageContext.request.contextPath}/" class="nav-item-index">首页</a>
             </li>
-            <li><a href="javascript:void(0)" target="_self">路径</a></li>
-            <li><a href="javascript:void(0)" target="_self">猿问</a></li>
-            <li><a href="javascript:void(0)" target="_self">手记</a></li>
-
+            <li>
+                <a href="${pageContext.request.contextPath}/course/show" target="_self">课程</a>
+            </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/" target="_self">话题</a>
+            </li>
         </ul>
         <div id="login-area">
-            <!--权限未登陆-->
-            <ul class="header-unlogin clearfix">
-                <li class="header-app">
-                    <a href="/mobile/app">
-                        <span class="icon-appdownload"></span>
-                    </a>
-                    <div class="QR-download">
-                        <p id="app-text">慕课网APP下载</p>
-                        <p id="app-type">iPhone / Android / iPad</p>
-                        <img src="${pageContext.request.contextPath}/static/staticWEB/img/index/QR-code.jpg">
-                    </div>
-                </li>
-                <li class="header-signin">
-                    <a href="#" id="js-signin-btn" onclick="ShowDiv('signin','fade')">登录</a>
-                </li>
-                <li class="header-signup">
-                    <a href="#" id="js-signup-btn" onclick="ShowDiv('signup','fade')">注册</a>
-                </li>
-            </ul>
+            <c:if test="${userName == null}">
+                <!--权限未登陆-->
+                <ul class="header-unlogin clearfix">
+                    <li class="header-app">
+                        <a href="/mobile/app">
+                            <span class="icon-appdownload"></span>
+                        </a>
+                        <div class="QR-download">
+                            <p id="app-text">课程学习网</p>
+                            <p id="app-type">Android</p>
+                            <img src="${pageContext.request.contextPath}/static/staticWEB/img/index/QR-code.jpg">
+                        </div>
+                    </li>
+                    <li class="header-signin">
+                        <a href="#" id="js-signin-btn" onclick="ShowDiv('signin','fade')">登录</a>
+                    </li>
+                    <li class="header-signup">
+                        <a href="#" id="js-signup-btn" onclick="ShowDiv('signup','fade')">注册</a>
+                    </li>
+                </ul>
+            </c:if>
+
+            <c:if test="${userName != null}">
             <!--权限未登陆-->
             <!--权限登陆-->
-            <%--<ul class="clearfix logined">
+            <ul class="clearfix logined">
                 <li class="header-app">
                     <a href="/mobile/app">
                         <span class="icon-appdownload"></span>
                     </a>
                     <div class="QR-download">
-                        <p id="app-text">慕课网APP下载</p>
-                        <p id="app-type">iPhone / Android / iPad</p>
+                        <p id="app-text">课程学习网</p>
+                        <p id="app-type">Android</p>
                         <img src="${pageContext.request.contextPath}/static/staticWEB/img/index/QR-code.jpg">
                     </div>
                 </li>
-                <!--玲-->
+                <!--铃铛-->
                 <li class="remind_warp">
                     <!-- <i class="msg_remind"></i> -->
                     <a target="_blank" href="#">
@@ -74,7 +87,7 @@
                         <span class="msg_icon" style="display: none;"></span>
                     </a>
                 </li>
-                <!--玲end-->
+                <!--铃铛end-->
                 <!--消息-->
                 <li class="my_message">
                     <i class="msg_remind" style="display: none;"></i>
@@ -87,39 +100,46 @@
                 <!--消息end-->
                 <!--用户-->
                 <li class="set_btn user-card-box">
-                <a id="header-avator" class="user-card-item" action-type="my_menu" href="#" target="_self">
-                    <img style="margin-top: 15px;" width="40" height="40" src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
-                    <i class="myspace_remind" style="display: none;"></i>
-                    <span style="display: none;">动态提醒</span>
-                </a>
-                <div class="g-user-card">
-                    <div class="card-inner">
-                        <div class="card-top">
-                            <a href="#"><img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg" alt="哈米的小宇宙" class="l"></a>
-                            <a href="#"><span class="name text-ellipsis">哈米的小宇宙</span></a>
-                            <p class="meta">
-                                <a href="#">经验<b id="js-user-mp">5565</b></a>
-                                <a href="#">积分<b id="js-user-credit">1</b></a></p>
-                            <a href="#" class="setup linkToMall">积分商城</a>
-                        </div><div class="card-history">
+                    <a id="header-avator" class="user-card-item" action-type="my_menu" href="#" target="_self">
+                        <img style="margin-top: 15px;" width="40" height="40" src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
+                        <i class="myspace_remind" style="display: none;"></i>
+                        <span style="display: none;">动态提醒</span>
+                    </a>
+                    <div class="g-user-card">
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <a href="#"><img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg" alt="<c:out value='${userName}'/>" class="l"></a>
+                                <a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>
+                                <p class="meta">
+                                    <a href="#">关注<b id="js-user-mp">5565</b></a>
+                                    <a href="#">粉丝<b id="js-user-credit">1</b></a></p>
+                                <a href="#" class="setup linkToMall"></a>
+                            </div><div class="card-history">
                                     <span class="history-item">
                                         <span class="tit text-ellipsis">HTML+CSS基础课程</span>
                                         <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
                                         <i class="icon-clock"></i>
                                         <a href="#" class="continue">继续</a>
                                     </span>
-                    </div>
-                        <div class="card-sets clearfix">
-                            <a href="#" target="_blank" class="l mr30">个人设置</a>
-                            <a href="#" class="r">退出</a>
                         </div>
+                            <div class="card-sets clearfix">
+                                <a href="#" target="_blank" class="l mr30">个人设置</a>
+                                <c:if test="${userStatus=='teacher'}">
+                                    <a href="/OnlineCourseFronten/index/teacher" target="_blank" class="l mr30">进入教师页面</a>
+                                </c:if>
+                                <c:if test="${userStatus=='admin'}">
+                                    <a href="/OnlineCourseFronten/index/admin" target="_blank" class="l mr30">进入管理员页面</a>
+                                </c:if>
+                                <a href="/OnlineCourseFronten/logout" class="r">退出</a>
+                            </div>
+                        </div>
+                        <i class="card-arr"></i>
                     </div>
-                    <i class="card-arr"></i>
-                </div>
-            </li>
+                </li>
                 <!--用户end-->
-            </ul>--%>
+            </ul>
             <!--权限登陆end-->
+            </c:if>
         </div>
         <!--
 <div class="app-down-area r">
@@ -164,13 +184,14 @@
                 <form id="signup-form" autocomplete="off">
                     <p class="rlf-tip-globle color-red" id="signin-globle-error"></p>
                     <div class="rlf-group pr">
-                        <input style="height: 40px;" type="text" value="" maxlength="37" name="email" data-validate="require-mobile-phone"
-                               autocomplete="off" class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录邮箱/手机号">
-                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p></div>
-                    <div class="rlf-group  pr">
-                        <input style="height: 40px;" type="password" name="password" data-validate="require-password"
-                               class="ipt ipt-pwd js-loginPassword js-pass-pwd" placeholder="6-16位密码，区分大小写，不能用空格" maxlength="16" autocomplete="off">
-                        <p class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入6-16位密码，区分大小写，不能使用空格！"></p>
+                        <input style="height: 40px;" type="text" value="" maxlength="37" name="signin-username" id="signin-username" data-validate="require-mobile-phone"
+                               autocomplete="off" class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录用户名">
+                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的登录用户名"></p>
+                    </div>
+                    <div class="rlf-group pr">
+                        <input style="height: 40px;" type="password" value="" maxlength="37" name="signin-password" id="signin-password" data-validate="require-mobile-phone"
+                               autocomplete="off" class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="8-20位,字母、数字、下划线">
+                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入8-20位密码，字母、数字、下划线！"></p>
                     </div>
                     <div class="rlf-group rlf-appendix form-control  clearfix">
                         <label for="auto-signin" class="rlf-autoin l" hidefocus="true">
@@ -178,8 +199,9 @@
                             href="#" class="rlf-forget r" target="_blank" hidefocus="true">忘记密码 </a>
                     </div>
                     <div class="rlf-group clearfix">
-                        <input type="button" value="登录" hidefocus="true" class="btn-red btn-full xa-login dengluzhucecss" style="width: 300px;
-    height: 50px;line-height: 50px;font-size: 16px;"></div>
+                        <a href="javascript:void(0)" id="signin-btn" hidefocus="true" class="btn-red btn-full btn r " style="width: 300px;
+    height: 50px;line-height: 50px;font-size: 16px;" onclick="signin()"> 登录 </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -196,13 +218,28 @@
         </h1>
     </div>
     <div class="rl-modal-body js-modal-body js-registerWrap">
-        <form id="signup-form pr"><p class="rlf-tip-globle color-red rlf-g-tip" id="signup-globle-error"></p>
+        <form id="signup-form pr">
+            <p class="rlf-tip-globle color-red rlf-g-tip" id="signup-globle-error"></p>
             <div class="rlf-group  pr">
-                <input style="height: 40px;"  type="text" maxlength="37" value="" name="email"
+                <input style="height: 40px;"  type="text" maxlength="37" value="" name="username" id="username"
                        data-callback="checkusername" data-validate="require-mobile-phone"
                        autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
-                       placeholder="请输入注册邮箱/手机号">
-                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号"></p>
+                       placeholder="请输入登录用户名(用于登录)">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="该登录用户名已被注册"></p>
+            </div>
+            <div class="rlf-group  pr">
+                <input style="height: 40px;"  type="password" maxlength="37" value="" name="password" id="password"
+                       data-callback="checkusername" data-validate="require-mobile-phone"
+                       autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
+                       placeholder="8-20位,字母、数字、下划线">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的密码"></p>
+            </div>
+            <div class="rlf-group  pr">
+                <input style="height: 40px;"  type="password" maxlength="37" value="" name="repassword" id="repassword"
+                       data-callback="checkusername" data-validate="require-mobile-phone"
+                       autocomplete="off" class="xa-emailOrPhone ipt ipt-email "
+                       placeholder="请输入确认密码">
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的确认密码"></p>
             </div>
             <div class="rlf-group clearfix form-control ">
                 <input style="height: 40px;" type="text" name="verify"class="ipt ipt-verify js-emailverify l"data-validate="require-string"
@@ -215,7 +252,7 @@
             </div>
             <div class="rlf-group clearfix">
                 <a href="javascript:void(0)" id="signup-btn" hidefocus="true" class="btn-red btn-full btn r " style="width: 300px;
-    height: 50px;line-height: 50px;font-size: 16px;"> 注册 </a>
+    height: 50px;line-height: 50px;font-size: 16px;" onclick="checkAndSubmit()"> 注册 </a>
             </div>
         </form>
     </div>
@@ -291,5 +328,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
 </body>
 </html>

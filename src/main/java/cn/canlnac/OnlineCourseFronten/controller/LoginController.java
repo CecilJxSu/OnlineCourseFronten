@@ -8,10 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by can on 2016/12/7.
@@ -27,7 +30,9 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "login")
-    public String login(@RequestParam(value = "userName")String userName, @RequestParam(value = "password")String password){
+    @ResponseBody
+    public Map login(@RequestParam(value = "username")String userName, @RequestParam(value = "password")String password){
+        Map map = new HashMap();
         try {
             //输入判断
             if (!userName.equals("") && !password.equals("")) {
@@ -36,24 +41,16 @@ public class LoginController {
                 //登录成功
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 System.out.println("用户:"+userName+"于"+sdf.format(new Date())+"登陆成功");
-                Session session = SecurityUtils.getSubject().getSession();
-                //userStatus:用户角色
-                String userStatus = (String) session.getAttribute("userStatus");
-                //不同角色跳转不同页面
-                if(userStatus.equals("admin")){
-                    return "success_admin";
-                } else if (userStatus.equals("teacher")){
-                    return "success_taacher";
-                } else {
-                    return "success_student";
-                }
+                //Session session = SecurityUtils.getSubject().getSession();
+                map.put("msg","success");
+            } else {
+                map.put("msg","请输入登录用户名、密码");
             }
         } catch (AuthenticationException e) {
-            System.out.println(e);
             //抛出异常，登陆失败
-            return "redirect:/index/user";
+            map.put("msg","登录用户名或密码错误");
         } finally {
-            return "redirect:/index/user";
+            return map;
         }
     }
 
