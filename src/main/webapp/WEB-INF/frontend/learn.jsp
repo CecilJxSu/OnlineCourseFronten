@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <link href="${pageContext.request.contextPath}/static/public/css/learn/common.css" rel="stylesheet"/>
-    <title>learn</title>
+    <title><c:out value="${course.name}"/> | 课程学习网</title>
 </head>
 <body>
 <%--头部--%>
@@ -23,20 +24,20 @@
                 <i class="path-split">\</i><a href="/learn/9"><span>HTML+CSS基础课程</span></a>
             </div>
             <div class="hd clearfix">
-                <h2 class="l">HTML+CSS基础课程</h2>
+                <h2 class="l" id="<c:out value='${course.id}'/>"><c:out value="${course.name}"/></h2>
             </div>
 
             <div class="statics clearfix">
 
                 <div class="moco-btn l learn-btn green-btn red-btn">
-                    <a href="/code/49" class="J-learn-course">开始学习</a>
+                    <a href="/OnlineCourseFronten/video/show?id=<c:out value='${chapterAndSection[0].sections[0].id}'/>" class="J-learn-course">开始学习</a>
                     <em></em>
                     <i style="line-height: 0;" class="follow-action js-follow-action icon-star_outline" data-cid="9" data-cmd="follow" title="收藏"></i>
                 </div>
 
                 <div class="static-item l">
                     <span class="meta">学习人数</span>
-                    <span class="meta-value js-learn-num">563978</span>
+                    <span class="meta-value js-learn-num"><c:out value="${numOfPeople}"/></span>
                 </div>
                 <div class="static-item l">
                     <span class="meta">难度级别</span>
@@ -48,39 +49,11 @@
                     <span class="meta-value"> 9小时17分</span>
                     <em></em>
                 </div>
-                <div class="static-item l score-btn">
+                <div class="static-item l">
                     <span class="meta">综合评分</span>
-                    <span class="meta-value">9.5</span>
+                    <span class="meta-value"><c:out value="${complex}"/></span>
                     <em></em>
-
-
-                    <div class="score-wrap icon-drop_up triangle">
-                        <div class="score-box">
-                            <a href="/coursescore/9" class="person-num">
-                                <span class="person-num l">5366人评价</span>
-                            </a>
-                            <a href="/coursescore/9?page=1" class="evaluation-btn r">查看评价</a>
-                            <div class="score-detail-box">
-                                <div class="score-static-item">
-                                    <span class="meta-value">9.8</span>
-                                    <span class="meta">内容实用</span>
-                                </div>
-                                <div class="score-static-item">
-                                    <span class="meta-value">9.5</span>
-                                    <span class="meta">简洁易懂</span>
-                                    <em></em>
-                                </div>
-                                <div class="score-static-item">
-                                    <span class="meta-value">9.2</span>
-                                    <span class="meta">逻辑清晰</span>
-                                    <em></em>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
             <div class="extra">
                 <!-- credit -->
@@ -111,7 +84,7 @@
                 <!-- 课程公告 -->
                 <!-- 课程简介 -->
                 <div class="course-brief">
-                    <p class="auto-wrap">简介：本课程从最基本的概念开始讲起，步步深入，带领大家学习HTML、CSS样式基础知识，了解各种常用标签的意义以及基本用法，后半部分讲解CSS样式代码添加，为后面的案例课程打下基础。</p>
+                    <p class="auto-wrap">简介：<c:out value="${course.introduction}"/></p>
                 </div>
                 <!-- 课程简介 end -->
                 <div class="mod-tab-menu ">
@@ -129,121 +102,44 @@
                 <!-- 课程面板 -->
                 <!-- 课程章节 -->
                 <div id="learnOncourse" class="mod-chapters">
+                    <c:forEach var="units" items="${chapterAndSection}" >
                     <div class="chapter  chapter-active">
-                        <!-- 章节标题 -->
                         <h3>
-
                             <span class="icon-drop_down js-close js-open"></span>
                             <strong>
                                 <i class="icon-chapter"></i>
-                                第1章 Html介绍
+                                <c:out value="${units.chapter.name}"/>
                                 <div class="icon-info chapter-info">
                                     <i class="icon-drop_up triangle" style="display: none;">
                                         <div class="chapter-introubox" style="left: -132px;">
-                                            <div class="chapter-content" style="width: 280px; white-space: pre-line; text-align: center;">本章节主要讲解html和css样式的关系，以及html标签、html文件结构、head标签,最后讲解了在html中的注释代码的作用。</div>
+                                            <div class="chapter-content" style="width: 280px; white-space: pre-line; text-align: center;">
+                                                <c:out value="${units.chapter.introduction}"/>
+                                            </div>
                                         </div>
                                     </i>
                                 </div>
                             </strong>
-
                         </h3>
                         <!-- 章节标题 end -->
                         <!-- 章节小节 -->
                         <ul class="video">
-                            <li data-media-id="49">
-                                <a href="${pageContext.request.contextPath}/video/showVideo" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-1 代码初体验，制作我的第一个网页
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
+                            <c:forEach var="section" items="${units.sections}">
                             <li data-media-id="52">
-                                <a href="/code/52" class="J-media-item">
+                                <a href="/OnlineCourseFronten/video/show?id=<c:out value='${section.id}'/>" class="J-media-item">
                                     <i class="icon-code type"></i>
-                                    1-2 Html和CSS的关系
-
+                                    <c:out value="${section.name}"/>
                                     <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
                                 </a>
                                 <!-- 未登录时 -->
                                 <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
                                     <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
                                 </a> -->
                             </li>
-                            <li data-media-id="54">
-                                <a href="/code/54" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-3 认识html标签
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
-                            <li data-media-id="83">
-                                <a href="/code/83" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-4 标签的语法
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
-                            <li data-media-id="56">
-                                <a href="/code/56" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-5 认识html文件基本结构
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
-                            <li data-media-id="74">
-                                <a href="/code/74" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-6 认识head标签
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
-                            <li data-media-id="75">
-                                <a href="/code/75" class="J-media-item">
-                                    <i class="icon-code type"></i>
-                                    1-7 了解HTML的代码注释
-
-                                    <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
-
-                                </a>
-                                <!-- 未登录时 -->
-                                <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)
-                                    <button class="r moco-btn moco-btn-blue preview-btn">预览</button>
-                                </a> -->
-                            </li>
+                            </c:forEach>
                         </ul>
                         <!-- 章节小节 end -->
                     </div>
+                    </c:forEach>
                 </div>
                 <!-- 课程章节 end -->
                 <%--评论--%>
@@ -435,6 +331,13 @@
             }
         }
     });
+
+    $(".icon-info").hover(function(){
+        $(this).children("i").css("display","inline");
+    },function(){
+        $(this).children("i").css("display","none");
+    });
+
 </script>
 </body>
 </html>

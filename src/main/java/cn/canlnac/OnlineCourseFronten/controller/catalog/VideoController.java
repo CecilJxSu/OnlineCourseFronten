@@ -1,4 +1,4 @@
-package cn.canlnac.OnlineCourseFronten.controller;
+package cn.canlnac.OnlineCourseFronten.controller.catalog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("video")
 public class VideoController {
-    @RequestMapping("showVideo")
+
+    @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
         return "/frontend/video";
     }
