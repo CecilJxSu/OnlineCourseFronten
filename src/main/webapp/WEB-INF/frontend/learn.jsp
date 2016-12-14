@@ -30,7 +30,7 @@
             <div class="statics clearfix">
 
                 <div class="moco-btn l learn-btn green-btn red-btn">
-                    <a href="/OnlineCourseFronten/video/show?id=<c:out value='${chapterAndSection[0].sections[0].id}'/>" class="J-learn-course">开始学习</a>
+                    <a href="#" id="<c:out value='${chapterAndSection[0].sections[0].id}'/>" class="J-learn-course">开始学习</a>
                     <em></em>
                     <i style="line-height: 0;" class="follow-action js-follow-action icon-star_outline" data-cid="9" data-cmd="follow" title="收藏"></i>
                 </div>
@@ -125,7 +125,7 @@
                         <ul class="video">
                             <c:forEach var="section" items="${units.sections}">
                             <li data-media-id="52">
-                                <a href="/OnlineCourseFronten/video/show?id=<c:out value='${section.id}'/>" class="J-media-item">
+                                <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item">
                                     <i class="icon-code type"></i>
                                     <c:out value="${section.name}"/>
                                     <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
@@ -338,6 +338,37 @@
         $(this).children("i").css("display","none");
     });
 
+    $('.moco-btn,.l,.learn-btn,.green-btn,.red-btn').on('click',function () {
+        dump($(this).attr("id"));
+    });
+    $('.J-media-item').on('click',function () {
+        dump($(this).attr("id"));
+    });
+    function dump(id) {
+        ///OnlineCourseFronten/video/show?id=
+        //判断是否登录
+        if($('#js-signin-btn').length && $('#js-signin-btn').length>0){
+            $('#js-signin-btn').trigger('click');
+            $('#signin-globle-error').html("您还未登录");
+        } else {
+            var form = $('<form></form>');
+            // 设置属性
+            form.attr('action', "/OnlineCourseFronten/video/show");
+            form.attr('method', 'post');
+            // form的target属性决定form在哪个页面提交
+            // _self -> 当前页面 _blank -> 新页面
+            form.attr('target', '_blank');
+            // 创建Input
+            var my_input = $('<input type="text" name="id" />');
+            my_input.attr('value', id);
+            // 附加到Form
+            form.append(my_input);
+            // 提交表单
+            form.submit();
+            // 注意return false取消链接的默认动作
+            //return false;
+        }
+    }
 </script>
 </body>
 </html>

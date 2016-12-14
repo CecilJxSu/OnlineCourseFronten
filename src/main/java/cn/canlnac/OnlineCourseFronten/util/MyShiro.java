@@ -1,6 +1,7 @@
-package cn.canlnac.OnlineCourseFronten.service;
+package cn.canlnac.OnlineCourseFronten.util;
 
 import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * shiro框架相关
  * 登录认证 及 权限认证 类
  * Created by can on 2016/12/8.
  */

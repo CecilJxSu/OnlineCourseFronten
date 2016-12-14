@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置权限管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -18,7 +12,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
 
-    <bean id="myShiro" class="cn.canlnac.OnlineCourseFronten.service.MyShiro"/>
+    <bean id="myShiro" class="cn.canlnac.OnlineCourseFronten.util.MyShiro"/>
+
+    <!--自定义的filter 用于验证用户身份-->
+    <bean id="roleOrFilter" class="cn.canlnac.OnlineCourseFronten.util.CustomRolesAuthorizationFilter"></bean>
 
     <!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -34,6 +31,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="filterChainDefinitions">
             <value>
                 /index/user=anon
+                /video/show=authc,roleOrFilter[student,teacher,admin]
                 /index/teach=roles[teacher]
                 <!-- anon表示此地址不需要任何权限即可访问 -->
                 <!--/static/**=anon-->
@@ -41,6 +39,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <!--/user=perms[user:query]-->
                 <!--&lt;!&ndash; roles[manager]表示访问此连接需要用户的角色为manager &ndash;&gt;-->
                 <!--/user/add=roles[manager]-->
+                <!--/user/add=roles["admin,guest"]admin且guest时通过-->
+                <!--/video/show=authc,roleOrFilter[student,teacher,admin]只要有其中一个即可通过-->
                 <!--/user/del/**=roles[admin]-->
                 <!--/user/edit/**=roles[manager]-->
                 <!--&lt;!&ndash;所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login&ndash;&gt;-->
