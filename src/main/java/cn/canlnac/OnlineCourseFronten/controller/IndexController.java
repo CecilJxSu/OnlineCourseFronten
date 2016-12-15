@@ -39,7 +39,6 @@ public class IndexController {
         Map<String, Object> conditions = new HashMap();
         conditions.put("status", Arrays.asList("public"));
         List hotList = new ArrayList();
-        //List hot =
         for (Course course:courseService.getList(0,5,"rank",conditions)) {
             Map hot = new HashMap();
             hot.put("id",course.getId());

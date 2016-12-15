@@ -14,81 +14,13 @@
 <%--头部end--%>
 <%--课程内容--%>
 <div class="main">
-    <!--查询方向-->
-    <div class="wrap ">
-        <div class="top">
-            <div class="course-content">
-                <div class="course-nav-box">
-                    <div class="course-nav-row clearfix">
-                        <span class="hd l">方向：</span>
-                        <div class="bd">
-                            <ul class="">
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;">全部</a>
-                                </li>
-                                <li class="course-nav-item
-                                     on">
-                                    <a href="javascript:;" data-ct="fe">前端开发</a>
-                                </li>
-                                <li class="course-nav-item
-                                    ">
-                                    <a href="javascript:;" data-ct="be">后端开发</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="course-nav-row clearfix">
-                        <span class="hd l">分类：</span>
-                        <div class="bd">
-                            <ul class="">
-                                <li class="course-nav-item on">
-                                    <a href="javascript:;">全部</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;" data-id="7" data-ct="fe">HTML/CSS</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;" data-id="44" data-ct="fe">JavaScript</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;" data-id="221" data-ct="fe">Html5</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;" data-id="1262" data-ct="fe">CSS3</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="course-nav-row clearfix border_bottom_none">
-                        <span class="hd l">类型：</span>
-                        <div class="bd">
-                            <ul class="">
-
-                                <li class="course-nav-item on">
-                                    <a href="javascript:;">全部</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;">基础</a>
-                                </li>
-                                <li class="course-nav-item ">
-                                    <a href="javascript:;">案例</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!--查询方向end-->
     <!--显示最新最热-->
     <div class="container">
         <!--最新最热标签-->
         <div class="course-tool-bar clearfix">
             <div class="tool-left l">
-                <a href="javascript:;" class="sort-item">最新</a>
-                <a href="javascript:;" class="sort-item active">最热</a>
+                <a href="javascript:;" class="sort-item active" name="hot">最热</a>|
+                <a href="javascript:;" class="sort-item" name="new">最新</a>
             </div>
             <div class="l">
             <span class="tool-item" style="display: none;">
@@ -114,118 +46,11 @@
         <div class="course-list">
             <div class="moco-course-list">
                 <ul class="clearfix">
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="moco-course-wrap">
-                        <a onclick="_hmt.push(['_trackEvent', '课程列表页', 'click', '列表首行数据'])" href="/learn/262" target="_self">
-                            <div class="moco-course-box">
-                                <img alt="玩转Bootstrap（JS插件篇）" src="${pageContext.request.contextPath}/static/staticWEB/img/home/5704ae5d00013c9a06000338-240-135.jpg" height="124" width="100%">
-                                <div class="moco-course-intro">
-                                    <h3>
-                                        <i>中</i>
-                                        玩转Bootstrap（JS插件篇）
-                                    </h3>
-                                    <p>教你如何使用Bootstrap中的JS插件。</p>
-                                </div>
-                                <div class="moco-course-bottom"><span class="l"> 77435人在学</span></div>
-                            </div>
-                        </a>
-                    </div>
-
                 </ul>
             </div>
             <!--页数-->
             <div class="page">
-                <a href="/course/list?c=fe&amp;page=1">首页</a>
-                <a href="/course/list?c=fe&amp;page=1">上一页</a><a
-                    class="text-page-tag" href="/course/list?c=fe&amp;page=1">1</a>
-                <a href="javascript:void(0)"class="active text-page-tag">2</a>
-                <a class="text-page-tag" href="/course/list?c=fe&amp;page=3">3</a>
-                <a class="text-page-tag"href="/course/list?c=fe&amp;page=4">4</a>
-                <a class="text-page-tag" href="/course/list?c=fe&amp;page=5">5</a>
-                <a class="text-page-tag" href="/course/list?c=fe&amp;page=6">6</a>
-                <a class="text-page-tag" href="/course/list?c=fe&amp;page=7">7</a>
-                <a href="/course/list?c=fe&amp;page=3">下一页</a>
-                <a href="/course/list?c=fe&amp;page=8">尾页</a></div>
+            </div>
             <!--页数end-->
         </div>
         <!--展示课程end-->
@@ -269,5 +94,6 @@
         })
     })*/
 </script>
+<script src="${pageContext.request.contextPath}/static/public/js/course/course.js"></script>
 </body>
 </html>

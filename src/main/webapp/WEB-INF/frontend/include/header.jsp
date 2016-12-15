@@ -151,13 +151,8 @@
 
 
         <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
-            <div class="pa searchTags" style="display: block;">
-                <a href="#" target="_blank">算法</a>
-                <a href="#" target="_blank">响应式</a>
-            </div>
-
             <div class="search-area" data-search="top-banner">
-                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off">
+                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off" value="<c:out value='${search}'/>"/>
                 <input type="hidden" class="btn_search" data-search-btn="search-btn">
                 <ul class="search-area-result" data-suggest-result="suggest-result" style=""></ul>
             </div>

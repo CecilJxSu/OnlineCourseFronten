@@ -472,7 +472,7 @@
                     hotHtml += '<p>'+content.introduction+'</p>';
                     hotHtml += '</div>';
                     hotHtml += '<div class="moco-course-bottom">';
-                    hotHtml += '<span class="l color-red">综合:'+content.complex+'</span>';
+                    hotHtml += '<span class="l">综合:'+content.complex+'</span>';
                     hotHtml += '<span class="r">'+content.numOfPeople+'人在学</span>';
                     hotHtml += '</div></div></a></div>';
                 });
@@ -489,7 +489,7 @@
                     newHtml += '<p>'+content.introduction+'</p>';
                     newHtml += '</div>';
                     newHtml += '<div class="moco-course-bottom">';
-                    newHtml += '<span class="l color-red">综合:'+content.complex+'</span>';
+                    newHtml += '<span class="l">综合:'+content.complex+'</span>';
                     newHtml += '<span class="r">'+content.numOfPeople+'人在学</span>';
                     newHtml += '</div></div></a></div>';
                 });
