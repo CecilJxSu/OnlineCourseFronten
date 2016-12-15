@@ -123,12 +123,11 @@ function pageChange() {
 //最热最新按钮监听
 $('.sort-item').on('click',function () {
     if ($(this).is('.active')){
-        hot_new = $(this).attr('name');
         return false;
     } else {
         $('.sort-item,.active').removeClass('active');
         $(this).addClass('active');
-        hot_new = $(this).attr('name');
+        $('.sort-item,.active').attr('name',$('.sort-item,.active').attr('name')=='hot'?'new':'hot');
         nowPage = 1;
         //触发ajax
         main();

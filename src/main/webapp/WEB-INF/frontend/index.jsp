@@ -233,7 +233,7 @@
     <div class="contentwrap">
         <div class="recomend">
             最热推荐
-            <a class="fr" style="height: 16px;" href="javascript:void (0)" target="_blank">
+            <a class="fr" style="height: 16px;" href="/OnlineCourseFronten/course/show" target="_blank">
                 <span class="more">更多<i class="icon-right2"></i></span>
             </a>
         </div>
@@ -248,7 +248,7 @@
     <div class="contentwrap">
         <div class="recomend">
             最新推荐
-            <a class="fr" style="height: 16px;" href="javascript:void (0)" target="_blank">
+            <a class="fr" style="height: 16px;" href="/OnlineCourseFronten/course/show" target="_blank">
                 <span class="more">更多<i class="icon-right2"></i></span>
             </a>
         </div>
