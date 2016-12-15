@@ -121,7 +121,7 @@
                                     </span>
                             </div>
                                 <div class="card-sets clearfix">
-                                    <a href="#" target="_blank" class="l mr30">个人设置</a>
+                                    <a href="/OnlineCourseFronten/user/profile/show" target="_blank" class="l mr30">个人设置</a>
                                     <c:if test="${userStatus=='teacher'}">
                                         <a href="/OnlineCourseFronten/index/teacher" target="_blank" class="l mr30">进入教师页面</a>
                                     </c:if>

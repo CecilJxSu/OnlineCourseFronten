@@ -185,33 +185,36 @@
                     <div class="formItems clearfix">
                         <label>原始密码：</label>
                         <div class="inputText">
-                            <input type="password" maxlength="16" itemtype="sourcePassword">
+                            <input type="password" id="sourcePassword" maxlength="16" itemtype="sourcePassword" placeholder="请输入原始密码"/>
+                            <p class="color-red"></p>
                         </div>
                     </div>
                     <div class="formItems clearfix">
                         <label>新密码：</label>
                         <div class="inputText">
-                            <input type="password" maxlength="16" itemtype="newPassword">
-
+                            <input type="password" id="newPassword" maxlength="16" itemtype="newPassword" placeholder="请输入新密码"/>
+                            <p class="color-red"></p>
                         </div>
                     </div>
                     <div class="formItems clearfix">
-                        <label>确认新密码：</label>
+                        <label>确认密码：</label>
                         <div class="inputText">
-                            <input type="password" maxlength="16" itemtype="againPassword">
+                            <input type="password" id="againPassword" maxlength="16" itemtype="againPassword" placeholder="请输入确认密码"/>
+                            <p class="color-red"></p>
                         </div>
                     </div>
-                    <p class="passwordTip">密码由6-16位的字母与数字组成，且以字母开头，区分字母大小写。</p>
+                    <p id="errorTip" class="color-red"></p>
+                    <p class="passwordTip">密码由8-20位,字母、数字、下划线组成</p>
                     <div class="formBtn">
-                        <input type="button" style="height: 40px;" value="确认更新" class="gradientColor" onclick="sureChange()">
+                        <input type="button" style="height: 40px;" value="修改密码" class="gradientColor" onclick="sureChange()">
                     </div>
                     <!-- 密码修改成功弹窗-->
-                    <%--<div class="hide popupBg changeSuccessPopup">
+                    <div id="change-success" class="hide popupBg changeSuccessPopup">
                         <div class="changeSuccess popupBox">
                             <p>您的密码已经修改成功！</p>
-                            <a href="../login.html" class="gradientColor againLogin">点击重新登录</a>
+                            <p><span id="count-down"></span>s后跳转到首页，请重新登录</p>
                         </div>
-                    </div>--%>
+                    </div>
                     <!-- 密码修改成功弹窗 end-->
                 </div>
             </div>
@@ -254,6 +257,81 @@
     $("#upload").on("change", function () {
         previewImage(this);
     })
+
+
+
+
+
+    function sureChange() {
+        var sourcePassword = $('#sourcePassword').val();
+        var newPassword = $('#newPassword').val();
+        var againPassword = $('#againPassword').val();
+
+        if (isLegal(sourcePassword,8,20)){
+            $('#sourcePassword').next('p').html('');
+        } else {
+            $('#sourcePassword').next('p').html('原始密码输入不合法');
+            $('#sourcePassword').focus();
+            return false;
+        }
+        if (isLegal(newPassword,8,20)){
+            $('#newPassword').next('p').html('');
+        } else {
+            $('#newPassword').next('p').html('新密码输入不合法');
+            $('#newPassword').focus();
+            return false;
+        }
+        if (newPassword == againPassword){
+            $('#againPassword').next('p').html('');
+        } else {
+            $('#againPassword').next('p').html('新密码、确认密码不一致');
+            $('#againPassword').focus();
+            return false;
+        }
+        $.ajax({
+            url:'/OnlineCourseFronten/user/change/pwd',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+                sourcePassword :   sourcePassword,
+                newPassword    :   newPassword
+            },
+            success:function (data) {
+                $('#change-success').removeClass("hide");
+                countDown(5,'/OnlineCourseFronten/');
+            },
+            error:function (e) {
+                $('#errorTip').html('密码修改失败!原始密码输不正确')
+            }
+        });
+    }
+
+    //倒计时s秒后跳转到url
+    function countDown(s,url) {
+        if (s<=0){
+            location.href = url;
+        }
+        setTimeout(function () {
+            s--;
+            $('#count-down').html(s);
+            countDown(s,url);
+        },1000);
+    }
+    /**
+     * 验证文本由数字、26个英文字母或者下划线组成
+     * @param text 文本
+     * @param min 最小长度
+     * @param max 最大长度
+     */
+    function isLegal(text,min,max){
+        var reg=/^[a-zA-Z0-9_]+$/;
+        if(reg.test(text) && text.length<=max && text.length>=min){
+            return true;
+        }else{
+            return false;
+        }
+    }
 </script>
 </body>
 </html>

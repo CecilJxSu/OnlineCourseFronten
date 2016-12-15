@@ -66,7 +66,6 @@ public class CourseController {
         //计算总页数
         int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
 
-        System.out.println(courses.toString());
         Map map = new HashMap();
         map.put("courses",courses);
         map.put("totalPage",totalPage);
