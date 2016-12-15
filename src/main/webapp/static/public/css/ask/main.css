@@ -1,0 +1,908 @@
+/*导航页*/
+.gaide-warp{
+    background: #3d85f1;
+}
+.gaide-warp .operation{
+    padding-top: 28px;
+}
+.gaide-warp .operation li{
+    display: block;
+    width: 190px;
+    margin: 0 auto 28px;
+}
+.gaide-warp .operation h3 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 84px;
+    text-indent: 19px;
+}
+.gaide-warp .operation img,
+.gaide-warp .operation p{
+    float: left;
+}
+.gaide-warp .copyright{
+    width: 100%;
+    height: 30%;
+    padding-bottom: 18px;
+    background: url("./html/images/update_img/service_bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+.gaide-warp .copyright img{
+    display: block;
+    margin: 0 auto;
+    padding: 74px 0 10px;
+}
+.gaide-warp .copyright p{
+    text-align: center;
+}
+.gaide-box{
+    height: 100px;
+}
+
+.contain{
+    position: relative;
+}
+.contain .contain-bg{
+    width:100%;
+    pointer-events: none;
+}
+.contain .operation{
+    position: absolute;
+    left: 50%;
+    top: 6.4%;
+    margin-left: -31.25%;
+}
+.contain .operation>a{
+    display: block;
+}
+.contain .copyright{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-size: 10px;
+    padding-bottom: 18px;
+}
+.contain .copyright img{
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+.contain .copyright p{
+    text-align: center;
+}
+/*导航页 end*/
+
+/*一键报案*/
+.contain .report-tel{
+    position: absolute;
+    top: 69%;
+    left: 50%;
+    margin-left: -87px;
+}
+.contain .report-tel img{
+    display: block;
+    margin: 0 auto 14px;
+}
+/*一键报案 end*/
+
+/*自助查勘*/
+.user-model{
+    background: #f5f5f9;
+    padding: 0 12px;
+}
+/*横向铺满*/
+.user-model1{
+    padding: 0;
+}
+.user-model h3{
+    height: 46px;
+    border-left:2px solid #3d85f1;
+    border-bottom:1px solid #e5e5e5;
+    font-size: 16px;
+    line-height: 46px;
+    text-indent: 10px;
+}
+.model-list{
+    padding:0 12px 10px 7px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+}
+.user-model1 .no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+.model-list .li-border{
+    border-bottom: 1px solid #e8e8e8;
+}
+.model-list li > label {
+    display: block;
+    float: left;
+    width: 31%;
+    /*height: 14px;*/
+    padding: 16px 0;
+    box-sizing: border-box;
+    /*line-height:  14px;*/
+}
+.user-model1 .no-padding label{
+    text-indent: 14px;
+}
+.user-model1 .no-padding .partition{
+    margin-left: -16px;
+}
+.user-model1 .no-padding .arrow-right-inner{
+    right: -22px;
+    color: #d9d9d9;
+}
+.model-list li p {
+    float: left;
+    width:68%;
+    border-bottom: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    font-size: 16px;
+    white-space: nowrap;
+}
+.item-con select,
+.item-con i,
+.item-con input {
+    display: inline-block;
+    border: 0;
+    width: 100%;
+    padding: 16px 0;
+}
+.item-con select{
+    background: #fff;
+    border: none;
+    color: #a6a6a6;
+}
+.item-con i{
+    overflow-x: auto;
+    overflow-y: hidden;
+    color: #a9a9a9;
+}
+.item-con-policy-num i{
+    width: 82%;
+}
+.submit-btn .label-icon,
+.model-list .label-icon {
+    width: 32px;
+    margin-left: -5px;
+    color: #fda203;
+}
+.font-blue{
+    color: #4585f1;
+}
+.font-orange{
+    color: #9ace56;
+}
+.font-warning{
+    color: #8bc73e;
+}
+.verify-item input {
+    float: left;
+    width: 50%;
+}
+
+.model-list li span {
+    float: left;
+    width: 35%;
+    height: 46px;
+    box-sizing: border-box;
+    font-size: 16px;
+    word-break: break-all;
+    text-align: center;
+}
+
+.count-price span {
+    color: #f97243;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.model-list .policy-item > span {
+    width: 33%;
+}
+
+.model-list .policy-item > label {
+    width: 33%;
+}
+.model-list .partition{
+    float: left;
+}
+.model-list .partition{
+    padding: 12px 0;
+}
+.model-list .arrow-right{
+    float: right;
+    display: inline-block;
+    padding: 11px 0;
+
+}
+.model-list .arrow-right-wrap{
+    position: relative;
+}
+.model-list .arrow-right-inner{
+    position: absolute;
+    right: -15px;
+    top: 4px;
+}
+.user-model .up-img{
+    display: inline-block;
+    padding: 23px 9px 18px;
+}
+.user-model .up-img img{
+    width: 100px;
+    height: 100px;
+}
+.user-model .submit-btn {
+    margin-top: 30px;
+    padding: 0 12px;
+}
+.user-model  .send {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    margin: 30px auto;
+    background-color: #3d85f1;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+/*自助查勘 end*/
+
+/*索赔指引*/
+.contain .claim-operation{
+    position: absolute;
+    width: 76.1%;
+    top: 42%;
+    left: 50%;
+    margin-left: -37.5%;
+}
+.contain .claim-operation a{
+    display: inline-block;
+    text-align: center;
+    color: #4585f1;
+}
+.contain .claim-operation-L{
+    float: left;
+}
+.contain .claim-operation-R{
+    float: right;
+}
+.contain .tip{
+    position: absolute;
+    bottom: 7.5%;
+    left: 0;
+    right: 0;
+    font-family: "FZZCHJW";
+    text-align: center;
+}
+.contain .tip h3{
+    font-size: 20px;
+    line-height: 24px;
+    color: rgb(146, 194, 36);
+    font-weight: bold;
+}
+.contain .tip p{
+    font-size: 13px;
+    line-height: 15px;
+    color: rgb(169, 169, 169);
+}
+.contain .tip a{
+    display: block;
+    margin: 8px auto;
+}
+/*索赔指引 end*/
+
+/*自助批改导航页*/
+.contain  .operation img{
+    float: left;
+    margin-bottom: 30px;
+    margin-right: 22px;
+}
+.contain  .operation h3{
+    float: left;
+    padding: 22px 0;
+    height: 42px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    line-height: 42px;
+}
+/*自助批改导航页 end*/
+
+/*新车补录车牌*/
+.user-model .model-list-correct{
+    padding-top: 10px;
+}
+.user-model .label-verifi-5{
+    width:36%;
+}
+.user-model .p-verifi-5{
+    width:64%;
+}
+.user-model .p-verifi-end{
+    border: none;
+}
+.user-model .p-verifi-5 input{
+    width:68%;
+}
+.user-model .p-verifi-send input{
+    width: 64%;
+}
+.user-model .submit-correct{
+    margin-top: 11px;
+}
+.user-model .submit-correct .send{
+    margin-top: 15px;
+}
+/*新车补录车牌 end*/
+
+/*发送二维码btn*/
+.model-list .verify-send {
+    background-color: #fda203;
+    margin-top: 12px;
+    padding: 0 6px;
+    font-size: 10px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.submit-success{
+    padding: 48px 46px 34px;
+}
+.submit-success img{
+    display: block;
+    margin: 0 auto;
+}
+.submit-success p{
+    margin-top: 20px;
+    text-align: center;
+}
+
+/*保单查询*/
+.policy-query{
+    position: relative;
+    margin-top: 20px;
+    border: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.policy-query .header{
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px dashed #e8e8e8;
+}
+.policy-query .header h4{
+    float: left;
+    font-weight: bold;
+}
+.policy-query .header img{
+    float: right;
+    padding-top: 12px;
+}
+.policy-query .icon-L,
+.policy-query .icon-R{
+    position: absolute;
+    top: 36px;
+}
+.policy-query .icon-L{
+    left: 0;
+}
+.policy-query .icon-R{
+    right: 0;
+}
+.policy-query .seal-success,
+.policy-query .seal-ing{
+    position: absolute;
+    top: 43px;
+    right: 10px;
+}
+
+.policy-query .item-con{
+    border-bottom: 1px dashed #e8e8e8;
+}
+.user-model .submit-btn2 {
+    padding: 0;
+}
+/*查询结果*/
+.policy-query .policy-num{
+    width: 82%;
+}
+/*保费查询-详细*/
+.user-model .submit-btn3{
+    margin-bottom: 60px;
+}
+.user-model .submit-btn3 .send {
+    display: inline-block;
+    width: 48.4%;
+    margin-top: 10px;
+}
+.user-model .send-warning {
+    background-color: #fda203;
+}
+.user-model .send-oper {
+    float: right;
+    background-color: #3d85f1;
+}
+.query-footer{
+    padding-bottom: 20px;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+}
+/*保费查询 end*/
+
+/*异常处理*/
+.model-list-top{
+    margin-top: 10px;
+}
+.model-list .text-area-wrap{
+    position: relative;
+    height: 124px;
+    margin: 16px 0 12px;
+    padding: 6px;
+    background: #f5f5f9;
+    border: 1px solid #e8e8e8;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #b9b9b9;
+}
+.model-list .text-area-num{
+    position: absolute;
+    right:6px;
+    bottom:6px;
+}
+.model-list li .textarea{
+    width: 100%;
+    height: 124px;
+    background: #f5f5f9;
+    border: none;
+    font-size: 13px;
+    color: #b9b9b9;
+}
+/*异常处理 end*/
+
+/*专属客服经理页面*/
+.servicr-bg01{
+    background: url(./html/images/update_img/customer_service_bg_02.png) center center no-repeat;
+    background-size: 100% 100%;
+    padding: 1px 12px 50px;
+}
+.servicr-bg02{
+    background: url(/html/images/update_img/customer_service_bg_01.png) center center no-repeat;
+    background-size: 100% 100%;
+}
+.info-list{
+    padding: 180px 0 100px;
+}
+.info-list li{
+    width: 100%;
+    line-height: 46px;
+}
+.info-list li span{
+    margin-right: 30px;
+    text-align: right;
+    color: #a6a6a6;
+}
+.head-portrait{
+    background: url(/html/images/update_img/customer_service_portrait.png) center center no-repeat;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 58px;
+    right: 50%;
+    margin-right: -50px;
+}
+/*专属客服经理页面 end*/
+
+/*公司介绍页面*/
+.about-banner {
+    width: 100%;
+}
+#introdu{
+    padding: 22px 20px 20px;
+}
+.about-footer{
+    padding: 24px 24px 28px 12px;
+}
+.about-footer .contact-l {
+    float: left;
+}
+.about-footer .contact{
+    float: right;
+}
+.url{
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    padding-left: 17px;
+}
+.about-footer{
+    background-color: #fff;
+}
+/*公司介绍页面 end*/
+
+/*我的保险页面组合*/
+/*表单类型控制按钮*/
+.menu {
+    width: 100%;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li,
+.menu a {
+    text-align: center;
+    font-size: 16px;
+    height: 46px;
+    line-height: 46px;
+}
+
+.menu li {
+    width: 50%;
+}
+
+.menu li.selected {
+    color: #FFF;
+    background: #8bc63e;
+}
+
+.menu a {
+    display: inline-block;
+    width: 100%;
+}
+
+/*表单类型控制按钮 end*/
+
+/*二级菜单分类按钮*/
+
+
+.tab-menu-person table {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+}
+
+.tab-menu-person tr th {
+    text-align: center;
+    border-left: 1px solid #e5e5e6;
+    border-right: 1px solid #e5e5e6;
+    color: #8c8c8c;
+}
+
+.tab-menu-person tr th.selected {
+    color: #fff;
+    background: #8bc63e;
+}
+
+.table-header {
+    color: #3d85f1;
+}
+
+/*二级菜单分类按钮 end*/
+
+.menu-person-wrap {
+    top: 46px;
+}
+.menu-person-wrap .menu-person li {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    border-top: 1px solid #e6e6e7;
+    border-bottom: 1px solid #e6e6e7;
+    text-align: center;
+}
+
+.menu-person-wrap .menu-person li span {
+    display: inline-block;
+    width: 29%;
+    height: 100%;
+}
+.menu-person-wrap .menu-person li .half{
+    width: 49%;
+}
+#not-carInsur-client-list,
+#carInsur-client-list {
+    margin: 0 2.3%;
+}
+
+.menu-person-wrap .menu-person li .selected i{
+    display: inline-block;
+    height: 32px;
+    color: #3d85f1;
+    border-bottom: 2px solid #3d85f1;
+}
+/*状态信息*/
+.table-box {
+    padding: 98px 0;
+}
+.table-box table {
+    width: 100%;
+    border-bottom: 1px solid #e6e6e7;
+}
+.table-box td {
+    border: none;
+    height: 22px;
+    line-height: 22px;
+    font-size: 11px;
+}
+.table-box .element {
+    width: 86px;
+    text-indent: 12px;
+}
+.table-box .partition {
+    float: left;
+    margin-right: 10px;
+}
+.table-box .state{
+    width: 78px;
+    text-align: right;
+    padding-right: 12px;
+}
+.table-box .continue,
+.table-box .pay{
+    display: inline-block;
+    width: 64px;
+    height: 24px;
+    margin-right: -2px;
+    border: 1px solid #8bc63e;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    line-height: 24px;
+    text-align: center;
+    color: #8bc63e;
+}
+.table-box  .label-icon{
+    margin-right: 5px;
+    text-align: center;
+    color: #fda60d;
+}
+
+.policy-btn {
+    padding: 0 15px;
+    text-align: center;
+}
+.policy-btn p{
+    padding-top: 8px;
+    font-size: 10px;
+}
+.policy-btn  .send {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0 12px;
+    margin: 14px auto 8px;
+    background-color: #3d85f1;
+    line-height: 32px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.hide {
+    display: none
+}
+/*我的保险页面组合 end*/
+/*保单详情页面*/
+.policyModel{
+    height: auto;
+    font-size: 12px;
+}
+.userTitle{
+    font-size: 18px;
+    padding: 10px 12px;
+    background: #3d85f1;
+    color: #fff;
+    box-sizing: border-box;
+}
+.userPage {
+    margin-top: 10px;
+}
+.modelList li{
+    border-bottom: 1px solid #e8e8e8;
+}
+.modelList li>label{
+    display: block;
+    float: left;
+    width: 30%;
+    padding: 16px 0 16px 12px;
+    box-sizing: border-box;
+    line-height: 30px;
+}
+.modelList li p {
+    float: left;
+    width: 70%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-left: 1px solid #e8e8e8;
+    padding: 16px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.submitBtn{
+    border-bottom: 1px solid #e8e8e8;
+    padding: 30px 12px;
+    text-align: center;
+}
+.submitBtn span{
+    background: #fda203;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;;
+}
+.policyModel .modelList li>label {
+    line-height: 24px;
+}
+.policyModel .modelList li p {
+    line-height: 24px;
+}
+.userTitle.on .iconBorder {
+    background-position: 0 -9px;
+}
+.iconBorder {
+    float: right;
+    margin-top: 10px;
+    height: 8px;
+    width: 18px;
+    background: url(/html/images/update_img/arrow.png) -0px -0px no-repeat;
+    overflow: hidden;
+}
+.policyModel .modelList li span {
+    float: left;
+    width: 35%;
+    height: 56px;
+    border-left: 1px solid #e8e8e8;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    word-break: break-all;
+    text-align: center;
+}
+.listSpan{
+    display: table;
+}
+.listSpan i{
+    display: table-cell;
+    vertical-align: middle;
+}
+.countPrice {
+    padding: 20px;
+    font-size: 16px;
+}
+.countPrice div{
+    float: right;
+}
+.countPrice span {
+    color: #f97243;
+    font-size: 20px;
+    font-weight: bold;
+}
+.countPrice .priceIcon{
+    color: #f97243;
+    font-size: 12px;
+}
+.ensureTitle{
+    background: #8bc73e;
+}
+.listIitle{
+    background: #e8e8e8;
+    color: #456dab;
+}
+.modelList .listIitle label{
+    text-align: center;
+    padding: 16px 0;
+}
+.policyModel .modelList .policyItem>span{
+    width: 33%;
+}
+.policyModel .modelList .policyItem>label{
+    width: 33%;
+}
+/*保单详情页面 end*/
+
+/*服务网点页面*/
+.userPage1{
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+.modelWrap{
+    padding: 6px 6px 0;
+}
+.userPage .close,
+.userPage .open{
+    text-align: center;
+    border: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.userPage .open{
+    background: #3d85f1;
+}
+.modelWrap .close{
+    background: #8bc73e;;
+}
+.modelWrap .userTitle{
+    background: none;
+}
+.modelWrap .modelShow{
+    padding: 0 15px 12px;
+    color: #fff;
+}
+.modelWrap .modelShow p{
+    line-height: 24px;
+}
+.modelWrap .modelShow p:first-child{
+    margin-bottom: 8px;
+    border-top: 1px dashed #fff;
+}
+.modelWrap .modelShow img{
+    margin-right: 10px;
+    margin-bottom: -2px;
+}
+.outletBg{
+    width: 100%;
+}
+/*服务网点页面 end*/
+
+/*上传图片*/
+.js_showBox img,
+.uploadImg{
+    margin: 0 6px 6px 0;
+    float: left;
+}
+.uploadImg{
+    background: url("/OnlineCourseFronten/static/staticWEB/img/home/up_img.png") no-repeat;
+    width: 100px;
+    height: 100px;
+}
+.js_upFile{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.control-group{
+    width: 100%;
+    padding-bottom: 18px;
+}
+.js_uploadText{
+    display: none;
+}
+.model-list .upload-label > label{
+    height: 46px;
+    line-height: 24px;
+    padding-bottom: 0;
+}
+/*上传图片 end*/

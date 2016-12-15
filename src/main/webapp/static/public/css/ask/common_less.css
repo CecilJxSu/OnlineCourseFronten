@@ -1,0 +1,330 @@
+#main {
+    min-height: 750px;
+    padding: 20px 0
+}
+
+.container, .newcontainer, .page-container, .waper {
+    width: 1200px;
+    margin: 0 auto
+}
+
+#nav, .container, .waper {
+    margin: 0 auto
+}
+
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+/*混入.menu-vertical*/
+.other-left {
+    float: left;
+    width: 825px;
+    overflow: visible;
+    background-color: #fff;
+    list-style-type: none;
+    padding-bottom: 50px;
+}
+.dynamicLoad {text-align: center;}
+.other-left li {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+}
+.other-left li:last-child {
+}
+.other-left li a {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #787d82;
+}
+.other-left li a span.tip {
+    height: 16px;
+    border-radius: 10px;
+    background-color: red;
+    line-height: 16px;
+    font-size: 12px;
+    color: white;
+    padding: 0 10px;
+    float: left;
+    right: 25px;
+    top: 23px;
+}
+.other-left li:hover a span {
+    color: #14191e;
+}
+.other-left li:hover a span.tip {
+    color: white;
+}
+.other-left li.selected:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 60px;
+    left: -21px;
+}
+.other-left li.selected a span {
+    color: #cc0000;
+}
+.other-left li.selected a span.tip {
+    color: white;
+}
+.other-right {
+    margin-top: 20px;
+    width: 327px;
+    padding:24px;
+    box-sizing: border-box;
+    float: right;
+    background: #f3f5f7;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    color: #787d82;
+    line-height: 2.143;
+    text-align: justifyLeft;
+    z-index: 134;
+}
+
+.mr24 {margin-right: 24px;}
+
+.other-right h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #07111b;
+}
+.other-right li {
+    color: #4d555d;
+    font-size: 14px;
+}
+.other-right {
+    margin-top: 20px;
+    width: 327px;
+    padding: 24px;
+    box-sizing: border-box;
+    float: right;
+    background: #f3f5f7;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    color: #787d82;
+    line-height: 2.143;
+    text-align: justifyLeft;
+    z-index: 134;
+}
+
+.other-right-wrap {
+    position: relative;
+    min-height: 750px;
+}
+.others {
+}
+.others h1 {
+    font-size: 16px;
+    line-height: 49px;
+    color: #363d40;
+    margin-bottom: 2.1em;
+    border-bottom: 1px solid #eceff0;
+}
+.others p {
+    margin: 1.5em 0;
+    line-height: 150%;
+    color: #656e73;
+}
+.others .qqText,
+.others .groupNum {
+    margin-bottom: 0;
+}
+.others .groupNum {
+    line-height: 24px;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.others ol {
+    padding-left: 10px;
+}
+
+
+.alert {
+    position: absolute;
+    z-index: 1030;
+    left: 300px;
+}
+
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.headtitle {
+    height: 55px;
+    font-weight: bold;
+    line-height: 55px;
+    font-size: 16px;
+    color: #14191e;
+    border-bottom: 1px solid #b7bbbf;
+}
+
+.typeselct {
+    height: 45px;
+    padding: 0px 24px 10px;
+    line-height: 25px;
+    margin-top: 20px;
+    color: #5e666e;
+}
+
+.typeselct span {
+    display: inline-block;
+}
+
+.result-wrap {
+    display: none;
+    text-align: center;
+    padding: 100px 0;
+    width: 100%;
+}
+
+.field-wrapp {
+    float: left;
+    padding: 0px 24px;
+}
+
+#info {
+    width: 776px;
+    height: 140px;
+    resize: none;
+    overflow: hidden;
+}
+
+#info, #contact, #city, #ct, .input {
+    border: 1px solid #d0d6d9;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    -webkit-transition: border-color 0.2s;
+    -moz-transition: border-color 0.2s;
+    -o-transition: border-color 0.2s;
+    padding: 10px 7px;
+    box-sizing: border-box;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.inputNum {
+    position: relative;
+    top: -62px;
+    left: -12px;
+}
+
+.fr {
+    float: right;
+}
+
+body{background-color: #fff;}
+#info,#contact,#city,#ct,.input{border:1px solid #d0d6d9;font-size:14px;transition:border-color 0.2s;-webkit-transition:border-color 0.2s;-moz-transition:border-color 0.2s;-o-transition:border-color 0.2s;padding: 10px 7px;box-sizing: border-box;}
+#info:focus,#contact:focus,.input:focus{border-color: #7bd089; }
+#info{width:776px;height: 140px; resize: none; overflow: hidden; }
+#contact{ vertical-align: middle;width: 776px;height: 24px;line-height: 24px;font-size:14px;padding: 20px 10px; }
+#url{ vertical-align: middle;width: 736px;height: 24px;line-height: 24px;font-size:14px;padding: 20px 10px; }
+#city,#ct{ vertical-align: middle;width:164px;height: 24px;line-height: 24px;font-size:14px;padding: 7px;margin-right:30px; }
+a.editbtn{ color:#00b33b;display: inline-block;margin-left:20px; float: right; }
+.editinfo{ background:#f4f7f8;padding:20px;margin-bottom:30px;margin-top:20px;overflow:hidden; }
+.editinfo h5{ display:block; color:#787d82;font-size: 14px;line-height:26px; }
+.editinfo div:first-child{ margin-bottom:15px; }
+.myadres span{ display: inline-block;line-height:40px;color:#14191e;font-size: 14px;margin-right:25px; }
+.myadres span.edittip{ color:#787d82;font-size: 12px; margin-right: 0; float: right; }
+.edittip a{margin-left: 0}
+.feedback-wrap p{margin: 0;}
+.feedback-wrap button{float:right;display: inline-block;vertical-align: middle;color: #fff;font-size: 14px;background-color:#39b94e;height: 50px;line-height: 40px;width: 120px;cursor: pointer;text-align: center;transition:background-color 0.2s;-webkit-transition:background-color 0.2s;-moz-transition:background-color 0.2s;-o-transition:background-color 0.2s;}
+.feedback-wrap button:hover{ background-color: #33a646;}
+.feedback-wrap h4{margin-bottom: 12px;}
+.feedback-wrap .rlf-tip-wrap{ font-size: 12px;height: 30px; line-height: 30px;}
+.feedback-wrap .rlf-tip-error{background: url("/OnlineCourseFronten/static/staticWEB/img/home/rl-sprite.png") no-repeat -108px -933px; padding-left: 15px; color: #be3948;}
+.feedback-wrap .error-field{border-color:#be3948 !important; }
+.placeholder{color: #d0d6d9;font-size: 14px;}
+
+.textArea {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(208, 214, 217);
+    background-color: rgb(255, 255, 255);
+    width: 842px;
+    height: 142px;
+}
+.headtitle{height: 55px; font-weight: bold;line-height:55px;  font-size: 16px;color: #14191e; border-bottom: 1px solid #b7bbbf; }
+.typeselct{height: 45px;padding: 0px 24px 10px; line-height: 25px;margin-top: 20px;color: #5e666e;}
+.typeselct span {display: inline-block;}
+.uploadImgsTip  {margin-bottom: 30px !important;}
+.feedHead {
+    margin-left: 0px;
+    text-align: left !important;
+    color: #14191e;
+    font-size: 16px;
+    line-height: 18px;
+    cursor: default;
+}
+.feedHead #myFeedback{
+    font-size: 16px;
+    line-height: 32px;
+    color: #4d555d;
+}
+.feedHead #myFeedback:hover{
+    color: #4d555d;
+    cursor: default;
+}
+.feedbackSuccess {text-align: center; margin-top: 75px; width: 100%;}
+.feedbackSuccess .location{font-size: 14px; color: #93999f; margin-top: 20px; width: 100%;}
+.feedbackSuccess .thanks{ font-size: 18px; color:#2b333b; width: 100%;font-weight: 700;}
+.feedbackSuccess .icon{color:#00b33b; margin-right: 20px; font-size: 30px; position: relative; top:5px; width: 100%;}
+.inputNum{
+    position: relative;
+    top: -62px;
+    left: -12px;
+}
+.delete {
+    font-size: 20px;
+    color: #f01414;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url('/html/static/img/delete.png')
+}
+.feedimg {margin-right: 5px !important;}
+
+.color-red {
+    color: #EF1300!important;
+}
+
+
+.question-areaq .ipt {
+    margin: 10px 0;
+    width: 90%;
+    height: 31px;
+    border: 1px solid #98a1a6;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+}

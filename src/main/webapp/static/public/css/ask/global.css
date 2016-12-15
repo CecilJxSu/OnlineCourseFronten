@@ -1,0 +1,133 @@
+/* reset */
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+    margin: 0;
+    padding: 0;
+}
+
+header, footer, section, article, aside, nav, address, figure, figcaption, menu, details, summary, picture {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    border: 1px solid #b3b3b3;
+}
+
+html, body, img, iframe, abbr {
+    border: 0;
+}
+
+i, em {
+    font-style: normal;
+}
+
+[hidefocus], summary {
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+sup, sub {
+    font-size: 12px;
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+label {
+    cursor: default;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, b {
+    font-weight: normal;
+    display: block;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: #595757;
+}
+
+a:hover {
+    color: #595757;
+}
+
+input {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+body, textarea, input, button, select, keygen, legend, i {
+    font: 14px/1.5 'Microsoft YaHei', 'Microsoft YaHei UI', 'WenQuanYi Micro Hei', Arial, sans-serif, \5b8b\4f53;
+    color: #595757;
+    outline: 0;
+}
+
+html {
+    font-size: 10px;
+    -ms-touch-action: none;
+}
+
+body {
+    background: #f5f5f9;
+    width: 100%;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+}
+
+input[type=button], input[type=submit], input[type=file], button {
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+
+/*清除浮动*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+/* 固定导航栏在顶部 */
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background: #f5f5f9;
+}
+
+.navbar-fixed-top {
+    top: 0;
+}
+
+.navbar-fixed-bottom {
+    bottom: 0;
+}
