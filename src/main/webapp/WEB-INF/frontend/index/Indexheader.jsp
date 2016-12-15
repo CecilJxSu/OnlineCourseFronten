@@ -141,13 +141,8 @@
         </div>
         <!--查询-->
         <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
-            <div class="pa searchTags">
-                <a href="javascript:;" target="_blank">安卓框架</a>
-                <a href="javascript:;" target="_blank">响应式</a>
-            </div>
-
             <div class="search-area" data-search="top-banner">
-                <input class="search-input " data-suggest-trigger="suggest-trigger" type="text" autocomplete="off">
+                <input class="search-input " data-suggest-trigger="suggest-trigger" type="text" autocomplete="off" placeholder="搜索输入"/>
                 <input type="hidden" class="btn_search" data-search-btn="search-btn">
                 <ul class="search-area-result" data-suggest-result="suggest-result">
                 </ul>
@@ -315,6 +310,10 @@
                 document.getElementById('signup').style.display = 'block';
             }
         }
+    });
+
+    $('.showhide-search').on('click',function () {
+        location.href = "/OnlineCourseFronten/course/show?search="+$('.search-input').val();
     });
 </script>
 <script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>

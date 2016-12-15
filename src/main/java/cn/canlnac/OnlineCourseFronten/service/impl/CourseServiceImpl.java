@@ -61,6 +61,7 @@ public class CourseServiceImpl implements CourseService {
      *                          status: ("public" | "draft")[]
      *                          userId?：作者ID，可为空
      *                          department：String[]
+     *                          search:String 搜索条件
      * @return              课程数目
      */
     public int count(Map<String, Object> conditions) {
@@ -76,6 +77,7 @@ public class CourseServiceImpl implements CourseService {
      *                          status: ("public" | "draft")[]
      *                          userId?：作者ID，可为空
      *                          department：String[]
+     *                          search:String 搜索条件
      * @return              课程列表
      */
     public List<Course> getList(

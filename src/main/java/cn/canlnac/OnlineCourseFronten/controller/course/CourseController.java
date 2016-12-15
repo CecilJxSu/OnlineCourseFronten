@@ -45,7 +45,7 @@ public class CourseController {
         Map conditions = new HashMap();
         conditions.put("status", Arrays.asList("public"));
         if (search!=null && !search.equals("")){
-            System.out.println("search!!!!");
+            conditions.put("search", search);
         }
 
         //获取数据

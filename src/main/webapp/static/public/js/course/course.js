@@ -13,7 +13,6 @@ var maxPage = 1;
 function main() {
     var url = '/OnlineCourseFronten/course/get';
     var search = $('.search-input').val();
-    alert(search);
     var hot_new = $('.sort-item,.active').attr('name');
     var data = {
         nowPage :nowPage,
@@ -36,13 +35,16 @@ function getData(url,data){
         cache:false,
         dataType:'json',
         data:data,
+        beforeSend: function(){
+            beforeSend();
+        },
         success:function (data) {
             maxPage = data.totalPage;
             pageChange();
             jsonToHtml(data);
         },
         error:function (e) {
-            alert(0);
+            errBack();
         }
     });
 }
@@ -152,4 +154,14 @@ function jsonToHtml(data) {
         html += '</div></div></a></div>';
     });
     $('.moco-course-list').html(html);
+}
+
+//错误回掉
+function errBack() {
+    $('.moco-course-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+}
+
+//发送前触发
+function beforeSend() {
+    $('.moco-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
 }
