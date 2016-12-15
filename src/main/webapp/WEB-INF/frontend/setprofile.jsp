@@ -218,6 +218,7 @@
             <%--修改密码end--%>
         </div>
 </div>
+</div>
 <!--内容end-->
 <%--尾部--%>
 <jsp:include page="include/footer.jsp"></jsp:include>
