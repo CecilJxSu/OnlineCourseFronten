@@ -39,18 +39,21 @@
                         <form id="profile">
                             <div class="wlfg-wrap clearfix ">
                                 <label class="label-name" for="job">头像：</label>
-                                <div id="preview" class="rlf-group">
-                                    <img id="imghead" class="fl avator-img" id="js-portrait" src="http://img.mukewang.com/552133900001743101800180-200-200.jpg" data-portrait="552133900001743101800180" width="180" height="180">
+                                <div  class="rlf-group">
+                                    <div id="preview">
+                                        <img id="imghead" class="fl avator-img" id="js-portrait" src="http://img.mukewang.com/552133900001743101800180-200-200.jpg" data-portrait="552133900001743101800180" width="180" height="180">
+                                    </div>
                                     <div class="fl ml20 pr">
+                                        <div><input type="button" hidefocus="true"  class="js-avator-try"></div>
                                         <div id="avator-btns" class="avator-btn-inner">
                                             <div class="avator-btn-wrap">
-                                                <!--<form target="uploadtarget" action="postpic" method="post" enctype="multipart/form-data">
+                                                <form target="uploadtarget" action="postpic" method="post" enctype="multipart/form-data">
                                                     <a href="javascript:void(0)" hidefocus="true" class="avator-btn-fake">上传头像</a>
                                                     <input class="hide" type="file" title="上传头像" name="fileField" id="upload" accept="image/*">
                                                     <input class="hide" type="hidden" name="type" value="1">
-                                                </form>-->
-                                                <input type="file" title="上传头像" name="fileField" id="upload" onchange="previewImage(this)">
-                                                <!--<iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>-->
+                                                </form>
+                                                <%--<input type="file" title="上传头像" name="fileField" id="upload" onchange="previewImage(this)">--%>
+                                                <%--<iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -246,6 +249,10 @@
             }
         }
     });
+    $(document).on("click",".avator-btn-fake",function(){$("#upload").click()});
+    $("#upload").on("change", function () {
+        previewImage(this);
+    })
 </script>
 </body>
 </html>

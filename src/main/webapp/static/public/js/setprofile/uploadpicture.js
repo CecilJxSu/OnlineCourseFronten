@@ -4,7 +4,7 @@ function previewImage(file) {
     var MAXHEIGHT = 180;
     var div = document.getElementById('preview');
     if (file.files && file.files[0]) {
-        div.innerHTML = '<img id=imghead>';
+        div.innerHTML = '<img class="fl avator-img" id=imghead>';
         var img = document.getElementById('imghead');
         img.onload = function () {
             var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
@@ -24,14 +24,14 @@ function previewImage(file) {
         var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
         file.select();
         var src = document.selection.createRange().text;
-        div.innerHTML = '<img id=imghead>';
+        div.innerHTML = '<img class="fl avator-img" id=imghead>';
         var img = document.getElementById('imghead');
         img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
         var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
         status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
         div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
     }
-    $('#preview').append(
+    /*$('#preview').append(
         '<div class="fl ml20 pr" style="float: right;">' +
         "" +'<div id="avator-btns" class="avator-btn-inner">' +
         '' +'<div class="avator-btn-wrap">' +
@@ -41,7 +41,7 @@ function previewImage(file) {
         '</div>'+
         '<div class="cb"></div>'+
         '<p class="rlf-tip-wrap errorHint color-red"></p>'
-    );
+    );*/
 }
 function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     var param = {top: 0, left: 0, width: width, height: height};

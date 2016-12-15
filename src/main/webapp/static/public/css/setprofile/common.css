@@ -2044,8 +2044,8 @@ select[multiple].ipt, textarea.ipt {
 
 @font-face {
     font-family: icomoon;
-    src: url(/html//static/fonts/fonts/icomoon.eot?d8491nx);
-    src: url(/html//static/fonts/fonts/icomoon.eot?d8491nx#iefix) format('embedded-opentype'), url(/html//static/fonts/fonts/icomoon.ttf?d8491nx) format('truetype'), url(/html//static/fonts/fonts/icomoon.woff?d8491nx) format('woff'), url(/html//static/fonts/fonts/icomoon.svg?d8491nx#icomoon) format('svg');
+    src: url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.eot?d8491nx);
+    src: url(/OnlineCourseFronten/static/staticWEB/fonts/icomoon.eot?d8491nx#iefix) format('embedded-opentype'), url(/html//static/fonts/fonts/icomoon.ttf?d8491nx) format('truetype'), url(/html//static/fonts/fonts/icomoon.woff?d8491nx) format('woff'), url(/html//static/fonts/fonts/icomoon.svg?d8491nx#icomoon) format('svg');
     font-weight: 400;
     font-style: normal
 }
