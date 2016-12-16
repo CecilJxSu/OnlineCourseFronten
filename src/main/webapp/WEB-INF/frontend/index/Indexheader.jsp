@@ -4,6 +4,7 @@
     String id = session.getAttribute("id")!=null?session.getAttribute("id").toString():null;
     String userName = session.getAttribute("userName")!=null?session.getAttribute("userName").toString():null;
     String userStatus = session.getAttribute("userStatus")!=null?session.getAttribute("userStatus").toString():null;
+    String iconUrl = session.getAttribute("iconUrl")!=null?session.getAttribute("iconUrl").toString():null;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,14 +100,26 @@
                     <!--用户-->
                     <li class="set_btn user-card-box">
                         <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="#" target="_self">
-                            <img width="40" height="40" src="${pageContext.request.contextPath}/static/img/home/552133900001743101800180-100-100.jpg">
+                            <c:if test="${iconUrl!=null}">
+                                <img width="40" height="40" src="/OnlineCourseFronten/static/headPic/<c:out value='${iconUrl}'/>">
+                            </c:if>
+                            <c:if test="${iconUrl==null}">
+                                <img width="40" height="40" src="/OnlineCourseFronten/static/headPic/default.png">
+                            </c:if>
                             <i class="myspace_remind" style="display: none;"></i>
                             <span style="display: none;">动态提醒</span>
                         </a>
                         <div class="g-user-card">
                             <div class="card-inner">
                                 <div class="card-top">
-                                    <a href="#"><img src="/html/static/img/home/552133900001743101800180-100-100.jpg" alt="<c:out value="${userName}"/>" class="l"></a>
+                                    <a href="#">
+                                        <c:if test="${iconUrl!=null}">
+                                            <img src="/OnlineCourseFronten/static/headPic/<c:out value='${iconUrl}'/>" alt="<c:out value='${userName}'/>" class="l">
+                                        </c:if>
+                                        <c:if test="${iconUrl==null}">
+                                            <img src="/OnlineCourseFronten/static/headPic/default.png" alt="<c:out value='${userName}'/>" class="l">
+                                        </c:if>
+                                    </a>
                                     <a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>
                                     <p class="meta">
                                         <a href="#">关注<b id="js-user-mp">5565</b></a>

@@ -1,6 +1,8 @@
 package cn.canlnac.OnlineCourseFronten.util;
 
+import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.ProfileService;
 import cn.canlnac.OnlineCourseFronten.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -26,6 +28,8 @@ import java.util.Set;
 public class MyShiro extends AuthorizingRealm{
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProfileService profileService;
 
     /**
      * 权限认证
@@ -68,6 +72,11 @@ public class MyShiro extends AuthorizingRealm{
             session.setAttribute("userName",user.getUsername());
             session.setAttribute("id",user.getId());
             session.setAttribute("userStatus",user.getUserStatus());
+
+            Profile profile = profileService.findByUserID(user.getId());
+            if (profile!=null){
+                session.setAttribute("iconUrl",profileService.findByUserID(user.getId()).getIconUrl());
+            }
             //将此用户存放到登录认证info中
             return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
         }
