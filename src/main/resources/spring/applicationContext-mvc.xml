@@ -17,4 +17,11 @@
 
     <!-- 指定欢迎页面路径(动态页面) -->
     <mvc:view-controller path="/" view-name="redirect:/index/user"/>
+
+    <!-- 配置nultipartresolver,注意：id名必须这样写，不然会报错；1073741824=1G -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="1073741824"></property>
+        <property name="maxInMemorySize" value="1073741824"></property>
+    </bean>
 </beans>

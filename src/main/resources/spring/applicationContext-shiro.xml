@@ -32,6 +32,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
             <value>
                 /index/user=anon
                 /video/show=authc,roleOrFilter[student,teacher,admin]
+                <!--/user/profile/show=authc,roleOrFilter[student,teacher,admin]-->
                 /index/teach=roles[teacher]
                 <!-- anon表示此地址不需要任何权限即可访问 -->
                 <!--/static/**=anon-->

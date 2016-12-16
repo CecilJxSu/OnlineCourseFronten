@@ -22,6 +22,7 @@
     org-apache-commons-lang3
     Shiro
     json
+    commons-fileupload
   -->
   <build>
     <finalName>OnlineCourseFronten</finalName>
@@ -223,6 +224,21 @@
       <version>2.7.1-1</version>
     </dependency>
     <!-- end : json -->
+
+    <!-- fileupload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <!-- io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+
 
   </dependencies>
 
