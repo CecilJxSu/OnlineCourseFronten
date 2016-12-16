@@ -684,3 +684,18 @@ label {
     background: linear-gradient(#20D1F9, #0095FF);
     color: #fff;
 }
+
+.white_content {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 85%;
+    border: 16px solid lightblue;
+    background-color: white;
+    z-index: 1002;
+}
+.changeSuccess p{
+    font-size: 22px;
+}

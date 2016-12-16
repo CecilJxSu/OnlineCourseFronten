@@ -8,22 +8,6 @@
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/base.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/common.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/setprofile.css" rel="stylesheet"/>
-    <style>
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80%;
-            height: 85%;
-            border: 16px solid lightblue;
-            background-color: white;
-            z-index: 1002;
-        }
-        .changeSuccess p{
-            font-size: 22px;
-        }
-    </style>
     <title>setprofile</title>
 </head>
 <body>
