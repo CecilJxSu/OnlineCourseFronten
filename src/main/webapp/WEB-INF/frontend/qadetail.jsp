@@ -216,19 +216,19 @@
     }
     /*回复end*/
     /*点赞*/
-    $('.dianzan i').on('click', function (e) {
+    $('.dianzan a').on('click', function (e) {
         e.preventDefault();
-        var title = $(".js-pl-praise").attr('title');
-        var span = $(".js-pl-praise").children('span').text();
+        var title = $(this).attr('title');
+        var span = $(this).children('span').text();
         if (title == '赞') {
-            $(".js-pl-praise").attr('title', '取消赞');
+            $(this).attr('title', '取消赞');
             var newspan = parseInt(span) + parseInt(1);
-            $(".js-pl-praise").children('span').html(newspan);
+            $(this).children('span').html(newspan);
         }
         if (title == '取消赞') {
-            $(".js-pl-praise").attr('title', '赞');
+            $(this).attr('title', '赞');
             var newspan = parseInt(span) - parseInt(1);
-            $(".js-pl-praise").children('span').html(newspan);
+            $(this).children('span').html(newspan);
         }
     })
     /*点赞*/
