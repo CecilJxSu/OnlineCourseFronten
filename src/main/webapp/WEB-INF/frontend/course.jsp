@@ -63,7 +63,14 @@
 <%--尾部end--%>
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/course/course.js"></script>
 <script type="text/javascript">
+    $(function () {
+        var height=document.documentElement.clientHeight;
+        $(.)
+        alert(height);
+    });
+
     /*$(function () {
         /!*"code" == OP_CONFIG.page && $("#J_GotoTop").hide(), a(), c(), $('[action-type="my_menu"],#nav_list').on("mouseenter", function () {
          $('[action-type="my_menu"]').addClass("hover"), $("#nav_list").show()
@@ -94,6 +101,6 @@
         })
     })*/
 </script>
-<script src="${pageContext.request.contextPath}/static/public/js/course/course.js"></script>
+
 </body>
 </html>
