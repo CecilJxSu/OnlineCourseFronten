@@ -22,7 +22,7 @@
             <div class="l wenda-main">
                 <div class="wd-top-slogan">
                     <span>程序员自己的问答社区</span>
-                    <a class="js-quiz" href="javascript:void(0);">我要提问</a>
+                    <a class="js-quiz" href="${pageContext.request.contextPath}/ask/show">我要提问</a>
                 </div>
                 <div class="nav">
                     <a href="/wenda" class="active">推荐</a>
@@ -96,7 +96,7 @@
                                 </a>
                                 <!--收藏ends-->
                                 <!--评论-->
-                                <a title="评论" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">
+                                <a title="评论" href="${pageContext.request.contextPath}/qadetail/showQadetail" class="js-pl-praise list-praise r" data-id="82399">
                                     <em class="numShow">评论</em>
                                     <span>2</span>
                                 </a>

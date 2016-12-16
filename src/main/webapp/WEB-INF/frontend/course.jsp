@@ -67,8 +67,9 @@
 <script type="text/javascript">
     $(function () {
         var height=document.documentElement.clientHeight;
-        $(.)
-        alert(height);
+        if ($('.main').height()< height){
+            $('.main').css('height',height);
+        }
     });
 
     /*$(function () {
