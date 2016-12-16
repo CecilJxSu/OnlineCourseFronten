@@ -138,11 +138,7 @@
         <ul class="courseul course-menu course-video-menu clearfix js-course-menu" data-ower="all" data-sort="last"
             style="position: absolute; left: 0px;">
             <li class="course-menu-item"><a class="active" href="javascript:void(0)" id="plMenu">评论</a></li>
-            <li class="course-menu-item"><a href="javascript:void(0)" id="qaMenu">问答</a></li>
-            <li class="course-menu-item"><a href="javascript:void(0)" id="noteMenu">笔记</a></li>
-            <!--
-            <li class="course-menu-item"><a href="javascript:void(0)" id="wikiMenu">WIKI</a></li>
-            -->
+            <%--<li class="course-menu-item"><a href="javascript:void(0)" id="qaMenu">问答</a></li>--%>
         </ul>
         <div id="disArea" class="lists-container list-wrap">
             <div id="pl-content" class="list-tab-con">
@@ -182,12 +178,19 @@
                                         <a href="/u/1862199/courses" target="_blank">qq_泊羅_0</a>
                                     </div>
                                     <div class="pl-list-content">这声音我以为也是敖厂长 ……</div>
-                                    <div class="dianzan pl-list-btm clearfix">
+                                    <div class="pl-list-btm clearfix">
                                         <span class="pl-list-time l">时间: 2015-07-08</span>
-                                        <a title="赞" href="javascript:;" class="js-pl-praise list-praise r"
-                                           data-id="82399">
-                                            <i class="icon-thumb-revert"></i>
-                                            <span>90</span>
+                                        <div class="dianzan">
+                                            <a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399" >
+                                                <i class="icon-thumb-revert" style="line-height: 0px;"></i>
+                                                <span>90</span>
+                                            </a>
+                                        </div>
+                                        <a href="${pageContext.request.contextPath}/qadetail/showQadetail" target="_blank" class="replynumber r hasanswernum" style="margin-right: 18px;">
+                                            <span class="ys" style="padding-right: 14px;">
+                                                <b class="numShow">2</b>
+                                                <span class="number">回答</span>
+                                            </span>
                                         </a>
                                     </div>
                                 </div>
@@ -206,7 +209,7 @@
                     </div>
                 </div>
             </div>
-            <div id="qa-content" class="list-tab-con" style="display:none">
+            <%--<div id="qa-content" class="list-tab-con" style="display:none">
                 <div id="qaLoadListData">
                     <div class="sortlist">
                         <div class="ordertab clearfix">
@@ -268,79 +271,7 @@
                     <!--分页end-->
                     <!--<div class="page discuss-list-page"></div>-->
                 </div>
-            </div>
-            <div id="note-content" class="list-tab-con" style="display:none">
-                <div id="noteLoadListData">
-                    <div class="course-tool-bar clearfix js-select-state">
-                        <div class="tool-left l js-all-state">
-                            <a href="javascript:;" class="sort-item active" data-sort="last">最新</a>
-                            <a href="javascript:;" class="sort-item" data-sort="sugg">点赞</a>
-                        </div>
-                        <div class="tool-right r">
-                            <div class="switchon switch js-ower" data-sort="last">
-                                <div class="switch-line"></div>
-                                <div id="switchon" class="round js-lookme-round"></div>
-                            </div>
-                            <span class="tool-item">只看我的</span></div>
-                    </div>
-                    <div id="course_note" class="course_note">
-                        <!--内容-->
-                        <ul>
-                            <li class="post-row js-find-txt" noteid="1464159">
-                                <div class="notelist_headpic"><a href="/u/4552911/courses" target="_blank"> <img
-                                        src="http://img.mukewang.com/user/54586313000139c902200220-80-80.jpg" width="40"
-                                        height="40"> </a></div>
-                                <div class="notelist_content">
-                                    <div class="u_name"><a href="/u/4552911/courses" target="_blank">慕粉2008142293</a>
-                                    </div>
-                                    <div class="js-notelist-content notelist-content mynote">
-                                        <pre>text-align只能设置元素里面的文章，非块级元素居中，块级元素不能居中，但是具有继承性</pre>
-                                        <div class="notelist-content-more"><a href="javascript:;"
-                                                                              class="js-toggle-content">[ 查看全文 ]</a>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"><a href="javascript:void(0);" class="sava_btn">保存</a></div>
-                                    <div class="notelist-bottom clearfix"><span title="1481209229" class="l timeago">12小时前</span>
-                                        <div class="notelist-actions"><textarea style="display:none;">text-align只能设置元素里面的文章，非块级元素居中，块级元素不能居中，但是具有继承性</textarea>
-                                            <a title="采集" href="javascript:;" class="Jcollect list-praise "
-                                               data-id="1464159|4552911"><i class="collect-text">采集</i><em>0</em></a> <a
-                                                    title="赞" href="javascript:;" class="Jpraise list-praise "
-                                                    data-id="1464159"><span class="icon-thumb-revert"></span> <em>0</em></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!--内容end-->
-                    </div>
-                    <!--分页-->
-                    <div class="page discuss-list-page">
-                        <span class="disabled_page">首页</span><span
-                            class="disabled_page">上一页</span>
-                        <a href="javascript:void(0)" data-page="1" class="active text-page-tag">1</a>
-                        <a href="javascript:void(0)" data-page="2" class="text-page-tag">2</a>
-                        <a href="javascript:void(0)" data-page="3" class="text-page-tag">3</a>
-                        <a href="javascript:void(0)" data-page="4" class="text-page-tag">4</a>
-                        <a href="javascript:void(0)" data-page="5" class="text-page-tag">5</a>
-                        <a href="javascript:void(0)" data-page="2">下一页</a>
-                        <a href="javascript:void(0)" data-page="9">尾页</a>
-                    </div>
-                    <!--分页end-->
-                    <!--<div class="page note-list-page"></div>-->
-                </div>
-            </div>
-            <div id="wiki-content" class="list-tab-con" style="display:none;">
-                <div id="wikiLoadListData">
-                    <div id="course_wiki" class="course_wiki"></div>
-                    <div class="page wiki-list-page"></div>
-                </div>
-            </div>
-            <div id="mate-content" class="list-tab-con" style="display:none;">
-                <div id="mateLoadListData">
-                    <div class="othterscode-container"></div>
-                    <div class="page othterscode-list-page"></div>
-                </div>
-            </div>
+            </div>--%>
         </div>
     </div>
     <div class="course-right clearfix">
@@ -432,17 +363,17 @@
     /*点赞*/
     $('.dianzan a').on('click', function (e) {
         e.preventDefault();
-        var title = $(".js-pl-praise").attr('title');
-        var span = $(".js-pl-praise").children('span').text();
+        var title = $(this).attr('title');
+        var span = $(this).children('span').text();
         if (title == '赞') {
-            $(".js-pl-praise").attr('title', '取消赞');
+            $(this).attr('title', '取消赞');
             var newspan = parseInt(span) + parseInt(1);
-            $(".js-pl-praise").children('span').html(newspan);
+            $(this).children('span').html(newspan);
         }
         if (title == '取消赞') {
-            $(".js-pl-praise").attr('title', '赞');
+            $(this).attr('title', '赞');
             var newspan = parseInt(span) - parseInt(1);
-            $(".js-pl-praise").children('span').html(newspan);
+            $(this).children('span').html(newspan);
         }
     })
     /*点赞*/
@@ -464,23 +395,6 @@
         } else {
             $("#qaMenu").removeClass('active');
             document.getElementById('qa-content').style.display = 'none';
-        }
-        if (id == 'noteMenu') {
-            $("#noteMenu").addClass('active');
-            document.getElementById('note-content').style.display = 'block';
-        } else {
-            $("#noteMenu").removeClass('active');
-            document.getElementById('note-content').style.display = 'none';
-        }
-        if (id == 'wiki-content') {
-            document.getElementById('wiki-content').style.display = 'block';
-        } else {
-            document.getElementById('wiki-content').style.display = 'none';
-        }
-        if (id == 'mate-content') {
-            document.getElementById('mate-content').style.display = 'block';
-        } else {
-            document.getElementById('mate-content').style.display = 'none';
         }
     });
     /*选择内容*/

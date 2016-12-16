@@ -130,11 +130,83 @@
                         <!--回复-->
                     </div>
                     <!--回答-->
+                    <!--回答-->
+                    <div class="qa-comment js-qa-comment" data-cid="282305" id="id_282305">
+                        <div class="qa-comment-wrap clearfix ">
+                            <div class="qa-comment-author">
+                                <a href="/u/3871685/bbs" title="李白_三圣">
+                                    <img src="http://img.mukewang.com/user/545862fe00017c2602200220-40-40.jpg" width="40" height="40">
+                                    <span class="qa-comment-nick">李白_三圣</span>
+                                </a>
+                            </div>
+                            <div class="qa-comment-d ">
+                                <!-- <div class="qa-triangle-left"><i></i></div> -->
+                                <div class="qa-comment-inner">
+                                    <div class="qa-comment-c imgPreview">
+                                        <div class="rich-text">
+                                            <p>没有看到你的代码吗，无法准确回到。但估计应该是没有浮动<br></p>
+                                        </div>
+                                    </div>
+                                    <div class="dianzan qa-comment-addon">
+                                        <span class="qa-comment-time">2天前</span>
+                                        <div class="qa-comment-addon-r">
+                                            <span class="qa-total-reply js-reply-item-reply">
+                                                <i class="icon-msg"></i>
+                                                <span class="js-qa-tr-num">回复</span>
+                                            </span>
+                                            <a title="赞" href="javascript:;"
+                                               class="js-pl-praise js-qa-comment-support qa-comment-support  js-qacom-supported-user" data-ids="187799-282305">
+                                                <i class="icon-thumb-revert "></i>
+                                                <span>0</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--回复-->
+                        <div class="qa-reply">
+                            <div class="qa-reply-header"></div>
+                            <div class="qa-replies">
+                                <div class="qa-reply-c">
+                                    <!--  <p class="qa-reply-loading">
+                                        加载中...
+                                    </p>  -->
+                                    <!-- 默认显示三条回复的回复 -->
+
+                                </div>
+
+                                <!-- 回复框 -->
+                                <div class="js-qa-reply-ibox qa-reply-ibox  clearfix" style="display:none">
+                                    <div class="qa-reply-iavator l">
+                                        <a href="/u/1361691/id" title="哈米的小宇宙">
+                                            <img src="http://img.mukewang.com/user/552133900001743101800180-40-40.jpg" width="40" height="40">
+                                        </a>
+                                    </div>
+                                    <div class="qa-reply-iwrap">
+                                        <div class="qa-reply-iarea">
+                                            <textarea name="" id="" class="js-reply-ipt-default ipt" placeholder="写下你的评论..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="qa-reply-ifoot clearfix">
+                                        <div class="qa-reply-footright r">
+                                            <span class="qa-tips"></span>
+                                            <button class="btn-normal btn-mini js-ipt-cancel" onclick="closetextarea(this)">取消</button>
+                                            <button class="btn-mini btn-green  js-ipt-submit">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--回复-->
+                    </div>
+                    <!--回答-->
 
                 </div>
                 <!--编辑-->
                 <div id="js-qa-comment-input" class="qa-comment-input js-msg-context  clearfix">
-                    <div class="js-qa-reply-ibox qa-reply-ibox  clearfix"  style="border-bottom: none; padding: 0px;">
+                    <div class="js-qa-reply-ibox qa-reply-ibox  clearfix"  style="border-bottom: none; padding: 0px; margin-top: 38px;">
                         <div class="qa-reply-iavator l">
                             <a href="#" title="哈米的小宇宙">
                                 <img src="http://img.mukewang.com/user/552133900001743101800180-40-40.jpg" width="40" height="40">

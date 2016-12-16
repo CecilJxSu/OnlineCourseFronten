@@ -96,12 +96,7 @@
                 <div class="mod-tab-menu ">
                     <ul class="learnlearn course-menu clearfix">
                         <li><a id="learnOn" class="ui-tabs-active active"><span>章节</span></a></li>
-                        <%--<li><a id="commentOn" class=""><span>评论</span></a></li>--%>
-                        <li><a id="qaOn" class=""><span>评论</span></a></li>
-                        <%--<li><a id="noteOn" class="" href="/note/9?sort=last&amp;page=1"><span>笔记</span></a></li>--%>
-                        <!--
-                        <li><a id="wikiOn" class="" href="/wiki/9">WIKI</a></li>
-                        -->
+                        <li><a id="commentOn" class=""><span>评论</span></a></li>
                     </ul>
 
                 </div>
@@ -150,54 +145,11 @@
                 </div>
                 <!-- 课程章节 end -->
                 <%--评论--%>
-                <%--<div id="commentOncourse" class="hide">
-                    <ul class="mod-post" id="comment-list">
-                        <li class="post-row" id="6696">
-                            <div class="media">
-                                <a href="#" target="_blank">
-                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/common/545865f0000198ee02200220-40-40.jpg"
-                                         width="40" height="40">
-                                </a>
-                            </div>
-                            <div class="bd">
-                                <div class="tit">
-                                    <a href="#" target="_blank">Flicker</a>
-                                </div>
-                                <p class="cnt">
-                                    一个html页面可以看成一个家，而一个div你们可以看成家的每个小房间，房间有了当然没什么效果，但是一个家必须分成一个个小房间才能多姿多彩，但每个房间里怎么装饰就得你们自己放东西，当然装饰就得交给css了，后面讲到&lt;div
-                                    class&gt;大家就懂了，不知道我表达得对不对，不对请指出。</p>
-                                <div class="footer clearfix">
-                                    <span title="创建时间" class="l timeago">时间：2014-12-08</span>
-                                    <a href="#" class="from">源自：3-3 认识div在排版中的作用</a>
-                                    <div class="actions r">
-                                        <a title="赞" href="javascript:;" class="js-pl-praise list-praise post-action"
-                                           data-id="6696">
-                                            <span class="icon-thumb-revert"></span>
-                                            <em>1108</em>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="page"><span class="disabled_page">首页</span><span class="disabled_page">上一页</span><a
-                            href="javascript:void(0)" class="active text-page-tag">1</a><a class="text-page-tag"
-                                                                                           href="/course/comment/id/9?page=2">2</a><a
-                            class="text-page-tag" href="/course/comment/id/9?page=3">3</a><a class="text-page-tag"
-                                                                                             href="/course/comment/id/9?page=4">4</a><a
-                            class="text-page-tag" href="/course/comment/id/9?page=5">5</a><a class="text-page-tag"
-                                                                                             href="/course/comment/id/9?page=6">6</a><a
-                            class="text-page-tag" href="/course/comment/id/9?page=7">7</a><a
-                            href="/course/comment/id/9?page=2">下一页</a><a href="/course/comment/id/9?page=1439">尾页</a>
-                    </div>
-                </div>--%>
-                <%--评论end--%>
-                <%--问答--%>
-                <div id="qa" class="qa hide">
-                    <div class="comp-filter-bar">
+                <div id="commentOncourse" class="qa hide">
+                    <%--<div class="comp-filter-bar">
                         <a href="/qa/9/t/1?page=1" class="bar-item active">全部</a>
                         <a href="/qa/9/t/2?page=1" class="bar-item ">精华</a>
-                    </div>
+                    </div>--%>
                     <div class="answertabcon">
                         <div class="course_quescon">
                             <div class="wenda-listcon mod-qa-list clearfix">
@@ -239,14 +191,10 @@
                                                 <span>1108</span>
                                             </a>
                                             </div>
-                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: 25px;">
+                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: -8px;">
                                                 <span class="static-item answer">
                                                     <b class="val">2</b>
                                                     <span class="key">回答</span>
-                                                </span>
-                                                <span class="static-item">
-                                                    <b class="val">9</b>
-                                                    <span class="key">浏览</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -294,14 +242,10 @@
                                                     <span>1108</span>
                                                 </a>
                                             </div>
-                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: 25px;">
+                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: -8px;">
                                                 <span class="static-item answer">
                                                     <b class="val">2</b>
                                                     <span class="key">回答</span>
-                                                </span>
-                                                <span class="static-item">
-                                                    <b class="val">9</b>
-                                                    <span class="key">浏览</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -321,7 +265,7 @@
                         </div>
                     </div>
                 </div>
-                <%--问答end--%>
+                <%--评论end--%>
             </div>
             <!--content end-->
             <div class="aside r">
@@ -460,7 +404,7 @@
             }
         }
 
-        /*if (id == 'commentOn') {
+        if (id == 'commentOn') {
             if ($('#learnOn').hasClass('active')) {
                 $('#learnOn').removeClass('active');
                 $('#learnOncourse').addClass('hide');
@@ -473,9 +417,9 @@
             if ($('#commentOncourse').hasClass('hide')) {
                 $('#commentOncourse').removeClass('hide')
             }
-        }*/
+        }
 
-        if (id == 'qaOn') {
+        /*if (id == 'qaOn') {
             if ($('#learnOn').hasClass('active')) {
                 $('#learnOn').removeClass('active');
                 $('#learnOncourse').addClass('hide');
@@ -488,7 +432,7 @@
             if ($('#qa').hasClass('hide')) {
                 $('#qa').removeClass('hide')
             }
-        }
+        }*/
     });
 
     $(".icon-info").hover(function () {
