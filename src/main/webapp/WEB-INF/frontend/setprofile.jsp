@@ -8,7 +8,22 @@
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/base.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/common.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/public/css/setprofile/setprofile.css" rel="stylesheet"/>
-
+    <style>
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 85%;
+            border: 16px solid lightblue;
+            background-color: white;
+            z-index: 1002;
+        }
+        .changeSuccess p{
+            font-size: 22px;
+        }
+    </style>
     <title>setprofile</title>
 </head>
 <body>
@@ -209,8 +224,8 @@
                         <input type="button" style="height: 40px;" value="修改密码" class="gradientColor" onclick="sureChange()">
                     </div>
                     <!-- 密码修改成功弹窗-->
-                    <div id="change-success" class="hide popupBg changeSuccessPopup">
-                        <div class="changeSuccess popupBox">
+                    <div id="change-success" class=" white_content popupBg changeSuccessPopup" >
+                        <div class="changeSuccess popupBox" style="margin-left: 36%;margin-top: 17%;">
                             <p>您的密码已经修改成功！</p>
                             <p><span id="count-down"></span>s后跳转到首页，请重新登录</p>
                         </div>
@@ -229,6 +244,11 @@
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/setprofile/uploadpicture.js"></script>
 <script type="text/javascript">
+    /*修改密码成功弹窗*/
+    function ShowDiv(show_div) {
+        document.getElementById(show_div).style.display = 'block';
+    }
+    /*修改密码成功弹窗*/
     $('.nav-tabs div').on('click',function (e) {
         e.preventDefault();
         var id =$(this).attr('id');
@@ -256,12 +276,7 @@
     $(document).on("click",".avator-btn-fake",function(){$("#upload").click()});
     $("#upload").on("change", function () {
         previewImage(this);
-    })
-
-
-
-
-
+    });
     function sureChange() {
         var sourcePassword = $('#sourcePassword').val();
         var newPassword = $('#newPassword').val();
@@ -298,7 +313,8 @@
                 newPassword    :   newPassword
             },
             success:function (data) {
-                $('#change-success').removeClass("hide");
+                /*$('#change-success').removeClass("hide");*/
+                ShowDiv('change-success');
                 countDown(5,'/OnlineCourseFronten/');
             },
             error:function (e) {
