@@ -20,11 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by can on 2016/12/15.
@@ -98,7 +98,7 @@ public class UserController {
      */
     @RequestMapping("change/profile")
     @ResponseBody
-    public Map changeProfile(HttpServletRequest request) throws IOException {
+    public Map changeProfile(HttpServletRequest request) throws IOException, NoSuchAlgorithmException {
         Map returnMap = new HashMap();
         //从session中获取用户id
         Session session = SecurityUtils.getSubject().getSession();
@@ -142,8 +142,13 @@ public class UserController {
                         return returnMap;
                     }
                     //创建图片名
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                    String picName = sdf.format(new Date())+"_"+id+"."+suffix;
+                    String uuid = UUID.randomUUID().toString();
+                    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+                    messageDigest.update(uuid.getBytes());
+                    uuid = String.format("%032X", new BigInteger(1, messageDigest.digest()));
+                    String picName = uuid+"."+suffix;
+
+                    //获取项目根路径
                     String project = request.getSession().getServletContext().getRealPath("/");
                     //图片存储路径
                     String path = project+"/static/headPic/"+picName;
@@ -152,6 +157,12 @@ public class UserController {
 
                     //修改session中的头像路径
                     session.setAttribute("iconUrl",picName);
+
+                    //删除服务器中的旧图片
+                    File deleteFile = new File(project+"/static/headPic/"+profile.getIconUrl());
+                    if (deleteFile.isFile() && deleteFile.exists()){
+                        deleteFile.delete();
+                    }
 
                     //图片名设进对象profile中
                     profile.setIconUrl(picName);
