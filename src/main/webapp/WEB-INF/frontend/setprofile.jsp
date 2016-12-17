@@ -42,10 +42,10 @@
                                 <div  class="rlf-group">
                                     <div id="preview">
                                         <c:if test="${profile.iconUrl!=null}">
-                                            <img id="imghead" class="fl avator-img" id="js-portrait" src="/OnlineCourseFronten/static/headPic/<c:out value='${profile.iconUrl}'/>" data-portrait="552133900001743101800180" width="180" height="180">
+                                            <img id="imghead" class="fl avator-img" id="js-portrait" src="/OnlineCourseFronten/file/get?url=<c:out value='${profile.iconUrl}'/>" data-portrait="552133900001743101800180" width="180" height="180">
                                         </c:if>
                                         <c:if test="${profile.iconUrl==null}">
-                                            <img id="imghead" class="fl avator-img" id="js-portrait" src="/OnlineCourseFronten/static/headPic/default.png" data-portrait="552133900001743101800180" width="180" height="180">
+                                            <img id="imghead" class="fl avator-img" id="js-portrait" src="/OnlineCourseFronten/static/staticWEB/img/default.png" data-portrait="552133900001743101800180" width="180" height="180">
                                         </c:if>
                                     </div>
                                     <div class="fl ml20 pr">

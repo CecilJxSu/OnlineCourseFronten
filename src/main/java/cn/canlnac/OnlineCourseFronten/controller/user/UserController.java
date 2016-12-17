@@ -1,6 +1,7 @@
 package cn.canlnac.OnlineCourseFronten.controller.user;
 
 
+import cn.canlnac.OnlineCourseFronten.controller.FileController;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.entity.User;
 import cn.canlnac.OnlineCourseFronten.service.ProfileService;
@@ -110,65 +111,32 @@ public class UserController {
             profile.setUserId(id);
         }
 
-        //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
-        CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(request.getSession().getServletContext());
-
-        //检查form中是否有enctype="multipart/form-data"
-        if(multipartResolver.isMultipart(request))
-        {
-            //将request变成多部分request
-            MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
-            //获取multiRequest 中所有的文件名
-            Iterator<String> iter=multiRequest.getFileNames();
-
-            while(iter.hasNext())
-            {
-                //一次遍历所有文件
-                MultipartFile file = multiRequest.getFile(iter.next());
-                if(file!=null && file.getSize()>0)
-                {
-                    //获取后文件缀名
-                    String suffix = file.getOriginalFilename().split("\\.")[1];
-                    String suffixs = "--jpg--jpeg--png--";
-                    //判断文件是否为图片
-                    if (suffixs.indexOf(suffix)==-1){
-                        //不是图片
-                        returnMap.put("error","error-pic-type");
-                        return returnMap;
-                    }
-                    if (file.getSize()>25600){
-                        //超过25KB
-                        returnMap.put("error","error-pic-size");
-                        return returnMap;
-                    }
-                    //创建图片名
-                    String uuid = UUID.randomUUID().toString();
-                    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-                    messageDigest.update(uuid.getBytes());
-                    uuid = String.format("%032X", new BigInteger(1, messageDigest.digest()));
-                    String picName = uuid+"."+suffix;
-
-                    //获取项目根路径
-                    String project = request.getSession().getServletContext().getRealPath("/");
-                    //图片存储路径
-                    String path = project+"/static/headPic/"+picName;
-                    //上传
-                    file.transferTo(new File(path));
-
-                    //修改session中的头像路径
-                    session.setAttribute("iconUrl",picName);
-
-                    //删除服务器中的旧图片
-                    File deleteFile = new File(project+"/static/headPic/"+profile.getIconUrl());
-                    if (deleteFile.isFile() && deleteFile.exists()){
-                        deleteFile.delete();
-                    }
-
-                    //图片名设进对象profile中
-                    profile.setIconUrl(picName);
-                }
-            }
+        //保存图片
+        Map map = FileController.saveFlie(request).get(0);
+        String url = (String) map.get("url");
+        //判断文件是否为图片
+        String suffixs = "--jpg--jpeg--png--";
+        if (suffixs.indexOf((String) map.get("fileType"))==-1){
+            //不是图片
+            returnMap.put("error","error-pic-type");
+            FileController.deleteFile(url,request);
+            return returnMap;
         }
+        //超过25KB
+        if (Integer.parseInt(map.get("fileSize").toString())>25600){
+            returnMap.put("error","error-pic-size");
+            FileController.deleteFile(url,request);
+            return returnMap;
+        }
+
+        //修改session中的头像路径
+        session.setAttribute("iconUrl",url);
+
+        //删除服务器中的旧图片
+        FileController.deleteFile(profile.getIconUrl(),request);
+
+        //图片名设进对象profile中
+        profile.setIconUrl(url);
 
         profile.setUniversityId(request.getParameter("universityId"));
         profile.setNickname(request.getParameter("nickname"));

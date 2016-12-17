@@ -101,10 +101,10 @@
                     <li class="set_btn user-card-box">
                         <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="#" target="_self">
                             <c:if test="${iconUrl!=null}">
-                                <img width="40" height="40" src="/OnlineCourseFronten/static/headPic/<c:out value='${iconUrl}'/>">
+                                <img width="40" height="40" src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>">
                             </c:if>
                             <c:if test="${iconUrl==null}">
-                                <img width="40" height="40" src="/OnlineCourseFronten/static/headPic/default.png">
+                                <img width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png">
                             </c:if>
                             <i class="myspace_remind" style="display: none;"></i>
                             <span style="display: none;">动态提醒</span>
@@ -114,10 +114,10 @@
                                 <div class="card-top">
                                     <a href="#">
                                         <c:if test="${iconUrl!=null}">
-                                            <img src="/OnlineCourseFronten/static/headPic/<c:out value='${iconUrl}'/>" alt="<c:out value='${userName}'/>" class="l">
+                                            <img src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>" alt="<c:out value='${userName}'/>" class="l">
                                         </c:if>
                                         <c:if test="${iconUrl==null}">
-                                            <img src="/OnlineCourseFronten/static/headPic/default.png" alt="<c:out value='${userName}'/>" class="l">
+                                            <img src="/OnlineCourseFronten/static/staticWEB/img/default.png" alt="<c:out value='${userName}'/>" class="l">
                                         </c:if>
                                     </a>
                                     <a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>
