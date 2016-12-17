@@ -28,6 +28,7 @@
                             <h2>提交成功</h2>
                             <p>感谢你的建议，我会努力让自己变得高大上！</p>
                         </div>-->
+                        <form action="upload" method="post" enctype="multipart/form-data">
                         <div class="huati  field-wrapp">
                             <div class="question-areaq" style="margin: 10px;">
                                 <h2 class="new-save-title">标题:
@@ -74,6 +75,7 @@
                                 <p id="feedback-error" class="rlf-tip-wrap rlf-tip-error" style="display:none"></p>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -99,32 +101,14 @@
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/ask/jquery.uploadView.js"></script>
 <script type="text/javascript">
+    function deletediv(obj) {
+        $(obj).parent('div').remove();
+        alert($(this).parent('div'))
+    }
     function c(m) {
         var a = $(this).siblings("p");
         m ? (a.addClass("rlf-tip-error").text(m), $(this).addClass("error-field")) : (a.removeClass("rlf-tip-error").empty(), $(this).removeClass("error-field")), $("#feedback-error").empty().hide()
     }
-    /*$(function () {
-     $(document).delegate(".js-addImgBtn", "click", function () {
-     return $(".feedimg").length > 4 ? void $(this).hide() : void $("#upload").click()
-     }), $(document).delegate(".js-jianyi"), $(document).delegate(".js-jianyi", "change", function () {
-     $(".inputNum").html(400 - $(".js-jianyi").val().length)
-     }), $(document).delegate(".js-jianyi", "keyup", function () {
-     $(".inputNum").html(400 - $(".js-jianyi").val().length)
-     }), $(document).delegate(".js-jianyi", "keydown", function () {
-     $(".inputNum").html(400 - $(".js-jianyi").val().length)
-     });
-     {
-     var b, y;
-     document.createElement("input")
-     }
-     y = $("textarea[name='info']"), y.on({
-     keyup: function () {
-     $(this).val() && c.call(this)
-     }, blur: function () {
-     $(this).val() || c.call(this, "内容不能为空！")
-     }
-     })
-     })*/
     $('.huati textarea ').on('click',function () {
         $(document).delegate(".js-addImgBtn", "click", function () {
             return $(".feedimg").length > 4 ? void $(this).hide() : void $("#upload").click()
@@ -154,7 +138,7 @@
         width : 100, //预览图片的宽度，单位px
         height : 100, //预览图片的高度，单位px
         allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
-        maxSize :5, //允许上传图片的最大尺寸，单位M
+        maxSize :9, //允许上传图片的最大尺寸，单位M
         success:function(e){
             //alert('图片上传成功');
         }

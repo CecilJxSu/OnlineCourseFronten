@@ -311,7 +311,7 @@ a.editbtn{ color:#00b33b;display: inline-block;margin-left:20px; float: right; }
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
-    background-image: url('/html/static/img/delete.png')
+    background-image: url('/OnlineCourseFronten/static/staticWEB/img/icon/delete.png')
 }
 .feedimg {margin-right: 5px !important;}
 
