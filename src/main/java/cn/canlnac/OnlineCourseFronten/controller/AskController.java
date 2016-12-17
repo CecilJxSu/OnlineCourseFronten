@@ -1,6 +1,5 @@
 package cn.canlnac.OnlineCourseFronten.controller;
 
-import cn.canlnac.OnlineCourseFronten.util.MyFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class AskController {
 
     @RequestMapping("upload")
     public void upload( HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
-        System.out.println(MyFile.saveFlie(request).toString() );
+        //System.out.println(MyFile.saveFlie(request).toString() );
         //检查form中是否有enctype="multipart/form-data"
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
         /*CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(request.getSession().getServletContext());
