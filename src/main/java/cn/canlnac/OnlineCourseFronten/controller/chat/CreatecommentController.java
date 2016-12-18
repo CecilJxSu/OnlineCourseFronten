@@ -1,4 +1,4 @@
-package cn.canlnac.OnlineCourseFronten.controller;
+package cn.canlnac.OnlineCourseFronten.controller.chat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,11 +13,11 @@ import java.security.NoSuchAlgorithmException;
  * Created by HaMi on 2016/12/8.
  */
 @Controller
-@RequestMapping("ask")
-public class AskController {
+@RequestMapping("createcomment")
+public class CreatecommentController {
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        return "/frontend/ask";
+        return "/frontend/createcomment";
     }
 
     @RequestMapping("upload")

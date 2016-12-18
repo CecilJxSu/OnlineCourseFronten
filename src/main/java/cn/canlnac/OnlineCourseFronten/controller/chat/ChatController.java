@@ -1,4 +1,4 @@
-package cn.canlnac.OnlineCourseFronten.controller;
+package cn.canlnac.OnlineCourseFronten.controller.chat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
  * Created by HaMi on 2016/12/8.
  */
 @Controller
-@RequestMapping("topicdetail")
-public class TopicdetailController {
+@RequestMapping("chat")
+public class ChatController {
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        return "/frontend/topicdetail";
+        return "/frontend/chat";
     }
 }

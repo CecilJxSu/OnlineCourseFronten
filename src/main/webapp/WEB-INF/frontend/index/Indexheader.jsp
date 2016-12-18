@@ -40,7 +40,7 @@
                 <a href="${pageContext.request.contextPath}/course/show" target="_self">课程</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/topic/show" target="_self">话题</a>
+                <a href="${pageContext.request.contextPath}/chat/show" target="_self">话题</a>
             </li>
         </ul>
         <div class="login-area" >
