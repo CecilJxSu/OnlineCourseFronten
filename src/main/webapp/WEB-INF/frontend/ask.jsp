@@ -32,17 +32,18 @@
                         <div class="huati  field-wrapp">
                             <div class="question-areaq" style="margin: 10px;">
                                 <h2 class="new-save-title">标题:
-                                    <input type="text" id="ques-title" class="ipt autocomplete" maxlength="255" name="title" placeholder="话题标题">
+                                    <input type="text" id="ques-title" class="ipt autocomplete" maxlength="50" name="title" placeholder="话题标题">
+                                    <p class="errortip"></p>
                                 </h2>
                             </div>
                             <div>
                                 <div style="margin: 10px">
                                     <h2 class="new-save-title">内容:</h2>
                                 </div>
-                                <textarea name="info" maxlength="400" id="info" class="phd js-jianyi" cols="30" rows="10" placeholder="请填写具体内容"></textarea>
+                                <textarea name="info" maxlength="125" id="info" class="phd js-jianyi" cols="30" rows="10" placeholder="请填写具体内容"></textarea>
                                 <p class="rlf-tip-wrap"></p>
                             </div>
-                            <p class="fr inputNum js-inputNum">400</p>
+                            <p class="fr inputNum js-inputNum">125</p>
                             <div>
                                 <div class="js-imagesWrap fl imagesWrap"> </div>
                                 <div class="addImgBtn fl js-addImgBtn">
@@ -68,7 +69,7 @@
                                     <iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>
                                 </div>
                                 <div class="cb"></div>
-                                <p class="uploadImgsTip">最多可以上传<span class="color-red">5</span>张图片,图片大小不能超过<span class="color-red">2M</span></p>
+                                <p class="uploadImgsTip">最多可以上传<span class="color-red">9</span>张图片,图片大小不能超过<span class="color-red">2M</span></p>
                             </div>
                             <div class="btn-wrap">
                                 <button hidefocus="true" id="submit" class="fl">提交</button>
@@ -101,10 +102,6 @@
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/ask/jquery.uploadView.js"></script>
 <script type="text/javascript">
-    function deletediv(obj) {
-        $(obj).parent('div').remove();
-        alert($(this).parent('div'))
-    }
     function c(m) {
         var a = $(this).siblings("p");
         m ? (a.addClass("rlf-tip-error").text(m), $(this).addClass("error-field")) : (a.removeClass("rlf-tip-error").empty(), $(this).removeClass("error-field")), $("#feedback-error").empty().hide()
@@ -113,11 +110,11 @@
         $(document).delegate(".js-addImgBtn", "click", function () {
             return $(".feedimg").length > 4 ? void $(this).hide() : void $("#upload").click()
         }), $(document).delegate(".js-jianyi"), $(document).delegate(".js-jianyi", "change", function () {
-            $(".inputNum").html(400 - $(".js-jianyi").val().length)
+            $(".inputNum").html(125 - $(".js-jianyi").val().length)
         }), $(document).delegate(".js-jianyi", "keyup", function () {
-            $(".inputNum").html(400 - $(".js-jianyi").val().length)
+            $(".inputNum").html(125 - $(".js-jianyi").val().length)
         }), $(document).delegate(".js-jianyi", "keydown", function () {
-            $(".inputNum").html(400 - $(".js-jianyi").val().length)
+            $(".inputNum").html(125 - $(".js-jianyi").val().length)
         });
         {
             var b, y;
@@ -143,6 +140,30 @@
             //alert('图片上传成功');
         }
     });
+
+    var $title=$("#ques-title");
+    $title.blur(checkTitle);
+    function checkTitle() {
+        var $this = $(this), val;
+        if (getRealLen((val=$.trim($this.val()))) < 10) {
+            $this.addClass("ipt-error");
+            $('.errortip').html('标题不能少于5个汉字！');
+            return false;
+        }
+        else if (getRealLen(val) > 50) {
+            $this.addClass("ipt-error");
+            $('.errortip').html('标题不能大于25个汉字！');
+            return false;
+        }
+        else {
+            $this.removeClass("ipt-error");
+            $('.errortip').empty();
+        }
+    }
+
+    function getRealLen( str ) {
+        return str.replace(/[^\x00-\xff]/g, '__').length;
+    }
 </script>
 </body>
 </html>
