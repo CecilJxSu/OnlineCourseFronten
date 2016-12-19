@@ -167,47 +167,10 @@
                     <div class="pl-container">
                         <!--内容-->
                         <ul>
-                            <li class="pl-list clearfix">
-                                <div class="pl-list-avator">
-                                    <a href="/u/1862199/courses" target="_blank">
-                                        <img width="40" height="40"
-                                             src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg"
-                                             title="qq_泊羅_0">
-                                    </a>
-                                </div>
-                                <div class="pl-list-main">
-                                    <div class="pl-list-nick">
-                                        <a href="/u/1862199/courses" target="_blank">qq_泊羅_0</a>
-                                    </div>
-                                    <div class="pl-list-content">这声音我以为也是敖厂长 ……</div>
-                                    <div class="pl-list-btm clearfix">
-                                        <span class="pl-list-time l">时间: 2015-07-08</span>
-                                        <div class="dianzan">
-                                            <a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399" >
-                                                <i class="icon-thumb-revert" style="line-height: 0px;"></i>
-                                                <span>90</span>
-                                            </a>
-                                        </div>
-                                        <a href="${pageContext.request.contextPath}/qadetail/showQadetail" target="_blank" class="replynumber r hasanswernum" style="margin-right: 18px;">
-                                            <span class="ys" style="padding-right: 14px;">
-                                                <b class="numShow">2</b>
-                                                <span class="number">回答</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                         <!--内容end-->
                     </div>
-                    <div class="page pl-list-page"><span class="disabled_page">首页</span><span
-                            class="disabled_page">上一页</span><a href="javascript:void(0)" data-page="1"
-                                                               class="active text-page-tag">1</a><a
-                            href="javascript:void(0)" data-page="2" class="text-page-tag">2</a><a
-                            href="javascript:void(0)" data-page="3" class="text-page-tag">3</a><a
-                            href="javascript:void(0)" data-page="4" class="text-page-tag">4</a><a
-                            href="javascript:void(0)" data-page="5" class="text-page-tag">5</a><a
-                            href="javascript:void(0)" data-page="2">下一页</a><a href="javascript:void(0)" data-page="22">尾页</a>
+                    <div class="page pl-list-page">
                     </div>
                 </div>
             </div>
@@ -350,6 +313,7 @@
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/video/video.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/video/video-comment.js"></script>
 <script type="text/javascript">
     /*评论js*/
     /*评价textarea框*/
@@ -424,37 +388,6 @@
         }
     })
     /*笔记.js*/
-    //文本框输入字数控制
-    $('#js-pl-textarea').on('propertychange input',function () {
-        var text = $(this).val();
-        if (text.length>127){
-            text = text.substr(0,127);
-            $(this).val(text);
-        }
-        $('#js-pl-limit').html(text.length);
-    });
-
-    //提交
-    $('#js-pl-submit').on('click',function () {
-        $.ajax({
-            url:'/OnlineCourseFronten/comment/issue',//路径
-            type:'post',
-            cache:false,
-            dataType:'json',
-            data:{
-                type    :   'course',
-                id      :   $('#J_Box').attr('name'),
-                content :   $('#js-pl-textarea').val()
-            },
-            success:function (data) {
-                alert("yes");
-            },
-            error:function (e) {
-                alert('发表失败');
-            }
-        });
-    });
 </script>
-
 </body>
 </html>

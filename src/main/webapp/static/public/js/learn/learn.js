@@ -200,12 +200,12 @@ function jsonToHtml(data) {
         html += '<a href="/qadetail/183984" target="_blank" class="qa-tit">';
         html += '<i>'+content.comment_content+'</i></a></div></h2>';
         html += '<div class="replycont qa-body clearfix"><div class="l replydes">';
-        html += '<span class="replysign praise">[最新';
+        html += '<span class="replysign praise">[最新 ';
         html += '<a href="/u/4465496/courses" target="_blank" title="哎哟不错哦" class="nickname">哎哟不错哦</a>';
-        html += '的回答]</span>';
+        html += ' 的回答]</span>';
         html += '<span class="replydet">重点在于自己，想不想学，有没有去尝试，有没有恒心！文科理科差异不大1</span></div></div>';
         html += '<div class="replymegfooter qa-footer clearfix"><div class=" wenda-time ">';
-        html += '<div class="l-box l"><em>'+content.time+'</em></div>';
+        html += '<div class="l-box l"><em>时间:'+content.time+'</em></div>';
         html += '<div class="dianzan">';
         html += '<a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696">';
         html += '<i class="static-item icon-thumb-revert" style=" line-height:0px;"></i>';
