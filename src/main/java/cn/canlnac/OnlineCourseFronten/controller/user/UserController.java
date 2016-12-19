@@ -115,8 +115,7 @@ public class UserController {
         Map map = FileController.saveFlie(request).get(0);
         String url = (String) map.get("url");
         //判断文件是否为图片
-        String suffixs = "--jpg--jpeg--png--";
-        if (suffixs.indexOf((String) map.get("fileType"))==-1){
+        if (map.get("fileType").toString().indexOf("image")==-1){
             //不是图片
             returnMap.put("error","error-pic-type");
             FileController.deleteFile(url,request);

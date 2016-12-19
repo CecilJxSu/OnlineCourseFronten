@@ -29,7 +29,7 @@ public class FileController {
      * @return
      */
     public static String getSourcesDirectory(HttpServletRequest request){
-        String SourcesDirectory = request.getSession().getServletContext().getRealPath("/")+"/../sourcess/";
+        String SourcesDirectory = request.getSession(true).getServletContext().getRealPath("/")+"/uploadFiles/";
         File file =new File(SourcesDirectory);
         if  (!file .exists()  && !file .isDirectory())
         {
@@ -41,7 +41,7 @@ public class FileController {
 
     /**
      * 获取文件
-     * @param url       文件名，不是全路径，例如：default.png
+     * @param url       文件名，不是全路径，例如：default
      * @param request
      * @param response
      * @throws IOException
@@ -65,6 +65,13 @@ public class FileController {
             os.flush();
             os.close();
         }
+//        File file = new File(getSourcesDirectory(request)+url);
+//        if (file.isFile() && file.exists()){
+//            Resource resource = new FileSystemResource(file);
+//
+//            return resource;
+//        }
+//        return null;
     }
 
     /**
@@ -97,14 +104,14 @@ public class FileController {
                     //获取原文件名
                     String fileName = file.getOriginalFilename();
                     //获取后文件缀名
-                    String suffix = file.getOriginalFilename().split("\\.")[1];
+                    //String suffix = file.getOriginalFilename().split("\\.")[1];
 
                     //创建新文件名
                     String uuid = UUID.randomUUID().toString();
                     MessageDigest messageDigest = MessageDigest.getInstance("MD5");
                     messageDigest.update(uuid.getBytes());
                     uuid = String.format("%032X", new BigInteger(1, messageDigest.digest()));
-                    String fileUrl = uuid+"."+suffix;
+                    String fileUrl = uuid;
 
                     //文件存储路径
                     String path = getSourcesDirectory(request)+fileUrl;
@@ -112,7 +119,7 @@ public class FileController {
                     file.transferTo(new File(path));
 
                     Map map = new HashMap();
-                    map.put("fileType",suffix);//文件类型
+                    map.put("fileType",file.getContentType());//文件类型
                     map.put("fileSize",file.getSize());//文件大小
                     map.put("url",fileUrl);//新文件名
                     map.put("fileName",fileName);//原文件名
