@@ -3,9 +3,8 @@ package cn.canlnac.OnlineCourseFronten.controller.comment;
 import cn.canlnac.OnlineCourseFronten.entity.Chat;
 import cn.canlnac.OnlineCourseFronten.entity.Comment;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.service.ChatService;
-import cn.canlnac.OnlineCourseFronten.service.CommentService;
-import cn.canlnac.OnlineCourseFronten.service.CourseService;
+import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,11 +33,17 @@ public class CommentController {
     private CourseService courseService;
     @Autowired
     private ChatService chatService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ProfileService profileService;
+    @Autowired
+    private ReplyService replyService;
 
     /**
      * 发表评论
-     * @param targetType
-     * @param targetId
+     * @param targetType    被评论类型：课程：course；话题：comment
+     * @param targetId      被评论id
      * @param content
      * @return
      */
@@ -80,6 +87,41 @@ public class CommentController {
         } else {
             return null;
         }
+    }
+
+    @RequestMapping("get")
+    @ResponseBody
+    public Map getComments(@RequestParam("type")String targetType,
+                           @RequestParam("id")int targetId,
+                           @RequestParam("nowPage") int nowPage){
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+        List list = new ArrayList();
+        for (Comment comment:commentService.getList(start,count,"date",targetType,targetId)){
+            Map units = new HashMap();
+            units.put("comment_id",comment.getId());
+            units.put("comment_content",comment.getContent());
+            units.put("time",comment.getDate());
+            units.put("like_count",comment.getLikeCount());
+            units.put("reply_count",comment.getReplyCount());
+            units.put("user",userService.findByID(comment.getUserId()));
+            units.put("user_profile",profileService.findByUserID(comment.getUserId()));
+
+            list.add(units);
+        }
+
+        //获取总条数
+        int totalNum = commentService.count(targetType,targetId);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map resultMap = new HashMap();
+        resultMap.put("list",list);
+        resultMap.put("totalPage",totalPage);
+
+        return resultMap;
     }
 
     @RequestMapping("showComment")

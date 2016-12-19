@@ -24,7 +24,7 @@
                 <i class="path-split">\</i><a href="/learn/9"><span>HTML+CSS基础课程</span></a>
             </div>
             <div class="hd clearfix">
-                <h2 class="l" id="<c:out value='${course.id}'/>"><c:out value="${course.name}"/></h2>
+                <h2 class="l" id="title" name="<c:out value='${course.id}'/>"><c:out value="${course.name}"/></h2>
             </div>
 
             <div class="statics clearfix">
@@ -151,117 +151,9 @@
                         <a href="/qa/9/t/2?page=1" class="bar-item ">精华</a>
                     </div>--%>
                     <div class="answertabcon">
-                        <div class="course_quescon">
-                            <div class="wenda-listcon mod-qa-list clearfix">
-                                <div class="headslider qa-medias l">
-                                    <a href="/u/4465849/courses" class="media" target="_blank" title="慕粉1459202131"><img
-                                            src="http://img.mukewang.com/user/54584d9f0001043b02200220-40-40.jpg"
-                                            width="40" height="40">
-                                        <i class="icon-ques-revert nofinish"></i>
-                                    </a>
-                                </div>
-                                <div class="wendaslider qa-content" style="border-bottom: 0px;">
-                                    <h2 class="wendaquetitle qa-header">
-                                        <a href="/u/4465849/courses" class="name" target="_blank" title="慕粉1459202131">
-                                            慕粉1459202131
-                                        </a>
-                                        <div class="wendatitlecon qa-header-cnt clearfix">
-                                            <a href="/qadetail/183984" target="_blank" class="qa-tit">
-                                                <i>作为一个文科生，怎么去学习编程？</i>
-                                            </a>
-                                        </div>
-                                    </h2>
-                                    <div class="replycont qa-body clearfix">
-                                        <div class="l replydes">
-                                    <span class="replysign praise">[最新
-                                        <a href="/u/4465496/courses" target="_blank" title="哎哟不错哦" class="nickname">哎哟不错哦</a>
-                                    的回答]</span>
-                                            <span class="replydet">重点在于自己，想不想学，有没有去尝试，有没有恒心！文科理科差异不大1</span>
-                                        </div>
-                                    </div>
-                                    <div class="replymegfooter qa-footer clearfix">
-                                        <div class=" wenda-time ">
-                                            <div class="l-box l">
-                                                <em>时间：4分钟前</em>
-                                                <a href="/video/52" target="_blank">源自：1-2 Html和CSS的关系</a>
-                                            </div>
-                                            <div class="dianzan">
-                                            <a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696">
-                                                <i class="static-item icon-thumb-revert" style=" line-height:0px;"></i>
-                                                <span>1108</span>
-                                            </a>
-                                            </div>
-                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: -8px;">
-                                                <span class="static-item answer">
-                                                    <b class="val">2</b>
-                                                    <span class="key">回答</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="comment-course-list">
                         </div>
-                        <div class="course_quescon">
-                            <div class="wenda-listcon mod-qa-list clearfix">
-                                <div class="headslider qa-medias l">
-                                    <a href="/u/4465849/courses" class="media" target="_blank" title="慕粉1459202131"><img
-                                            src="http://img.mukewang.com/user/54584d9f0001043b02200220-40-40.jpg"
-                                            width="40" height="40">
-                                        <i class="icon-ques-revert nofinish"></i>
-                                    </a>
-                                </div>
-                                <div class="wendaslider qa-content" style="border-bottom: 0px;">
-                                    <h2 class="wendaquetitle qa-header">
-                                        <a href="/u/4465849/courses" class="name" target="_blank" title="慕粉1459202131">
-                                            慕粉1459202131
-                                        </a>
-                                        <div class="wendatitlecon qa-header-cnt clearfix">
-                                            <a href="/qadetail/183984" target="_blank" class="qa-tit">
-                                                <i>作为一个文科生，怎么去学习编程？</i>
-                                            </a>
-                                        </div>
-                                    </h2>
-                                    <div class="replycont qa-body clearfix">
-                                        <div class="l replydes">
-                                    <span class="replysign praise">[最新
-                                        <a href="/u/4465496/courses" target="_blank" title="哎哟不错哦" class="nickname">哎哟不错哦</a>
-                                    的回答]</span>
-                                            <span class="replydet">重点在于自己，想不想学，有没有去尝试，有没有恒心！文科理科差异不大1</span>
-                                        </div>
-                                    </div>
-                                    <div class="replymegfooter qa-footer clearfix">
-                                        <div class=" wenda-time ">
-                                            <div class="l-box l">
-                                                <em>时间：4分钟前</em>
-                                                <a href="/video/52" target="_blank">源自：1-2 Html和CSS的关系</a>
-                                            </div>
-                                            <div class="dianzan">
-                                                <a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696">
-                                                    <i class="static-item icon-thumb-revert" style=" line-height:0px;"></i>
-                                                    <span>1108</span>
-                                                </a>
-                                            </div>
-                                            <a href="${pageContext.request.contextPath}/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: -8px;">
-                                                <span class="static-item answer">
-                                                    <b class="val">2</b>
-                                                    <span class="key">回答</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="page"><span class="disabled_page">首页</span><span class="disabled_page">上一页</span><a
-                                href="javascript:void(0)" class="active text-page-tag">1</a><a class="text-page-tag"
-                                                                                               href="/course/qa/id/9/t/1?page=2">2</a><a
-                                class="text-page-tag" href="/course/qa/id/9/t/1?page=3">3</a><a class="text-page-tag"
-                                                                                                href="/course/qa/id/9/t/1?page=4">4</a><a
-                                class="text-page-tag" href="/course/qa/id/9/t/1?page=5">5</a><a class="text-page-tag"
-                                                                                                href="/course/qa/id/9/t/1?page=6">6</a><a
-                                class="text-page-tag" href="/course/qa/id/9/t/1?page=7">7</a><a
-                                href="/course/qa/id/9/t/1?page=2">下一页</a><a href="/course/qa/id/9/t/1?page=948">尾页</a>
+                        <div class="page">
                         </div>
                     </div>
                 </div>
@@ -367,6 +259,7 @@
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/learn/learn.js"></script>
+
 <script type="text/javascript">
     /*点赞*/
     $('.dianzan a').on('click', function (e) {
@@ -440,38 +333,6 @@
     }, function () {
         $(this).children("i").css("display", "none");
     });
-
-    $('.moco-btn,.l,.learn-btn,.green-btn,.red-btn').on('click', function () {
-        dump($(this).children('a').attr("id"));
-    });
-    $('.J-media-item').on('click', function () {
-        dump($(this).attr("id"));
-    });
-    function dump(id) {
-        ///OnlineCourseFronten/video/show?id=
-        //判断是否登录
-        if ($('#js-signin-btn').length && $('#js-signin-btn').length > 0) {
-            $('#js-signin-btn').trigger('click');
-            $('#signin-globle-error').html("您还未登录");
-        } else {
-            var form = $('<form></form>');
-            // 设置属性
-            form.attr('action', "/OnlineCourseFronten/video/show");
-            form.attr('method', 'post');
-            // form的target属性决定form在哪个页面提交
-            // _self -> 当前页面 _blank -> 新页面
-            form.attr('target', '_blank');
-            // 创建Input
-            var my_input = $('<input type="text" name="id"/>');
-            my_input.attr('value', id);
-            // 附加到Form
-            form.append(my_input);
-            // 提交表单
-            form.submit();
-            // 注意return false取消链接的默认动作
-            //return false;
-        }
-    }
 </script>
 </body>
 </html>
