@@ -442,7 +442,7 @@
     });
 
     $('.moco-btn,.l,.learn-btn,.green-btn,.red-btn').on('click', function () {
-        dump($(this).attr("id"));
+        dump($(this).children('a').attr("id"));
     });
     $('.J-media-item').on('click', function () {
         dump($(this).attr("id"));
@@ -462,7 +462,7 @@
             // _self -> 当前页面 _blank -> 新页面
             form.attr('target', '_blank');
             // 创建Input
-            var my_input = $('<input type="text" name="id" />');
+            var my_input = $('<input type="text" name="id"/>');
             my_input.attr('value', id);
             // 附加到Form
             form.append(my_input);

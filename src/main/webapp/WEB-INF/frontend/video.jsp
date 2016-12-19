@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +20,12 @@
     <!---->
     <div id="bgarea" class="video-con">
         <div class="js-box-wrap" style="width: 100%; height: 269px;">
-            <div id="J_Box" class="course-video-box">
+            <div id="J_Box" class="course-video-box" name="<c:out value='${catalog.courseId}'/>">
                 <video id="example_video_1" class="js-box-wrap video-js vjs-default-skin" controls preload="none" style="width: 100%; height: 269px;"
-                       poster="http://vjs.zencdn.net/v/oceans.png" ata-setup="{}">
-                    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
-                    <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
-                    <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg' />
+                       poster="/OnlineCourseFronten/file/get?url=<c:out value='${catalog.previewImage}'/>" ata-setup="{}">
+                    <source src="/OnlineCourseFronten/file/get?url=<c:out value='${catalog.url}'/>" type='video/mp4' />
+                    <%--<source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />--%>
+                    <%--<source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg' />--%>
                     <track kind="captions" src="${pageContext.request.contextPath}/static/staticWEB/fonts/captions.vtt" srclang="en" label="English" />
                 </video>
             </div>
@@ -150,8 +151,8 @@
                             </a>
                             <div id="js-pl-input-fake" class="pl-input-inner l">
                                 <textarea id="js-pl-textarea" class="js-placeholder"
-                                          placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！"></textarea>
-                                <span class="num-limit"><span id="js-pl-limit">0</span>/300</span>
+                                          placeholder="内容"></textarea>
+                                <span class="num-limit"><span id="js-pl-limit">0</span>/127</span>
                             </div>
                             <div class="pl-input-btm input-btm clearfix">
                                 <div class="verify-code l"></div>
@@ -161,6 +162,7 @@
 
                     </div>
                 </div>
+
                 <div id="plLoadListData">
                     <div class="pl-container">
                         <!--内容-->
@@ -422,6 +424,36 @@
         }
     })
     /*笔记.js*/
+    //文本框输入字数控制
+    $('#js-pl-textarea').on('propertychange input',function () {
+        var text = $(this).val();
+        if (text.length>127){
+            text = text.substr(0,127);
+            $(this).val(text);
+        }
+        $('#js-pl-limit').html(text.length);
+    });
+
+    //提交
+    $('#js-pl-submit').on('click',function () {
+        $.ajax({
+            url:'/OnlineCourseFronten/comment/issue',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+                type    :   'course',
+                id      :   $('#J_Box').attr('name'),
+                content :   $('#js-pl-textarea').val()
+            },
+            success:function (data) {
+                alert("yes");
+            },
+            error:function (e) {
+                alert('发表失败');
+            }
+        });
+    });
 </script>
 
 </body>
