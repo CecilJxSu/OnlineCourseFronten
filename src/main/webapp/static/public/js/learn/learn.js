@@ -191,7 +191,10 @@ function jsonToHtml(data) {
         html += '<div class="wenda-listcon mod-qa-list clearfix">';
         html += '<div class="headslider qa-medias l">';
         html += '<a href="#" class="media" target="_blank" title="'+content.user.username+'">';
-        html += '<img src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" width="40" height="40">';
+        if (content.user_profile.iconUrl==null || content.user_profile.iconUrl=='')
+            html += '<img src="/OnlineCourseFronten/static/staticWEB/img/default.png" width="40" height="40">';
+        else
+            html += '<img src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" width="40" height="40">';
         html += '<i class="icon-ques-revert nofinish"></i></a></div>';
         html += '<div class="wendaslider qa-content" style="border-bottom: 0px;">';
         html += '<h2 class="wendaquetitle qa-header">';

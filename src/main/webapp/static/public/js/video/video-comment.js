@@ -170,7 +170,10 @@ function jsonToHtml(data) {
     {
 
         html += '<li class="pl-list clearfix"><div class="pl-list-avator"><a href="/u/1862199/courses" target="_blank">';
-        html += '<img width="40" height="40" src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" title="'+content.user.username+'"></a></div>';
+        if (content.user_profile.iconUrl==null || content.user_profile.iconUrl=='')
+            html += '<img width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png" title="'+content.user.username+'"></a></div>';
+        else
+            html += '<img width="40" height="40" src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" title="'+content.user.username+'"></a></div>';
         html += '<div class="pl-list-main"><div class="pl-list-nick">';
         html += '<a href="/u/1862199/courses" target="_blank">'+content.user.username+'</a></div>';
         html += '<div class="pl-list-content">'+content.comment_content+'</div>';

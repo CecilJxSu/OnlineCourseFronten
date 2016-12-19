@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     <div class="cb"></div>
-                                    <p class="rlf-tip-wrap">25KB以内的jpg、jpeg、png图片</p>
+                                    <p class="rlf-tip-wrap">25KB以内的图片</p>
                                     <p id="pic-error" class="rlf-tip-wrap errorHint color-red"></p>
                                 </div>
                             </div>

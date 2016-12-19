@@ -147,7 +147,13 @@
                     <div class="publish-wrap publish-wrap-pl">
                         <div class="pl-input-wrap clearfix">
                             <a href="/u/1361691" class="user-head l">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg" alt="哈米的小宇宙">
+                                <c:if test="${iconUrl!=null && iconUrl!=''}">
+                                    <img src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>" alt="">
+                                </c:if>
+                                <c:if test="${iconUrl==null || iconUrl==''}">
+                                    <img src="/OnlineCourseFronten/static/staticWEB/img/default.png" alt="">
+                                </c:if>
+
                             </a>
                             <div id="js-pl-input-fake" class="pl-input-inner l">
                                 <textarea id="js-pl-textarea" class="js-placeholder"

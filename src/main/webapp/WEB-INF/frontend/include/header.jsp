@@ -102,10 +102,10 @@
                 <!--用户-->
                 <li class="set_btn user-card-box">
                     <a id="header-avator" class="user-card-item" action-type="my_menu" href="#" target="_self">
-                        <c:if test="${iconUrl!=null}">
+                        <c:if test="${iconUrl!=null && iconUrl!=''}">
                             <img style="margin-top: 15px;" width="40" height="40" src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>">
                         </c:if>
-                        <c:if test="${iconUrl==null}">
+                        <c:if test="${iconUrl==null || iconUrl==''}">
                             <img style="margin-top: 15px;" width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png">
                         </c:if>
                         <i class="myspace_remind" style="display: none;"></i>
@@ -115,10 +115,10 @@
                         <div class="card-inner">
                             <div class="card-top">
                                 <a href="#">
-                                    <c:if test="${iconUrl!=null}">
+                                    <c:if test="${iconUrl!=null && iconUrl!=''}">
                                         <img src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>" alt="<c:out value='${userName}'/>" class="l">
                                     </c:if>
-                                    <c:if test="${iconUrl==null}">
+                                    <c:if test="${iconUrl==null || iconUrl==''}">
                                         <img src="/OnlineCourseFronten/static/staticWEB/img/default.png" alt="<c:out value='${userName}'/>" class="l">
                                     </c:if>
                                 </a>
