@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,7 +104,8 @@ public class CommentController {
             Map units = new HashMap();
             units.put("comment_id",comment.getId());
             units.put("comment_content",comment.getContent());
-            units.put("time",comment.getDate());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            units.put("time",sdf.format(comment.getDate()));
             units.put("like_count",comment.getLikeCount());
             units.put("reply_count",comment.getReplyCount());
             units.put("user",userService.findByID(comment.getUserId()));
