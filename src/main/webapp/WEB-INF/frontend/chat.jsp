@@ -16,6 +16,7 @@
 <!--内容-->
 <div id="main">
     <div class="wenda clearfix">
+
         <div class="js-layout-change">
             <!--右边内容-->
             <div class="l wenda-main">
@@ -24,18 +25,9 @@
                     <a class="js-quiz" href="${pageContext.request.contextPath}/createcomment/show" style="font-size: 22px;color: #F7F3F3;">发表话题</a>
                 </div>
                 <div class="nav">
-                    <a href="javascript:void(0);" class="chat active">推荐</a>
-                    <a href="javascript:void(0)" class="chat">最新</a>
+                    <a href="javascript:void(0);" class="chat active" name="hot">最热</a>
+                    <a href="javascript:void(0)" class="chat" name="new">最新</a>
                     <!--<a href="/wenda/waitreply">等待回答</a>-->
-                    <div class="switch-box">
-                        <div class="switch js-switch">
-                            <div class="fill">
-                                <div class="outer"></div>
-                            </div>
-                            <div class="inner"></div>
-                        </div>
-                        <span>只显示关注内容</span>
-                    </div>
 
                 </div>
                 <!--推荐位-->
@@ -49,85 +41,80 @@
                 </ul>
                 <!--左侧列表内容-->
                 <div class="wenda-list">
-                    <div class="ques-answer">
-                        <!--用户头像-->
-                        <div class="tag-img">
-                            <a href="/wenda/17" target="_blank">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg" title="JavaScript">
-                            </a>
-                        </div>
-                        <!--用户头像end-->
-                        <!--话题标题-->
-                        <div class="ques-con">
-                            <a href="/wenda/detail/338503" class="ques-con-content" target="_blank"
-                               title="testarea没有value值，那么才能在js中展示呢？">关于testarea的取值问题</a>
-                        </div>
-                        <!--话题标题end-->
-
-                        <div class="answer-con first" data-answer-id="218070" id="answer-con">
-                            <!--话题内容-->
-                            <div class="answer-content">
-                                关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
-                                关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
-                                关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
+                    <%--加载内容--%>
+                    <div class="chatContent">
+                        <%--<div class="ques-answer">
+                            <!--用户头像-->
+                            <div class="tag-img">
+                                <a href="/wenda/17" target="_blank">
+                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg" title="JavaScript">
+                                </a>
                             </div>
-                            <!--话题内容end-->
-                            <!--图片-->
-                            <div  class="topicimg answer-content">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
-                                <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg">
-
+                            <!--用户头像end-->
+                            <!--话题标题-->
+                            <div class="ques-con">
+                                <a href="/wenda/detail/338503" class="ques-con-content" target="_blank"
+                                   title="testarea没有value值，那么才能在js中展示呢？">关于testarea的取值问题</a>
                             </div>
-                            <!--图片end-->
-                            <div style="position: static;" class="ctrl-bar clearfix">
-                                <!--点赞-->
-                                <a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">
-                                    <em class="numShow">赞</em>
-                                    <span>90</span>
-                                </a>
-                                <!--点赞end-->
-                                <!--收藏-->
-                                <a title="收藏" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">
-                                    <em class="numShow">收藏</em>
-                                    <span>90</span>
-                                </a>
-                                <!--收藏ends-->
-                                <!--评论-->
-                                <a title="评论" href="${pageContext.request.contextPath}/commentdetail/show" class="js-pl-praise list-praise r" data-id="82399">
-                                    <em class="numShow">评论</em>
-                                    <span>2</span>
-                                </a>
-                                <!--评论end-->
-                                <!--浏览-->
-                                <span class="agree-with " data-ques-id="338503" data-answer-id="218070"
-                                      data-hasop="">
+                            <!--话题标题end-->
+
+                            <div class="answer-con first" data-answer-id="218070" id="answer-con">
+                                <!--话题内容-->
+                                <div class="answer-content">
+                                    关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
+                                    关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
+                                    关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题关于testarea的取值问题
+                                </div>
+                                <!--话题内容end-->
+                                <!--图片-->
+                                <div  class="topicimg answer-content">
+                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg">
+                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
+                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/552133900001743101800180-100-100.jpg">
+                                    <img src="${pageContext.request.contextPath}/static/staticWEB/img/home/563aff440001e80700900090.jpg">
+
+                                </div>
+                                <!--图片end-->
+                                <div style="position: static;" class="ctrl-bar clearfix">
+                                    <!--点赞-->
+                                    <a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">
+                                        <em class="numShow">赞</em>
+                                        <span>90</span>
+                                    </a>
+                                    <!--点赞end-->
+                                    <!--收藏-->
+                                    <a title="收藏" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">
+                                        <em class="numShow">收藏</em>
+                                        <span>90</span>
+                                    </a>
+                                    <!--收藏ends-->
+                                    <!--评论-->
+                                    <a title="评论" href="${pageContext.request.contextPath}/commentdetail/show" class="js-pl-praise list-praise r" data-id="82399">
+                                        <em class="numShow">评论</em>
+                                        <span>2</span>
+                                    </a>
+                                    <!--评论end-->
+                                    <!--浏览-->
+                                    <span class="agree-with " data-ques-id="338503" data-answer-id="218070"
+                                          data-hasop="">
                                     <em>108</em>
                                     <b>浏览</b>
                                 </span>
-                                <!--浏览end-->
-                                <span class="oppose " data-ques-id="338503" data-answer-id="218070" data-hasop="">
+                                    <!--浏览end-->
+                                    <span class="oppose " data-ques-id="338503" data-answer-id="218070" data-hasop="">
                                     <em>时间：2016-11-17</em>
                                 </span>
-                                <span class="shrink">收起</span>
-                            </div>
-                            <!---->
-                        </div><!--.answer-con end-->
-                    </div><!--.ques-answer end-->
-                    <div class="page">
-                        <span class="disabled_page">首页</span>
-                        <span class="disabled_page">上一页</span>
-                        <a href="javascript:void(0)" class="active text-page-tag">1</a>
-                        <a class="text-page-tag" href="/wenda/recommend/2">2</a>
-                        <a class="text-page-tag" href="/wenda/recommend/3">3</a>
-                        <a class="text-page-tag"href="/wenda/recommend/4">4</a>
-                        <a class="text-page-tag" href="/wenda/recommend/5">5</a>
-                        <a class="text-page-tag" href="/wenda/recommend/6">6</a>
-                        <a class="text-page-tag" href="/wenda/recommend/7">7</a>
-                        <a href="/wenda/recommend/2">下一页</a>
-                        <a href="/wenda/recommend/1230">尾页</a>
+                                    <span class="shrink">收起</span>
+                                </div>
+                                <!---->
+                            </div><!--.answer-con end-->
+                        </div>--%>
                     </div>
+                    <%--加载内容--%>
+                    <%--页数--%>
+                    <div class="page">
+                    </div>
+                    <%--页数end--%>
                 </div>
             </div>
             <!--右边内容end-->
@@ -208,31 +195,9 @@
 <%--尾部end--%>
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/chat/chatpage.js"></script>
 <script type="text/javascript">
-    /*照片变大*/
-    $('.topicimg img').on('click', function (e) {
-        var popup = document.getElementById("popup");
-        event = event||window.event;
-        var target = document.elementFromPoint(event.clientX, event.clientY);
-        showBig(target.src);
-        /*var imgs = $(this).parent('div').getElementsByTagName("img");
-         var lens = imgs.length;*/
-        /*for(var i = 0; i < lens; i++){
-         imgs[i].onclick = function (event){
-         event = event||window.event;
-         var target = document.elementFromPoint(event.clientX, event.clientY);
-         showBig(target.src);
-         }
-         }*/
-        popup.onclick = function (){
-            popup.style.display = "none";
-        }
-        function showBig(src){
-            popup.getElementsByTagName("img")[0].src = src;
-            popup.style.display = "block";
-        }
-    })
-    /*照片变大end*/
+
 </script>
 </body>
 </html>
