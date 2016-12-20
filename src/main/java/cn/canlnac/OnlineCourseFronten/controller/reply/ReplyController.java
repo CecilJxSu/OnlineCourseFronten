@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +106,9 @@ public class ReplyController {
         List list = new ArrayList();
         for(Reply reply:replyService.getReplies(commentId)){
             Map map = new HashMap();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             map.put("reply",reply);
+            map.put("reply_date",sdf.format(reply.getDate()));
             map.put("user",userService.findByID(reply.getUserId()));
             map.put("profile",profileService.findByUserID(reply.getUserId()));
             list.add(map);

@@ -178,7 +178,7 @@ function jsonToHtml(data) {
         html += '<p>'+content.reply.content+'<br></p>';
         html += '</div></div>';
         html += '<div class="dianzan qa-comment-addon">';
-        html += '<span class="qa-comment-time">'+content.reply.date+'</span>';
+        html += '<span class="qa-comment-time">'+content.reply_date+'</span>';
         html += '</div></div></div></div></div>';
     });
     $('.qa-comments').html(html);
