@@ -164,7 +164,7 @@
     /*创建话题*/
     function submitComment() {
         var $title=$(".huati"), val;
-        if (getRealLen((val=$.trim($title.val()))) < 10) {
+        if (getRealLen((val=$.trim($title.val()))) < 0) {
             $('#feedback-error').css("display","block");
             $('#feedback-error').html('标题不能为空！');
             return false;

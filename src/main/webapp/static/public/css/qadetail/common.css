@@ -679,7 +679,6 @@ a:active, a:hover {
     display: block;
     height: 60px;
     width: 140px;
-    background: url(/static/img/common/logo.png?t=1) center center no-repeat;
     overflow: hidden
 }
 
@@ -6925,4 +6924,12 @@ abbr {
     padding-top: 20px;
     padding-bottom: 24px;
     border-bottom: 1px solid #d0d6d9;
+}
+.bianji{
+    float: right;
+    position: relative;
+    line-height: inherit;
+    margin: 0;
+    top: -21px;
+    margin-right: 10px;
 }

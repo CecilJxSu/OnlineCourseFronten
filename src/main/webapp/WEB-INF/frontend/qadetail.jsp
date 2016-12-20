@@ -87,7 +87,7 @@
                         <div class="qa-reply-iwrap">
                             <div class="qa-reply-iarea">
                                 <textarea name="js-pl-textarea" id="js-pl-textarea" class="js-reply-ipt-default ipt" style="height: 136px;" placeholder="写下你的评论..."></textarea>
-                                <span class="num-limit"><span id="js-pl-limit">0</span>/127</span>
+                                <span class="bianji num-limit"><span id="js-pl-limit">0</span>/127</span>
                             </div>
                         </div>
                         <div class="qa-reply-ifoot clearfix">
