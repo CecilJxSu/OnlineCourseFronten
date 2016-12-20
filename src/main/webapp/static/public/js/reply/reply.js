@@ -14,13 +14,12 @@ $('#js-pl-submit').on('click',function () {
         return false;
     }
     $.ajax({
-        url:'/OnlineCourseFronten/comment/issue',//路径
+        url:'/OnlineCourseFronten/reply/post',//路径
         type:'post',
         cache:false,
         dataType:'json',
         data:{
-            type    :   'course',
-            id      :   $('#J_Box').attr('name'),
+            id      :   $('.qa-content').attr('data-qid'),
             content :   $('#js-pl-textarea').val()
         },
         success:function (data) {
@@ -33,7 +32,6 @@ $('#js-pl-submit').on('click',function () {
     });
 });
 
-
 /************** start：评论分页列表***********/
 //默认当前页(不可动)
 var nowPage = 1;
@@ -42,11 +40,10 @@ var maxPage = 1;
 
 //ajax入口
 function main() {
-    var url = '/OnlineCourseFronten/comment/get';
+    var url = '/OnlineCourseFronten/reply/get';
     var data = {
-        nowPage :nowPage,
-        type    :'course',
-        id      :$('#J_Box').attr('name')
+        //nowPage :nowPage,
+        id      :$('.qa-content').attr('data-qid')
     };
     getData(url,data);
 }
@@ -68,8 +65,8 @@ function getData(url,data){
             beforeSend();
         },
         success:function (data) {
-            maxPage = data.totalPage;
-            pageChange();
+            //maxPage = data.totalPage;
+            //pageChange();
             jsonToHtml(data);
         },
         error:function (e) {
@@ -168,26 +165,23 @@ function jsonToHtml(data) {
     var html = '';
     $.each( data.list, function(index, content)
     {
-
-        html += '<li class="pl-list clearfix"><div class="pl-list-avator"><a href="/u/1862199/courses" target="_blank">';
-        if (content.user_profile==null || content.user_profile=='')
-            html += '<img width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png" title="'+content.user.username+'"></a></div>';
+        html += '<div class="qa-comment js-qa-comment" data-cid="" id="">';
+        html += '<div class="qa-comment-wrap clearfix ">';
+        html += '<div class="qa-comment-author">';
+        html += '<a href="#" title="'+content.user.username+'">';
+        if (content.profile==null || content.profile=='')
+            html += '<img src="/OnlineCourseFronten/static/staticWEB/img/default.png" width="40" height="40">';
         else
-            html += '<img width="40" height="40" src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" title="'+content.user.username+'"></a></div>';
-        html += '<div class="pl-list-main"><div class="pl-list-nick">';
-        html += '<a href="/u/1862199/courses" target="_blank">'+content.user.username+'</a></div>';
-        html += '<div class="pl-list-content">'+content.comment_content+'</div>';
-        html += '<div class="pl-list-btm clearfix"><span class="pl-list-time l">时间: '+content.time+'</span>';
-        html += '<div class="dianzan">';
-        html += '<a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399" >';
-        html += '<i class="icon-thumb-revert" style="line-height: 0px;"></i>';
-        html += '<span>'+content.like_count+'</span></a></div>';
-        html += '<a href="/OnlineCourseFronten/reply/show?id='+content.comment_id+'" target="_blank" class="replynumber r hasanswernum" style="margin-right: 18px;">';
-        html += '<span class="ys" style="padding-right: 14px;">';
-        html += '<b class="numShow">'+content.reply_count+'</b>';
-        html += '<span class="number">回答</span></span></a></div></div></li>';
+            html += '<img src="/OnlineCourseFronten/file/get?url='+content.profile.iconUrl+'" width="40" height="40">';
+        html += '<span class="qa-comment-nick">'+content.user.username+'</span></a></div>';
+        html += '<div class="qa-comment-d "><div class="qa-comment-inner"><div class="qa-comment-c imgPreview"><div class="rich-text">';
+        html += '<p>'+content.reply.content+'<br></p>';
+        html += '</div></div>';
+        html += '<div class="dianzan qa-comment-addon">';
+        html += '<span class="qa-comment-time">'+content.reply.date+'</span>';
+        html += '</div></div></div></div></div>';
     });
-    $('.pl-container').children('ul').html(html);
+    $('.qa-comments').html(html);
 }
 
 
@@ -195,11 +189,11 @@ function jsonToHtml(data) {
 
 //错误回掉
 function errBack() {
-    $('.pl-container').children('ul').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+    $('.qa-comments').html('<div style="text-align:center; width:100%;">暂无数据</div>');
 }
 
 //发送前触发
 function beforeSend() {
-    $('.pl-container').children('ul').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+    $('.qa-comments').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
 }
 /************** end：评论分页列表***********/

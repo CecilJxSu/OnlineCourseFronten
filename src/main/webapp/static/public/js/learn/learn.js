@@ -191,11 +191,11 @@ function jsonToHtml(data) {
         html += '<div class="wenda-listcon mod-qa-list clearfix">';
         html += '<div class="headslider qa-medias l">';
         html += '<a href="#" class="media" target="_blank" title="'+content.user.username+'">';
-        if (content.user_profile.iconUrl==null || content.user_profile.iconUrl=='')
+        if (content.user_profile==null || content.user_profile=='')
             html += '<img src="/OnlineCourseFronten/static/staticWEB/img/default.png" width="40" height="40">';
         else
             html += '<img src="/OnlineCourseFronten/file/get?url='+content.user_profile.iconUrl+'" width="40" height="40">';
-        html += '<i class="icon-ques-revert nofinish"></i></a></div>';
+        html += '<i class="icon-ques-revert" style="font-size: 24px;position: relative;top: -25px;left: 14px;border: 1px solid #fff;border-radius: 50%;background: #fff;color: #787d82;"></i></a></div>';
         html += '<div class="wendaslider qa-content" style="border-bottom: 0px;">';
         html += '<h2 class="wendaquetitle qa-header">';
         html += '<a href="/u/4465849/courses" class="name" target="_blank" title="'+content.user.username+'">'+content.user.username+'</a>';
@@ -213,7 +213,7 @@ function jsonToHtml(data) {
         html += '<a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696">';
         html += '<i class="static-item icon-thumb-revert" style=" line-height:0px;"></i>';
         html += '<span>'+content.like_count+'</span></a></div>';
-        html += '<a href="/OnlineCourseFronten/qadetail/showQadetail" class="replynumber static-count r" style="margin-right: -8px;">';
+        html += '<a href="/OnlineCourseFronten/reply/show?id='+content.comment_id+'" target="_blank" class="replynumber static-count r" style="margin-right: -8px;">';
         html += '<span class="static-item answer">';
         html += '<b class="val">'+content.reply_count+'</b>';
         html += '<span class="key">回答</span>';
