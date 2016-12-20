@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/ask/common_less.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/ask/global.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/ask/main.css">
-    <title>ask</title>
+    <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/common_less.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/global.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/main.css">
+    <title>createcomment</title>
 </head>
 <body>
 <%--头部--%>
@@ -24,15 +24,11 @@
                         <h2 class="new-save-title">你的话题:</h2>
                     </div>
                     <div class="feedback-wrap">
-                        <!--<div class="result-wrap">
-                            <h2>提交成功</h2>
-                            <p>感谢你的建议，我会努力让自己变得高大上！</p>
-                        </div>-->
-                        <form action="upload" method="post" enctype="multipart/form-data">
-                        <div class="huati  field-wrapp">
+                        <form  id="commentfrom" action="commentupload" method="post" enctype="multipart/form-data">
+                        <div class="field-wrapp">
                             <div class="question-areaq" style="margin: 10px;">
                                 <h2 class="new-save-title">标题:
-                                    <input type="text" id="ques-title" class="ipt autocomplete" maxlength="50" name="title" placeholder="话题标题">
+                                    <input type="text" id="ques-title" class="huati ipt autocomplete" maxlength="50" name="title" placeholder="话题标题">
                                     <p class="errortip"></p>
                                 </h2>
                             </div>
@@ -71,9 +67,9 @@
                                 <div class="cb"></div>
                                 <p class="uploadImgsTip">最多可以上传<span class="color-red">9</span>张图片,图片大小不能超过<span class="color-red">2M</span></p>
                             </div>
-                            <div class="btn-wrap">
-                                <button hidefocus="true" id="submit" class="fl">提交</button>
-                                <p id="feedback-error" class="rlf-tip-wrap rlf-tip-error" style="display:none"></p>
+                            <div class="btn-wrap btn-wrapcomment">
+                                <a  id="submit" class="fl" onclick="submitComment()">提交</a>
+                                <p id="feedback-error" class="rlf-tip-wrap rlf-tip-error" style=" font-size: 20px;display:none"></p>
                             </div>
                         </div>
                         </form>
@@ -100,7 +96,7 @@
 <jsp:include page="include/footer.jsp"></jsp:include>
 <%--尾部end--%>
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/public/js/ask/jquery.uploadView.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/createcomment/jquery.uploadView.js"></script>
 <script type="text/javascript">
     function c(m) {
         var a = $(this).siblings("p");
@@ -164,6 +160,23 @@
     function getRealLen( str ) {
         return str.replace(/[^\x00-\xff]/g, '__').length;
     }
+
+    /*创建话题*/
+    function submitComment() {
+        var $title=$(".huati"), val;
+        if (getRealLen((val=$.trim($title.val()))) < 10) {
+            $('#feedback-error').css("display","block");
+            $('#feedback-error').html('标题不能为空！');
+            return false;
+        }
+        else {
+            $('#feedback-error').css("display","none");
+            $('#feedback-error').empty();
+        }
+
+        $("#commentfrom").submit();
+    }
+    /*创建话题end*/
 </script>
 </body>
 </html>

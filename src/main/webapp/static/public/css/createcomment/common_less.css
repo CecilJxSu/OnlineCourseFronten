@@ -254,7 +254,9 @@ a.editbtn{ color:#00b33b;display: inline-block;margin-left:20px; float: right; }
 .edittip a{margin-left: 0}
 .feedback-wrap p{margin: 0;}
 .feedback-wrap button{float:right;display: inline-block;vertical-align: middle;color: #fff;font-size: 14px;background-color:#39b94e;height: 50px;line-height: 40px;width: 120px;cursor: pointer;text-align: center;transition:background-color 0.2s;-webkit-transition:background-color 0.2s;-moz-transition:background-color 0.2s;-o-transition:background-color 0.2s;}
-.feedback-wrap button:hover{ background-color: #33a646;}
+.feedback-wrap button:hover{ background-color: #33a646; }
+.btn-wrapcomment a{float:right;display: inline-block;vertical-align: middle;color: #fff;font-size: 14px;background-color:#39b94e;height: 50px;line-height: 50px;width: 120px;cursor: pointer;text-align: center;transition:background-color 0.2s;-webkit-transition:background-color 0.2s;-moz-transition:background-color 0.2s;-o-transition:background-color 0.2s;}
+.btn-wrapcomment a:hover{ background-color: #33a646; color: #FAF5F5;}
 .feedback-wrap h4{margin-bottom: 12px;}
 .feedback-wrap .rlf-tip-wrap{ font-size: 12px;height: 30px; line-height: 30px;}
 .feedback-wrap .rlf-tip-error{background: url("/OnlineCourseFronten/static/staticWEB/img/home/rl-sprite.png") no-repeat -108px -933px; padding-left: 15px; color: #be3948;}

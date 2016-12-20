@@ -16,7 +16,6 @@
 <!--内容-->
 <div id="main">
     <div class="wenda clearfix">
-
         <div class="js-layout-change">
             <!--右边内容-->
             <div class="l wenda-main">
@@ -25,8 +24,8 @@
                     <a class="js-quiz" href="${pageContext.request.contextPath}/createcomment/show" style="font-size: 22px;color: #F7F3F3;">发表话题</a>
                 </div>
                 <div class="nav">
-                    <a href="/wenda" class="active">推荐</a>
-                    <a href="/wenda/new">最新</a>
+                    <a href="javascript:void(0);" class="chat active">推荐</a>
+                    <a href="javascript:void(0)" class="chat">最新</a>
                     <!--<a href="/wenda/waitreply">等待回答</a>-->
                     <div class="switch-box">
                         <div class="switch js-switch">
@@ -111,20 +110,6 @@
                                 <span class="oppose " data-ques-id="338503" data-answer-id="218070" data-hasop="">
                                     <em>时间：2016-11-17</em>
                                 </span>
-                                <!--<div class="share-box clearfix">
-                                    <div class="show-btn">分享</div>
-                                    <div class="share-box-con">
-                                        <div class="bdsharebuttonbox bdshare-button-style0-16"
-                                             data-tag="share_answer_218070" data-quesid="338503"
-                                             data-bd-bind="1481616485386">
-                                            <a class="bds_weixin icon-share-weichat" data-cmd="weixin"
-                                               title="分享到微信"></a>
-                                            <a class="bds_tsina icon-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-                                            <a class="bds_qzone icon-share-qq" data-cmd="qzone" href="#"
-                                               title="分享到QQ空间"></a>
-                                        </div>
-                                    </div>
-                                </div>-->
                                 <span class="shrink">收起</span>
                             </div>
                             <!---->
