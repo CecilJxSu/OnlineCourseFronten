@@ -210,9 +210,9 @@ function jsonToHtml(data) {
         html += '<div class="replymegfooter qa-footer clearfix"><div class=" wenda-time ">';
         html += '<div class="l-box l"><em>时间:'+content.time+'</em></div>';
         html += '<div class="dianzan">';
-        html += '<a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696">';
+        html += '<a title="赞" href="javascript:;" class="js-pl-praise replynumber static-count r" data-id="6696" onclick="like(this,'+content.comment_id+')">';
         html += '<i class="static-item icon-thumb-revert" style=" line-height:0px;"></i>';
-        html += '<span>'+content.like_count+'</span></a></div>';
+        html += '<span class="static-item answer">'+content.like_count+'</span></a></div>';
         html += '<a href="/OnlineCourseFronten/reply/show?id='+content.comment_id+'" target="_blank" class="replynumber static-count r" style="margin-right: -8px;">';
         html += '<span class="static-item answer">';
         html += '<b class="val">'+content.reply_count+'</b>';
@@ -236,3 +236,23 @@ function beforeSend() {
     $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
 }
 /************** end：评论分页列表***********/
+
+
+function like(e,comment_id) {
+    $.ajax({
+        url:'/OnlineCourseFronten/comment/like',//路径
+        type:'post',
+        cache:false,
+        dataType:'json',
+        data:{
+            id  : comment_id
+        },
+        success:function (data) {
+            alert(data);
+            $(e).children('span').html(data);
+        },
+        error:function (e) {
+            ;
+        }
+    });
+}

@@ -1,9 +1,6 @@
 package cn.canlnac.OnlineCourseFronten.controller.comment;
 
-import cn.canlnac.OnlineCourseFronten.entity.Chat;
-import cn.canlnac.OnlineCourseFronten.entity.Comment;
-import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.entity.*;
 import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -39,7 +36,7 @@ public class CommentController {
     @Autowired
     private ProfileService profileService;
     @Autowired
-    private ReplyService replyService;
+    private LikeService likeService;
 
     /**
      * 发表评论
@@ -126,8 +123,34 @@ public class CommentController {
         return resultMap;
     }
 
-    @RequestMapping("showComment")
-    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        return "/frontend/comment";
+    /**
+     * 评论点赞或取消赞
+     * @param commentId     评论id
+     * @return
+     */
+    @RequestMapping("like")
+    @ResponseBody
+    public int like(@RequestParam("id") int commentId){
+        Session session = SecurityUtils.getSubject().getSession();
+        Comment comment = new Comment();
+        comment.setId(commentId);
+        int isLike = likeService.isLike(Integer.parseInt(session.getAttribute("id").toString()),"comment",commentId);
+        if (isLike>0){
+            //已经点赞了,所以赞-1
+            int del = likeService.delete("comment",commentId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (del > 0){
+                comment.setLikeCount(-1);
+                commentService.update(comment);
+            }
+        } else {
+            //还没点赞,所以赞+1
+            Like like = new Like();
+            int crt = likeService.create("comment",commentId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (crt > 0){
+                comment.setLikeCount(1);
+                commentService.update(comment);
+            }
+        }
+        return commentService.findByID(commentId).getLikeCount();
     }
 }
