@@ -193,9 +193,9 @@ function jsonToHtml(data) {
         html +='<i class="icon-msg"></i>\n';
         html +='<a href="/OnlineCourseFronten/reply/show?id='+content.comment_id+'" target="_blank" class="js-qa-tr-num">回复</a>\n';
         html +='</span>\n';
-        html +='<a title="赞" href="javascript:;"class="js-pl-praise js-qa-comment-support qa-comment-support  js-qacom-supported-user"data-ids="187799-282305">\n';
+        html +='<a title="赞" href="javascript:;"class="js-pl-praise js-qa-comment-support qa-comment-support  js-qacom-supported-user"data-ids="187799-282305" onclick="like(this,'+content.comment_id+')">\n';
         html +='<i class="icon-thumb-revert "></i>\n';
-        html +='<span>0</span>\n';
+        html +='<span>'+content.like_count+'</span>\n';
         html +='</a>\n';
         html +='</div>\n';
         html +='</div>\n';
@@ -249,3 +249,22 @@ function beforeSend() {
     $('.commentdetailcontent').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
 }
 /************** end：评论分页列表***********/
+
+//点赞或取消点赞
+function like(e,comment_id) {
+    $.ajax({
+        url:'/OnlineCourseFronten/comment/like',//路径
+        type:'post',
+        cache:false,
+        dataType:'json',
+        data:{
+            id  : comment_id
+        },
+        success:function (data) {
+            $(e).children('span').html(data);
+        },
+        error:function (e) {
+            ;
+        }
+    });
+}

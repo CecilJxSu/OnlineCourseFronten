@@ -163,7 +163,7 @@ function jsonToHtml(data) {
         /*用户头像end*/
         /*话题标题*/
         html +='<div class="ques-con">';
-        html +='<a href="/wenda/detail/338503" class="ques-con-content" target="_blank"title="'+content.title+'">'+content.title+'</a>\n';
+        html +='<a href="/OnlineCourseFronten/commentdetail/show?id='+content.id+'" class="ques-con-content" target="_blank"title="'+content.title+'">'+content.title+'</a>\n';
         html +='</div>';
         /*话题标题end*/
 
@@ -182,7 +182,7 @@ function jsonToHtml(data) {
         /*图片end*/
         html +='<div style="position: static;" class="ctrl-bar clearfix">\n';
         /*点赞*/
-        html +='<a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="'+content.id+'">\n';
+        html +='<a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="'+content.id+'" onclick="like(this,'+content.id+')">\n';
         html +='<em class="numShow">赞</em>\n';
         html +='<span>'+content.likeCount+'</span>\n';
         html +='</a>\n';
@@ -252,22 +252,22 @@ function big() {
 /*照片变大end*/
 
 /*点赞*/
-function dizan() {
-    $('.dianzan a').on('click', function (e) {
-        e.preventDefault();
-        var title = $(this).attr('title');
-        var span = $(this).children('span').text();
-        if (title == '赞') {
-            $(this).attr('title', '取消赞');
-            var newspan = parseInt(span) + parseInt(1);
-            $(this).children('span').html(newspan);
+function like(e,chatId) {
+    $.ajax({
+        url:'/OnlineCourseFronten/chat/getlike',//路径
+        type:'post',
+        cache:false,
+        dataType:'json',
+        data:{
+            id  : chatId
+        },
+        success:function (data) {
+            $(e).children('span').html(data);
+        },
+        error:function (e) {
+            ;
         }
-        if (title == '取消赞') {
-            $(this).attr('title', '赞');
-            var newspan = parseInt(span) - parseInt(1);
-            $(this).children('span').html(newspan);
-        }
-    })
+    });
 }
 /*点赞*/
 

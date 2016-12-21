@@ -3,9 +3,9 @@ package cn.canlnac.OnlineCourseFronten.controller.chat;
 import cn.canlnac.OnlineCourseFronten.entity.Chat;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.entity.User;
-import cn.canlnac.OnlineCourseFronten.service.ChatService;
-import cn.canlnac.OnlineCourseFronten.service.ProfileService;
-import cn.canlnac.OnlineCourseFronten.service.UserService;
+import cn.canlnac.OnlineCourseFronten.service.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,12 +35,25 @@ public class CommentdetailController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    WatchService watchService;
+
+    @Autowired
+    FavoriteService favoriteService;
+
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
 
         String chatId = request.getParameter("id");//获取话题id
 
         Chat chat = chatService.findByID(Integer.parseInt(chatId));//获取话题
+        chat.setCommentCount(commentService.count("chat",chat.getId()));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String Date=sdf.format(chat.getDate());//时间转换
@@ -53,6 +66,11 @@ public class CommentdetailController {
 
         User user =userService.findByID(chat.getUserId());
 
+        int watch=watchService.create("chat",Integer.parseInt(chatId),userId);
+        if (watch>0){
+            chat.setWatchCount(1);
+            chatService.update(chat);
+        }
 
         model.put("chat",chat);
         model.put("profile",profile);

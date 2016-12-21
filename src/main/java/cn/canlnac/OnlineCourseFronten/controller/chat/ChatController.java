@@ -2,6 +2,8 @@ package cn.canlnac.OnlineCourseFronten.controller.chat;
 
 import cn.canlnac.OnlineCourseFronten.entity.Chat;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
+import cn.canlnac.OnlineCourseFronten.entity.Like;
+import cn.canlnac.OnlineCourseFronten.entity.Message;
 import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -41,6 +43,9 @@ public class ChatController {
 
     @Autowired
     FavoriteService favoriteService;
+
+    @Autowired
+    MessageService messageService;
 
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
@@ -159,8 +164,45 @@ public class ChatController {
                 chatService.update(chat);
             }
         }
-
-
         return map;
+    }
+
+    /*用户点赞话题*/
+    @RequestMapping("getlike")
+    @ResponseBody
+    public int getlike(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        int chatId = Integer.parseInt(request.getParameter("id"));
+        Session session = SecurityUtils.getSubject().getSession();
+        Chat chat = new Chat();
+        chat.setId(chatId);
+        int isLike = likeService.isLike(Integer.parseInt(session.getAttribute("id").toString()),"chat",chatId);
+        if (isLike>0){
+            //已经点赞了,所以赞-1
+            int del = likeService.delete("chat",chatId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (del > 0){
+                chat.setLikeCount(-2);
+                chatService.update(chat);
+            }
+        } else {
+            //还没点赞,所以赞+1
+            Like like = new Like();
+            int crt = likeService.create("chat",chatId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (crt > 0){
+                chat.setLikeCount(2);
+                chatService.update(chat);
+                //消息
+                Message message = new Message();
+                message.setIsRead('N');
+                message.setType("chat");
+                message.setToUserId(chatService.findByID(chatId).getUserId());
+                message.setFromUserId(Integer.parseInt(session.getAttribute("id").toString()));
+                message.setActionType("like");
+                message.setPositionId(chatId);
+                message.setContent("有人赞了你的话题");
+                messageService.create(message);
+            }
+        }
+        return likeService.count("chat",chatId);
     }
  }
