@@ -2,8 +2,9 @@ package cn.canlnac.OnlineCourseFronten.controller.chat;
 
 import cn.canlnac.OnlineCourseFronten.entity.Chat;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.service.ChatService;
-import cn.canlnac.OnlineCourseFronten.service.ProfileService;
+import cn.canlnac.OnlineCourseFronten.service.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,20 +30,39 @@ public class ChatController {
     @Autowired
     ProfileService profileService;
 
+    @Autowired
+    LikeService likeService;
+
+    @Autowired
+    WatchService watchService;
+
+    @Autowired
+    CommentService commentService;
+
+    @Autowired
+    FavoriteService favoriteService;
+
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
         return "/frontend/chat";
     }
 
+
     @RequestMapping("getchat")
     @ResponseBody
     public Map getchat(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        //从session中获取用户id
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
 
         String nowPage = request.getParameter("nowPage");//当前页数
 
         String hotOrNew = request.getParameter("hotOrNew");//点击查询
 
         String search = request.getParameter("search");//搜索框查询条件
+
+        String type = "chat";//话题
 
         //每页显示15条
         int count = 10;
@@ -69,10 +89,11 @@ public class ChatController {
             unit.put("content",chat.getContent());
             unit.put("userId",chat.getUserId());
             unit.put("pictureUrls",chat.getPictureUrls());
-            unit.put("watchCount",chat.getWatchCount());
-            unit.put("likeCount",chat.getLikeCount());
-            unit.put("commentCount",chat.getCommentCount());
-            unit.put("favoriteCount",chat.getFavoriteCount());
+            unit.put("watchCount",watchService.count(type,chat.getId()));
+            unit.put("likeCount",likeService.count(type,chat.getId()));
+            unit.put("commentCount",commentService.count(type,chat.getId()));
+            unit.put("favoriteCount",favoriteService.count(type,chat.getId()));
+            unit.put("favorite",favoriteService.isFavorite(userId,type,chat.getId()));
             unit.put("profile",profileService.findByUserID(chat.getUserId()));
             chats.add(unit);
         }
@@ -88,4 +109,48 @@ public class ChatController {
 
         return map;
     }
-}
+
+    /*用户收藏话题*/
+    @RequestMapping("createfavorite")
+    @ResponseBody
+    public Map favorite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        //从session中获取用户id
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+
+        String type = request.getParameter("type");//收藏类型
+
+        String chatId = request.getParameter("chatId");//获取话题id
+
+        String title = request.getParameter("title");//标识
+
+        Chat chat=chatService.findByID(Integer.parseInt(chatId));
+
+        Map map =new HashMap();
+        int savefavorite;
+        int isfavorite = favoriteService.isFavorite(userId,type,Integer.parseInt(chatId));//是否已收藏
+
+        if ("收藏".equals(title)&&isfavorite==0){
+            savefavorite= favoriteService.create(type,Integer.parseInt(chatId),userId);
+            if (savefavorite>0){
+                int favorite =chat.getFavoriteCount()+4;
+                chat.setFavoriteCount(favorite);
+                chatService.update(chat);
+            }
+
+        }
+
+        if ("取消收藏".equals(title)&&isfavorite==1){
+            savefavorite= favoriteService.delete(type,Integer.parseInt(chatId),userId);
+            if (savefavorite>0){
+                int favorite =chat.getFavoriteCount()-4;
+                chat.setFavoriteCount(favorite);
+                chatService.update(chat);
+            }
+        }
+
+
+        return map;
+    }
+ }

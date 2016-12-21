@@ -38,6 +38,7 @@ function getData(url,data){
             pageChange();
             jsonToHtml(data);
             big();
+            favorite();
         },
         error:function (e) {
             errBack();
@@ -151,7 +152,7 @@ function jsonToHtml(data) {
         /*用户头像end*/
         /*话题标题*/
         html +='<div class="ques-con">';
-        html +='<a href="/wenda/detail/338503" class="ques-con-content" target="_blank"title="testarea没有value值，那么才能在js中展示呢？">关于testarea的取值问题</a>\n';
+        html +='<a href="/wenda/detail/338503" class="ques-con-content" target="_blank"title="'+content.title+'">'+content.title+'</a>\n';
         html +='</div>';
         /*话题标题end*/
 
@@ -170,19 +171,24 @@ function jsonToHtml(data) {
         /*图片end*/
         html +='<div style="position: static;" class="ctrl-bar clearfix">\n';
         /*点赞*/
-        html +='<a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">\n';
+        html +='<a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="'+content.id+'">\n';
         html +='<em class="numShow">赞</em>\n';
         html +='<span>'+content.likeCount+'</span>\n';
         html +='</a>\n';
         /*点赞end*/
         /*收藏*/
-        html +='<a title="收藏" href="javascript:;" class="js-pl-praise list-praise r" data-id="82399">\n';
+        if(content.favorite==1){
+            html +='<a title="取消收藏" href="javascript:;" class="favorite js-pl-praise list-praise r" data-id="'+content.id+'">\n';
+        }
+        if(content.favorite==0){
+            html +='<a title="收藏" href="javascript:;" class="favorite js-pl-praise list-praise r" data-id="'+content.id+'">\n';
+        }
         html +='<em class="numShow">收藏</em>\n';
         html +='<span>'+content.favoriteCount+'</span>\n';
         html +='</a>\n';
         /*收藏ends*/
         /*评论*/
-        html +='<a title="评论" href="/OnlineCourseFronten/commentdetail/show?id='+content.id+'" class="js-pl-praise list-praise r" data-id="82399">\n';
+        html +='<a title="评论" href="/OnlineCourseFronten/commentdetail/show?id='+content.id+'" class="js-pl-praise list-praise r" data-id="'+content.id+'">\n';
         html +='<em class="numShow">评论</em>\n';
         html +='<span>'+content.commentCount+'</span>\n';
         html +='</a>\n';
@@ -233,3 +239,62 @@ function big() {
 }
 
 /*照片变大end*/
+
+/*点赞*/
+function dizan() {
+    $('.dianzan a').on('click', function (e) {
+        e.preventDefault();
+        var title = $(this).attr('title');
+        var span = $(this).children('span').text();
+        if (title == '赞') {
+            $(this).attr('title', '取消赞');
+            var newspan = parseInt(span) + parseInt(1);
+            $(this).children('span').html(newspan);
+        }
+        if (title == '取消赞') {
+            $(this).attr('title', '赞');
+            var newspan = parseInt(span) - parseInt(1);
+            $(this).children('span').html(newspan);
+        }
+    })
+}
+/*点赞*/
+
+/*收藏*/
+function favorite() {
+    $('.favorite ').on('click', function (e) {
+        e.preventDefault();
+        var type ="chat";//话题
+        var title = $(this).attr('title');
+        var dataid= $(this).attr('data-id');
+        var span = $(this).children('span').text();
+        if (title == '收藏') {
+            $(this).attr('title', '取消收藏');
+            var newspan = parseInt(span) + parseInt(1);
+            $(this).children('span').html(newspan);
+        }
+        if (title == '取消收藏') {
+            $(this).attr('title', '收藏');
+            var newspan = parseInt(span) - parseInt(1);
+            $(this).children('span').html(newspan);
+        }
+        var data ={
+            type:type,
+            title:title,
+            chatId:dataid,
+        }
+        $.ajax({
+            url:'/OnlineCourseFronten/chat/createfavorite',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            success:function (data) {
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    })
+}
+/*收藏*/
