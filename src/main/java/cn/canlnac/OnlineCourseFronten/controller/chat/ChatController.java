@@ -152,6 +152,16 @@ public class ChatController {
                 int favorite =chat.getFavoriteCount()+4;
                 chat.setFavoriteCount(favorite);
                 chatService.update(chat);
+                //消息
+                Message message = new Message();
+                message.setIsRead('N');
+                message.setType("chat");
+                message.setToUserId(chatService.findByID(Integer.parseInt(chatId)).getUserId());
+                message.setFromUserId(Integer.parseInt(session.getAttribute("id").toString()));
+                message.setActionType("favorite");
+                message.setPositionId(Integer.parseInt(chatId));
+                message.setContent("有人收藏你的话题");
+                messageService.create(message);
             }
 
         }
