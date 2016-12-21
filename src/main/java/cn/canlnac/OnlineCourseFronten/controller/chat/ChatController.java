@@ -44,6 +44,12 @@ public class ChatController {
 
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+        //从session中获取用户id
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+
+        model.put("userId",userId);//用户ID
+
         return "/frontend/chat";
     }
 
@@ -64,6 +70,7 @@ public class ChatController {
 
         String type = "chat";//话题
 
+
         //每页显示15条
         int count = 10;
         //分页开始位置
@@ -72,6 +79,9 @@ public class ChatController {
         String sort = hotOrNew.equals("hot")?"rank":"date";
         //条件
         Map conditions = new HashMap();
+        if ("my".equals(hotOrNew)){
+            conditions.put("userId",userId);
+        }
         conditions.put("status", Arrays.asList("public"));
         if (search!=null && !search.equals("")){
             conditions.put("search", search);

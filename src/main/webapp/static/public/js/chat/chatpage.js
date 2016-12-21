@@ -124,7 +124,18 @@ $('.chat').on('click',function () {
     } else {
         $('.chat,.active').removeClass('active');
         $(this).addClass('active');
-        $('.chat,.active').attr('name',$('.sort-item,.active').attr('name')=='hot'?'new':'hot');
+        var name = '';
+        switch ($(this).index()){
+            case 0:
+                name = 'hot';break;
+            case 1:
+                name = 'new';break;
+            case 2:
+                name = 'my';break;
+
+        }
+        $('.chat,.active').attr('name',name);
+
         nowPage = 1;
         //触发ajax
         main();

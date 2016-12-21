@@ -27,6 +27,7 @@
                 <div class="nav">
                     <a href="javascript:void(0);" class="chat active" name="hot">最热</a>
                     <a href="javascript:void(0)" class="chat" name="new">最新</a>
+                    <a href="javascript:void(0)" class="chat" name="${userId}">我的话题</a>
                     <!--<a href="/wenda/waitreply">等待回答</a>-->
 
                 </div>
