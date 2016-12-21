@@ -37,6 +37,8 @@ public class CommentController {
     private ProfileService profileService;
     @Autowired
     private LikeService likeService;
+    @Autowired
+    private MessageService messageService;
 
     /**
      * 发表评论
@@ -149,6 +151,16 @@ public class CommentController {
             if (crt > 0){
                 comment.setLikeCount(1);
                 commentService.update(comment);
+                //消息
+                Message message = new Message();
+                message.setIsRead('N');
+                message.setType("comment");
+                message.setToUserId(commentService.findByID(commentId).getUserId());
+                message.setFromUserId(Integer.parseInt(session.getAttribute("id").toString()));
+                message.setActionType("like");
+                message.setPositionId(commentId);
+                message.setContent("有人赞了你的评论");
+                messageService.create(message);
             }
         }
         return commentService.findByID(commentId).getLikeCount();

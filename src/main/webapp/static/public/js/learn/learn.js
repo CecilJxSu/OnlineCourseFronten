@@ -237,7 +237,7 @@ function beforeSend() {
 }
 /************** end：评论分页列表***********/
 
-
+//点赞或取消点赞
 function like(e,comment_id) {
     $.ajax({
         url:'/OnlineCourseFronten/comment/like',//路径
@@ -248,7 +248,6 @@ function like(e,comment_id) {
             id  : comment_id
         },
         success:function (data) {
-            alert(data);
             $(e).children('span').html(data);
         },
         error:function (e) {
