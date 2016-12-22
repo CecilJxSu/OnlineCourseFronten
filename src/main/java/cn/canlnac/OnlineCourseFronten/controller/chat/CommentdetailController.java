@@ -53,7 +53,6 @@ public class CommentdetailController {
         String chatId = request.getParameter("id");//获取话题id
 
         Chat chat = chatService.findByID(Integer.parseInt(chatId));//获取话题
-        chat.setCommentCount(commentService.count("chat",chat.getId()));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String Date=sdf.format(chat.getDate());//时间转换
@@ -71,6 +70,9 @@ public class CommentdetailController {
             chat.setWatchCount(1);
             chatService.update(chat);
         }
+
+        chat.setCommentCount(commentService.count("chat",chat.getId()));//评论数
+        chat.setWatchCount(watchService.count("chat",chat.getId()));//浏览数
 
         model.put("chat",chat);
         model.put("profile",profile);
