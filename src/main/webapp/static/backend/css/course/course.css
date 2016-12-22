@@ -111,7 +111,6 @@
   color: #399bff;
 }
 body {
-  background: #3d464d;
   color: #58666e;
   margin: 0;
   line-height: 1.7em;
@@ -875,11 +874,10 @@ Sidepanel
 Content 
 ================================================================================= */
 .content {
-  padding-left: 0px;
+  padding-left: 30px;
   padding-right: 30px;
-  padding-top: 0px;
-  margin-left: 250px;
-  background: #f5f5f5;
+  padding-top: 80px;
+  /*background: #f5f5f5;*/
 }
 .content1 {
   padding-left: 30px;
