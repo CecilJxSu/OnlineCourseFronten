@@ -7,9 +7,13 @@ import cn.canlnac.OnlineCourseFronten.service.CourseService;
 import cn.canlnac.OnlineCourseFronten.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by can on 2016/12/22.
@@ -23,6 +27,35 @@ public class RootCatalogController {
     private CourseService courseService;
     @Autowired
     private DocumentService documentService;
+
+
+    /**
+     * 进入上传资源页面
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("ulresourse")
+    public String ulresourse(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+        return "/backend/uploadresource";
+    }
+
+    /**
+     * 进入资源管理页面
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("soursemanage")
+    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+        return "/backend/soursemanage";
+    }
 
     /**
      * 添加章

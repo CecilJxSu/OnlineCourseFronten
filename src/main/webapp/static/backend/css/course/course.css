@@ -4083,3 +4083,19 @@ Widgets
   font-size: 11px;
   opacity: 0.7;
 }
+.soursepanel{
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: none;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.courseform{
+  margin-right: 294px;
+  margin-left: 198px;
+}
+.courseform div{
+  margin-bottom: 18px;
+}

@@ -6,7 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <meta charset="UTF-8">
     <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/bootstrap/bootstrap.css">
     <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/style.css">
     <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/font-awesome.min.css">
@@ -70,24 +69,17 @@
     <div class="sidebar-colorful">
         <ul class="sidebar-panel nav ">
             <li><a href="index.html" target="_self"><span class="icon color3"><i class="fa fa-dashboard"></i></span>报表面板</a></li>
-            <li><a target="_self"><span class="icon color7"><i class="fa fa-gift"></i></span>创建课程<span class="caret"></span></a>
+            <li>
+                <a target="_self"><span class="icon color7"><i class="fa fa-gift"></i></span>创建课程<span class="caret"></span></a>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/root/course/show" target="iframe">创建课程</a></li>
-                    <%--<li><a href="direct-traffic.html" target="_self">直接流量</a></li>
-                    <li><a href="coo-traffic.html" target="_self">合作流量</a></li>--%>
-                    <%--<li><a href="seo.html" target="_self">SEO</a></li>--%>
                 </ul>
             </li>
-            <li><a target="_self" ><span class="icon color6"><i class="fa fa-money"></i></span>付费推广<span class="caret"></span></a>
+            <li>
+                <a target="_self" ><span class="icon color6"><i class="fa fa-money"></i></span>资源<span class="caret"></span></a>
                 <ul >
-                    <li><a href="paying-promotion.html" target="_self">付费概括</a></li>
-                    <li><a href="sem.html" target="_self">SEM</a></li>
-                    <li><a href="edm.html" target="_self">EDM</a></li>
-                    <li><a href="dsp.html" target="_self">DSP</a></li>
-                    <li><a href="alliance-promotion.html" target="_self">网盟</a></li>
-                    <li><a href="text-message.html" target="_self">短信</a></li>
-                    <li><a href="telecom.html" target="_self">电信</a></li>
-                    <li><a href="advertorial.html" target="_self">软文</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/catalog/ulresourse" target="iframe">上传资源</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/catalog/soursemanage" target="iframe">资源管理</a></li>
                 </ul>
             </li>
             <li><a href="#"><span class="icon color5"><i class="fa fa-bullhorn"></i></span>活动分析<span class="caret"></span></a>

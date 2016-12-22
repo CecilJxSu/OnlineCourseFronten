@@ -23,22 +23,22 @@ $(document).ready(function () {
     loadiframe("#iframe");
 })
 function loadiframe(obj) {
-    var connenctheight = $(obj).contents().height();//框架里body高度
+    var connenctheight = $(obj).contents().find("body").height();//框架里body高度
     var height=document.documentElement.clientHeight;//浏览器可视高度
     if (connenctheight< height){
-        $(obj).height(height)+50;
+        $(obj).height(height)+1400;
     }else {
-        $(obj).height(connenctheight)+50;
+        $(obj).height(connenctheight)+1400;
     }
 }
 
 $("#iframe").load(function(){
-    var connenctheight = $(this).contents().height();//框架里body高度
+    var connenctheight = $(this).contents().find("body").height();//框架里body高度
     var height=document.documentElement.clientHeight;//浏览器可视高度
     if (connenctheight< height){
-        $(this).height(height)+50;
+        $(this).height(height)+1400;
     }else {
-        $(this).height(connenctheight)+50;
+        $(this).height(connenctheight)+1400;
     }
 
 });

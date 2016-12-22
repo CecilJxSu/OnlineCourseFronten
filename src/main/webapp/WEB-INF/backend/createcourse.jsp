@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <meta charset="UTF-8">
     <title>createCourse</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/course/course.css">
@@ -18,7 +17,6 @@
         <h1 class="title">创建课程</h1>
     </div>
     <!-- 创建课程end -->
-
 
     <!-- 课程、章、节 -->
     <div>
@@ -45,49 +43,161 @@
                     <%--课程--%>
                     <div role="tabpanel" class="tab-pane active" id="home10">
                         <div class="container-padding">
-                            <from action="" method="post">
-                                <input type="text" name="course"/>
-                                <input type="button" value="提交">
-                            </from>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control" id="input002" >
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">课程简介</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="introduction" rows="3" id="textarea1" placeholder="课程简介"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <div class="col-sm-12 text-right" style="padding-top:20px;">
+                                            <a href="#" class="btn btn-success">提交</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
-                        <!-- End Content -->
                     </div>
                     <%--课程end--%>
                     <%--章--%>
                     <div role="tabpanel" class="tab-pane" id="profile10">
                         <div class="container-padding">
-                            <from action="" method="post">
-                                <select>
-                                    <option value ="course1">course1</option>
-                                    <option value ="course2">course2</option>
-                                    <option value="course3">course3</option>
-                                    <option value="course4">course4</option>
-                                </select>
-                                <input type="text" name="chapter"/>
-                                <input type="button" value="提交">
-                            </from>
+                            <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="courseform">
+                                            <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="course_id">
+                                                    <option value ="course1">course1</option>
+                                                    <option value ="course2">course2</option>
+                                                    <option value="course3">course3</option>
+                                                    <option value="course4">course4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="courseform">
+                                            <label for="input002" class="col-sm-2 control-label form-label">章号</label>
+                                            <div class="col-sm-10">
+                                                第<input type="text" name="index" class="form-control" style="width: 50px;" >章
+                                            </div>
+                                        </div>
+                                        <div class="courseform">
+                                            <label for="input002" class="col-sm-2 control-label form-label">章名称</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="name" class="form-control"  >
+                                            </div>
+                                        </div>
+                                        <div class="courseform">
+                                            <label class="col-sm-2 control-label form-label">章简介</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="introduction" rows="3"  placeholder="课程简介"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="courseform">
+                                            <div class="col-sm-12 text-right" style="padding-top:20px;">
+                                                <a href="#" class="btn btn-success">提交</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
                         </div>
                     </div>
                     <%--章end--%>
                     <%--节--%>
                     <div role="tabpanel" class="tab-pane" id="messages10">
                         <div class="container-padding">
-                            <from action="" method="post">
-                                <select>
-                                    <option value ="course1">course1</option>
-                                    <option value ="course2">course2</option>
-                                    <option value="course3">course3</option>
-                                    <option value="course4">course4</option>
-                                </select>
-                                <select>
-                                    <option value ="chapter1">chapter1</option>
-                                    <option value ="chapter2">chapter2</option>
-                                    <option value="chapter3">chapter3</option>
-                                    <option value="chapter4">chapter4</option>
-                                </select>
-                                <input type="text" name="section"/>
-                                <input type="button" value="提交">
-                            </from>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="course_id">
+                                                <option value ="course1">course1</option>
+                                                <option value ="course2">course2</option>
+                                                <option value="course3">course3</option>
+                                                <option value="course4">course4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">章</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="parent_id">
+                                                <option value ="1">parent1</option>
+                                                <option value ="2">parent2</option>
+                                                <option value="3">parent3</option>
+                                                <option value="4">parent4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">节</label>
+                                        <div class="col-sm-10">
+                                            第<input type="text" name="index" class="form-control" style="width: 50px;" >节
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">节名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control"  >
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">视频资源</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="document_url_id">
+                                                <option value ="1">parent1</option>
+                                                <option value ="2">parent2</option>
+                                                <option value="3">parent3</option>
+                                                <option value="4">parent4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">预览图</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="document_img_id">
+                                                <option value ="1">1</option>
+                                                <option value ="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label for="input002" class="col-sm-2 control-label form-label">其他资源</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="document_id">
+                                                <option value ="1">document1</option>
+                                                <option value ="2">document2</option>
+                                                <option value="3">document3</option>
+                                                <option value="4">document4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <div class="col-sm-12 text-left" style="padding-top:20px;">
+                                            <a href="#" class="btn btn-success">更多其他资源</a>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <div class="col-sm-12 text-right" style="padding-top:20px;">
+                                            <a href="#" class="btn btn-success">提交</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <%--节end--%>
