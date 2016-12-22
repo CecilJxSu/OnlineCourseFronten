@@ -138,10 +138,10 @@
                             <div class="card-sets clearfix">
                                 <a href="/OnlineCourseFronten/user/profile/show" target="_blank" class="l mr30">个人设置</a>
                                 <c:if test="${userStatus=='teacher'}">
-                                    <a href="/OnlineCourseFronten/index/teacher" target="_blank" class="l mr30">进入教师页面</a>
+                                    <a href="/OnlineCourseFronten/index/root" target="_blank" class="l mr30">进入教师页面</a>
                                 </c:if>
                                 <c:if test="${userStatus=='admin'}">
-                                    <a href="/OnlineCourseFronten/index/admin" target="_blank" class="l mr30">进入管理员页面</a>
+                                    <a href="/OnlineCourseFronten/index/root" target="_blank" class="l mr30">进入管理员页面</a>
                                 </c:if>
                                 <a href="/OnlineCourseFronten/logout" class="r">退出</a>
                             </div>

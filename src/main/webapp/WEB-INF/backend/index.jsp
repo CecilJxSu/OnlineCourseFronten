@@ -72,7 +72,7 @@
             <li><a href="index.html" target="_self"><span class="icon color3"><i class="fa fa-dashboard"></i></span>报表面板</a></li>
             <li><a target="_self"><span class="icon color7"><i class="fa fa-gift"></i></span>创建课程<span class="caret"></span></a>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/creatcourse/show" target="iframe">创建课程</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/course/show" target="iframe">创建课程</a></li>
                     <%--<li><a href="direct-traffic.html" target="_self">直接流量</a></li>
                     <li><a href="coo-traffic.html" target="_self">合作流量</a></li>--%>
                     <%--<li><a href="seo.html" target="_self">SEO</a></li>--%>

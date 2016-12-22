@@ -71,4 +71,8 @@ public class IndexController {
         return modelAndView;
     }
 
+    @RequestMapping("/root")
+    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+        return "/backend/index";
+    }
 }

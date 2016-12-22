@@ -20,6 +20,11 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    /**
+     * 进入课程页面
+     * @param search    搜索框条件
+     * @return
+     */
     @RequestMapping("show")
     public ModelAndView showIndex(@RequestParam(value = "search",defaultValue = "")String search) {
         ModelAndView modelAndView = new ModelAndView();
@@ -30,6 +35,13 @@ public class CourseController {
         return modelAndView;
     }
 
+    /**
+     * 获取课程信息
+     * @param nowPage   当前页码
+     * @param hotOrNew  最热|最新
+     * @param search    搜索框条件
+     * @return
+     */
     @RequestMapping("get")
     @ResponseBody
     public Map getCourse(@RequestParam(value="nowPage")int nowPage,
