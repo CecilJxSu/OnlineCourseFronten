@@ -108,7 +108,7 @@
                             <h3>
                                 <span class="icon-drop_down js-close js-open"></span>
                                 <strong>
-                                    <i class="icon-chapter"></i>
+                                    <i class="icon-chapter">第<c:out value="${units.chapter.index}"/>章</i>
                                     <c:out value="${units.chapter.name}"/>
                                     <div class="icon-info chapter-info">
                                         <i class="icon-drop_up triangle" style="display: none;">
@@ -128,7 +128,7 @@
                                 <c:forEach var="section" items="${units.sections}">
                                     <li data-media-id="52">
                                         <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item">
-                                            <i class="icon-code type"></i>
+                                            <i class="icon-code type">第<c:out value="${section.index}"/>节</i>
                                             <c:out value="${section.name}"/>
                                             <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
                                         </a>

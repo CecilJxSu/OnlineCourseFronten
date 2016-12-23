@@ -47,9 +47,9 @@
                             <div class="panel-body">
                                 <form id="course" class="form-horizontal">
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                        <label for="course-name" class="col-sm-2 control-label form-label">课程名</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control" id="input002" >
+                                            <input type="text" name="name" class="form-control" id="course-name" >
                                         </div>
                                     </div>
                                     <div class="courseform">
@@ -75,9 +75,9 @@
                             <div class="panel-body">
                                     <form id="chapter" class="form-horizontal">
                                         <div class="courseform">
-                                            <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                            <label class="col-sm-2 control-label form-label">课程名</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" name="course_id">
+                                                <select class="form-control" name="course_id" id="chapter_course">
                                                     <option value ="">请选择课程</option>
                                                     <c:forEach var="course" items="${courses}">
                                                         <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
@@ -86,15 +86,15 @@
                                             </div>
                                         </div>
                                         <div class="courseform">
-                                            <label for="input002" class="col-sm-2 control-label form-label">章号</label>
+                                            <label class="col-sm-2 control-label form-label">章号</label>
                                             <div class="xz col-sm-10">
-                                                <i>第</i><input type="text" name="index" class="form-control" style="width: 50px;" ><i>章</i>
+                                                <i>第</i><input type="number" id="chapter_index" name="index" class="form-control" style="width: 50px;" ><i>章</i>
                                             </div>
                                         </div>
                                         <div class="courseform">
-                                            <label for="input002" class="col-sm-2 control-label form-label">章名称</label>
+                                            <label class="col-sm-2 control-label form-label">章名称</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="name" class="form-control"  >
+                                                <input type="text" id="chapter_name" name="name" class="form-control"  >
                                             </div>
                                         </div>
                                         <div class="courseform">
@@ -250,6 +250,11 @@
 
     /*** start: 课程提交 ***/
     $('#btn-success-course').on('click',function () {
+        if ($('#course-name').val()==''){
+            alert('课程名不能为空');
+            return false;
+        }
+
         //上传
         var form = new FormData(document.getElementById("course"));
 
@@ -273,6 +278,40 @@
         });
     });
     /*** end: 课程提交 ***/
+
+    /*** start: 章提交 ***/
+    $('#btn-success-chapter').on('click',function () {
+        if($('#chapter_course').val()==''){
+            alert('请先选择课程');
+            return false;
+        }
+        if($('#chapter_index').val()==''){
+            alert('请先填写章号');
+            return false;
+        }
+        if($('#chapter_name').val()==''){
+            alert('请先填写章名称');
+            return false;
+        }
+        //上传
+        var form = new FormData(document.getElementById("chapter"));
+
+        $.ajax({
+            url:"/OnlineCourseFronten/root/catalog/chapter/add",
+            type:"post",
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                alert('成功');
+                $('#chapter')[0].reset();
+            },
+            error:function(e){
+                alert('章创建失败');
+            }
+        });
+    });
+    /*** end: 章提交 ***/
 </script>
 </body>
 </html>
