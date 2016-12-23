@@ -59,16 +59,17 @@ public class RootCourseController {
         Profile profile = profileService.findByUserID(userId);
         //判断个人信息是否完善
         if (profile == null || profile.getDepartment()==null || profile.getDepartment().equals("")){
-            return "课程创建失败！请先完善个人信息";
+            return "profile-err";
         } else {
             Course course = new Course();
             course.setName(name);
             course.setIntroduction(introduction);
             course.setUserId(userId);
             course.setDepartment(profile.getDepartment());
+            course.setStatus("draft");//创建时为草稿状态
             //创建课程，并判断是否创建成功
             if (courseService.create(course)>0){
-                return "课程创建成功！";
+                return "success";
             } else {
                 return null;
             }

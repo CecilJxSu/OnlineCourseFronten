@@ -112,30 +112,33 @@ public class UserController {
         }
 
         //保存图片
-        Map map = FileController.saveFlie(request).get(0);
-        String url = (String) map.get("url");
-        //判断文件是否为图片
-        if (map.get("fileType").toString().indexOf("image")==-1){
-            //不是图片
-            returnMap.put("error","error-pic-type");
-            FileController.deleteFile(url,request);
-            return returnMap;
+        List<Map> returnList = FileController.saveFlie(request);
+        if (returnList.size()>0) {
+            Map map = returnList.get(0);
+            String url = (String) map.get("url");
+            //判断文件是否为图片
+            if (map.get("fileType").toString().indexOf("image") == -1) {
+                //不是图片
+                returnMap.put("error", "error-pic-type");
+                FileController.deleteFile(url, request);
+                return returnMap;
+            }
+            //超过25KB
+            if (Integer.parseInt(map.get("fileSize").toString()) > 25600) {
+                returnMap.put("error", "error-pic-size");
+                FileController.deleteFile(url, request);
+                return returnMap;
+            }
+
+            //修改session中的头像路径
+            session.setAttribute("iconUrl", url);
+
+            //删除服务器中的旧图片
+            FileController.deleteFile(profile.getIconUrl(), request);
+
+            //图片名设进对象profile中
+            profile.setIconUrl(url);
         }
-        //超过25KB
-        if (Integer.parseInt(map.get("fileSize").toString())>25600){
-            returnMap.put("error","error-pic-size");
-            FileController.deleteFile(url,request);
-            return returnMap;
-        }
-
-        //修改session中的头像路径
-        session.setAttribute("iconUrl",url);
-
-        //删除服务器中的旧图片
-        FileController.deleteFile(profile.getIconUrl(),request);
-
-        //图片名设进对象profile中
-        profile.setIconUrl(url);
 
         profile.setUniversityId(request.getParameter("universityId"));
         profile.setNickname(request.getParameter("nickname"));

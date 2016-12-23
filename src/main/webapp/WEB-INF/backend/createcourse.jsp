@@ -44,7 +44,7 @@
                     <div role="tabpanel" class="tab-pane active" id="home10">
                         <div class="container-padding">
                             <div class="panel-body">
-                                <form class="form-horizontal">
+                                <form id="course" class="form-horizontal">
                                     <div class="courseform">
                                         <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
                                         <div class="col-sm-10">
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                            <a href="#" class="btn btn-success">提交</a>
+                                            <a href="#" class="btn btn-success course">提交</a>
                                         </div>
                                     </div>
 
@@ -72,7 +72,7 @@
                     <div role="tabpanel" class="tab-pane" id="profile10">
                         <div class="container-padding">
                             <div class="panel-body">
-                                    <form class="form-horizontal">
+                                    <form id="chapter" class="form-horizontal">
                                         <div class="courseform">
                                             <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
                                             <div class="col-sm-10">
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="courseform">
                                             <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                                <a href="#" class="btn btn-success">提交</a>
+                                                <a href="#" class="btn btn-success chapter">提交</a>
                                             </div>
                                         </div>
 
@@ -117,7 +117,7 @@
                     <div role="tabpanel" class="tab-pane" id="messages10">
                         <div class="container-padding">
                             <div class="panel-body">
-                                <form class="form-horizontal">
+                                <form id="section" class="form-horizontal">
                                     <div class="courseform">
                                         <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
                                         <div class="col-sm-10">
@@ -246,6 +246,32 @@
         });
     }
     /*删除资源end*/
+
+    /*** start: 课程提交 ***/
+    $('.btn,.btn-success,.course').on('click',function () {
+        //上传
+        var form = new FormData(document.getElementById("course"));
+
+        $.ajax({
+            url:"/OnlineCourseFronten/root/course/add",
+            type:"post",
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                if (data == 'profile-err')
+                    alert('课程创建失败！请先完善个人信息');
+                if (data == 'success') {
+                    alert('成功');
+                    $('#course')[0].reset();
+                }
+            },
+            error:function(e){
+                alert('课程创建失败');
+            }
+        });
+    });
+    /*** end: 课程提交 ***/
 </script>
 </body>
 </html>

@@ -28,35 +28,6 @@ public class RootCatalogController {
     @Autowired
     private DocumentService documentService;
 
-
-    /**
-     * 进入上传资源页面
-     * @param request
-     * @param response
-     * @param model
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("ulresourse")
-    public String ulresourse(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-
-        return "/backend/uploadresource";
-    }
-
-    /**
-     * 进入资源管理页面
-     * @param request
-     * @param response
-     * @param model
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("soursemanage")
-    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-
-        return "/backend/soursemanage";
-    }
-
     /**
      * 添加章
      * @param courseId      课程id
