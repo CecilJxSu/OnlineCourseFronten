@@ -187,8 +187,12 @@
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-left" style="padding-top:20px;">
-                                            <a href="#" class="btn btn-success">更多其他资源</a>
+                                            <a id="moreresourse" href="javascript:void(0);" class="btn btn-success">更多其他资源</a>
                                         </div>
+                                        <%--显示更多资源--%>
+                                        <div class="more">
+                                        </div>
+                                        <%--显示更多资源end--%>
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-right" style="padding-top:20px;">
@@ -216,5 +220,32 @@
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/backend/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/backend/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript">
+    /*加载更多资源*/
+    $("#moreresourse").on("click",function (e) {
+        e.preventDefault();
+        var html ='';
+        html +='<div class="col-sm-10 qt">\n';
+        html +='<select class="form-control" name="document_id">\n';
+        html +='<option value ="1">document1</option>\n';
+        html +='<option value ="2">document2</option>\n';
+        html +='<option value="3">document3</option>\n';
+        html +='<option value="4">document4</option>\n';
+        html +='</select>\n';
+        html +='<span class="cb"></span>\n';
+        html +='</div>\n';
+        $(".more").append(html);
+        removemore();
+    });
+    /*加载更多资源end*/
+    /*删除资源*/
+    function removemore() {
+        $(".cb").on("click",function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+        });
+    }
+    /*删除资源end*/
+</script>
 </body>
 </html>

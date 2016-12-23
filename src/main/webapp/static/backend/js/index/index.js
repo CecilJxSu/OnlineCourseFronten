@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
 /*框架高度*/
-$(document).ready(function () {
+/*$(document).ready(function () {
     loadiframe("#iframe");
 })
 function loadiframe(obj) {
@@ -41,4 +41,20 @@ $("#iframe").load(function(){
         $(this).height(connenctheight)+1400;
     }
 
-});
+});*/
+function reinitIframe(){
+    var iframe = document.getElementById("iframe");
+    try{
+        var clientheight=document.documentElement.clientHeight;//浏览器可视高度
+        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+        var height = Math.max(bHeight, dHeight);
+        if(height<clientheight){
+            iframe.height = clientheight;
+        }else {
+            iframe.height = height;
+        }
+        console.log(height);
+    }catch (ex){}
+}
+window.setInterval("reinitIframe()", 200);

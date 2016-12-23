@@ -4099,3 +4099,17 @@ Widgets
 .courseform div{
   margin-bottom: 18px;
 }
+.qt{
+    margin-left: 168px;
+    display: -webkit-inline-box;
+}
+.qt select{
+    width: 80%;
+}
+.cb{
+    display: block;
+    height: 36px;
+    width: 36px;
+    background: url(/OnlineCourseFronten/static/staticWEB/img/icon/delete.png) center center no-repeat;
+    overflow: hidden
+}
