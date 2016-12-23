@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -59,7 +60,7 @@
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                            <a href="#" class="btn btn-success course">提交</a>
+                                            <a id="btn-success-course" href="#" class="btn btn-success">提交</a>
                                         </div>
                                     </div>
 
@@ -77,10 +78,10 @@
                                             <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="course_id">
-                                                    <option value ="course1">course1</option>
-                                                    <option value ="course2">course2</option>
-                                                    <option value="course3">course3</option>
-                                                    <option value="course4">course4</option>
+                                                    <option value ="">请选择课程</option>
+                                                    <c:forEach var="course" items="${courses}">
+                                                        <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
@@ -104,7 +105,7 @@
                                         </div>
                                         <div class="courseform">
                                             <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                                <a href="#" class="btn btn-success chapter">提交</a>
+                                                <a id="btn-success-chapter" href="#" class="btn btn-success">提交</a>
                                             </div>
                                         </div>
 
@@ -196,7 +197,7 @@
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                            <a href="#" class="btn btn-success">提交</a>
+                                            <a id="btn-success-section" href="#" class="btn btn-success">提交</a>
                                         </div>
                                     </div>
 
@@ -248,7 +249,7 @@
     /*删除资源end*/
 
     /*** start: 课程提交 ***/
-    $('.btn,.btn-success,.course').on('click',function () {
+    $('#btn-success-course').on('click',function () {
         //上传
         var form = new FormData(document.getElementById("course"));
 

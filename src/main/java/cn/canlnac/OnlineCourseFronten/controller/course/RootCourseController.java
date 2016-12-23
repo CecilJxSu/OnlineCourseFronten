@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,16 +31,19 @@ public class RootCourseController {
 
     /**
      * 进入课程创建页面
-     * @param request
-     * @param response
-     * @param model
      * @return
-     * @throws Exception
      */
     @RequestMapping("show")
-    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+    public ModelAndView showIndex() {
+        ModelAndView modelAndView = new ModelAndView();
 
-        return "/backend/createcourse";
+        //获取作者ID
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        modelAndView.addObject("courses",courseService.findByUserId(userId));
+
+        modelAndView.setViewName("/backend/createcourse");
+        return modelAndView;
     }
 
     /**
@@ -52,6 +56,8 @@ public class RootCourseController {
     @ResponseBody
     public String add(@RequestParam("name") String name,
                    @RequestParam("introduction") String introduction){
+        if (name.equals(""))
+            return null;
         //获取作者ID
         Session session = SecurityUtils.getSubject().getSession();
         int userId = Integer.parseInt(session.getAttribute("id").toString());
