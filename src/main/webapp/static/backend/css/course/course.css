@@ -4106,6 +4106,14 @@ Widgets
 .qt select{
     width: 80%;
 }
+.xz{
+    display: -webkit-inline-box;
+}
+.xz i{
+    font-style: initial;
+    padding: 10px;
+}
+
 .cb{
     display: block;
     height: 36px;

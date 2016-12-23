@@ -54,7 +54,7 @@ function reinitIframe(){
         }else {
             iframe.height = height;
         }
-        console.log(height);
+        /*console.log(height);*/
     }catch (ex){}
 }
 window.setInterval("reinitIframe()", 200);

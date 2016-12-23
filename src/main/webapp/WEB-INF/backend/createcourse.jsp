@@ -86,8 +86,8 @@
                                         </div>
                                         <div class="courseform">
                                             <label for="input002" class="col-sm-2 control-label form-label">章号</label>
-                                            <div class="col-sm-10">
-                                                第<input type="text" name="index" class="form-control" style="width: 50px;" >章
+                                            <div class="xz col-sm-10">
+                                                <i>第</i><input type="text" name="index" class="form-control" style="width: 50px;" ><i>章</i>
                                             </div>
                                         </div>
                                         <div class="courseform">
@@ -142,8 +142,8 @@
                                     </div>
                                     <div class="courseform">
                                         <label for="input002" class="col-sm-2 control-label form-label">节</label>
-                                        <div class="col-sm-10">
-                                            第<input type="text" name="index" class="form-control" style="width: 50px;" >节
+                                        <div class="xz col-sm-10 ">
+                                            <i>第</i><input type="text" name="index" class="form-control" style="width: 50px;" ><i>节</i>
                                         </div>
                                     </div>
                                     <div class="courseform">

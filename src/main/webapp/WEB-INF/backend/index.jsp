@@ -78,8 +78,8 @@
             <li>
                 <a target="_self" ><span class="icon color6"><i class="fa fa-money"></i></span>资源<span class="caret"></span></a>
                 <ul >
-                    <li><a href="${pageContext.request.contextPath}/root/catalog/ulresourse" target="iframe">上传资源</a></li>
-                    <li><a href="${pageContext.request.contextPath}/root/catalog/soursemanage" target="iframe">资源管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/document/ul/show" target="iframe">上传资源</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/document/manage/show" target="iframe">资源管理</a></li>
                 </ul>
             </li>
             <li><a href="#"><span class="icon color5"><i class="fa fa-bullhorn"></i></span>活动分析<span class="caret"></span></a>
@@ -91,10 +91,6 @@
             <li><a href="#"><span class="icon color10"><i class="fa fa-shopping-cart"></i></span>产品分析<span class="caret"></span></a>
                 <ul>
                     <li><a href="shuma.html" target="_self">数码相机</a></li>
-                    <!--       <li><a href="shuma.html" target="_self">手表</a></li>
-                    <li><a href="shuma.html" target="_self">电子乐器</a></li>
-                    <li><a href="shuma.html" target="_self">计算器</a></li>
-                    <li><a href="shuma.html" target="_self">投影机</a></li> -->
 
                 </ul>
             </li>
