@@ -55,7 +55,7 @@
                                 <div class="uploadfrom">
                                     <label class="col-sm-2 control-label form-label">批量上传</label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="uploadinput"  multiple="">
+                                        <input type="file" class="uploadinput"  multiple="" accept="video/mp4">
                                     </div>
                                 </div>
                                 <div class="courseform">
