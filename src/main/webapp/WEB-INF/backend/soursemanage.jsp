@@ -39,7 +39,12 @@
                         <form class="form-horizontal">
                             <div class="managediv">
                                 <label>课程:</label>
-                                <input type="text" id="course" name="course" class="manageselect form-control"  >
+                                <select class="manageselect form-control">
+                                    <option value="1">course1</option>
+                                    <option value="2">course2</option>
+                                    <option value="3">sourse3</option>
+                                    <option value="4">course4</option>
+                                </select>
                                 <label>资源:</label>
                                 <select class="manageselect form-control">
                                     <option value="chapter1">chapter1</option>

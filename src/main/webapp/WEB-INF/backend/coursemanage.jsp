@@ -40,7 +40,12 @@
                         <form class="form-horizontal">
                             <div class="managediv">
                                 <label>课程:</label>
-                                <input type="text" id="course" name="course" class="cmi form-control"  >
+                                <select class="cmi form-control">
+                                    <option value="1">course1</option>
+                                    <option value="2">course2</option>
+                                    <option value="3">sourse3</option>
+                                    <option value="4">course4</option>
+                                </select>
                                 <input class="manageinput btn btn-success" type="button" value="查询">
                             </div>
                         </form>
@@ -99,9 +104,6 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_info" id="example0_info" role="status" aria-live="polite">
-                                        总共1页，显示第1 到第 5 ，筛选之后得到 5 条，初始5 条
-                                    </div>
                                     <div class="dataTables_paginate paging_full_numbers" id="example0_paginate">
                                         <a class="paginate_button first disabled" aria-controls="example0" data-dt-idx="0" tabindex="0" id="example0_first">第一页</a>
                                         <a class="paginate_button previous disabled" aria-controls="example0" data-dt-idx="1" tabindex="0" id="example0_previous">上一页</a>
