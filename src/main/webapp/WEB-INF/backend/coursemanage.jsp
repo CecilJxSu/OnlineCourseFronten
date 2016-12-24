@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <title>soursemanage</title>
+    <title>coursemanage</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/course/course.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/datatables/datatables.css">
@@ -14,7 +15,7 @@
 <div class="content">
     <%--资源管理--%>
     <div class="page-header">
-        <h1 class="title">资源管理</h1>
+        <h1 class="title">课程管理</h1>
     </div>
     <%--资源管理end--%>
     <%--管理内容--%>
@@ -26,27 +27,20 @@
             <ul class="nav nav-tabs tabcolor5-bg" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true"
-                       class="active">资源管理</a>
+                       class="active">课程管理</a>
                 </li>
             </ul>
 
 
             <div class="tab-content">
-                <%--资源管理--%>
+                <%--课程管理--%>
                 <div role="tabpanel" class="tab-pane active" id="home10">
                     <div class="container-padding">
                         <%--查询条件--%>
                         <form class="form-horizontal">
                             <div class="managediv">
                                 <label>课程:</label>
-                                <input type="text" id="course" name="course" class="manageselect form-control"  >
-                                <label>资源:</label>
-                                <select class="manageselect form-control">
-                                    <option value="chapter1">chapter1</option>
-                                    <option value="chapter2">chapter2</option>
-                                    <option value="chapter3">chapter3</option>
-                                    <option value="chapter4">chapter4</option>
-                                </select>
+                                <input type="text" id="course" name="course" class="cmi form-control"  >
                                 <input class="manageinput btn btn-success" type="button" value="查询">
                             </div>
                         </form>
@@ -54,15 +48,15 @@
                         <%--显示查询内容--%>
                         <div class="panel">
                             <div class="panel-body table-responsive">
-                                <div id="example0_wrapper" class="dataTables_wrapper no-footer" style="overflow: hidden">
+                                <div id="example0_wrapper" class="manage dataTables_wrapper no-footer" style="overflow: hidden">
                                     <table id="example0" class="table display dataTable no-footer" role="grid" aria-describedby="example0_info" >
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_asc"  style="width: 101px;">课程</th>
-                                            <th class="sorting"  style="width: 212px;">文件名</th>
+                                            <th class="sorting"  style="width: 212px;">状态</th>
                                             <th class="sorting"  style="width: 207px;">创建日期</th>
-                                            <th class="sorting"  style="width: 157px;">文件大小</th>
-                                            <th class="sorting" style="width: 130px;">操作</th>
+                                            <th class="sorting"  style="width: 157px;">操作</th>
+                                            <th class="sorting" style="width: 130px;">转化率</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -125,7 +119,7 @@
                         <%--显示查询内容end--%>
                     </div>
                 </div>
-                <%--资源管理--%>
+                <%--课程管理--%>
             </div>
 
 
@@ -135,5 +129,8 @@
     <%--管理内容end--%>
 </div>
 <%--内容--%>
+<!--加载js-->
+<script src="${pageContext.request.contextPath}/static/backend/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/backend/js/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

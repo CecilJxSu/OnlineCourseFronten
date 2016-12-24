@@ -82,10 +82,9 @@
                     <li><a href="${pageContext.request.contextPath}/root/document/manage/show" target="iframe">资源管理</a></li>
                 </ul>
             </li>
-            <li><a href="#"><span class="icon color5"><i class="fa fa-bullhorn"></i></span>活动分析<span class="caret"></span></a>
+            <li><a href="#"><span class="icon color5"><i class="fa fa-bullhorn"></i></span>课程管理<span class="caret"></span></a>
                 <ul>
-                    <li><a href="qingren.html" target="_self">情人节促销</a></li>
-                    <li><a href="liuyi.html" target="_self">六一促销</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/course/manage" target="iframe">课程管理 </a></li>
                 </ul>
             </li>
             <li><a href="#"><span class="icon color10"><i class="fa fa-shopping-cart"></i></span>产品分析<span class="caret"></span></a>

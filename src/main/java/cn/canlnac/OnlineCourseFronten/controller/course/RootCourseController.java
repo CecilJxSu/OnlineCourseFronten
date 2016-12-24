@@ -94,4 +94,16 @@ public class RootCourseController {
         int userId = Integer.parseInt(session.getAttribute("id").toString());
         return courseService.findByUserId(userId);
     }
+
+    /**
+     * 进入课程管理页面
+     * @return
+     */
+    @RequestMapping("manage")
+    public ModelAndView coursemanage() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("/backend/coursemanage");
+        return modelAndView;
+    }
 }
