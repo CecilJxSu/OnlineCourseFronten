@@ -1,8 +1,10 @@
 package cn.canlnac.OnlineCourseFronten.controller.course;
 
 import cn.canlnac.OnlineCourseFronten.entity.Course;
+import cn.canlnac.OnlineCourseFronten.entity.Document;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.service.CourseService;
+import cn.canlnac.OnlineCourseFronten.service.DocumentService;
 import cn.canlnac.OnlineCourseFronten.service.ProfileService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -16,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by can on 2016/12/22.
@@ -28,6 +33,8 @@ public class RootCourseController {
     private CourseService courseService;
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private DocumentService documentService;
 
     /**
      * 进入课程创建页面
@@ -105,5 +112,31 @@ public class RootCourseController {
 
         modelAndView.setViewName("/backend/coursemanage");
         return modelAndView;
+    }
+
+	/**
+     * 获取该课程的所有视频资源、所有图片资源、所有资源
+     * @param courseId
+     * @return
+     */
+    @RequestMapping("sources/all/get")
+    @ResponseBody
+    public Map getAllSources(@RequestParam("course_id") int courseId){
+        List<Document> videos = new ArrayList<Document>();
+        List<Document> pics = new ArrayList<Document>();
+        List<Document> all = documentService.getDocuments(0,documentService.count("course",courseId),"date","course",courseId);
+        for (Document document : all){
+            if (document.getType().equals("video/mp4")){
+                videos.add(document);
+            }
+            if (document.getType().indexOf("image") != -1){
+                pics.add(document);
+            }
+        }
+        Map map = new HashMap();
+        map.put("videos",videos);
+        map.put("pics",pics);
+        map.put("all",all);
+        return map;
     }
 }

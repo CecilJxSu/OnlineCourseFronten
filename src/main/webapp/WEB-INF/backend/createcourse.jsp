@@ -120,69 +120,57 @@
                             <div class="panel-body">
                                 <form id="section" class="form-horizontal">
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">课程名</label>
+                                        <label class="col-sm-2 control-label form-label">课程</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="course_id">
-                                                <option value ="course1">course1</option>
-                                                <option value ="course2">course2</option>
-                                                <option value="course3">course3</option>
-                                                <option value="course4">course4</option>
+                                            <select class="form-control" name="course_id" id="section_course_id">
+                                                <option value ="">请选择课程</option>
+                                                <c:forEach var="course" items="${courses}">
+                                                    <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">章</label>
+                                        <label class="col-sm-2 control-label form-label">章</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="parent_id">
-                                                <option value ="1">parent1</option>
-                                                <option value ="2">parent2</option>
-                                                <option value="3">parent3</option>
-                                                <option value="4">parent4</option>
+                                            <select class="form-control" name="parent_id" id="parent_id">
+                                                <option value ="">请选择章</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">节</label>
+                                        <label class="col-sm-2 control-label form-label">节</label>
                                         <div class="xz col-sm-10 ">
-                                            <i>第</i><input type="text" name="index" class="form-control" style="width: 50px;" ><i>节</i>
+                                            <i>第</i><input type="text" name="index" id="section_index" class="form-control" style="width: 50px;" ><i>节</i>
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">节名称</label>
+                                        <label class="col-sm-2 control-label form-label">节名称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control"  >
+                                            <input type="text" name="name" class="form-control" id="section_name" >
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">视频资源</label>
+                                        <label class="col-sm-2 control-label form-label">视频资源</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_url_id">
-                                                <option value ="1">parent1</option>
-                                                <option value ="2">parent2</option>
-                                                <option value="3">parent3</option>
-                                                <option value="4">parent4</option>
+                                            <select class="form-control" name="document_url_id" id="document_url_id">
+                                                <option value ="">请选择视频资源</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">预览图</label>
+                                        <label class="col-sm-2 control-label form-label">预览图</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_img_id">
-                                                <option value ="1">1</option>
-                                                <option value ="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
+                                            <select class="form-control" name="document_img_id" id="document_img_id">
+                                                <option value ="">请选择预览图</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label for="input002" class="col-sm-2 control-label form-label">其他资源</label>
+                                        <label class="col-sm-2 control-label form-label">其他资源</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_id">
-                                                <option value ="1">document1</option>
-                                                <option value ="2">document2</option>
-                                                <option value="3">document3</option>
-                                                <option value="4">document4</option>
+                                            <select class="form-control" name="document_ids" id="document_id">
+                                                <option value ="">请选择其他资源</option>
                                             </select>
                                         </div>
                                     </div>
@@ -227,11 +215,8 @@
         e.preventDefault();
         var html ='';
         html +='<div class="col-sm-10 qt">\n';
-        html +='<select class="form-control" name="document_id">\n';
-        html +='<option value ="1">document1</option>\n';
-        html +='<option value ="2">document2</option>\n';
-        html +='<option value="3">document3</option>\n';
-        html +='<option value="4">document4</option>\n';
+        html +='<select class="form-control" name="document_ids">\n';
+        html +=$('#document_id').html();
         html +='</select>\n';
         html +='<span class="cb"></span>\n';
         html +='</div>\n';
@@ -278,7 +263,43 @@
         });
     });
     /*** end: 课程提交 ***/
+    /*** start: 节提交 ***/
+    $('#btn-success-section').on('click',function () {
+        if($('#section_course_id').val()==''){
+            alert('请先选择课程');
+            return false;
+        }
+        if($('#parent_id').val()==''){
+            alert('请先选择章');
+            return false;
+        }
+        if($('#section_index').val()==''){
+            alert('请先填写节号');
+            return false;
+        }
+        if($('#section_name').val()==''){
+            alert('请先填写节名称');
+            return false;
+        }
+        //上传
+        var form = new FormData(document.getElementById("section"));
 
+        $.ajax({
+            url:"/OnlineCourseFronten/root/catalog/section/add",
+            type:"post",
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                alert('成功');
+                $('#section')[0].reset();
+            },
+            error:function(e){
+                alert('节创建失败');
+            }
+        });
+    });
+    /*** end: 节提交 ***/
     /*** start: 章提交 ***/
     $('#btn-success-chapter').on('click',function () {
         if($('#chapter_course').val()==''){
@@ -312,6 +333,62 @@
         });
     });
     /*** end: 章提交 ***/
+    /*** start: 创建节时的资源和章的获取 ***/
+    $('#section_course_id').change(function () {
+        //获取章
+        $.ajax({
+            url:"/OnlineCourseFronten/root/catalog/chapter/get",
+            type:"post",
+            data:{
+                course_id : $('#section_course_id').val()
+            },
+            cache:false,
+            dataType:'json',
+            success:function(data){
+                var html = '<option value ="">请选择章</option>';
+                $.each( data, function(index, content) {
+                    html += '<option value ="'+content.id+'">第'+content.index+'章 '+content.name+'</option>';
+                });
+                $('#parent_id').html(html);
+            },
+            error:function(e){
+                $('#parent_id').html('<option value ="">请选择章</option>');
+            }
+        });
+        //获取资源
+        $.ajax({
+            url:"/OnlineCourseFronten/root/course/sources/all/get",
+            type:"post",
+            data:{
+                course_id : $('#section_course_id').val()
+            },
+            cache:false,
+            dataType:'json',
+            success:function(data){
+                var document_url_html = '<option value ="">请选择视频资源</option>';
+                var document_img_html = '<option value ="">请选择预览图</option>';
+                var document_html = '<option value ="">请选择其他资源</option>';
+                $.each( data.videos, function(index, content) {
+                    document_url_html += '<option value ="'+content.id+'">'+content.name+'</option>';
+                });
+                $.each( data.pics, function(index, content) {
+                    document_img_html += '<option value ="'+content.id+'">'+content.name+'</option>';
+                });
+                $.each( data.all, function(index, content) {
+                    document_html += '<option value ="'+content.id+'">'+content.name+'</option>';
+                });
+                $('#document_url_id').html(document_url_html);
+                $('#document_img_id').html(document_img_html);
+                $('#document_id').html(document_html);
+            },
+            error:function(e){
+                $('#document_url_id').html('<option value ="">请选择视频资源</option>');
+                $('#document_img_id').html('<option value ="">请选择预览图</option>');
+                $('#document_id').html('<option value ="">请选择其他资源</option>');
+            }
+        });
+    });
+    /*** end: 创建节时的资源和章的获取 ***/
 </script>
 </body>
 </html>

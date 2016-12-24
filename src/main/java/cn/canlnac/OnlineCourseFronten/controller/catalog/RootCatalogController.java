@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by can on 2016/12/22.
@@ -41,6 +43,8 @@ public class RootCatalogController {
                            @RequestParam("index")int index,
                            @RequestParam("name") String name,
                            @RequestParam("introduction") String introduction){
+        if (name.equals(""))
+            return null;
         Catalog catalog = new Catalog();
         catalog.setCourseId(courseId);
         catalog.setParentId(0);
@@ -55,6 +59,22 @@ public class RootCatalogController {
     }
 
     /**
+     * 获取该课程下的所有章
+     * @param courseId      课程id
+     * @return
+     */
+    @RequestMapping("chapter/get")
+    @ResponseBody
+    public List getChapter(@RequestParam("course_id") int courseId){
+        List<Catalog> chapters = new ArrayList<Catalog>();
+        for (Catalog catalog : catalogService.getList(courseId)){
+            if (catalog.getParentId()==0)
+                chapters.add(catalog);
+        }
+        return chapters;
+    }
+
+    /**
      * 添加节
      * @param courseId          课程id
      * @param parentId          章id
@@ -66,6 +86,7 @@ public class RootCatalogController {
      * @return
      */
     @RequestMapping("section/add")
+    @ResponseBody
     public String addSection(@RequestParam("course_id") int courseId,
                            @RequestParam("parent_id") int parentId,
                            @RequestParam("index")int index,
@@ -73,6 +94,8 @@ public class RootCatalogController {
                            @RequestParam("document_url_id") int documentUrlId,
                            @RequestParam("document_img_id") int documentImgId,
                            @RequestParam("document_ids")int[] documentIds){
+        if (courseId==0 || parentId==0 || index==0 || name.equals(""))
+            return null;
         Catalog catalog = new Catalog();
         catalog.setCourseId(courseId);
         catalog.setParentId(parentId);
