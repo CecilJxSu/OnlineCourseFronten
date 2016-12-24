@@ -119,4 +119,32 @@ public class RootCatalogController {
         }
         return "success";
     }
+
+    /**
+     * 进入章管理页面
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("manage/show")
+    public String manage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+        return "/backend/catalogmanage";
+    }
+
+    /**
+     * 进入节管理页面
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("section/show")
+    public String sectionmanage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+        return "/backend/sectionmanage";
+    }
 }

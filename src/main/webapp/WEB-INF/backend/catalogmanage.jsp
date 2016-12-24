@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <title>coursemanage</title>
+    <title>catalogmanage</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/course/course.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/datatables/datatables.css">
@@ -25,9 +25,11 @@
 
 
             <ul class="nav nav-tabs tabcolor5-bg" role="tablist">
+                <li role="presentation" class="">
+                    <a  class="" aria-expanded="false">课程管理</a>
+                </li>
                 <li role="presentation" class="active">
-                    <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true"
-                       class="active">课程管理</a>
+                    <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true" class="active">章管理</a>
                 </li>
             </ul>
 
@@ -39,12 +41,12 @@
                         <%--查询条件--%>
                         <form class="form-horizontal">
                             <div class="managediv">
-                                <label>课程:</label>
+                                <label>章:</label>
                                 <select class="cmi form-control">
-                                    <option value="1">course1</option>
-                                    <option value="2">course2</option>
-                                    <option value="3">sourse3</option>
-                                    <option value="4">course4</option>
+                                    <option value="1">catalog1</option>
+                                    <option value="2">catalog2</option>
+                                    <option value="3">catalog3</option>
+                                    <option value="4">catalog4</option>
                                 </select>
                                 <input class="manageinput btn btn-success" type="button" value="查询">
                             </div>
@@ -54,11 +56,18 @@
                         <div class="panel">
                             <div class="panel-body table-responsive">
                                 <div id="example0_wrapper" class="manage dataTables_wrapper no-footer" style="overflow: hidden">
+                                    <%--返回上一级--%>
+                                    <div id="example0_filter" class="dataTables_filter">
+                                        <a href="${pageContext.request.contextPath}/root/course/manage/show" class="catalogbtn">
+                                            返回上一级
+                                        </a>
+                                    </div>
+                                    <%--返回上一级end--%>
                                     <table id="example0" class="table display dataTable no-footer" role="grid" aria-describedby="example0_info" >
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc"  style="width: 101px;">课程</th>
-                                            <th class="sorting"  style="width: 212px;">状态</th>
+                                            <th class="sorting_asc"  style="width: 101px;">章</th>
+                                            <th class="sorting"  style="width: 212px;">视频时间长度</th>
                                             <th class="sorting"  style="width: 207px;">创建日期</th>
                                             <th class="sorting"  style="width: 157px;">操作</th>
                                             <th class="sorting" style="width: 130px;">转化率</th>
@@ -69,7 +78,7 @@
 
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">
-                                                <a href="${pageContext.request.contextPath}/root/catalog/manage/show">java</a>
+                                                <a href="${pageContext.request.contextPath}/root/catalog/section/show">Java2章节</a>
                                             </td>
                                             <td>10.86%</td>
                                             <td>66</td>

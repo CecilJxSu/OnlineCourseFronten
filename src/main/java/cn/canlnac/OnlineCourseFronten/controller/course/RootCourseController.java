@@ -106,7 +106,7 @@ public class RootCourseController {
      * 进入课程管理页面
      * @return
      */
-    @RequestMapping("manage")
+    @RequestMapping("manage/show")
     public ModelAndView coursemanage() {
         ModelAndView modelAndView = new ModelAndView();
 

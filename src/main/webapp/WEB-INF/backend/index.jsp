@@ -84,7 +84,7 @@
             </li>
             <li><a href="#"><span class="icon color5"><i class="fa fa-bullhorn"></i></span>课程管理<span class="caret"></span></a>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/root/course/manage" target="iframe">课程管理 </a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/course/manage/show" target="iframe">课程管理 </a></li>
                 </ul>
             </li>
             <li><a href="#"><span class="icon color10"><i class="fa fa-shopping-cart"></i></span>产品分析<span class="caret"></span></a>

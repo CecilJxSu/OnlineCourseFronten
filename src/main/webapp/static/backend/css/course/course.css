@@ -4153,10 +4153,22 @@ Widgets
     margin: 25px;
     width: 369px;
 }
-.manage{
-
+/*章管理*/
+.catalogbtn{
+    display: block;
+    font-size: 14px;
+    padding: 7px 20px 7px 20px;
+    border: none;
+    background: rgb(38, 166, 91);
+    color: #F3F1F1;
+    border-radius: 3px;
 }
-
+.catalogbtn:hover{
+    background-color: #2ab764;
+    color: #fff;
+    border-color: #398439;
+    text-decoration: none;
+}
 
 
 
