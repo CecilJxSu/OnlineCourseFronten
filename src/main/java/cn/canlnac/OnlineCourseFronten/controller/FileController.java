@@ -95,10 +95,65 @@ public class FileController {
             //将request变成多部分request
             MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
             //获取multiRequest 中所有的文件名
-            //Iterator<String> iter=multiRequest.getFileNames();
+            Iterator<String> iter=multiRequest.getFileNames();
+
+            while(iter.hasNext())
+            {
+                //一次遍历所有文件
+                MultipartFile file = multiRequest.getFile(iter.next());
+                if(file!=null && file.getSize()>0)
+                {
+                    //获取原文件名
+                    String fileName = file.getOriginalFilename();
+                    //获取后文件缀名
+                    //String suffix = file.getOriginalFilename().split("\\.")[1];
+
+                    //创建新文件名
+                    String uuid = UUID.randomUUID().toString();
+                    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+                    messageDigest.update(uuid.getBytes());
+                    uuid = String.format("%032X", new BigInteger(1, messageDigest.digest()));
+                    String fileUrl = uuid;
+
+                    //文件存储路径
+                    String path = getSourcesDirectory(request)+fileUrl;
+                    //上传
+                    file.transferTo(new File(path));
+
+                    Map map = new HashMap();
+                    map.put("fileType",file.getContentType());//文件类型
+                    map.put("fileSize",file.getSize());//文件大小
+                    map.put("url",fileUrl);//新文件名
+                    map.put("fileName",fileName);//原文件名
+                    returnList.add(map);
+                }
+            }
+        }
+        return returnList;
+    }
+
+    /**
+     * 保存批量文件 <input type="file" name="files"  multiple/>
+     * @param request
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws IOException
+     */
+    @RequestMapping("save/files")
+    @ResponseBody
+    public static List<Map> saveFlies(HttpServletRequest request) throws NoSuchAlgorithmException, IOException {
+        List returnList = new ArrayList();
+        //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
+        CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(request.getSession().getServletContext());
+
+        //检查form中是否有enctype="multipart/form-data"
+        if(multipartResolver.isMultipart(request))
+        {
+            //将request变成多部分request
+            MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
             //取出一个list的multipartfile
             List<MultipartFile> files = multiRequest.getFiles("files");
-            //while(iter.hasNext())
+
             for (MultipartFile file : files)
             {
                 //一次遍历所有文件

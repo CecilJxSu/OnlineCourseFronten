@@ -79,7 +79,7 @@ public class RootDocumentController {
     @ResponseBody
     public String uploadVideo(@RequestParam("course_id") int courseId,
                               HttpServletRequest request) throws IOException, NoSuchAlgorithmException {
-        List<Map> list = FileController.saveFlie(request);
+        List<Map> list = FileController.saveFlies(request);
         int count = 0;
         for (Map map:list) {
             if (map.get("fileType").toString().equals("video/mp4")) {
@@ -108,7 +108,7 @@ public class RootDocumentController {
     @ResponseBody
     public String uploadOther(@RequestParam("course_id") int courseId,
                               HttpServletRequest request) throws IOException, NoSuchAlgorithmException {
-        List<Map> list = FileController.saveFlie(request);
+        List<Map> list = FileController.saveFlies(request);
         int count = 0;
         for (Map map:list) {
             Document document = new Document();
