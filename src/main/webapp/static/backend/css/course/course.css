@@ -4121,3 +4121,33 @@ Widgets
     background: url(/OnlineCourseFronten/static/staticWEB/img/icon/delete.png) center center no-repeat;
     overflow: hidden
 }
+
+.uploadinput{
+    border: none;
+    box-shadow: none;
+}
+.uploadfrom{
+    margin-right: 50%;
+}
+.uploadfrom div{
+    margin-bottom: 25px;
+}
+.uploadleft{
+    margin-left: -258px;
+}
+.managediv {
+    display: -webkit-inline-box;
+}
+.managediv label{
+    margin-top: 30px;
+}
+.manageselect{
+    width: 60%;
+    margin: 25px;
+}
+.manageinput{
+    margin: 25px;
+}
+
+
+

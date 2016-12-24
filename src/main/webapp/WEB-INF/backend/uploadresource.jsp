@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
@@ -40,31 +40,30 @@
                     <%--课程--%>
                     <div role="tabpanel" class="tab-pane active" id="home10">
                         <div class="container-padding">
-                            <div class="col-md-3">
-
-                                <h3>Select files</h3>
-
-                                <div ng-show="uploader.isHTML5">
-                                    <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                                    <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                                        Base drop zone
-                                    </div>
-
-                                    <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                                    <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                                        <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                                            Another drop zone with its own settings
-                                        </div>
+                          <form  class="form-horizontal">
+                                <div class="uploadfrom">
+                                    <label  class="col-sm-2 control-label form-label">课程名</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="course_id">
+                                            <option value ="course1">course1</option>
+                                            <option value ="course2">course2</option>
+                                            <option value="course3">course3</option>
+                                            <option value="course4">course4</option>
+                                        </select>
                                     </div>
                                 </div>
-
-                                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                                Multiple
-                                <input type="file" nv-file-select="" uploader="uploader" multiple=""><br>
-
-                                Single
-                                <input type="file" nv-file-select="" uploader="uploader">
-                            </div>
+                                <div class="uploadfrom">
+                                    <label class="col-sm-2 control-label form-label">批量上传</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="uploadinput"  multiple="">
+                                    </div>
+                                </div>
+                                <div class="courseform">
+                                  <div class="uploadleft col-sm-12 text-right" style="padding-top:20px;">
+                                      <a href="#" class="btn btn-success">提交</a>
+                                  </div>
+                              </div>
+                            </form>
                         </div>
                         <!-- End Content -->
                     </div>
@@ -72,16 +71,30 @@
                     <%--章--%>
                     <div role="tabpanel" class="tab-pane" id="profile10">
                         <div class="container-padding">
-                            <from action="" method="post">
-                                <select>
-                                    <option value ="course1">course1</option>
-                                    <option value ="course2">course2</option>
-                                    <option value="course3">course3</option>
-                                    <option value="course4">course4</option>
-                                </select>
-                                <input type="text" name="chapter"/>
-                                <input type="button" value="提交">
-                            </from>
+                            <form  class="form-horizontal">
+                                <div class="uploadfrom">
+                                    <label  class="col-sm-2 control-label form-label">课程名</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="course_id">
+                                            <option value ="course1">course1</option>
+                                            <option value ="course2">course2</option>
+                                            <option value="course3">course3</option>
+                                            <option value="course4">course4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="uploadfrom">
+                                    <label class="col-sm-2 control-label form-label">其他上传</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="uploadinput"  multiple="">
+                                    </div>
+                                </div>
+                                <div class="courseform">
+                                    <div class="uploadleft col-sm-12 text-right" style="padding-top:20px;">
+                                        <a href="#" class="btn btn-success">提交</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <%--章end--%>
