@@ -3,6 +3,7 @@ package cn.canlnac.OnlineCourseFronten.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -82,6 +83,7 @@ public class FileController {
      * @throws IOException
      */
     @RequestMapping("save")
+    @ResponseBody
     public static List<Map> saveFlie(HttpServletRequest request) throws NoSuchAlgorithmException, IOException {
         List returnList = new ArrayList();
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
@@ -93,12 +95,14 @@ public class FileController {
             //将request变成多部分request
             MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
             //获取multiRequest 中所有的文件名
-            Iterator<String> iter=multiRequest.getFileNames();
-
-            while(iter.hasNext())
+            //Iterator<String> iter=multiRequest.getFileNames();
+            //取出一个list的multipartfile
+            List<MultipartFile> files = multiRequest.getFiles("files");
+            //while(iter.hasNext())
+            for (MultipartFile file : files)
             {
                 //一次遍历所有文件
-                MultipartFile file = multiRequest.getFile(iter.next());
+                //MultipartFile file = multiRequest.getFile(iter.next());
                 if(file!=null && file.getSize()>0)
                 {
                     //获取原文件名
