@@ -3554,7 +3554,6 @@ div[data-role="editor-toolbar"] {
   width: 26px;
   border-radius: 4px;
   font-size: 23px;
-  background: #ccc;
   color: #000;
   text-shadow: none;
   opacity: 0.4;
@@ -4174,6 +4173,17 @@ Widgets
   width: 40%;
   margin: 25px;
 }
+/*用户管理*/
+.userinput{
+    margin: 25px;
+    width: 340px;
+}
+.usercontent{
+    margin-top: 30%;
+    box-shadow: none;
+}
+
+
 
 
 

@@ -92,12 +92,9 @@
                     <li><a href="${pageContext.request.contextPath}/root/learnrecord/show" target="iframe">学习记录</a></li>
                 </ul>
             </li>
-            <li><a href="#"><span class="icon color9"><i class="fa fa-desktop"></i></span>站内分析<span class="caret"></span></a>
+            <li><a href="#"><span class="icon color9"><i class="fa fa-desktop"></i></span>用户管理<span class="caret"></span></a>
                 <ul>
-                    <li><a href="channel.html" target="_self">频道分析</a></li>
-                    <li><a href="adpositionid.html" target="_self">广告位分析</a></li>
-                    <li><a href="in-recommend.html" target="_self">站内推荐</a></li>
-                    <li><a href="in-search.html" target="_self">站内搜索</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/user/show" target="iframe">用户管理</a></li>
                 </ul>
             </li>
             <li><a href="renqun.html" target="_self"><span class="icon color1"><i class="fa fa-group"></i></span>人群画像</a>
