@@ -4169,6 +4169,11 @@ Widgets
     border-color: #398439;
     text-decoration: none;
 }
+/*学习记录*/
+.learnselect{
+  width: 40%;
+  margin: 25px;
+}
 
 
 
