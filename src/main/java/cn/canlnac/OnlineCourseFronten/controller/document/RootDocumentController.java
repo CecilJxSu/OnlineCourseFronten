@@ -1,6 +1,7 @@
 package cn.canlnac.OnlineCourseFronten.controller.document;
 
 import cn.canlnac.OnlineCourseFronten.controller.FileController;
+import cn.canlnac.OnlineCourseFronten.entity.Course;
 import cn.canlnac.OnlineCourseFronten.entity.Document;
 import cn.canlnac.OnlineCourseFronten.service.CatalogService;
 import cn.canlnac.OnlineCourseFronten.service.CourseService;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +53,12 @@ public class RootDocumentController {
         Session session = SecurityUtils.getSubject().getSession();
         int userId = Integer.parseInt(session.getAttribute("id").toString());
 
-        modelAndView.addObject("courses",courseService.findByUserId(userId));
+        List<Course> courses = new ArrayList<Course>();
+        for (Course course:courseService.findByUserId(userId)) {
+            if (!course.getStatus().equals("delete"))
+                courses.add(course);
+        }
+        modelAndView.addObject("courses",courses);
 
         modelAndView.setViewName("/backend/uploadresource");
         return modelAndView;
@@ -68,7 +75,12 @@ public class RootDocumentController {
         //获取作者ID
         Session session = SecurityUtils.getSubject().getSession();
         int userId = Integer.parseInt(session.getAttribute("id").toString());
-        modelAndView.addObject("courses",courseService.findByUserId(userId));
+        List<Course> courses = new ArrayList<Course>();
+        for (Course course:courseService.findByUserId(userId)) {
+            if (!course.getStatus().equals("delete"))
+                courses.add(course);
+        }
+        modelAndView.addObject("courses",courses);
 
         modelAndView.setViewName("/backend/soursemanage");
         return modelAndView;

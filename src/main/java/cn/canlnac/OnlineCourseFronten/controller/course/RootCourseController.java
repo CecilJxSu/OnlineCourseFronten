@@ -44,7 +44,12 @@ public class RootCourseController {
         //获取作者ID
         Session session = SecurityUtils.getSubject().getSession();
         int userId = Integer.parseInt(session.getAttribute("id").toString());
-        modelAndView.addObject("courses",courseService.findByUserId(userId));
+        List<Course> courses = new ArrayList<Course>();
+        for (Course course:courseService.findByUserId(userId)) {
+            if (!course.getStatus().equals("delete"))
+                courses.add(course);
+        }
+        modelAndView.addObject("courses",courses);
 
         modelAndView.setViewName("/backend/createcourse");
         return modelAndView;
