@@ -37,13 +37,23 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     /**
+     * 根据文件url获取文档
+     * @param url       文件url
+     * @return
+     */
+    public List<Document> findByUrl(String url){
+        return documentDao.findByUrl(url);
+    }
+
+    /**
      * 统计文档数目
      * @param targetType    目标类型，课程：course；章节：catalog
      * @param targetId      目标ID
+     * @param type          文件类型,全部：null;视频：video；图片：img；其他：other
      * @return              文档数目
      */
-    public int count(String targetType, int targetId) {
-        return documentDao.count(targetType, targetId);
+    public int count(String targetType, int targetId,String type) {
+        return documentDao.count(targetType, targetId,type);
     }
 
     /**
@@ -53,6 +63,7 @@ public class DocumentServiceImpl implements DocumentService {
      * @param sort          排序：按日期排序：date，按名称：name，按大小：size
      * @param targetType    目标类型，课程：course；章节：catalog
      * @param targetId      目标ID
+     * @param type          文件类型,全部：null;视频：video；图片：img；其他：other
      * @return              文档列表
      */
     public List<Document> getDocuments(
@@ -60,9 +71,10 @@ public class DocumentServiceImpl implements DocumentService {
             int count,
             String sort,
             String targetType,
-            int targetId
+            int targetId,
+            String type
     ) {
-        return documentDao.getDocuments(start, count, sort, targetType, targetId);
+        return documentDao.getDocuments(start, count, sort, targetType, targetId,type);
     }
 
     /**

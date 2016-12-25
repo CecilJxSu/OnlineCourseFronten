@@ -2,6 +2,7 @@ package cn.canlnac.OnlineCourseFronten.controller.document;
 
 import cn.canlnac.OnlineCourseFronten.controller.FileController;
 import cn.canlnac.OnlineCourseFronten.entity.Document;
+import cn.canlnac.OnlineCourseFronten.service.CatalogService;
 import cn.canlnac.OnlineCourseFronten.service.CourseService;
 import cn.canlnac.OnlineCourseFronten.service.DocumentService;
 import org.apache.shiro.SecurityUtils;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,8 @@ public class RootDocumentController {
     private DocumentService documentService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private CatalogService catelogService;
 
     /**
      * 进入上传资源页面
@@ -55,16 +59,68 @@ public class RootDocumentController {
 
     /**
      * 进入资源管理页面
-     * @param request
-     * @param response
-     * @param model
      * @return
-     * @throws Exception
      */
     @RequestMapping("manage/show")
-    public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+    public ModelAndView showIndex() {
+        ModelAndView modelAndView = new ModelAndView();
 
-        return "/backend/soursemanage";
+        //获取作者ID
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        modelAndView.addObject("courses",courseService.findByUserId(userId));
+
+        modelAndView.setViewName("/backend/soursemanage");
+        return modelAndView;
+    }
+
+    /**
+     * 获取资源分页列表
+     * @param nowPage       当前页
+     * @param courseId      课程id
+     * @param type          资源类型
+     * @return
+     */
+    @RequestMapping("manage/get")
+    @ResponseBody
+    public Map getDocument(@RequestParam("nowPage") int nowPage,
+                           @RequestParam("course") int courseId,
+                           @RequestParam("type") String type){
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+
+        List<Document> documents = documentService.getDocuments(start,count,"date","course",courseId,type);
+
+        //获取总条数
+        int totalNum = documentService.count("course",courseId,type);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map resultMap = new HashMap();
+        resultMap.put("documents",documents);
+        resultMap.put("totalPage",totalPage==0?1:totalPage);
+        return resultMap;
+    }
+
+    /**
+     * 删除资源
+     * @param id        资源id
+     * @return
+     */
+    @RequestMapping("manage/delete")
+    @ResponseBody
+    public String deleteDocument(@RequestParam("id") int id,HttpServletRequest request){
+        List<Document> documents = documentService.findByUrl(documentService.findByID(id).getUrl());
+        int n = 0;
+        for (Document document:documents) {
+            if (documentService.delete(document.getId())>0){
+                FileController.deleteFile(document.getUrl(),request);
+                n++;
+            }
+        }
+        return n>0?"success":null;
     }
 
     /**

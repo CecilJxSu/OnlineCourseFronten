@@ -124,7 +124,7 @@ public class RootCourseController {
     public Map getAllSources(@RequestParam("course_id") int courseId){
         List<Document> videos = new ArrayList<Document>();
         List<Document> pics = new ArrayList<Document>();
-        List<Document> all = documentService.getDocuments(0,documentService.count("course",courseId),"date","course",courseId);
+        List<Document> all = documentService.getDocuments(0,documentService.count("course",courseId,null),"date","course",courseId,null);
         for (Document document : all){
             if (document.getType().equals("video/mp4")){
                 videos.add(document);
