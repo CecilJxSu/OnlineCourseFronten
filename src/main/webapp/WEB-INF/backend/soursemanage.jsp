@@ -103,7 +103,7 @@
         nowPage = 1;
         main();
     });
-    /************** start：评论分页列表***********/
+    /************** start：分页列表***********/
 //默认当前页(不可动)
     var nowPage = 1;
     //默认最大页数(不可动)
@@ -250,7 +250,7 @@
     function beforeSend() {
         $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
     }
-    /************** end：评论分页列表***********/
+    /************** end：分页列表***********/
 
     /**
      * 删除资源

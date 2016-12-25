@@ -176,7 +176,7 @@
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-left" style="padding-top:20px;">
-                                            <a id="moreresourse" href="javascript:void(0);" class="btn btn-success">更多其他资源</a>
+                                            <a id="moreresourse" href="javascript:void(0);" class="btn btn-success">添加其他资源</a>
                                         </div>
                                         <%--显示更多资源--%>
                                         <div class="more">

@@ -41,20 +41,6 @@
                 <%--课程管理--%>
                 <div role="tabpanel" class="tab-pane active" id="home10">
                     <div class="container-padding">
-                        <%--查询条件--%>
-                        <form class="form-horizontal">
-                            <div class="managediv">
-                                <label>节:</label>
-                                <select class="cmi form-control">
-                                    <option value="1">section1</option>
-                                    <option value="2">section2</option>
-                                    <option value="3">section3</option>
-                                    <option value="4">section4</option>
-                                </select>
-                                <input class="manageinput btn btn-success" type="button" value="查询">
-                            </div>
-                        </form>
-                        <%--查询条件end--%>
                         <%--显示查询内容--%>
                         <div class="panel">
                             <div class="panel-body table-responsive">

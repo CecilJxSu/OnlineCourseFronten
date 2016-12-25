@@ -18,10 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by can on 2016/12/22.
@@ -90,6 +87,43 @@ public class RootCourseController {
     }
 
     /**
+     * 删除课程
+     * @param courseId      课程id
+     * @return
+     */
+    @RequestMapping("delete")
+    @ResponseBody
+    public String delete(@RequestParam("id") int courseId){
+        Course course = new Course();
+        course.setId(courseId);
+        //设置课程状态为delete
+        course.setStatus("delete");
+
+        int i = courseService.update(course);
+        return i>0?"success":null;
+    }
+
+    /**
+     * 修改课程
+     * @param courseId          课程id
+     * @param name              课程名
+     * @param introduction      课程简介
+     * @return
+     */
+    @RequestMapping("update")
+    @ResponseBody
+    public String update(@RequestParam("id") int courseId,
+                         @RequestParam("name") String name,
+                         @RequestParam("introduction") String introduction){
+        Course course = new Course();
+        course.setId(courseId);
+        course.setName(name);
+        course.setIntroduction(introduction);
+        int i = courseService.update(course);
+        return i>0?"success":null;
+    }
+
+    /**
      * 根据用户id，获取其创建的课程
      * @return
      */
@@ -112,6 +146,60 @@ public class RootCourseController {
 
         modelAndView.setViewName("/backend/coursemanage");
         return modelAndView;
+    }
+
+    /**
+     * 管理课程界面获取数据
+     * @return
+     */
+    @RequestMapping("manage/get")
+    @ResponseBody
+    public Map getCourseManage(@RequestParam("nowPage") int nowPage){
+        //每页显示15条
+        int count = 15;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+        //条件,发表状态和草稿状态
+        Map conditions = new HashMap();
+        List<String> status = new ArrayList<String>();
+        status.add("public");
+        status.add("draft");
+        conditions.put("status", status);
+
+        List<Course> courses = courseService.getList(start,count,"date",conditions);
+
+        //获取总条数
+        int totalNum = courseService.count(conditions);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map map = new HashMap();
+        map.put("courses",courses);
+        map.put("totalPage",totalPage>0?totalPage:1);
+        return map;
+    }
+
+    /**
+     * 转换课程状态
+     * @param courseId      课程id
+     * @return
+     */
+    @RequestMapping("manage/status/change")
+    @ResponseBody
+    public String changeStatus(@RequestParam("id") int courseId){
+        Course course = new Course();
+        course.setId(courseId);
+        String status = courseService.findByID(courseId).getStatus();
+        //如果是发布状态，转草稿状态
+        if (status.equals("public"))
+            course.setStatus("draft");
+        //如果是草稿状态，转发布状态
+        if (status.equals("draft"))
+            course.setStatus("public");
+
+        int i = courseService.update(course);
+
+        return i>0?"success":null;
     }
 
 	/**
@@ -145,10 +233,14 @@ public class RootCourseController {
      * @return
      */
     @RequestMapping("modify/show")
-    public ModelAndView modifycourse() {
+    public ModelAndView modifycourse(@RequestParam("id") int courseId) {
         ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("course",courseService.findByID(courseId));
 
         modelAndView.setViewName("/backend/modifycourse");
         return modelAndView;
     }
+
+
 }

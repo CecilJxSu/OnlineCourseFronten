@@ -31,12 +31,6 @@
                     <li role="presentation" class="active">
                         <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true" class="active">课程</a>
                     </li>
-                    <li role="presentation" class="">
-                        <a href="#profile10" aria-controls="profile10" role="tab" data-toggle="tab" class="" aria-expanded="false">章</a>
-                    </li>
-                    <li role="presentation" class="">
-                        <a href="#messages10" aria-controls="messages10" role="tab" data-toggle="tab" class="" aria-expanded="false">节</a>
-                    </li>
                 </ul>
 
 
@@ -46,16 +40,17 @@
                         <div class="container-padding">
                             <div class="panel-body">
                                 <form id="course" class="form-horizontal">
+                                    <input type="hidden" name="id" value="<c:out value='${course.id}'/>"/>
                                     <div class="courseform">
                                         <label for="course-name" class="col-sm-2 control-label form-label">课程名</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control" id="course-name" >
+                                            <input type="text" name="name" class="form-control" id="course-name" value="<c:out value='${course.name}'/>">
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">课程简介</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" name="introduction" rows="3" id="textarea1" placeholder="课程简介"></textarea>
+                                            <textarea class="form-control" name="introduction" rows="3" id="textarea1" placeholder="课程简介"><c:out value='${course.introduction}'/></textarea>
                                         </div>
                                     </div>
                                     <div class="courseform">
@@ -233,7 +228,7 @@
     }
     /*删除资源end*/
 
-    /*** start: 课程提交 ***/
+    /*** start: 课程修改提交 ***/
     $('#btn-success-course').on('click',function () {
         if ($('#course-name').val()==''){
             alert('课程名不能为空');
@@ -244,21 +239,16 @@
         var form = new FormData(document.getElementById("course"));
 
         $.ajax({
-            url:"/OnlineCourseFronten/root/course/add",
+            url:"/OnlineCourseFronten/root/course/update",
             type:"post",
             data:form,
             processData:false,
             contentType:false,
             success:function(data){
-                if (data == 'profile-err')
-                    alert('课程创建失败！请先完善个人信息');
-                if (data == 'success') {
                     alert('成功');
-                    $('#course')[0].reset();
-                }
             },
             error:function(e){
-                alert('课程创建失败');
+                alert('课程修改失败');
             }
         });
     });
