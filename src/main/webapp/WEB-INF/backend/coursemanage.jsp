@@ -61,7 +61,6 @@
                                             <th class="sorting"  style="width: 212px;">状态</th>
                                             <th class="sorting"  style="width: 207px;">创建日期</th>
                                             <th class="sorting"  style="width: 157px;">操作</th>
-                                            <th class="sorting" style="width: 130px;">转化率</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -71,38 +70,33 @@
                                             <td class="sorting_1">
                                                 <a href="${pageContext.request.contextPath}/root/catalog/manage/show">java</a>
                                             </td>
-                                            <td>10.86%</td>
-                                            <td>66</td>
-                                            <td>1.92</td>
-                                            <td>6.38%</td>
+                                            <td>
+                                                草稿
+                                            </td>
+                                            <td>
+                                                2016-12-20 10:51:03
+                                            </td>
+                                            <td>
+                                                <a>发布</a>
+                                                <a>修改</a>
+                                                <a>删除</a>
+                                            </td>
                                         </tr>
                                         <tr role="row" class="even">
-                                            <td class="sorting_1">P309</td>
-                                            <td>3.62%</td>
-                                            <td>22</td>
-                                            <td>6.92</td>
-                                            <td>3.98</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">P483</td>
-                                            <td>6.27%</td>
-                                            <td>22</td>
-                                            <td>3.98</td>
-                                            <td>4.38%</td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">P683</td>
-                                            <td>8.28%</td>
-                                            <td>22</td>
-                                            <td>3.01</td>
-                                            <td>4.74%</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">P832</td>
-                                            <td>12.86%</td>
-                                            <td>41.21</td>
-                                            <td>1.23</td>
-                                            <td>8.42%</td>
+                                            <td class="sorting_1">
+                                                <a href="${pageContext.request.contextPath}/root/catalog/manage/show">java</a>
+                                            </td>
+                                            <td>
+                                                草稿
+                                            </td>
+                                            <td>
+                                                2016-12-20 10:51:03
+                                            </td>
+                                            <td>
+                                                <a>发布</a>
+                                                <a>修改</a>
+                                                <a>删除</a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
