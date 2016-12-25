@@ -78,7 +78,7 @@
                                             </td>
                                             <td>
                                                 <a>发布</a>
-                                                <a>修改</a>
+                                                <a href="${pageContext.request.contextPath}/root/course/modify/show">修改</a>
                                                 <a>删除</a>
                                             </td>
                                         </tr>

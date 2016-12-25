@@ -26,7 +26,7 @@
 
             <ul class="nav nav-tabs tabcolor5-bg" role="tablist">
                 <li role="presentation" class="">
-                    <a  class="" aria-expanded="false">课程管理</a>
+                    <a  href="${pageContext.request.contextPath}/root/course/manage/show" class="" aria-expanded="false">课程管理</a>
                 </li>
                 <li role="presentation" class="active">
                     <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true" class="active">章管理</a>
@@ -57,11 +57,11 @@
                             <div class="panel-body table-responsive">
                                 <div id="example0_wrapper" class="manage dataTables_wrapper no-footer" style="overflow: hidden">
                                     <%--返回上一级--%>
-                                    <div id="example0_filter" class="dataTables_filter">
+                                    <%--<div id="example0_filter" class="dataTables_filter">
                                         <a href="${pageContext.request.contextPath}/root/course/manage/show" class="catalogbtn">
                                             返回上一级
                                         </a>
-                                    </div>
+                                    </div>--%>
                                     <%--返回上一级end--%>
                                     <table id="example0" class="table display dataTable no-footer" role="grid" aria-describedby="example0_info" >
                                         <thead>
@@ -70,48 +70,32 @@
                                             <th class="sorting"  style="width: 212px;">视频时间长度</th>
                                             <th class="sorting"  style="width: 207px;">创建日期</th>
                                             <th class="sorting"  style="width: 157px;">操作</th>
-                                            <th class="sorting" style="width: 130px;">转化率</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-
-
+                                        <tr role="row" class="even">
+                                            <td class="sorting_1">
+                                                <a href="${pageContext.request.contextPath}/root/catalog/section/show">Java2章节</a>
+                                            </td>
+                                            <td>0.5h</td>
+                                            <td>2016-12-20 10:51:03</td>
+                                            <td>
+                                                <a>发布</a>
+                                                <a href="${pageContext.request.contextPath}/root/course/modify/show">修改</a>
+                                                <a>删除</a>
+                                            </td>
+                                        </tr>
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">
                                                 <a href="${pageContext.request.contextPath}/root/catalog/section/show">Java2章节</a>
                                             </td>
-                                            <td>10.86%</td>
-                                            <td>66</td>
-                                            <td>1.92</td>
-                                            <td>6.38%</td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">P309</td>
-                                            <td>3.62%</td>
-                                            <td>22</td>
-                                            <td>6.92</td>
-                                            <td>3.98</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">P483</td>
-                                            <td>6.27%</td>
-                                            <td>22</td>
-                                            <td>3.98</td>
-                                            <td>4.38%</td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">P683</td>
-                                            <td>8.28%</td>
-                                            <td>22</td>
-                                            <td>3.01</td>
-                                            <td>4.74%</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">P832</td>
-                                            <td>12.86%</td>
-                                            <td>41.21</td>
-                                            <td>1.23</td>
-                                            <td>8.42%</td>
+                                            <td>0.5h</td>
+                                            <td>2016-12-20 10:51:03</td>
+                                            <td>
+                                                <a>发布</a>
+                                                <a href="${pageContext.request.contextPath}/root/course/modify/show">修改</a>
+                                                <a>删除</a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>

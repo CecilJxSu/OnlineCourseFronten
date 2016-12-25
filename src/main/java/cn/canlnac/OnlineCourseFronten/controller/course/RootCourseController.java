@@ -139,4 +139,16 @@ public class RootCourseController {
         map.put("all",all);
         return map;
     }
+
+    /**
+     * 进入课程修改页面
+     * @return
+     */
+    @RequestMapping("modify/show")
+    public ModelAndView modifycourse() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("/backend/modifycourse");
+        return modelAndView;
+    }
 }
