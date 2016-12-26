@@ -20,10 +20,7 @@
     <%--课程管理end--%>
     <%--管理内容--%>
     <div class="panel-body" style="padding-bottom:30px;">
-
         <div role="tabpanel">
-
-
             <ul class="nav nav-tabs tabcolor5-bg" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true"

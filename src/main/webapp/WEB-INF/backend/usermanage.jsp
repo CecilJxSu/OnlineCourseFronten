@@ -40,14 +40,15 @@
                         <form class="form-horizontal">
                             <div class="managediv">
                                 <label>用户:</label>
-                                <select class="cmi form-control">
-                                    <option value="1">student</option>
-                                    <option value="2">teacher</option>
-                                    <option value="3">admin</option>
+                                <select id="userstatus" class="cmi form-control">
+                                    <option></option>
+                                    <option value="student">学生</option>
+                                    <option value="teacher">老师</option>
+                                    <option value="admin">管理员</option>
                                 </select>
                                 <label>账号:</label>
-                                <input type="text" id="chapter_name" name="name" class="userinput form-control"  >
-                                <input class="manageinput btn btn-success" type="button" value="查询">
+                                <input id="zhanghao" type="text" class="userinput form-control"  >
+                                <input id="find" class="manageinput btn btn-success" type="button" value="查询">
                             </div>
                         </form>
                         <%--查询条件end--%>
@@ -65,52 +66,12 @@
                                             <th class="sorting"  style="width: 157px;">操作</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                123456
-                                            </td>
-                                            <td>
-                                                正常
-                                            </td>
-                                            <td>
-                                                2016-12-20 10:51:03
-                                            </td>
-                                            <td>
-                                                老师
-                                            </td>
-                                            <td>
-                                                <a data-toggle="modal" data-target="#modify" onclick="modify(this,'12')">修改</a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">
-                                                109880
-                                            </td>
-                                            <td>
-                                                封号
-                                            </td>
-                                            <td>
-                                                2016-12-20 10:51:03
-                                            </td>
-                                            <td>
-                                                老师
-                                            </td>
-                                            <td>
-                                                <a data-toggle="modal" data-target="#modify" onclick="modify(this,'13')">修改</a>
-                                            </td>
-                                        </tr>
+                                        <tbody class="comment-user-list">
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_paginate paging_full_numbers" id="example0_paginate">
-                                        <a class="paginate_button first disabled" aria-controls="example0" data-dt-idx="0" tabindex="0" id="example0_first">第一页</a>
-                                        <a class="paginate_button previous disabled" aria-controls="example0" data-dt-idx="1" tabindex="0" id="example0_previous">上一页</a>
-                                        <span>
-                                        <a class="paginate_button current" aria-controls="example0" data-dt-idx="2" tabindex="0">1</a>
-                                    </span>
-                                        <a class="paginate_button next disabled" aria-controls="example0" data-dt-idx="3" tabindex="0" id="example0_next">下一页</a>
-                                        <a class="paginate_button last disabled" aria-controls="example0" data-dt-idx="4" tabindex="0" id="example0_last">最后</a>
-                                    </div>
+                                    <%--页数显示--%>
+                                    <div class="dataTables_paginate paging_full_numbers page" id="example0_paginate"></div>
+                                    <%--页数显示end--%>
                                 </div>
 
 
@@ -143,7 +104,7 @@
             <%--关闭窗口按钮end--%>
             <%--提交内容--%>
             <div class="modifyfrom">
-                <form action="" method="post">
+                <form id="modifyfrom" action="/OnlineCourseFronten/root/user/manage/modify" method="post">
                     <input id="userId" type="hidden" name="userId" value=""/>
                     <div class="zhanghao">
                         账号：<span id="username"></span>
@@ -151,32 +112,32 @@
                     <div class="modifydiv">
                         <span>用户角色：</span>
                         <label class="mo checkbox-inline">
-                            <input type="radio" name="userStatus" value="student" checked>学生
+                            <input type="radio" id="student" name="userStatus" value="student">学生
                         </label>
                         <label class="mo checkbox-inline">
-                            <input type="radio" name="userStatus" value="teacher">老师
+                            <input type="radio" id="teacher" name="userStatus" value="teacher">老师
                         </label>
                         <label class="mo checkbox-inline">
-                            <input type="radio" name="userStatus" value="admin">管理员
+                            <input type="radio" id="admin" name="userStatus" value="admin">管理员
                         </label>
                     </div>
                     <div class="modifydiv">
                         <span>状态：</span>
                         <label class="sta mo checkbox-inline">
-                            <input type="radio" name="status" value="active" checked>正常
+                            <input type="radio" id="active" name="status" value="active" >正常
                         </label>
                         <label class="sta mo checkbox-inline">
                             <input id="lock" type="radio" name="status" value="lock">封号
                         </label>
                         <label class="sta mo checkbox-inline">
-                            <input  type="radio" name="status" value="dead">永久封号
+                            <input  id="dead" type="radio" name="status" value="dead">永久封号
                         </label>
                     </div>
-                    <div id="locktime" class="modifydiv" style="display:none;">
-                        <span>封号时间：</span><input type="date" name="locktime">
+                    <div id="locktime" class="has-error modifydiv" style="display:none;">
+                        <span>封号时间：</span><input id="lockdate" type="date" name="locktime"><label id="dangqian" class="checkbox-inline" style="display: none;">时间不能为空且时间要大于当前时间！</label>
                     </div>
                     <div class="modal-footer" style="border-top:none;">
-                        <button type="button" class="btn btn-default">提交</button>
+                        <button type="button" class="btn btn-default" onclick="check()">提交</button>
                     </div>
                 </form>
             </div>
@@ -187,17 +148,63 @@
 </div>
 <%--修改用户权限end--%>
 <%--内容--%>
+<%--判断是否修改成功--%>
+<div>
+    <input id="update" type="hidden" value="${update}">
+</div>
+<%--判断是否修改成功--%>
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/backend/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/backend/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript">
+    /*修改提交*/
+    function check(obj) {
+        var lockdate= $('#lock').prop('checked');
+        if(lockdate){
+            var lockdate = $('#lockdate').val();
+            var date = new Date();//获取当前时间
+            var now = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+            var start = new Date(lockdate.replace("-", "/"));//获取封号时间
+            var end   = new Date(now.replace("-", "/"));//获取当前时间
+            if(start<=end||lockdate==""||lockdate==null){
+                $('#dangqian').css('display','block');
+                return false;
+            }else {
+                $('#dangqian').css('display','none');
+            }
+        }
+        $("#modifyfrom").submit();
+    }
+    /*修改提交end*/
+    /*判断修改是否成功*/
+    function update() {
+        var update = $("#update").val();
+        if (update == "updatefail") {
+            alert("修改失败，请重新操作！");
+        }
+        if (update == "updatesuccess") {
+            alert("修改成功！");
+        }
+    }
+    /*判断修改是否成功end*/
     /*修改用户权限*/
     function  modify(obj,userid) {
         var $this = $(obj);
         $('#userId').attr('value',userid);//赋值
         var username =$this.parent('td').parent('tr').find('td:eq(0)').text();
-        var state =$this.parent('td').parent('tr').find('td:eq(1)').text();
+        var status =$this.parent('td').parent('tr').find('td:eq(1)').text();
+        var userstatus =$this.parent('td').parent('tr').find('td:eq(3)').text();
         $('#username').html(username);
+        switch (userstatus){
+            case '学生': $('#student').attr('checked','checked');break;
+            case '老师': $('#teacher').attr('checked','checked');break;
+            case '管理员': $('#admin').attr('checked','checked');break;
+        }
+        switch (status){
+            case '正常': $('#active').attr('checked','checked');break;
+            case '封号': $('#lock').attr('checked','checked');break;
+            case '永久封号': $('#dead').attr('checked','checked');break;
+        }
         clickdead();
     }
 
@@ -213,6 +220,168 @@
         })
     }
     /*修改用户权限end*/
+    /*点击查询*/
+    $('#find').on('click',function () {
+        nowPage = 1;
+        main();
+    });
+    /*点击查询end*/
+    /************** start：分页列表***********/
+            //默认当前页(不可动)
+    var nowPage = 1;
+    //默认最大页数(不可动)
+    var maxPage = 1;
+
+    //ajax入口
+    function main() {
+        var url = '/OnlineCourseFronten/root/user/manage/get';
+        var data = {
+            nowPage : nowPage,
+            userstatus:$('#userstatus').val(),
+            username:$('#zhanghao').val(),
+        };
+        getData(url,data);
+    }
+
+    //页面加载完成时触发
+    $(function () {
+        main();
+    });
+
+    //ajax(不可动)
+    function getData(url,data){
+        $.ajax({
+            url:url,//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            beforeSend: function(){
+                beforeSend();
+            },
+            success:function (data) {
+                maxPage = data.totalPage;
+                pageChange();
+                jsonToHtml(data);
+                update();
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    }
+
+    //分页(不可动)
+    function pageChange() {
+        var pageHtml = '';
+        //设置首页、上一页
+        if (nowPage == 1){
+            pageHtml += '<span class="paginate_button first disabled">首页</span>';
+            pageHtml += '<span class="paginate_button previous disabled">上一页</span>';
+        } else {
+            pageHtml += '<a id="first-page" class="paginate_button first" href="javascript:void(0)">首页</a>';
+            pageHtml += '<a id="previous-page" class="paginate_button previous" href="javascript:void(0)">上一页</a>';
+        }
+        //设置数字页
+        for (var i=1;i<=maxPage;i++){
+            if (i == nowPage){
+                pageHtml += '<a class="paginate_button current disabled" href="javascript:void(0)">'+i+'</a>';
+            } else {
+                pageHtml += '<a class="paginate_button current page-num" href="javascript:void(0)">'+i+'</a>';
+            }
+        }
+        //设置下一页、尾页
+        if (nowPage == maxPage){
+            pageHtml += '<span class="paginate_button next disabled">下一页</span>';
+            pageHtml += '<span class="paginate_button last disabled">尾页</span>';
+        } else {
+            pageHtml += '<a id="next-page" class="paginate_button next" href="javascript:void(0)">下一页</a>';
+            pageHtml += '<a id="last-page" class="paginate_button last" href="javascript:void(0)">尾页</a>';
+        }
+        //替换进分页div
+        $('.page').html(pageHtml);
+
+        //分页数字按钮监听
+        $('.page-num').on('click',function () {
+            nowPage = $(this).html();
+            //触发ajax
+            main();
+        });
+
+        //首页触发
+        $('#first-page').on('click',function () {
+            nowPage = 1;
+            //触发ajax
+            main();
+        });
+        //尾页触发
+        $('#last-page').on('click',function () {
+            nowPage = maxPage;
+            //触发ajax
+            main();
+        });
+        //上一页触发
+        $('#previous-page').on('click',function () {
+            if (nowPage-1>0){
+                nowPage--;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+        //下一页触发
+        $('#next-page').on('click',function () {
+            if (nowPage+1<=maxPage){
+                nowPage++;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+    }
+
+    //将回传的数据转成html，放进相应位置(自己实现)
+    function jsonToHtml(data) {
+        var html = '';
+        $.each( data.users, function(index, content)
+        {
+            if (index%2==1)
+                html += '<tr role="row" class="odd">';
+            else
+                html += '<tr role="row" class="even">';
+                html+='<td class="sorting_1">'+content.username+'</td>';
+                switch (content.status){
+                case 'active': statu='正常'; break;
+                case 'lock': statu='封号'; break;
+                case 'dead': statu='永久封号'; break;
+                }
+                html+='<td>'+statu+'</td>';
+                html+='<td>'+content.date+'</td>';
+                switch (content.userStatus){
+                case 'student': userstatu='学生'; break;
+                case 'teacher': userstatu='老师'; break;
+                case 'admin': userstatu='管理员'; break;
+                }
+                html+='<td>'+userstatu+'</td>';
+                html+='<td> <a class="btn btn-info" data-toggle="modal" data-target="#modify" onclick="modify(this,'+content.id+')">修改</a></td>';
+                html+='</tr>';
+        });
+        $('.comment-user-list').html(html);
+    }
+
+
+    //错误回掉
+    function errBack() {
+        $('.comment-user-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+    }
+
+    //发送前触发
+    function beforeSend() {
+        $('.comment-user-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+    }
+    /************** end：分页列表***********/
 </script>
 </body>
 </html>
