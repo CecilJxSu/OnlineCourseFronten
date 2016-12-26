@@ -86,4 +86,22 @@ public class CatalogServiceImpl implements CatalogService {
     public int delete(int id) {
         return catalogDao.delete(id);
     }
+
+    /**
+     * 获取课程下的所有章
+     * @param courseId  课程ID
+     * @return          节列表
+     */
+    public List<Catalog> getChapterList(int courseId) {
+        return catalogDao.getChapterList(courseId);
+    }
+
+    /**
+     * 获取章下的所有节
+     * @param chapterId    章id
+     * @return             节列表
+     */
+    public List<Catalog> getSectionList(int chapterId) {
+        return catalogDao.getSectionList(chapterId);
+    }
 }

@@ -1,8 +1,10 @@
 package cn.canlnac.OnlineCourseFronten.controller.course;
 
+import cn.canlnac.OnlineCourseFronten.entity.Catalog;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
 import cn.canlnac.OnlineCourseFronten.entity.Document;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
+import cn.canlnac.OnlineCourseFronten.service.CatalogService;
 import cn.canlnac.OnlineCourseFronten.service.CourseService;
 import cn.canlnac.OnlineCourseFronten.service.DocumentService;
 import cn.canlnac.OnlineCourseFronten.service.ProfileService;
@@ -32,6 +34,8 @@ public class RootCourseController {
     private ProfileService profileService;
     @Autowired
     private DocumentService documentService;
+    @Autowired
+    private CatalogService catalogService;
 
     /**
      * 进入课程创建页面
@@ -160,8 +164,8 @@ public class RootCourseController {
     @RequestMapping("manage/get")
     @ResponseBody
     public Map getCourseManage(@RequestParam("nowPage") int nowPage){
-        //每页显示15条
-        int count = 15;
+        //每页显示10条
+        int count = 10;
         //分页开始位置
         int start = (nowPage-1)*count;
         //条件,发表状态和草稿状态
@@ -238,10 +242,36 @@ public class RootCourseController {
      * @return
      */
     @RequestMapping("modify/show")
-    public ModelAndView modifycourse(@RequestParam("id") int courseId) {
+    public ModelAndView modifycourse(@RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("course",courseService.findByID(courseId));
+        //获取作者ID
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+
+        Course course = courseService.findByID(id);
+        if (course!=null && course.getUserId()==userId){
+            modelAndView.addObject("course",course);
+        }
+
+        Catalog catalog = catalogService.findByID(id);
+
+        if (catalog!=null && catalog.getParentId()==0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
+            modelAndView.addObject("courseName",courseService.findByID(catalog.getCourseId()).getName());
+            modelAndView.addObject("chapter",catalog);
+        }
+
+        if (catalog!=null && catalog.getParentId()!=0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
+            modelAndView.addObject("courseName",courseService.findByID(catalog.getCourseId()).getName());
+            modelAndView.addObject("chapterName",catalogService.findByID(catalog.getParentId()).getName());
+            modelAndView.addObject("section",catalog);
+            modelAndView.addObject("videoName",documentService.findByUrl(catalog.getUrl()).get(0).getName());
+            modelAndView.addObject("videos",documentService.getDocuments(0,documentService.count("course",catalog.getCourseId(),"video"),"date","course",catalog.getCourseId(),"video"));
+            modelAndView.addObject("picName",documentService.findByUrl(catalog.getPreviewImage()).get(0).getName());
+            modelAndView.addObject("pics",documentService.getDocuments(0,documentService.count("course",catalog.getCourseId(),"img"),"date","course",catalog.getCourseId(),"img"));
+            modelAndView.addObject("documents",documentService.getDocuments(0,documentService.count("course",catalog.getCourseId(),null),"date","course",catalog.getCourseId(),null));
+            modelAndView.addObject("chooseDocuments",documentService.getDocuments(0,documentService.count("catalog",catalog.getId(),null),"date","catalog",catalog.getId(),null));
+        }
 
         modelAndView.setViewName("/backend/modifycourse");
         return modelAndView;

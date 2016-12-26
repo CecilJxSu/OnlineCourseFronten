@@ -49,4 +49,18 @@ public interface CatalogService {
      * @return      成功删除数目
      */
     int delete(int id);
+
+    /**
+     * 获取课程下的所有章
+     * @param courseId  课程ID
+     * @return          节列表
+     */
+    List<Catalog> getChapterList(int courseId);
+
+    /**
+     * 获取章下的所有节
+     * @param chapterId    章id
+     * @return             节列表
+     */
+    List<Catalog> getSectionList(int chapterId);
 }

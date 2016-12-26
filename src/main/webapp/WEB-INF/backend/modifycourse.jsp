@@ -29,13 +29,18 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs tabcolor5-bg" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true" class="active">课程</a>
+                        <a href="#home10" aria-controls="home10" role="tab" data-toggle="tab" aria-expanded="true" class="active">
+                            <c:if test="${course != null}">课程</c:if>
+                            <c:if test="${chapter != null}">章</c:if>
+                            <c:if test="${section != null}">节</c:if>
+                        </a>
                     </li>
                 </ul>
 
 
                 <div class="tab-content">
                     <%--课程--%>
+                    <c:if test="${course != null}">
                     <div role="tabpanel" class="tab-pane active" id="home10">
                         <div class="container-padding">
                             <div class="panel-body">
@@ -63,39 +68,37 @@
                             </div>
                         </div>
                     </div>
+                    </c:if>
                     <%--课程end--%>
                     <%--章--%>
-                    <div role="tabpanel" class="tab-pane" id="profile10">
+                    <c:if test="${chapter != null}">
+                    <div role="tabpanel" class="tab-pane active" id="profile10">
                         <div class="container-padding">
                             <div class="panel-body">
                                     <form id="chapter" class="form-horizontal">
+                                        <input name="id" type="hidden" value="<c:out value='${chapter.id}'/>">
                                         <div class="courseform">
                                             <label class="col-sm-2 control-label form-label">课程名</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" name="course_id" id="chapter_course">
-                                                    <option value ="">请选择课程</option>
-                                                    <c:forEach var="course" items="${courses}">
-                                                        <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
-                                                    </c:forEach>
-                                                </select>
+                                                <c:out value="${courseName}"/>
                                             </div>
                                         </div>
                                         <div class="courseform">
                                             <label class="col-sm-2 control-label form-label">章号</label>
                                             <div class="xz col-sm-10">
-                                                <i>第</i><input type="number" id="chapter_index" name="index" class="form-control" style="width: 50px;" ><i>章</i>
+                                                <i>第</i><input type="number" id="chapter_index" name="index" class="form-control" style="width: 50px;" value="<c:out value='${chapter.index}'/>"><i>章</i>
                                             </div>
                                         </div>
                                         <div class="courseform">
                                             <label class="col-sm-2 control-label form-label">章名称</label>
                                             <div class="col-sm-10">
-                                                <input type="text" id="chapter_name" name="name" class="form-control"  >
+                                                <input type="text" id="chapter_name" name="name" class="form-control" value="<c:out value='${chapter.name}'/>"/>
                                             </div>
                                         </div>
                                         <div class="courseform">
                                             <label class="col-sm-2 control-label form-label">章简介</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="introduction" rows="3"  placeholder="课程简介"></textarea>
+                                                <textarea class="form-control" name="introduction" rows="3"  placeholder="课程简介"><c:out value="${chapter.introduction}"/></textarea>
                                             </div>
                                         </div>
                                         <div class="courseform">
@@ -108,56 +111,58 @@
                                 </div>
                         </div>
                     </div>
+                    </c:if>
                     <%--章end--%>
                     <%--节--%>
-                    <div role="tabpanel" class="tab-pane" id="messages10">
+                    <c:if test="${section != null}">
+                    <div role="tabpanel" class="tab-pane active" id="messages10">
                         <div class="container-padding">
                             <div class="panel-body">
                                 <form id="section" class="form-horizontal">
+                                    <input type="hidden" name="id" value="<c:out value='${section.id}'/>"/>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">课程</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="course_id" id="section_course_id">
-                                                <option value ="">请选择课程</option>
-                                                <c:forEach var="course" items="${courses}">
-                                                    <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
-                                                </c:forEach>
-                                            </select>
+                                            <c:out value="${courseName}"/>
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">章</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="parent_id" id="parent_id">
-                                                <option value ="">请选择章</option>
-                                            </select>
+                                            <c:out value="${chapterName}"/>
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">节</label>
                                         <div class="xz col-sm-10 ">
-                                            <i>第</i><input type="text" name="index" id="section_index" class="form-control" style="width: 50px;" ><i>节</i>
+                                            <i>第</i><input type="text" name="index" id="section_index" class="form-control" style="width: 50px;" value="<c:out value='${section.index}'/>"/><i>节</i>
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">节名称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control" id="section_name" >
+                                            <input type="text" name="name" class="form-control" id="section_name" value="<c:out value='${section.name}'/>"/>
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">视频资源</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_url_id" id="document_url_id">
-                                                <option value ="">请选择视频资源</option>
+                                            <select class="form-control" name="document_url" id="document_url_id">
+                                                <option value ="<c:out value='${section.url}'/>"><c:out value='${videoName}'/></option>
+                                                <c:forEach var="video" items="${videos}">
+                                                    <option value ="<c:out value='${video.url}'/>"><c:out value='${video.name}'/></option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">预览图</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_img_id" id="document_img_id">
-                                                <option value ="">请选择预览图</option>
+                                            <select class="form-control" name="document_img" id="document_img_id">
+                                                <option value ="<c:out value='${section.previewImage}'/>"><c:out value='${picName}'/></option>
+                                                <c:forEach var="pic" items="${pics}">
+                                                    <option value ="<c:out value='${pic.url}'/>"><c:out value='${pic.name}'/></option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -166,17 +171,28 @@
                                         <div class="col-sm-10">
                                             <select class="form-control" name="document_ids" id="document_id">
                                                 <option value ="">请选择其他资源</option>
+                                                <c:forEach var="document" items="${documents}">
+                                                    <option value ="<c:out value='${document.id}'/>"><c:out value='${document.name}'/></option>
+                                                </c:forEach>
                                             </select>
+                                            <a id="moreresourse" href="javascript:void(0);" class="btn btn-success">更多其他资源</a>
+                                                <%--显示更多资源--%>
+                                            <div class="more">
+                                            </div>
+                                                <%--显示更多资源end--%>
                                         </div>
                                     </div>
+
                                     <div class="courseform">
-                                        <div class="col-sm-12 text-left" style="padding-top:20px;">
-                                            <a id="moreresourse" href="javascript:void(0);" class="btn btn-success">更多其他资源</a>
+                                        <label class="col-sm-2 control-label form-label">删除已选资源</label>
+                                        <div class="col-sm-10">
+                                            勾选要去除的资源<br/>
+                                            <c:forEach var="chooseDocument" items="${chooseDocuments}">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="delete_document_ids" id="delete_document_id" value="<c:out value='${chooseDocument.id}'/>"> <c:out value='${chooseDocument.name}'/>
+                                                </label>
+                                            </c:forEach>
                                         </div>
-                                        <%--显示更多资源--%>
-                                        <div class="more">
-                                        </div>
-                                        <%--显示更多资源end--%>
                                     </div>
                                     <div class="courseform">
                                         <div class="col-sm-12 text-right" style="padding-top:20px;">
@@ -188,6 +204,7 @@
                             </div>
                         </div>
                     </div>
+                    </c:if>
                     <%--节end--%>
                 </div>
 
@@ -252,17 +269,9 @@
             }
         });
     });
-    /*** end: 课程提交 ***/
-    /*** start: 节提交 ***/
+    /*** end: 课程修改提交 ***/
+    /*** start: 节修改提交 ***/
     $('#btn-success-section').on('click',function () {
-        if($('#section_course_id').val()==''){
-            alert('请先选择课程');
-            return false;
-        }
-        if($('#parent_id').val()==''){
-            alert('请先选择章');
-            return false;
-        }
         if($('#section_index').val()==''){
             alert('请先填写节号');
             return false;
@@ -275,31 +284,22 @@
         var form = new FormData(document.getElementById("section"));
 
         $.ajax({
-            url:"/OnlineCourseFronten/root/catalog/section/add",
+            url:"/OnlineCourseFronten/root/catalog/section/update",
             type:"post",
             data:form,
             processData:false,
             contentType:false,
             success:function(data){
-                alert('成功');
-                $('#section')[0].reset();
+                alert('节修改成功');
             },
             error:function(e){
-                alert('节创建失败');
+                alert('节修改失败');
             }
         });
     });
-    /*** end: 节提交 ***/
-    /*** start: 章提交 ***/
+    /*** end: 节修改提交 ***/
+    /*** start: 章修改提交 ***/
     $('#btn-success-chapter').on('click',function () {
-        if($('#chapter_course').val()==''){
-            alert('请先选择课程');
-            return false;
-        }
-        if($('#chapter_index').val()==''){
-            alert('请先填写章号');
-            return false;
-        }
         if($('#chapter_name').val()==''){
             alert('请先填写章名称');
             return false;
@@ -308,21 +308,20 @@
         var form = new FormData(document.getElementById("chapter"));
 
         $.ajax({
-            url:"/OnlineCourseFronten/root/catalog/chapter/add",
+            url:"/OnlineCourseFronten/root/catalog/chapter/update",
             type:"post",
             data:form,
             processData:false,
             contentType:false,
             success:function(data){
-                alert('成功');
-                $('#chapter')[0].reset();
+                alert('修改成功');
             },
             error:function(e){
-                alert('章创建失败');
+                alert('章修改失败');
             }
         });
     });
-    /*** end: 章提交 ***/
+    /*** end: 章修改提交 ***/
     /*** start: 创建节时的资源和章的获取 ***/
     $('#section_course_id').change(function () {
         //获取章
