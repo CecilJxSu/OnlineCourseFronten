@@ -61,6 +61,7 @@
                                             <th class="sorting_asc"  style="width: 101px;">账号</th>
                                             <th class="sorting"  style="width: 212px;">状态</th>
                                             <th class="sorting"  style="width: 207px;">注册时间</th>
+                                            <th class="sorting"  style="width: 207px;">用户角色</th>
                                             <th class="sorting"  style="width: 157px;">操作</th>
                                         </tr>
                                         </thead>
@@ -76,24 +77,27 @@
                                                 2016-12-20 10:51:03
                                             </td>
                                             <td>
-                                                <a onclick="modify(this,'12')">修改</a>
-                                                <a>冻结</a>
+                                                老师
+                                            </td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#modify" onclick="modify(this,'12')">修改</a>
                                             </td>
                                         </tr>
                                         <tr role="row" class="even">
                                             <td class="sorting_1">
-                                                <a href="${pageContext.request.contextPath}/root/catalog/manage/show">java</a>
+                                                109880
                                             </td>
                                             <td>
-                                                草稿
+                                                封号
                                             </td>
                                             <td>
                                                 2016-12-20 10:51:03
                                             </td>
                                             <td>
-                                                <a>发布</a>
-                                                <a>修改</a>
-                                                <a>删除</a>
+                                                老师
+                                            </td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#modify" onclick="modify(this,'13')">修改</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -130,19 +134,53 @@
     <div class="modal-dialog">
         <div class="usercontent modal-content">
             <%--关闭窗口按钮--%>
-            <div class="modal-header">
+            <div class="modify modal-header">
+                <div class="modifydiv">
+                    <h2>修改</h2>
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <%--关闭窗口按钮end--%>
             <%--提交内容--%>
-            <form action="" method="post">
-                <div>
-                    账号：<input type="text">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default">提交</button>
-                </div>
-            </form>
+            <div class="modifyfrom">
+                <form action="" method="post">
+                    <input id="userId" type="hidden" name="userId" value=""/>
+                    <div class="zhanghao">
+                        账号：<span id="username"></span>
+                    </div>
+                    <div class="modifydiv">
+                        <span>用户角色：</span>
+                        <label class="mo checkbox-inline">
+                            <input type="radio" name="userStatus" value="student" checked>学生
+                        </label>
+                        <label class="mo checkbox-inline">
+                            <input type="radio" name="userStatus" value="teacher">老师
+                        </label>
+                        <label class="mo checkbox-inline">
+                            <input type="radio" name="userStatus" value="admin">管理员
+                        </label>
+                    </div>
+                    <div class="modifydiv">
+                        <span>状态：</span>
+                        <label class="sta mo checkbox-inline">
+                            <input type="radio" name="status" value="active" checked>正常
+                        </label>
+                        <label class="sta mo checkbox-inline">
+                            <input id="lock" type="radio" name="status" value="lock">封号
+                        </label>
+                        <label class="sta mo checkbox-inline">
+                            <input  type="radio" name="status" value="dead">永久封号
+                        </label>
+                    </div>
+                    <div id="locktime" class="modifydiv" style="display:none;">
+                        <span>封号时间：</span><input type="date" name="locktime">
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <button type="button" class="btn btn-default">提交</button>
+                    </div>
+                </form>
+            </div>
+
             <%--提交内容--%>
         </div>
     </div>
@@ -155,8 +193,24 @@
 <script type="text/javascript">
     /*修改用户权限*/
     function  modify(obj,userid) {
-       var $this = $(obj);
+        var $this = $(obj);
+        $('#userId').attr('value',userid);//赋值
+        var username =$this.parent('td').parent('tr').find('td:eq(0)').text();
+        var state =$this.parent('td').parent('tr').find('td:eq(1)').text();
+        $('#username').html(username);
+        clickdead();
+    }
 
+    function clickdead() {
+        $(".sta input").on('click',function () {
+            var statu = $(this).val();
+            if(statu=='lock'){
+                $('#locktime').css('display','block');
+            }else {
+                $('#locktime').css('display','none');
+            }
+
+        })
     }
     /*修改用户权限end*/
 </script>
