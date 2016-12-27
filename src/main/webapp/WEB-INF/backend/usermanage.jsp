@@ -122,7 +122,7 @@
                         </label>
                     </div>
                     <div class="modifydiv">
-                        <span>状态：</span>
+                        <span style="margin-left: 40px;">状态：</span>
                         <label class="sta mo checkbox-inline">
                             <input type="radio" id="active" name="status" value="active" >正常
                         </label>
@@ -195,15 +195,25 @@
         var status =$this.parent('td').parent('tr').find('td:eq(1)').text();
         var userstatus =$this.parent('td').parent('tr').find('td:eq(3)').text();
         $('#username').html(username);
+
         switch (userstatus){
-            case '学生': $('#student').attr('checked','checked');break;
-            case '老师': $('#teacher').attr('checked','checked');break;
-            case '管理员': $('#admin').attr('checked','checked');break;
+            case '学生': $('#admin').removeProp('checked');$('#teacher').removeProp('checked');$('#student').prop('checked','checked');break;
+            case '老师': $('#admin').removeProp('checked');$('#student').removeProp('checked');$('#teacher').prop('checked','checked');break;
+            case '管理员': $('#student').removeProp('checked');$('#teacher').removeProp('checked');$('#admin').attr('checked','checked');break;
         }
         switch (status){
-            case '正常': $('#active').attr('checked','checked');break;
-            case '封号': $('#lock').attr('checked','checked');break;
-            case '永久封号': $('#dead').attr('checked','checked');break;
+            case '正常': $('#lock').removeProp('checked');$('#dead').removeProp('checked');$('#active').prop('checked','checked');break;
+            case '封号': $('#dead').removeProp('checked');$('#active').removeProp('checked');$('#lock').attr('checked','checked');break;
+            case '永久封号': $('#active').removeProp('checked');$('#lock').removeProp('checked');$('#dead').attr('checked','checked');break;
+        }
+        if(status=='封号'){
+            var lockenddate=$this.parent('td').parent('tr').find('td:eq(1)').attr('data-id');
+            $('#lockdate').attr('value',lockenddate);
+            $('#locktime').css('display','block');
+
+        }else {
+            $('#lockdate').attr('value','');
+            $('#locktime').css('display','none');
         }
         clickdead();
     }
@@ -354,10 +364,14 @@
                 html+='<td class="sorting_1">'+content.username+'</td>';
                 switch (content.status){
                 case 'active': statu='正常'; break;
-                case 'lock': statu='封号'; break;
+                case 'lock': statu='封号',data=content.lockEndDate; break;
                 case 'dead': statu='永久封号'; break;
                 }
-                html+='<td>'+statu+'</td>';
+                if(content.status=='lock'){
+                    html+='<td data-id="'+new Date(data).Format("yyyy-MM-dd")+'">'+statu+'</td>';
+                }else {
+                    html+='<td>'+statu+'</td>';
+                }
                 html+='<td>'+content.date+'</td>';
                 switch (content.userStatus){
                 case 'student': userstatu='学生'; break;
@@ -382,6 +396,27 @@
         $('.comment-user-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
     }
     /************** end：分页列表***********/
+    /**
+     * 时间对象的格式化;
+     */
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    /**
+     * 时间对象的格式化end;
+     */
 </script>
 </body>
 </html>
