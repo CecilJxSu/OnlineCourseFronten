@@ -261,4 +261,9 @@ function getTime(){
         }
     });
 }
+//关闭离开页面时触发
+$(window).bind('beforeunload',function(){
+    getTime();
+    return '确定离开此页面吗？';
+});
 /*获取视频时间end*/
