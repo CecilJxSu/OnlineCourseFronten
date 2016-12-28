@@ -202,9 +202,9 @@
             case '管理员': $('#student').removeProp('checked');$('#teacher').removeProp('checked');$('#admin').attr('checked','checked');break;
         }
         switch (status){
-            case '正常': $('#lock').removeProp('checked');$('#dead').removeProp('checked');$('#active').prop('checked','checked');break;
-            case '封号': $('#dead').removeProp('checked');$('#active').removeProp('checked');$('#lock').attr('checked','checked');break;
-            case '永久封号': $('#active').removeProp('checked');$('#lock').removeProp('checked');$('#dead').attr('checked','checked');break;
+            case '正常': $('#dead').removeProp('checked');$('#lock').removeProp('checked');$('#active').prop('checked','checked');break;
+            case '封号': $('#active').removeProp('checked');$('#dead').removeProp('checked');$('#lock').prop('checked','checked');break;
+            case '永久封号': $('#active').removeProp('checked');$('#lock').removeProp('checked');$('#dead').prop('checked','checked');break;
         }
         if(status=='封号'){
             var lockenddate=$this.parent('td').parent('tr').find('td:eq(1)').attr('data-id');
