@@ -4206,7 +4206,14 @@ Widgets
     padding: 13px;
     font-size: 20px;
 }
-
+/*admincoursemanage*/
+.adminradio{
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    vertical-align: middle;
+    cursor: pointer;
+}
 
 
 

@@ -277,5 +277,69 @@ public class RootCourseController {
         return modelAndView;
     }
 
+    /**
+     * 进入管理员课程管理页面
+     * @return
+     */
+    @RequestMapping("adminmanage/show")
+    public ModelAndView admincoursemanage() {
+        ModelAndView modelAndView = new ModelAndView();
 
+        modelAndView.setViewName("/backend/admincoursemanage");
+        return modelAndView;
+    }
+
+    /**
+     * 管理员课程界面获取数据
+     * @return
+     */
+    @RequestMapping("adminmanage/get")
+    @ResponseBody
+    public Map getAdminCourseManage(@RequestParam("nowPage") int nowPage,
+                                    @RequestParam("coursename") String coursename){
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+        //条件,删除状态
+        Map conditions = new HashMap();
+        List<String> status = new ArrayList<String>();
+        status.add("delete");
+        conditions.put("status", status);
+        conditions.put("search",coursename);
+
+
+        List<Course> courses = courseService.getList(start,count,"date",conditions);
+
+        //获取总条数
+        int totalNum = courseService.count(conditions);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map map = new HashMap();
+        map.put("courses",courses);
+        map.put("totalPage",totalPage>0?totalPage:1);
+        return map;
+    }
+    /**
+     * 转换课程状态
+     * @param courseId      课程id
+     * @return
+     */
+    @RequestMapping("adminmanage/status/change")
+    @ResponseBody
+    public String adminchangeStatus(@RequestParam("id") int courseId){
+        Course course = new Course();
+        course.setId(courseId);
+        String status = courseService.findByID(courseId).getStatus();
+        //如果是发布状态，转草稿状态
+        if (status.equals("delete")){
+            course.setStatus("draft");
+        }
+
+
+        int i = courseService.update(course);
+
+        return i>0?"success":null;
+    }
 }

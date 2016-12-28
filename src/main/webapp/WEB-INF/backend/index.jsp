@@ -95,6 +95,7 @@
             <li><a href="#"><span class="icon color9"><i class="fa fa-desktop"></i></span>用户管理<span class="caret"></span></a>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/root/user/show" target="iframe">用户管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/course/adminmanage/show" target="iframe">课程管理</a></li>
                 </ul>
             </li>
             <li><a href="renqun.html" target="_self"><span class="icon color1"><i class="fa fa-group"></i></span>人群画像</a>
