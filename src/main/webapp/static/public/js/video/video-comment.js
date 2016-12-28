@@ -222,3 +222,43 @@ function like(e,comment_id) {
         }
     });
 }
+
+/*获取视频时间*/
+$(function () {
+    Reciprocal();
+});
+function Reciprocal() {
+    setTimeout(function () {
+        getTime();
+    },10000);
+}
+var totalTime = 0;
+var nowTime = 0;
+var tmpTime = 0;
+function getTime(){
+    totalTime = parseInt(1000*document.getElementById("example_video_1").duration);
+    nowTime = parseInt(1000*document.getElementById("example_video_1").currentTime);
+    if (nowTime == tmpTime){
+        Reciprocal();
+        return false;
+    }
+    tmpTime = nowTime;
+    $.ajax({
+        url:'/OnlineCourseFronten/video/time',//路径
+        type:'post',
+        cache:false,
+        dataType:false,
+        data:{
+            id          :   $('#example_video_1').attr('name'),
+            totalTime   :   totalTime,
+            nowTime     :   nowTime
+        },
+        success:function (data) {
+            if (nowTime<totalTime)
+                Reciprocal();
+        },
+        error:function (e) {
+        }
+    });
+}
+/*获取视频时间end*/
