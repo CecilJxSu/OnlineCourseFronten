@@ -21,7 +21,7 @@
     <div id="bgarea" class="video-con">
         <div class="js-box-wrap" style="width: 100%; height: 269px;">
             <div id="J_Box" class="course-video-box" name="<c:out value='${catalog.courseId}'/>">
-                <video id="example_video_1" class="js-box-wrap video-js vjs-default-skin" controls preload="none" style="width: 100%; height: 269px;"
+                <video id="example_video_1" class="js-box-wrap video-js vjs-default-skin" controls  style="width: 100%; height: 269px;"
                        poster="/OnlineCourseFronten/file/get?url=<c:out value='${catalog.previewImage}'/>" ata-setup="{}">
                     <source src="/OnlineCourseFronten/file/get?url=<c:out value='${catalog.url}'/>" type='video/mp4' />
                     <%--<source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />--%>
@@ -139,6 +139,11 @@
         <ul class="courseul course-menu course-video-menu clearfix js-course-menu" data-ower="all" data-sort="last"
             style="position: absolute; left: 0px;">
             <li class="course-menu-item"><a class="active" href="javascript:void(0)" id="plMenu">评论</a></li>
+            <li class="course-menu-item">
+                总时间：<p id="demo"></p>
+                暂停时间：<p id="demo1"></p>
+                <button onclick="myFunction()">点我</button>
+            </li>
             <%--<li class="course-menu-item"><a href="javascript:void(0)" id="qaMenu">问答</a></li>--%>
         </ul>
         <div id="disArea" class="lists-container list-wrap">
@@ -321,6 +326,16 @@
 <script src="${pageContext.request.contextPath}/static/public/js/video/video.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/video/video-comment.js"></script>
 <script type="text/javascript">
+    /*获取视频时间*/
+    function myFunction(){
+        var x = document.getElementById("example_video_1").duration;
+        document.getElementById("demo").innerHTML = x;
+        var y =document.getElementById("example_video_1").currentTime;
+        document.getElementById("demo1").innerHTML = y;
+
+    }
+    /*获取视频时间end*/
+
     /*评论js*/
     /*评价textarea框*/
     $("#js-pl-input-fake").on("click", function (e) {
