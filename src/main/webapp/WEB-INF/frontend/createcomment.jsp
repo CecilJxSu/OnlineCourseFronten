@@ -8,6 +8,7 @@
     <link  rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/common_less.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/global.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/wangEditor/css/wangEditor.min.css">
     <title>createcomment</title>
 </head>
 <body>
@@ -24,7 +25,7 @@
                         <h2 class="new-save-title">你的话题:</h2>
                     </div>
                     <div class="feedback-wrap">
-                        <form  id="commentfrom" action="commentupload" method="post" enctype="multipart/form-data">
+                        <form  id="commentfrom" action="" method="post" enctype="multipart/form-data">
                         <div class="field-wrapp">
                             <div class="question-areaq" style="margin: 10px;">
                                 <h2 class="new-save-title">标题:
@@ -67,6 +68,14 @@
                                 <div class="cb"></div>
                                 <p class="uploadImgsTip">最多可以上传<span class="color-red">9</span>张图片,图片大小不能超过<span class="color-red">2M</span></p>
                             </div>
+                            <%--富文本编辑器--%>
+                            <!--用父容器来控制宽度-->
+                            <div style="width:100%">
+                                <!--用当前元素来控制高度-->
+                                <div id="div1" style="height:400px;max-height:500px;">
+                                    <p>请输入内容...</p>
+                                </div>
+                            </div>
                             <div class="btn-wrap btn-wrapcomment">
                                 <a  id="submit" class="fl" onclick="submitComment()">提交</a>
                                 <p id="feedback-error" class="rlf-tip-wrap rlf-tip-error" style=" font-size: 20px;display:none"></p>
@@ -97,6 +106,8 @@
 <%--尾部end--%>
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/createcomment/jquery.uploadView.js"></script>
+<script src="${pageContext.request.contextPath}/static/wangEditor/js/wangEditor.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/createcomment/create.js"></script>
 <script type="text/javascript">
     function c(m) {
         var a = $(this).siblings("p");
@@ -161,22 +172,6 @@
         return str.replace(/[^\x00-\xff]/g, '__').length;
     }
 
-    /*创建话题*/
-    function submitComment() {
-        var $title=$(".huati"), val;
-        if (getRealLen((val=$.trim($title.val()))) < 0) {
-            $('#feedback-error').css("display","block");
-            $('#feedback-error').html('标题不能为空！');
-            return false;
-        }
-        else {
-            $('#feedback-error').css("display","none");
-            $('#feedback-error').empty();
-        }
-
-        $("#commentfrom").submit();
-    }
-    /*创建话题end*/
 </script>
 </body>
 </html>

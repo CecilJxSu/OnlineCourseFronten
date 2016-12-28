@@ -43,7 +43,7 @@
                             <%--标题end--%>
                             <%--内容--%>
                             <div id="js-qa-content" class="qa-disscus rich-text">
-                                <p>${chat.content}</p>
+                                <p>${chat.html}</p>
                             </div>
                             <%--内容end--%>
                             <%--用户发表图片--%>

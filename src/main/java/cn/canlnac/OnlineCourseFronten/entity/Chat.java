@@ -13,6 +13,7 @@ public class Chat {
     private Date date;
     private String title;
     private String content;
+    private String html;
     private int userId;
     private String pictureUrls;
     private int watchCount;             // + 1;
@@ -50,6 +51,14 @@ public class Chat {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
     }
 
     public int getUserId() {
