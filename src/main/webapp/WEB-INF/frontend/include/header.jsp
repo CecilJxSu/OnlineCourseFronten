@@ -85,56 +85,58 @@
                     <!-- <i class="msg_remind"></i> -->
                     <a target="_blank" href="#">
                         <i class="icon-notifi"></i>
-                        <span class="msg_icon" style="display: none;"></span>
+                        <span class="bellfont msg_icon" >1</span>
                     </a>
                 </li>
                 <!--铃铛end-->
                 <!--消息-->
-                <li class="my_message">
+                <%--<li class="my_message">
                     <i class="msg_remind" style="display: none;"></i>
                     <a href="#" title="我的消息" target="_blank">
                         <!-- <span class="msg_icon" style="display: none;"></span> -->
                         <i class="icon-mail"></i>
                         <span style="display: none;">我的消息</span>
                     </a>
-                </li>
+                </li>--%>
                 <!--消息end-->
                 <!--用户-->
                 <li class="set_btn user-card-box">
                     <a id="header-avator" class="user-card-item" action-type="my_menu" href="#" target="_self">
                         <c:if test="${iconUrl!=null && iconUrl!=''}">
-                            <img style="margin-top: 15px;" width="40" height="40" src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>">
+                            <img style="margin-top: 0px;" width="40" height="40" src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>">
                         </c:if>
                         <c:if test="${iconUrl==null || iconUrl==''}">
-                            <img style="margin-top: 15px;" width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png">
+                            <img style="margin-top: 0px;" width="40" height="40" src="/OnlineCourseFronten/static/staticWEB/img/default.png">
                         </c:if>
                         <i class="myspace_remind" style="display: none;"></i>
                         <span style="display: none;">动态提醒</span>
                     </a>
-                    <div class="g-user-card">
-                        <div class="card-inner">
-                            <div class="card-top">
+                    <div class="g-user-card" style="padding: 8px;box-shadow: none;">
+                        <div class="card-inner" style="    padding: 0px;">
+                            <div class="card-top" style="display: -webkit-box;">
                                 <a href="#">
                                     <c:if test="${iconUrl!=null && iconUrl!=''}">
                                         <img src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>" alt="<c:out value='${userName}'/>" class="l">
                                     </c:if>
                                     <c:if test="${iconUrl==null || iconUrl==''}">
-                                        <img src="/OnlineCourseFronten/static/staticWEB/img/default.png" alt="<c:out value='${userName}'/>" class="l">
+                                        <img  src="/OnlineCourseFronten/static/staticWEB/img/default.png" alt="<c:out value='${userName}'/>" class="l">
                                     </c:if>
                                 </a>
-                                <a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>
-                                <p class="meta">
-                                    <a href="#">关注<b id="js-user-mp">5565</b></a>
-                                    <a href="#">粉丝<b id="js-user-credit">1</b></a></p>
+                                <%--<a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>--%>
+                                <p class="meta" style="margin-top: 37px;">
+                                    <a href="#" style="font-size: 16px;"><c:out value="${userName}"/><b id="js-user-mp"></b></a>
+                                    <%--<a href="#">粉丝<b id="js-user-credit">1</b></a>--%>
+                                </p>
                                 <a href="#" class="setup linkToMall"></a>
-                            </div><div class="card-history">
-                                    <span class="history-item">
-                                        <span class="tit text-ellipsis">HTML+CSS基础课程</span>
-                                        <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
-                                        <i class="icon-clock"></i>
-                                        <a href="#" class="continue">继续</a>
-                                    </span>
-                        </div>
+                            </div>
+                            <%--<div class="card-history">--%>
+                            <%--<span class="history-item">
+                                <span class="tit text-ellipsis">HTML+CSS基础课程</span>
+                                <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
+                                <i class="icon-clock"></i>
+                                <a href="#" class="continue">继续</a>
+                            </span>--%>
+                            <%--</div>--%>
                             <div class="card-sets clearfix">
                                 <a href="/OnlineCourseFronten/user/profile/show" target="_blank" class="l mr30">个人设置</a>
                                 <c:if test="${userStatus=='teacher'}">

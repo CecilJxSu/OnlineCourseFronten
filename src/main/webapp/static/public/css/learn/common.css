@@ -2203,7 +2203,7 @@ select[multiple].ipt, textarea.ipt {
 }
 
 .g-user-card .card-top .meta {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700
 }
 
@@ -6495,4 +6495,10 @@ a:link, a:visited, body, html {
 .qa-course-from:link, .qa-course-from:visited, .qa-createtime {
     color: #c8cdd2;
     line-height: 24px;
+}
+.bellfont{
+    display: block;
+    background: none;
+    color: #FF004C;
+    font-weight: 900;
 }

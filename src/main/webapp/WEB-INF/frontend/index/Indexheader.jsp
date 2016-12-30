@@ -80,12 +80,12 @@
                     </li>
                     <!--铃铛-->
                     <li class="remind_warp">
-                        <i class="bellimg msg_remind"></i>
+                        <%--<i class="bellimg msg_remind"></i>--%>
                         <a id="bell" target="_blank" href="">
                             <i class="icon-notifi"></i>
-                            <span class="bellfont msg_icon" style="display: none;">1</span>
+                            <span class="bellfont msg_icon">1</span>
                         </a>
-                        <div class="bell hide">
+                        <%--<div class="bell hide">
                             <ul>
                                 <li>
                                    <a>消息</a>
@@ -112,18 +112,18 @@
                                     <a href="${pageContext.request.contextPath}/notices/show">更多</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--%>
                     </li>
                     <!--铃铛end-->
                     <!--消息-->
-                    <li class="my_message">
+                    <%--<li class="my_message">
                         <i class="msg_remind" style="display: none;"></i>
                         <a href="#" title="我的消息" target="_blank">
                             <!-- <span class="msg_icon" style="display: none;"></span> -->
                             <i class="icon-mail"></i>
                             <span style="display: none;">我的消息</span>
                         </a>
-                    </li>
+                    </li>--%>
                     <!--消息end-->
                     <!--用户-->
                     <li class="set_btn user-card-box">
@@ -149,18 +149,20 @@
                                         </c:if>
                                     </a>
                                     <a href="#"><span class="name text-ellipsis"><c:out value="${userName}"/></span></a>
-                                    <p class="meta">
+                                    <%--<p class="meta">
                                         <a href="#">关注<b id="js-user-mp">5565</b></a>
-                                        <a href="#">粉丝<b id="js-user-credit">1</b></a></p>
-                                    <a href="#" class="setup linkToMall"></a>
-                                </div><div class="card-history">
-                                    <span class="history-item">
-                                        <span class="tit text-ellipsis">HTML+CSS基础课程</span>
-                                        <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
-                                        <i class="icon-clock"></i>
-                                        <a href="#" class="continue">继续</a>
-                                    </span>
-                            </div>
+                                        <a href="#">粉丝<b id="js-user-credit">1</b></a>
+                                    </p>--%>
+                                    <%--<a href="#" class="setup linkToMall"></a>--%>
+                                </div>
+                                <%--<div class="card-history">
+                                        <span class="history-item">
+                                            <span class="tit text-ellipsis">HTML+CSS基础课程</span>
+                                            <span class="media-name text-ellipsis">1-1 代码初体验，制作我的第一个网页</span>
+                                            <i class="icon-clock"></i>
+                                            <a href="#" class="continue">继续</a>
+                                        </span>
+                                </div>--%>
                                 <div class="card-sets clearfix">
                                     <a href="/OnlineCourseFronten/user/profile/show" target="_blank" class="l mr30">个人设置</a>
                                     <c:if test="${userStatus=='teacher'}">
@@ -357,12 +359,12 @@
     $('.showhide-search').on('click',function () {
         location.href = "/OnlineCourseFronten/course/show?search="+$('.search-input').val();
     });
-    /*铃铛显示消息*/
+    /*    /!*铃铛显示消息*!/
     $('#bell').on('click',function (e) {
         e.preventDefault();
         $(this).next('div').fadeToggle();
     })
-    /*铃铛显示消息end*/
+    /!*铃铛显示消息end*!/*/
 </script>
 
 </body>
