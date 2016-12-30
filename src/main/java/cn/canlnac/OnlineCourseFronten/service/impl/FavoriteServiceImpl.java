@@ -1,6 +1,7 @@
 package cn.canlnac.OnlineCourseFronten.service.impl;
 
 import cn.canlnac.OnlineCourseFronten.dao.FavoriteDao;
+import cn.canlnac.OnlineCourseFronten.entity.Favorite;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,27 @@ public class FavoriteServiceImpl implements FavoriteService {
      */
     public int isFavorite(int userId, String targetType, int targetId){
         return favoriteDao.isFavorite(userId, targetType, targetId);
+    }
+
+    /**
+     * 获取用户收藏数
+     * @param userId        用户id
+     * @param targetType    收藏类型，课程：course；话题：chat
+     * @return
+     */
+    public int countFavorite(int userId, String targetType) {
+        return favoriteDao.countFavorite(userId,targetType);
+    }
+
+    /**
+     * 获取用户收藏
+     * @param start         分页位置开始
+     * @param count         分页返回数目
+     * @param targetType    收藏类型，课程：course；话题：chat
+     * @param userId        用户id
+     * @return
+     */
+    public List<Favorite> getFavorite(int start, int count, String targetType, int userId) {
+        return favoriteDao.getFavorite(start,count,targetType,userId);
     }
 }
