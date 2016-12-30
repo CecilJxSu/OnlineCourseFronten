@@ -53,14 +53,10 @@
                     </div>--%>
             </div>
             <%--我的课程--%>
-            <div id="course-list" class="js-course-list my-space-course study-tl">
+            <div id="course-list" class="js-course-list my-space-course study-tl" style="padding: 0px;">
                 <%--第一条内容--%>
-                <div class="clearfix tl-item  tl-item-first">
-			            <span class="time">
-                <b>2016</b>
-                <em>12月23日</em>
-            </span>
-                    <div class="course-list course-list-m">
+                <div class="clearfix tl-item  tl-item-first" style="border-left: none;padding: 0px;">
+                    <div class="course-list course-list-m" style="border-left: none;padding: 0px;">
                         <ul class="clearfix">
                             <li class="course-one" data-courseid="156" data-uid="1361691">
                                 <div class="course-list-img l">
@@ -111,175 +107,6 @@
                     </div>
                 </div>
                 <%--第一条内容--%>
-                <%--内容--%>
-                <div class="clearfix tl-item ">
-			            <span class="time">
-                <b>2016</b>
-                <em>12月17日</em>
-            </span>
-                    <div class="course-list course-list-m">
-                        <ul class="clearfix">
-                            <li class="course-one" data-courseid="740" data-uid="1361691">
-                                <div class="course-list-img l">
-                                    <a href="/learn/740" target="_blank">
-                                        <img width="200" height="113" alt="带你实现别样的Android侧滑菜单"
-                                             src="http://img.mukewang.com/57feff6700012aa806000338-240-135.jpg">
-                                    </a>
-                                </div>
-                                <div class="course-list-cont">
-                                    <h3 class="study-hd">
-                                        <a href="/learn/740" target="_blank">带你实现别样的Android侧滑菜单</a>
-
-                                        <span class="i-new">更新完毕</span>
-                                        <!-- 更新完毕 -->
-                                        <!-- 收藏和删除 -->
-                                        <div class="share-box clearfix">
-                                            <div class="show-btn"><i class="icon-down2"></i></div>
-                                            <div class="share-box-con courses-r">
-                                                <a href="javascript:;" title="收藏" class="follow custom_f"><i
-                                                        class="icon icon-star_outline"></i></a>
-                                                <a href="javascript:;" title="删除" class="del"><i
-                                                        class="icon icon-notdisplay"></i></a>
-
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <div class="study-points">
-                                        <span class="i-left span-common">已学0%</span>
-                                        <span class="i-mid span-common">用时10小时 3分</span>
-                                        <span class="i-right span-common">学习至1-1 Android侧滑菜单之DrawerLa...</span>
-                                    </div>
-                                    <div class="catog-points">
-                                        <span class="i-left span-common"><a
-                                                href="/u/1361691/course/740/notes">笔记 <i>0</i></a></span>
-                                        <span class="i-mid span-common"><a
-                                                href="/u/1361691/course/740/codes">代码 <i>0</i></a></span>
-                                        <span class="i-right span-common"><a
-                                                href="/u/1361691/course/740/questions">问答 <i>0</i></a></span>
-
-                                        <a href="/video/13124" target="_blank" class="btn-red continute-btn">继续学习</a>
-
-                                    </div>
-                                </div>
-
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <%--内容end--%>
-                <%--最后内容--%>
-                <div class="clearfix tl-item ">
-			            <span class="time">
-                <b>2016</b>
-                <em>06月05日</em>
-            </span>
-                    <div class="course-list course-list-m">
-                        <ul class="clearfix">
-                            <li class="course-one" data-courseid="334" data-uid="1361691">
-                                <div class="course-list-img l">
-                                    <a href="/learn/334" target="_blank">
-                                        <img width="200" height="113" alt="Hibernate初探之一对多映射"
-                                             src="http://img.mukewang.com/55657b3b0001e78d06000338-240-135.jpg">
-                                    </a>
-                                </div>
-                                <div class="course-list-cont">
-                                    <h3 class="study-hd">
-                                        <a href="/learn/334" target="_blank">Hibernate初探之一对多映射</a>
-
-                                        <span class="i-new">更新完毕</span>
-                                        <!-- 更新完毕 -->
-                                        <!-- 收藏和删除 -->
-                                        <div class="share-box clearfix">
-                                            <div class="show-btn"><i class="icon-down2"></i></div>
-                                            <div class="share-box-con courses-r">
-                                                <a href="javascript:;" title="收藏" class="follow custom_f"><i
-                                                        class="icon icon-star_outline"></i></a>
-                                                <a href="javascript:;" title="删除" class="del"><i
-                                                        class="icon icon-notdisplay"></i></a>
-
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <div class="study-points">
-                                        <span class="i-left span-common">已学0%</span>
-                                        <span class="i-mid span-common">用时 0分</span>
-                                        <span class="i-right span-common">学习至5-5 测试MyEclipse生成效果</span>
-                                    </div>
-                                    <div class="catog-points">
-                                        <span class="i-left span-common"><a
-                                                href="/u/1361691/course/334/notes">笔记 <i>0</i></a></span>
-                                        <span class="i-mid span-common"><a
-                                                href="/u/1361691/course/334/codes">代码 <i>0</i></a></span>
-                                        <span class="i-right span-common"><a
-                                                href="/u/1361691/course/334/questions">问答 <i>0</i></a></span>
-
-                                        <a href="/video/8760" target="_blank" class="btn-red continute-btn">继续学习</a>
-
-                                    </div>
-                                </div>
-
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <%--最后内容--%>
-                <div class="clearfix tl-item  tl-item-last">
-			            <span class="time">
-                <b>2016</b>
-                <em>03月17日</em>
-            </span>
-                    <div class="course-list course-list-m">
-                        <ul class="clearfix">
-                            <li class="course-one" data-courseid="140" data-uid="1361691">
-                                <div class="course-list-img l">
-                                    <a href="/learn/140" target="_blank">
-                                        <img width="200" height="113" alt="移动端的WEB相册"
-                                             src="http://img.mukewang.com/53acc68600017f4506000338-240-135.jpg">
-                                    </a>
-                                </div>
-                                <div class="course-list-cont">
-                                    <h3 class="study-hd">
-                                        <a href="/learn/140" target="_blank">移动端的WEB相册</a>
-
-                                        <span class="i-new">更新完毕</span>
-                                        <!-- 更新完毕 -->
-                                        <!-- 收藏和删除 -->
-                                        <div class="share-box clearfix">
-                                            <div class="show-btn"><i class="icon-down2"></i></div>
-                                            <div class="share-box-con courses-r">
-                                                <a href="javascript:;" title="收藏" class="follow custom_f"><i
-                                                        class="icon icon-star_outline"></i></a>
-                                                <a href="javascript:;" title="删除" class="del"><i
-                                                        class="icon icon-notdisplay"></i></a>
-
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <div class="study-points">
-                                        <span class="i-left span-common">已学73%</span>
-                                        <span class="i-mid span-common">用时 5小时29分</span>
-                                        <span class="i-right span-common">学习至3-6 查看大图功能实现</span>
-                                    </div>
-                                    <div class="catog-points">
-                                        <span class="i-left span-common"><a
-                                                href="/u/1361691/course/140/notes">笔记 <i>0</i></a></span>
-                                        <span class="i-mid span-common"><a
-                                                href="/u/1361691/course/140/codes">代码 <i>0</i></a></span>
-                                        <span class="i-right span-common"><a
-                                                href="/u/1361691/course/140/questions">问答 <i>0</i></a></span>
-
-                                        <a href="/video/2248" target="_blank" class="btn-red continute-btn">继续学习</a>
-
-                                    </div>
-                                </div>
-
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <%--我的课程--%>
             <%--我的收藏--%>
@@ -287,89 +114,88 @@
                 <ul class="clearfix">
                     <li class="course-one" data-courseid="156" data-uid="1361691">
                         <div class="course-list-img l">
-                            <a href="/learn/156" target="_blank">
-                                <img width="200" height="113" alt="AngularJS实战" src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
+                            <%--用户头像--%>
+                            <a href="" target="_blank">
+                                <img style="width: 70px;height: 70px;border-radius: 100px;" alt="AngularJS实战" src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
                             </a>
+                            <%--用户头像end--%>
+                            <%--用户账号--%>
+                             <div style="padding: 10px 2px 10px 7px;">
+                                 <a style="font-size: 16px;">asdasd</a>
+                             </div>
+                            <%--用户账号end--%>
                         </div>
-                        <div class="course-list-cont">
+                        <div class="course-list-cont" style="padding-left: 130px;">
+                            <%--话题标题--%>
                             <h3 class="study-hd">
-                                <a href="/learn/156" target="_blank">AngularJS实战</a>
-                                <span class="i-new">更新完毕</span>
-                                <!-- 更新完毕 -->
-                                <!-- 关注和分享 -->
-                                <div class="share-box clearfix">
-                                    <div class="show-btn"><i class="icon-down2"></i></div>
-                                    <div class="share-box-con share-r">
-                                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="share_156" data-id="156" data-bd-bind="1483086631617">
-                                            <a class="bds_weixin icon-share-weichat" data-cmd="weixin" title="分享到微信"></a>
-                                            <a class="bds_tsina icon-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-                                            <a class="bds_qzone icon-share-qq" data-cmd="qzone" href="#" title="分享到QQ空间"></a>
-                                        </div>
-                                        <a href="javascript:;" title="取消收藏" class="follow"><i class="icon icon-star2"></i></a>
-                                    </div>
-                                </div>
+                                <a href="" target="_blank" style="color: #14191e;">AngularJS实战</a>
                             </h3>
-                            <div class="study-points">
-
-                                <span class="i-left span-common">已学0%</span>
-                                <span class="i-mid span-common">用时19分</span>
-                                <span class="i-right span-common">学习至1-2 快速上手</span>
-
+                            <%--话题标题end--%>
+                            <%--内容--%>
+                            <div class="study-points" style="display: inline-table;">
+                                <span class="i-left span-common" style="color: #1D1D20;font-size: 18px;">
+                                    2015年8月5日 - 标签:css 一键约师傅 百度师傅百度师傅,专治各种手机、电脑问题百度经验:jingyan.baidu.com 网页中圆形头像百度经验:jingyan.baidu.com 工具/原料 CSS百度经验:jin...
+                                </span>
                             </div>
-
+                            <%--内容end--%>
                             <div class="catog-points">
-                                <span class="i-left span-common"><a href="/u/1361691/course/156/notes">笔记 <i>0</i></a></span>
-                                <span class="i-mid span-common"><a href="/u/1361691/course/156/codes">代码 <i>0</i></a></span>
-                                <span class="i-right span-common"><a href="/u/1361691/course/156/questions">问答 <i>0</i></a></span>
-
-                                <a href="/video/4441" target="_blank" class="btn-red continute-btn">继续学习</a>
-
+                                <span class="i-left span-common">
+                                    <a href="javascript:void (0);">浏览 <i>0</i></a>
+                                </span>
+                                <span class="i-mid span-common">
+                                    <a href="javascript:void (0);">评论 <i>0</i></a>
+                                </span>
+                                <span class="i-right span-common">
+                                    <a href="javascript:void (0);">收藏 <i>0</i></a>
+                                </span>
+                                <span class="i-right span-common">
+                                    <a href="javascript:void (0);">赞 <i>0</i></a>
+                                </span>
                             </div>
                         </div>
-                    </li><li class="course-one" data-courseid="782" data-uid="1361691">
-                    <div class="course-list-img l">
-                        <a href="/learn/782" target="_blank">
-                            <img width="200" height="113" alt="Android-实用的App换肤功能" src="http://img.mukewang.com/5863529b0001b33106000338-240-135.jpg">
-                        </a>
-                    </div>
-                    <div class="course-list-cont">
-                        <h3 class="study-hd">
-                            <a href="/learn/782" target="_blank">Android-实用的App换肤功能</a>
-                            <span class="i-new">更新至5-1</span>
-                            <!-- 关注和分享 -->
-                            <div class="share-box clearfix">
-                                <div class="show-btn"><i class="icon-down2"></i></div>
-                                <div class="share-box-con share-r">
-                                    <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="share_782" data-id="782" data-bd-bind="1483086631647">
-                                        <a class="bds_weixin icon-share-weichat" data-cmd="weixin" title="分享到微信"></a>
-                                        <a class="bds_tsina icon-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-                                        <a class="bds_qzone icon-share-qq" data-cmd="qzone" href="#" title="分享到QQ空间"></a>
-                                    </div>
-                                    <a href="javascript:;" title="取消收藏" class="follow"><i class="icon icon-star2"></i></a>
-                                </div>
+                    </li>
+                    <li class="course-one" data-courseid="156" data-uid="1361691">
+                        <div class="course-list-img l">
+                            <%--用户头像--%>
+                            <a href="" target="_blank">
+                                <img style="width: 70px;height: 70px;border-radius: 100px;" alt="AngularJS实战" src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
+                            </a>
+                            <%--用户头像end--%>
+                            <%--用户账号--%>
+                             <div style="padding: 10px 2px 10px 7px;">
+                                 <a style="font-size: 16px;">asdasd</a>
+                             </div>
+                            <%--用户账号end--%>
+                        </div>
+                        <div class="course-list-cont" style="padding-left: 130px;">
+                            <%--话题标题--%>
+                            <h3 class="study-hd">
+                                <a href="" target="_blank" style="color: #14191e;">AngularJS实战</a>
+                            </h3>
+                            <%--话题标题end--%>
+                            <%--内容--%>
+                            <div class="study-points" style="display: inline-table;">
+                                <span class="i-left span-common" style="color: #1D1D20;font-size: 18px;">
+                                    2015年8月5日 - 标签:css 一键约师傅 百度师傅百度师傅,专治各种手机、电脑问题百度经验:jingyan.baidu.com 网页中圆形头像百度经验:jingyan.baidu.com 工具/原料 CSS百度经验:jin...
+                                </span>
                             </div>
-                        </h3>
-                        <div class="study-points">
-
-                            <span class="i-left span-common">已学0%</span>
-                            <span class="i-mid span-common">用时 0分</span>
-                            <span class="i-right span-common">学习至1-1 课程介绍(1)</span>
-
+                            <%--内容end--%>
+                            <div class="catog-points">
+                                <span class="i-left span-common">
+                                    <a href="javascript:void (0);">浏览 <i>0</i></a>
+                                </span>
+                                <span class="i-mid span-common">
+                                    <a href="javascript:void (0);">评论 <i>0</i></a>
+                                </span>
+                                <span class="i-right span-common">
+                                    <a href="javascript:void (0);">收藏 <i>0</i></a>
+                                </span>
+                                <span class="i-right span-common">
+                                    <a href="javascript:void (0);">赞 <i>0</i></a>
+                                </span>
+                            </div>
                         </div>
-
-                        <div class="catog-points">
-                            <span class="i-left span-common"><a href="/u/1361691/course/782/notes">笔记 <i>0</i></a></span>
-                            <span class="i-mid span-common"><a href="/u/1361691/course/782/codes">代码 <i>0</i></a></span>
-                            <span class="i-right span-common"><a href="/u/1361691/course/782/questions">问答 <i>0</i></a></span>
-
-                            <a href="/video/13881" target="_blank" class="btn-red continute-btn">继续学习</a>
-
-                        </div>
-                    </div>
-
-
-                </li>
-
+                    </li>
                 </ul>
             </div>
             <%--收藏end--%>
@@ -448,6 +274,7 @@
 
         }    })
     /*table标签实现end*/
+
 </script>
 </body>
 </html>
