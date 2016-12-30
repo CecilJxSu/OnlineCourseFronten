@@ -80,11 +80,39 @@
                     </li>
                     <!--铃铛-->
                     <li class="remind_warp">
-                        <!-- <i class="msg_remind"></i> -->
-                        <a target="_blank" href="#">
+                        <i class="bellimg msg_remind"></i>
+                        <a id="bell" target="_blank" href="">
                             <i class="icon-notifi"></i>
-                            <span class="msg_icon" style="display: none;"></span>
+                            <span class="bellfont msg_icon" style="display: none;">1</span>
                         </a>
+                        <div class="bell hide">
+                            <ul>
+                                <li>
+                                   <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a>消息</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/notices/show">更多</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <!--铃铛end-->
                     <!--消息-->
@@ -262,6 +290,7 @@
 <!--登陆与注册-->
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
 <script type="text/javascript">
     $(function () {
         /*var a = $('[data-search="top-banner"]'), c = new v(a), h = $(".search-area"), g = $(".showhide-search"), b = $(".search-input"), k = function () {
@@ -328,7 +357,13 @@
     $('.showhide-search').on('click',function () {
         location.href = "/OnlineCourseFronten/course/show?search="+$('.search-input').val();
     });
+    /*铃铛显示消息*/
+    $('#bell').on('click',function (e) {
+        e.preventDefault();
+        $(this).next('div').fadeToggle();
+    })
+    /*铃铛显示消息end*/
 </script>
-<script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
+
 </body>
 </html>
