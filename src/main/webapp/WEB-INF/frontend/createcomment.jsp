@@ -33,7 +33,7 @@
                                     <p class="errortip"></p>
                                 </h2>
                             </div>
-                            <div>
+                            <%--<div>
                                 <div style="margin: 10px">
                                     <h2 class="new-save-title">内容:</h2>
                                 </div>
@@ -44,7 +44,7 @@
                             <div>
                                 <div class="js-imagesWrap fl imagesWrap"> </div>
                                 <div class="addImgBtn fl js-addImgBtn">
-                                    <%--<i class="icon-plus"></i>--%>
+                                    &lt;%&ndash;<i class="icon-plus"></i>&ndash;%&gt;
                                 </div>
                                 <div class="avator-btn-wrap">
                                     <!--<form target="uploadtarget" action="" method="post" enctype="multipart/form-data">
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="cb"></div>
                                 <p class="uploadImgsTip">最多可以上传<span class="color-red">9</span>张图片,图片大小不能超过<span class="color-red">2M</span></p>
-                            </div>
+                            </div>--%>
                             <%--富文本编辑器--%>
                             <!--用父容器来控制宽度-->
                             <div style="width:100%">
@@ -76,7 +76,7 @@
                                     <p>请输入内容...</p>
                                 </div>
                             </div>
-                            <div class="btn-wrap btn-wrapcomment">
+                            <div class="btn-wrap btn-wrapcomment" style="padding: 10px;">
                                 <a  id="submit" class="fl" onclick="submitComment()">提交</a>
                                 <p id="feedback-error" class="rlf-tip-wrap rlf-tip-error" style=" font-size: 20px;display:none"></p>
                             </div>
@@ -109,7 +109,7 @@
 <script src="${pageContext.request.contextPath}/static/wangEditor/js/wangEditor.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/createcomment/create.js"></script>
 <script type="text/javascript">
-    function c(m) {
+    /*function c(m) {
         var a = $(this).siblings("p");
         m ? (a.addClass("rlf-tip-error").text(m), $(this).addClass("error-field")) : (a.removeClass("rlf-tip-error").empty(), $(this).removeClass("error-field")), $("#feedback-error").empty().hide()
     }
@@ -146,7 +146,7 @@
         success:function(e){
             //alert('图片上传成功');
         }
-    });
+    });*/
 
     var $title=$("#ques-title");
     $title.blur(checkTitle);
