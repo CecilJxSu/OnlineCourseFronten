@@ -57,97 +57,11 @@
             </div>
             <%--我的课程--%>
             <%--我的收藏--%>
-            <div id="favorite-list" class="course-list course-list-m js-course-list" style="display: none;">
-                <ul class="clearfix">
-                    <li class="course-one" data-courseid="156" data-uid="1361691">
-                        <div class="course-list-img l">
-                            <%--用户头像--%>
-                            <a href="" target="_blank">
-                                <img style="width: 70px;height: 70px;border-radius: 100px;" alt="AngularJS实战" src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
-                            </a>
-                            <%--用户头像end--%>
-                            <%--用户账号--%>
-                             <div style="padding: 10px 2px 10px 7px;">
-                                 <a style="font-size: 16px;">asdasd</a>
-                             </div>
-                            <%--用户账号end--%>
-                        </div>
-                        <div class="course-list-cont" style="padding-left: 130px;">
-                            <%--话题标题--%>
-                            <h3 class="study-hd">
-                                <a href="" target="_blank" style="color: #14191e;">AngularJS实战</a>
-                            </h3>
-                            <%--话题标题end--%>
-                            <%--内容--%>
-                            <div class="study-points" style="display: inline-table;">
-                                <span class="i-left span-common" style="color: #1D1D20;font-size: 18px;">
-                                    2015年8月5日 - 标签:css 一键约师傅 百度师傅百度师傅,专治各种手机、电脑问题百度经验:jingyan.baidu.com 网页中圆形头像百度经验:jingyan.baidu.com 工具/原料 CSS百度经验:jin...
-                                </span>
-                            </div>
-                            <%--内容end--%>
-                            <div class="catog-points">
-                                <span class="i-left span-common">
-                                    <a href="javascript:void (0);">浏览 <i>0</i></a>
-                                </span>
-                                <span class="i-mid span-common">
-                                    <a href="javascript:void (0);">评论 <i>0</i></a>
-                                </span>
-                                <span class="i-right span-common">
-                                    <a href="javascript:void (0);">收藏 <i>0</i></a>
-                                </span>
-                                <span class="i-right span-common">
-                                    <a href="javascript:void (0);">赞 <i>0</i></a>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="course-one" data-courseid="156" data-uid="1361691">
-                        <div class="course-list-img l">
-                            <%--用户头像--%>
-                            <a href="" target="_blank">
-                                <img style="width: 70px;height: 70px;border-radius: 100px;" alt="AngularJS实战" src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
-                            </a>
-                            <%--用户头像end--%>
-                            <%--用户账号--%>
-                             <div style="padding: 10px 2px 10px 7px;">
-                                 <a style="font-size: 16px;">asdasd</a>
-                             </div>
-                            <%--用户账号end--%>
-                        </div>
-                        <div class="course-list-cont" style="padding-left: 130px;">
-                            <%--话题标题--%>
-                            <h3 class="study-hd">
-                                <a href="" target="_blank" style="color: #14191e;">AngularJS实战</a>
-                            </h3>
-                            <%--话题标题end--%>
-                            <%--内容--%>
-                            <div class="study-points" style="display: inline-table;">
-                                <span class="i-left span-common" style="color: #1D1D20;font-size: 18px;">
-                                    2015年8月5日 - 标签:css 一键约师傅 百度师傅百度师傅,专治各种手机、电脑问题百度经验:jingyan.baidu.com 网页中圆形头像百度经验:jingyan.baidu.com 工具/原料 CSS百度经验:jin...
-                                </span>
-                            </div>
-                            <%--内容end--%>
-                            <div class="catog-points">
-                                <span class="i-left span-common">
-                                    <a href="javascript:void (0);">浏览 <i>0</i></a>
-                                </span>
-                                <span class="i-mid span-common">
-                                    <a href="javascript:void (0);">评论 <i>0</i></a>
-                                </span>
-                                <span class="i-right span-common">
-                                    <a href="javascript:void (0);">收藏 <i>0</i></a>
-                                </span>
-                                <span class="i-right span-common">
-                                    <a href="javascript:void (0);">赞 <i>0</i></a>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="favorite-list" class="comment-favorite-list course-list course-list-m js-course-list" style="display: none;">
             </div>
             <%--收藏end--%>
             <%--通知--%>
-            <div id="notice-list" class="notice-list" style="display:none">
+            <div id="notice-list" class="comment-notice-list notice-list" style="display:none">
                 <div note-id="633468" class="notice">
                     <div class="notice-box clearfix" style="display: flex;">
                         <p class="notice-type ">猿问</p>
@@ -210,6 +124,7 @@
                             break;
             case 'favorite':$('#notice-list').css('display','none');$('#course-list').css('display','none');$('#favorite-list').css('display','block');
                             $('#notices').removeClass('active');$('#course').removeClass('active');$('#favorite').addClass('active');
+                            nowPage = 1;main_favorite();
                             break;
             case 'notices':$('#favorite-list').css('display','none');$('#course-list').css('display','none');$('#notice-list').css('display','block');
                             $('#course').removeClass('active');$('#favorite').removeClass('active');$('#notices').addClass('active');
@@ -232,6 +147,13 @@
         };
         getData_course(url,data);
     }
+    function main_favorite() {
+        var url = '/OnlineCourseFronten/message/favorite/get';
+        var data = {
+            nowPage : nowPage
+        };
+        getData_favorite(url,data);
+    }
 
     //页面加载完成时触发
     $(function () {
@@ -253,6 +175,26 @@
                 maxPage = data.totalPage;
                 pageChange();
                 jsonToHtml_course(data);
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    }
+    function getData_favorite(url,data){
+        $.ajax({
+            url:url,//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            beforeSend: function(){
+                beforeSend();
+            },
+            success:function (data) {
+                maxPage = data.totalPage;
+                pageChange();
+                jsonToHtml_favorite(data);
             },
             error:function (e) {
                 errBack();
@@ -365,17 +307,76 @@
         });
         $('.comment-course-list').html(html);
     }
+    function jsonToHtml_favorite(data) {
+        var html = '';
+            html+='<ul class="clearfix">\n';
+        $.each( data.returnDate, function(index, content)
+        {
+                html+='<li class="course-one" data-courseid="156" data-uid="1361691">\n';
+                html+='<div class="course-list-img l">\n';
+                <%--用户头像--%>
+                html+='<a href="" target="_blank">\n';
+                if (content.iconurl==null || content.iconurl==""){
+                    html +='<img style="width: 70px;height: 70px;border-radius: 100px;"  src="/OnlineCourseFronten/static/staticWEB/img/default.png" title="JavaScript">\n';
+
+                }else {
+                    html +='<img style="width: 70px;height: 70px;border-radius: 100px;"  src="/OnlineCourseFronten/file/get?url='+content.iconurl+'" title="JavaScript">\n';
+                }
+                html+='</a>\n';
+                <%--用户头像end--%>
+                <%--用户账号--%>
+            html+='<div style="padding: 10px 2px 10px 7px;">\n';
+            html+='<a style="font-size: 16px;">'+content.username+'</a>\n';
+            html+='</div>\n';
+                <%--用户账号end--%>
+            html+='</div>\n';
+            html+='<div class="course-list-cont" style="padding-left: 130px;">\n';
+                <%--话题标题--%>
+            html+='<h3 class="study-hd">\n';
+            html+='<a href="/OnlineCourseFronten/commentdetail/show?id='+content.chat.id+'" target="_blank" style="color: #14191e;">'+content.chat.title+'</a>\n';
+            html+='</h3>\n';
+                <%--话题标题end--%>
+                <%--内容--%>
+            html+='<div class="study-points" style="display: inline-table;">\n';
+            html+='<span class="i-left span-common" style="color: #1D1D20;font-size: 18px;">'+content.chat.content+'</span>\n';
+            html+='</div>\n';
+                <%--内容end--%>
+            html+='<div class="catog-points">\n';
+            html+='<span class="i-left span-common">\n';
+            html+='<a href="javascript:void (0);">浏览 <i>'+content.watchCount+'</i></a>\n';
+            html+='</span>\n';
+            html+='<span class="i-mid span-common">\n';
+            html+='<a href="/OnlineCourseFronten/commentdetail/show?id='+content.chat.id+'">评论 <i>'+content.commentCount+'</i></a>\n';
+            html+='</span>\n';
+            html+='<span class="i-right span-common">\n';
+            html+='<a href="javascript:void (0);">收藏 <i>'+content.favoriteCount+'</i></a>\n';
+            html+='</span>\n';
+            html+='<span class="i-right span-common">\n';
+            html+='<a href="javascript:void (0);">赞 <i>'+content.likeCount+'</i></a>\n';
+            html+='</span>\n';
+            html+='</div>\n';
+            html+='</div>\n';
+            html+='</li>\n';
+        });
+            html +='</ul>\n';
+        $('.comment-favorite-list').html(html);
+    }
 
 
     //错误回掉
     function errBack() {
         $('.comment-course-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+        $('.comment-favorite-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
     }
+
 
     //发送前触发
     function beforeSend() {
         $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+        $('.comment-favorite-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+
     }
+
     /************** end：课程分页列表***********/
 </script>
 </body>

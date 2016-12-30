@@ -77,7 +77,7 @@
 
     <!--获取用户收藏-->
     <select id="getFavorite" resultMap="favorite">
-        SELECT count(*)
+        SELECT *
         FROM favorite
         WHERE user_id = #{userId}
               AND target_type = #{targetType}

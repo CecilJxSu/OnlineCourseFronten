@@ -140,7 +140,6 @@ public class ChatController {
 
         String title = request.getParameter("title");//标识
 
-        Chat chat=chatService.findByID(Integer.parseInt(chatId));
 
         Map map =new HashMap();
         int savefavorite;
@@ -149,8 +148,9 @@ public class ChatController {
         if ("收藏".equals(title)&&isfavorite==0){
             savefavorite= favoriteService.create(type,Integer.parseInt(chatId),userId);
             if (savefavorite>0){
-                int favorite =chat.getFavoriteCount()+4;
-                chat.setFavoriteCount(favorite);
+                Chat chat = new Chat();
+                chat.setId(Integer.parseInt(chatId));
+                chat.setFavoriteCount(4);
                 chatService.update(chat);
                 //消息
                 Message message = new Message();
@@ -169,8 +169,9 @@ public class ChatController {
         if ("取消收藏".equals(title)&&isfavorite==1){
             savefavorite= favoriteService.delete(type,Integer.parseInt(chatId),userId);
             if (savefavorite>0){
-                int favorite =chat.getFavoriteCount()-4;
-                chat.setFavoriteCount(favorite);
+                Chat chat = new Chat();
+                chat.setId(Integer.parseInt(chatId));
+                chat.setFavoriteCount(-4);
                 chatService.update(chat);
             }
         }

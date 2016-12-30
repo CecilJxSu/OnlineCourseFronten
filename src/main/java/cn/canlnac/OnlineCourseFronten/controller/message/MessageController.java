@@ -1,13 +1,10 @@
 package cn.canlnac.OnlineCourseFronten.controller.message;
 
-import cn.canlnac.OnlineCourseFronten.entity.Catalog;
+import cn.canlnac.OnlineCourseFronten.entity.Chat;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.LearnRecord;
-import cn.canlnac.OnlineCourseFronten.service.CatalogService;
-import cn.canlnac.OnlineCourseFronten.service.CourseService;
-import cn.canlnac.OnlineCourseFronten.service.ChatService;
-import cn.canlnac.OnlineCourseFronten.service.FavoriteService;
-import cn.canlnac.OnlineCourseFronten.service.LearnRecordService;
+import cn.canlnac.OnlineCourseFronten.entity.Favorite;
+import cn.canlnac.OnlineCourseFronten.entity.Profile;
+import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +38,22 @@ public class MessageController {
     @Autowired
     ChatService chatService;
 
+    @Autowired
+    ProfileService profileService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    WatchService watchService;
+
+    @Autowired
+    LikeService likeService;
+
+    @Autowired
+    CommentService commentService;
+
+
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 
@@ -70,6 +83,49 @@ public class MessageController {
 
         //获取总条数
         int totalNum = courseService.countChooseCourse(userId);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map map = new HashMap();
+        map.put("returnDate",returnDate);
+        map.put("totalPage",totalPage>0?totalPage:1);
+        return map;
+    }
+
+    /**
+     * 获得收藏的话题
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("favorite/get")
+    @ResponseBody
+    public Map getFavorite(@RequestParam("nowPage") int nowPage){
+        //获取用户id
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+
+        List<Map> returnDate = new ArrayList<Map>();
+        for (Favorite favorite:favoriteService.getFavorite(start,count,"chat",userId)) {
+            Map unit =  new HashMap();
+            Chat chat =chatService.findByID(favorite.getTargetId());
+            String type="chat";
+            unit.put("chat",chatService.findByID(favorite.getTargetId()));
+            unit.put("watchCount",watchService.count(type,chat.getId()));
+            unit.put("likeCount",likeService.count(type,chat.getId()));
+            unit.put("commentCount",commentService.count(type,chat.getId()));
+            unit.put("favoriteCount",favoriteService.count(type,chat.getId()));
+            unit.put("iconurl",profileService.findByUserID(favorite.getUserId()).getIconUrl());
+            unit.put("username",userService.findByID(favorite.getUserId()).getUsername());
+            returnDate.add(unit);
+        }
+
+        //获取总条数
+        int totalNum = favoriteService.countFavorite(userId,"chat");
         //计算总页数
         int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
 

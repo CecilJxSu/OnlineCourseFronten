@@ -67,8 +67,10 @@ public class CommentdetailController {
 
         int watch=watchService.create("chat",Integer.parseInt(chatId),userId);
         if (watch>0){
-            chat.setWatchCount(1);
-            chatService.update(chat);
+            Chat c = new Chat();
+            c.setId(Integer.parseInt(chatId));
+            c.setWatchCount(1);
+            chatService.update(c);
         }
 
         chat.setCommentCount(commentService.count("chat",chat.getId()));//评论数

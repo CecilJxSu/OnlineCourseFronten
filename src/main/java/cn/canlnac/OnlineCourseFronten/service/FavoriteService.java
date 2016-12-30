@@ -61,8 +61,7 @@ public interface FavoriteService {
      * @param targetType    收藏类型，课程：course；话题：chat
      * @return
      */
-    int countFavorite(int userId,
-                      String targetType);
+    int countFavorite(int userId, String targetType);
 
     /**
      * 获取用户收藏
@@ -72,8 +71,5 @@ public interface FavoriteService {
      * @param userId        用户id
      * @return
      */
-    List<Favorite> getFavorite(int start,
-                               int count,
-                               String targetType,
-                               int userId);
+    List<Favorite> getFavorite(int start, int count, String targetType, int userId);
 }
