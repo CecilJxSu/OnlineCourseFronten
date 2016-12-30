@@ -53,60 +53,7 @@
                     </div>--%>
             </div>
             <%--我的课程--%>
-            <div id="course-list" class="js-course-list my-space-course study-tl" style="padding: 0px;">
-                <%--第一条内容--%>
-                <div class="clearfix tl-item  tl-item-first" style="border-left: none;padding: 0px;">
-                    <div class="course-list course-list-m" style="border-left: none;padding: 0px;">
-                        <ul class="clearfix">
-                            <li class="course-one" data-courseid="156" data-uid="1361691">
-                                <div class="course-list-img l">
-                                    <a href="/learn/156" target="_blank">
-                                        <img width="200" height="113" alt="AngularJS实战"
-                                             src="http://img.mukewang.com/5707699500012d5a06000338-240-135.jpg">
-                                    </a>
-                                </div>
-                                <div class="course-list-cont">
-                                    <h3 class="study-hd">
-                                        <a href="/learn/156" target="_blank">AngularJS实战</a>
-
-                                        <span class="i-new">更新完毕</span>
-                                        <!-- 更新完毕 -->
-                                        <!-- 收藏和删除 -->
-                                        <div class="share-box clearfix">
-                                            <div class="show-btn"><i class="icon-down2"></i></div>
-                                            <div class="share-box-con courses-r">
-                                                <a href="javascript:;" title="收藏" class="follow custom_f"><i
-                                                        class="icon icon-star_outline"></i></a>
-                                                <a href="javascript:;" title="删除" class="del"><i
-                                                        class="icon icon-notdisplay"></i></a>
-
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <div class="study-points">
-                                        <span class="i-left span-common">已学0%</span>
-                                        <span class="i-mid span-common">用时19分</span>
-                                        <span class="i-right span-common">学习至1-2 快速上手</span>
-                                    </div>
-                                    <div class="catog-points">
-                                        <span class="i-left span-common"><a
-                                                href="/u/1361691/course/156/notes">笔记 <i>0</i></a></span>
-                                        <span class="i-mid span-common"><a
-                                                href="/u/1361691/course/156/codes">代码 <i>0</i></a></span>
-                                        <span class="i-right span-common"><a
-                                                href="/u/1361691/course/156/questions">问答 <i>0</i></a></span>
-
-                                        <a href="/video/4441" target="_blank" class="btn-red continute-btn">继续学习</a>
-
-                                    </div>
-                                </div>
-
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <%--第一条内容--%>
+            <div id="course-list" class="js-course-list my-space-course study-tl comment-course-list">
             </div>
             <%--我的课程--%>
             <%--我的收藏--%>
@@ -239,11 +186,6 @@
             <!-- 分页 -->
             <div class="qa-comment-page">
                 <div class="page">
-                    <span class="disabled_page">首页</span>
-                    <span class="disabled_page">上一页</span>
-                    <a href="javascript:void(0)" class="active text-page-tag">1</a>
-                    <a class="text-page-tag" href="/u/1361691/courses?page=2">下一页</a>
-                    <a href="/u/1361691/courses?page=2">尾页</a>
                 </div>
             </div>
         </div>
@@ -264,6 +206,7 @@
         switch (id){
             case 'course':$('#favorite-list').css('display','none');$('#notice-list').css('display','none');$('#course-list').css('display','block');
                             $('#notices').removeClass('active');$('#favorite').removeClass('active');$('#course').addClass('active');
+                            nowPage = 1;main_course();
                             break;
             case 'favorite':$('#notice-list').css('display','none');$('#course-list').css('display','none');$('#favorite-list').css('display','block');
                             $('#notices').removeClass('active');$('#course').removeClass('active');$('#favorite').addClass('active');
@@ -275,6 +218,165 @@
         }    })
     /*table标签实现end*/
 
+    /************** start：课程列表***********/
+    //默认当前页(不可动)
+    var nowPage = 1;
+    //默认最大页数(不可动)
+    var maxPage = 1;
+
+    //ajax入口
+    function main_course() {
+        var url = '/OnlineCourseFronten/message/course/get';
+        var data = {
+            nowPage : nowPage
+        };
+        getData_course(url,data);
+    }
+
+    //页面加载完成时触发
+    $(function () {
+        main_course();
+    });
+
+    //ajax(不可动)
+    function getData_course(url,data){
+        $.ajax({
+            url:url,//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            beforeSend: function(){
+                beforeSend();
+            },
+            success:function (data) {
+                maxPage = data.totalPage;
+                pageChange();
+                jsonToHtml_course(data);
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    }
+
+    //分页(不可动)
+    function pageChange() {
+        var pageHtml = '';
+        //设置首页、上一页
+        if (nowPage == 1){
+            pageHtml += '<span class="disabled_page">首页</span>';
+            pageHtml += '<span class="disabled_page">上一页</span>';
+        } else {
+            pageHtml += '<a id="first-page" href="javascript:void(0)">首页</a>';
+            pageHtml += '<a id="previous-page" href="javascript:void(0)">上一页</a>';
+        }
+        //设置数字页
+        for (var i=1;i<=maxPage;i++){
+            if (i == nowPage){
+                pageHtml += '<a class="text-page-tag active" href="javascript:void(0)">'+i+'</a>';
+            } else {
+                pageHtml += '<a class="text-page-tag page-num" href="javascript:void(0)">'+i+'</a>';
+            }
+        }
+        //设置下一页、尾页
+        if (nowPage == maxPage){
+            pageHtml += '<span class="disabled_page">下一页</span>';
+            pageHtml += '<span class="disabled_page">尾页</span>';
+        } else {
+            pageHtml += '<a id="next-page" href="javascript:void(0)">下一页</a>';
+            pageHtml += '<a id="last-page" href="javascript:void(0)">尾页</a>';
+        }
+        //替换进分页div
+        $('.page').html(pageHtml);
+
+        //分页数字按钮监听
+        $('.page-num').on('click',function () {
+            nowPage = $(this).html();
+            //触发ajax
+            main();
+        });
+
+        //首页触发
+        $('#first-page').on('click',function () {
+            nowPage = 1;
+            //触发ajax
+            main();
+        });
+        //尾页触发
+        $('#last-page').on('click',function () {
+            nowPage = maxPage;
+            //触发ajax
+            main();
+        });
+        //上一页触发
+        $('#previous-page').on('click',function () {
+            if (nowPage-1>0){
+                nowPage--;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+        //下一页触发
+        $('#next-page').on('click',function () {
+            if (nowPage+1<=maxPage){
+                nowPage++;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+    }
+
+    //将回传的数据转成html，放进相应位置(自己实现)
+    function jsonToHtml_course(data) {
+        var html = '';
+        $.each( data.returnDate, function(index, content)
+        {
+            html += '<div class="course-list course-list-m">';
+            html += '<ul class="clearfix">';
+            html += '<li class="course-one" data-courseid="156" data-uid="1361691">';
+            html += '<div class="course-list-img l">';
+            html += '<a href="/OnlineCourseFronten/learn/show?id='+content.course.id+'" target="_blank">';
+            html += '<img width="200" height="113" alt="'+content.course.name+'" src="/OnlineCourseFronten/file/get?url='+content.pic+'">';
+            html += '</a>';
+            html += '</div>';
+            html += '<div class="course-list-cont">';
+            html += '<h3 class="study-hd">';
+            html += '<a href="/OnlineCourseFronten/learn/show?id='+content.course.id+'" target="_blank">'+content.course.name+'</a>';
+            html += '<span class="i-new">更新完毕</span>';
+            html += '</h3>';
+            html += '<div class="study-points">';
+            html += '<span class="i-right span-common">'+content.course.introduction+'</span>';
+            html += '</div>';
+            html += '<div class="catog-points">';
+            html += '<span class="i-left span-common">人数 <i>'+content.peopleNum+'</i></span>';
+            html += '<span class="i-mid span-common">综合 <i>'+(Number(content.course.watchCount+content.course.likeCount+content.course.commentCount+content.course.favoriteCount)).toFixed(0)+'</i></span>';
+            html += '<span class="i-right span-common">评论 <i>'+(Number(content.course.commentCount/3)).toFixed(0)+'</i></span>';
+            html += '<a href="/OnlineCourseFronten/learn/show?id='+content.course.id+'" target="_blank" class="btn-red continute-btn">继续学习</a>';
+            html += '</div>';
+            html += '</div>';
+            html += '</li>';
+            html += '</ul>';
+            html += '</div>';
+        });
+        $('.comment-course-list').html(html);
+    }
+
+
+    //错误回掉
+    function errBack() {
+        $('.comment-course-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+    }
+
+    //发送前触发
+    function beforeSend() {
+        $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+    }
+    /************** end：课程分页列表***********/
 </script>
 </body>
 </html>
