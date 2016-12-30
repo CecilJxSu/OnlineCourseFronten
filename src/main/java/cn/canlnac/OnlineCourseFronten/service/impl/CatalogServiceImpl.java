@@ -62,7 +62,7 @@ public class CatalogServiceImpl implements CatalogService {
      * @param courseId  课程ID
      * @return          章节列表[{"chapter":chapter,"sections":{...},...]
      */
-    public List getChapterAndSectionList(int courseId) {
+    public List<Map> getChapterAndSectionList(int courseId) {
         List returnList = new ArrayList();
         //获取章
         List<Catalog> chapters = catalogDao.getChapterList(courseId);

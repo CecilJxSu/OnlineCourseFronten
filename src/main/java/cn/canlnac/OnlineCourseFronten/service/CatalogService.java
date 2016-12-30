@@ -3,6 +3,7 @@ package cn.canlnac.OnlineCourseFronten.service;
 import cn.canlnac.OnlineCourseFronten.entity.Catalog;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 课程章节事务接口
@@ -41,7 +42,7 @@ public interface CatalogService {
      * @param courseId  课程ID
      * @return          章节列表
      */
-    List getChapterAndSectionList(int courseId);
+    List<Map> getChapterAndSectionList(int courseId);
 
     /**
      * 删除章节

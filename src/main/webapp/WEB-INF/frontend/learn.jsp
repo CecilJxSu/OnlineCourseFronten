@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +131,16 @@
                                         <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item">
                                             <i class="icon-code type">第<c:out value="${section.index}"/>节</i>
                                             <c:out value="${section.name}"/>
-                                            <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
+                                            <c:if test="${section.progress==1}">
+                                                <button class="r moco-btn moco-btn-red preview-btn">已完成</button>
+                                            </c:if>
+                                            <c:if test="${section.progress<1 && section.progress>0}">
+                                                <button class="r moco-btn moco-btn-red preview-btn"><fmt:formatNumber value="${section.progress}" type="percent"/></button>
+                                            </c:if>
+                                            <c:if test="${section.progress==0}">
+                                                <button class="r moco-btn moco-btn-red preview-btn">开始学习</button>
+                                            </c:if>
+
                                         </a>
                                         <!-- 未登录时 -->
                                         <!-- <a target="_blank" href="/video/1430" class="J-media-item studyvideo">1-1 Java简介 (05:49)

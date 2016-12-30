@@ -100,6 +100,18 @@ public class RootCatalogController {
     }
 
     /**
+     * 获取该章下的所有节
+     * @param parentId      章id
+     * @return
+     */
+    @RequestMapping("chapter/section/get")
+    @ResponseBody
+    public List getSection(@RequestParam("parent_id") int parentId){
+        List<Catalog> chapters = catalogService.getSectionList(parentId);
+        return chapters;
+    }
+
+    /**
      * 添加节
      * @param courseId          课程id
      * @param parentId          章id

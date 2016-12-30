@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -34,27 +35,21 @@
                         <form class="form-horizontal">
                             <div class="managediv">
                                 <label>课程:</label>
-                                <select class="learnselect form-control">
-                                    <option value="1">course1</option>
-                                    <option value="2">course2</option>
-                                    <option value="3">sourse3</option>
-                                    <option value="4">course4</option>
+                                <select class="learnselect form-control" name="course_id" id="section_course_id">
+                                    <option value ="">请选择课程</option>
+                                    <c:forEach var="course" items="${courses}">
+                                        <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
+                                    </c:forEach>
                                 </select>
                                 <label>章:</label>
-                                <select class="learnselect form-control">
-                                    <option value="1">catalog1</option>
-                                    <option value="2">catalog2</option>
-                                    <option value="3">catalog3</option>
-                                    <option value="4">catalog4</option>
+                                <select class="learnselect form-control" name="parent_id" id="parent_id">
+                                    <option value="">请选择章</option>
                                 </select>
                                 <label>节:</label>
-                                <select class="learnselect form-control">
-                                    <option value="1">section1</option>
-                                    <option value="2">section2</option>
-                                    <option value="3">section3</option>
-                                    <option value="4">section4</option>
+                                <select class="learnselect form-control" name="section_id" id="section_id">
+                                    <option value="">请选择节</option>
                                 </select>
-                                <input class="manageinput btn btn-success" type="button" value="查询">
+                                <input class="manageinput btn btn-success" type="button" value="查询" onclick="main()">
                             </div>
                         </form>
                         <%--查询条件end--%>
@@ -64,48 +59,19 @@
                                 <div id="example0_wrapper" class="dataTables_wrapper no-footer" style="overflow: hidden">
                                     <table id="example0" class="table display dataTable no-footer" role="grid" aria-describedby="example0_info" >
                                         <thead>
-                                        <tr role="row">
-                                            <th class="sorting_asc"  style="width: 101px;">账号</th>
-                                            <th class="sorting"  style="width: 212px;">系别</th>
-                                            <th class="sorting"  style="width: 207px;">专业</th>
-                                            <th class="sorting"  style="width: 157px;">学习进度</th>
-                                        </tr>
+                                            <tr role="row">
+                                                <th class="sorting_asc"  style="text-align:center;">账号</th>
+                                                <th class="sorting"  style="text-align:center;">学号</th>
+                                                <th class="sorting"  style="text-align:center;">姓名</th>
+                                                <th class="sorting"  style="text-align:center;">邮箱</th>
+                                                <th class="sorting"  style="text-align:center;">系别(专业)</th>
+                                                <th class="sorting"  style="text-align:center;">学习进度</th>
+                                            </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">P293</td>
-                                            <td>10.86%</td>
-                                            <td>66</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 85%;">
-                                                        <span>85%</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">P309</td>
-                                            <td>3.62%</td>
-                                            <td>22</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 25%;">
-                                                        <span>25%</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <tbody class="comment-course-list">
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_paginate paging_full_numbers" id="example0_paginate">
-                                        <a class="paginate_button first disabled" aria-controls="example0" data-dt-idx="0" tabindex="0" id="example0_first">第一页</a>
-                                        <a class="paginate_button previous disabled" aria-controls="example0" data-dt-idx="1" tabindex="0" id="example0_previous">上一页</a>
-                                        <span>
-                                        <a class="paginate_button current" aria-controls="example0" data-dt-idx="2" tabindex="0">1</a>
-                                    </span>
-                                        <a class="paginate_button next disabled" aria-controls="example0" data-dt-idx="3" tabindex="0" id="example0_next">下一页</a>
-                                        <a class="paginate_button last disabled" aria-controls="example0" data-dt-idx="4" tabindex="0" id="example0_last">最后</a>
+                                    <div class="dataTables_paginate paging_full_numbers page" id="example0_paginate">
                                     </div>
                                 </div>
 
@@ -125,5 +91,199 @@
     <%--学习记录内容end--%>
 </div>
 <%--内容--%>
+<!--加载js-->
+<script src="${pageContext.request.contextPath}/static/backend/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/backend/js/bootstrap/bootstrap.min.js"></script>
+<script>
+    $('#section_course_id').change(function () {
+        //获取章
+        $.ajax({
+            url: "/OnlineCourseFronten/root/catalog/chapter/get",
+            type: "post",
+            data: {
+                course_id: $('#section_course_id').val()
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (index, content) {
+                    html += '<option value ="' + content.id + '">第' + content.index + '章 ' + content.name + '</option>';
+                });
+                $('#parent_id').html(html);
+                getSection();
+            },
+            error: function (e) {
+                $('#parent_id').html('<option value ="">请选择章</option>');
+            }
+        });
+    });
+    function getSection() {
+        //获取节
+        $.ajax({
+            url: "/OnlineCourseFronten/root/catalog/chapter/section/get",
+            type: "post",
+            data: {
+                parent_id: $('#parent_id').val()
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (index, content) {
+                    html += '<option value ="' + content.id + '">第' + content.index + '节 ' + content.name + '</option>';
+                });
+                $('#section_id').html(html);
+            },
+            error: function (e) {
+                $('#section_id').html('<option value ="">请选择节</option>');
+            }
+        });
+    }
+    $('#parent_id').change(function () {
+        getSection();
+    });
+    /************** start：分页列表***********/
+    //默认当前页(不可动)
+    var nowPage = 1;
+    //默认最大页数(不可动)
+    var maxPage = 1;
+
+    //ajax入口
+    function main() {
+        var url = '/OnlineCourseFronten/root/learnrecord/get';
+        var data = {
+            nowPage     : nowPage,
+            section_id  :   $('#section_id').val()
+        };
+        getData(url,data);
+    }
+
+    //ajax(不可动)
+    function getData(url,data){
+        $.ajax({
+            url:url,//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            beforeSend: function(){
+                beforeSend();
+            },
+            success:function (data) {
+                maxPage = data.totalPage;
+                pageChange();
+                jsonToHtml(data);
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    }
+
+    //分页(不可动)
+    function pageChange() {
+        var pageHtml = '';
+        //设置首页、上一页
+        if (nowPage == 1){
+            pageHtml += '<span class="paginate_button first disabled">首页</span>';
+            pageHtml += '<span class="paginate_button previous disabled">上一页</span>';
+        } else {
+            pageHtml += '<a id="first-page" class="paginate_button first" href="javascript:void(0)">首页</a>';
+            pageHtml += '<a id="previous-page" class="paginate_button previous" href="javascript:void(0)">上一页</a>';
+        }
+        //设置数字页
+        for (var i=1;i<=maxPage;i++){
+            if (i == nowPage){
+                pageHtml += '<a class="paginate_button current disabled" href="javascript:void(0)">'+i+'</a>';
+            } else {
+                pageHtml += '<a class="paginate_button current page-num" href="javascript:void(0)">'+i+'</a>';
+            }
+        }
+        //设置下一页、尾页
+        if (nowPage == maxPage){
+            pageHtml += '<span class="paginate_button next disabled">下一页</span>';
+            pageHtml += '<span class="paginate_button last disabled">尾页</span>';
+        } else {
+            pageHtml += '<a id="next-page" class="paginate_button next" href="javascript:void(0)">下一页</a>';
+            pageHtml += '<a id="last-page" class="paginate_button last" href="javascript:void(0)">尾页</a>';
+        }
+        //替换进分页div
+        $('.page').html(pageHtml);
+
+        //分页数字按钮监听
+        $('.page-num').on('click',function () {
+            nowPage = $(this).html();
+            //触发ajax
+            main();
+        });
+
+        //首页触发
+        $('#first-page').on('click',function () {
+            nowPage = 1;
+            //触发ajax
+            main();
+        });
+        //尾页触发
+        $('#last-page').on('click',function () {
+            nowPage = maxPage;
+            //触发ajax
+            main();
+        });
+        //上一页触发
+        $('#previous-page').on('click',function () {
+            if (nowPage-1>0){
+                nowPage--;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+        //下一页触发
+        $('#next-page').on('click',function () {
+            if (nowPage+1<=maxPage){
+                nowPage++;
+                //触发ajax
+                main();
+            } else {
+                return false;
+            }
+        });
+    }
+
+    //将回传的数据转成html，放进相应位置(自己实现)
+    function jsonToHtml(data) {
+        var html = '';
+        $.each( data.returnData, function(index, content)
+        {
+            if (index%2==1)
+                html += '<tr role="row" class="odd">';
+            else
+                html += '<tr role="row" class="even">';
+            html += '<td style="text-align:center;" class="sorting_1">'+content.username+'</td>';
+            html += '<td style="text-align:center;">'+content.universityId+'</td>';
+            html += '<td style="text-align:center;">'+content.realname+'</td>';
+            html += '<td style="text-align:center;">'+content.email+'</td>';
+            html += '<td style="text-align:center;">'+content.department+'('+content.major+')</td>';
+            html += '<td><div class="progress"><div class="progress-bar" style="width: '+(Number(content.progress*100)).toFixed(2)+'%;">';
+            html += '<span>'+(Number(content.progress*100)).toFixed(2)+'%</span>';
+            html += '</div></div></td></tr>';
+        });
+        $('.comment-course-list').html(html);
+    }
+
+
+    //错误回掉
+    function errBack() {
+        $('.comment-course-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+    }
+
+    //发送前触发
+    function beforeSend() {
+        $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+    }
+    /************** end：分页列表***********/
+</script>
 </body>
 </html>
