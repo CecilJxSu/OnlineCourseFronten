@@ -3,6 +3,7 @@ package cn.canlnac.OnlineCourseFronten.service.impl;
 import cn.canlnac.OnlineCourseFronten.dao.CourseDao;
 import cn.canlnac.OnlineCourseFronten.entity.Course;
 import cn.canlnac.OnlineCourseFronten.service.CourseService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,5 +106,25 @@ public class CourseServiceImpl implements CourseService {
      */
     public int getNumOfPeople(int id) {
         return courseDao.getNumOfPeople(id);
+    }
+
+    /**
+     * 获取用户已选课程总数
+     * @param userId    用户id
+     * @return
+     */
+    public int countChooseCourse(int userId) {
+        return courseDao.countChooseCourse(userId);
+    }
+
+    /**
+     * 获取用户已选课程
+     * @param start     分页开始位置
+     * @param count     分页返回数目
+     * @param userId    用户id
+     * @return
+     */
+    public List<Course> getChooseCourse(int start, int count, int userId) {
+        return courseDao.getChooseCourse(start,count,userId);
     }
 }

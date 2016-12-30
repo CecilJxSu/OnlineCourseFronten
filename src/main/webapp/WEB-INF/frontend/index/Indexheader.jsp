@@ -81,37 +81,12 @@
                     <!--铃铛-->
                     <li class="remind_warp">
                         <%--<i class="bellimg msg_remind"></i>--%>
-                        <a id="bell" target="_blank" href="">
+                        <a id="bell" target="_blank" href="/OnlineCourseFronten/message/show">
                             <i class="icon-notifi"></i>
                             <span class="bellfont msg_icon">1</span>
                         </a>
                         <%--<div class="bell hide">
-                            <ul>
-                                <li>
-                                   <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a>消息</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/notices/show">更多</a>
-                                </li>
-                            </ul>
+                            <ul><li><a>消息</a></li></ul>
                         </div>--%>
                     </li>
                     <!--铃铛end-->

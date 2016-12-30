@@ -157,4 +157,28 @@
               and ca2.id=lr.catalog_id
               and c.id = #{id}
     </select>
+
+    <!--获取用户已选课程总数-->
+    <select id="countChooseCourse" resultType="Integer">
+        SELECT COUNT(*)
+        FROM course c
+        WHERE c.id IN(
+                      SELECT DISTINCT ca.course_id
+                      FROM catalog ca,learn_record lr
+                      WHERE ca.id = lr.catalog_id
+			          AND lr.user_id = #{userId}
+			          )
+    </select>
+
+    <select id="getChooseCourse" resultMap="course">
+        SELECT *
+        FROM course c
+        WHERE c.id IN(
+                      SELECT DISTINCT ca.course_id
+                      FROM catalog ca,learn_record lr
+                      WHERE ca.id = lr.catalog_id
+			          AND lr.user_id = #{userId}
+			          )
+		LIMIT #{start},#{count}
+    </select>
 </mapper>

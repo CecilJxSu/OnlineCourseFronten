@@ -83,7 +83,7 @@
                 <!--铃铛-->
                 <li class="remind_warp">
                     <!-- <i class="msg_remind"></i> -->
-                    <a target="_blank" href="#">
+                    <a target="_blank" href="/OnlineCourseFronten/message/show">
                         <i class="icon-notifi"></i>
                         <span class="bellfont msg_icon" >1</span>
                     </a>

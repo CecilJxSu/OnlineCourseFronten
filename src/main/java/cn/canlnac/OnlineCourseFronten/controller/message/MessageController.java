@@ -1,4 +1,4 @@
-package cn.canlnac.OnlineCourseFronten.controller;
+package cn.canlnac.OnlineCourseFronten.controller.message;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  * Created by HaMi on 2016/12/30.
  */
 @Controller
-@RequestMapping("personal")
-public class PersonalController {
+@RequestMapping("message")
+public class MessageController {
 
     @RequestMapping("show")
     public String showIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
