@@ -100,7 +100,7 @@
                 </li>--%>
                 <!--消息end-->
                 <!--用户-->
-                <li class="set_btn user-card-box">
+                <li class="coursebug set_btn user-card-box">
                     <a id="header-avator" class="user-card-item" action-type="my_menu" href="#" target="_self">
                         <c:if test="${iconUrl!=null && iconUrl!=''}">
                             <img style="margin-top: 0px;" width="40" height="40" src="/OnlineCourseFronten/file/get?url=<c:out value='${iconUrl}'/>">

@@ -1003,9 +1003,9 @@ a:active, a:hover {
     z-index: 9999
 }
 
-.header-app:hover .QR-download, .logined li > a {
+/*.header-app:hover .QR-download, .logined li > a {
     display: block
-}
+}*/
 
 .header-app .QR-download #app-text {
     margin: 0;
@@ -1073,6 +1073,9 @@ a:active, a:hover {
     position: absolute
 }
 
+.coursebug a{
+    padding-top:13px;
+}
 .logined li > a {
     height: 60px;
     line-height: 60px;
