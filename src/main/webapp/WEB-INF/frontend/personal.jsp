@@ -349,10 +349,10 @@
             html+='<a href="/OnlineCourseFronten/commentdetail/show?id='+content.chat.id+'">评论 <i>'+content.commentCount+'</i></a>\n';
             html+='</span>\n';
             html+='<span class="i-right span-common">\n';
-            html+='<a href="javascript:void (0);">收藏 <i>'+content.favoriteCount+'</i></a>\n';
+            html+='<a href="javascript:void (0);" onclick="favorite(this,'+content.chat.id+')">收藏 <i>'+content.favoriteCount+'</i></a>\n';
             html+='</span>\n';
             html+='<span class="i-right span-common">\n';
-            html+='<a href="javascript:void (0);">赞 <i>'+content.likeCount+'</i></a>\n';
+            html+='<a href="javascript:void (0);" onclick="like(this,'+content.chat.id+')">赞 <i>'+content.likeCount+'</i></a>\n';
             html+='</span>\n';
             html+='</div>\n';
             html+='</div>\n';
@@ -378,6 +378,44 @@
     }
 
     /************** end：课程分页列表***********/
+    /*点赞*/
+    function like(e,chatId) {
+        $.ajax({
+            url:'/OnlineCourseFronten/chat/getlike',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+                id  : chatId
+            },
+            success:function (data) {
+                $(e).children('i').html(data);
+            },
+            error:function (e) {
+                ;
+            }
+        });
+    }
+    /*点赞*/
+    /*收藏*/
+    function favorite(e,chatId) {
+        $.ajax({
+            url:'/OnlineCourseFronten/chat/getfavorite',//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:{
+                id  : chatId
+            },
+            success:function (data) {
+                $(e).children('i').html(data);
+            },
+            error:function (e) {
+                ;
+            }
+        });
+    }
+    /*点赞*/
 </script>
 </body>
 </html>

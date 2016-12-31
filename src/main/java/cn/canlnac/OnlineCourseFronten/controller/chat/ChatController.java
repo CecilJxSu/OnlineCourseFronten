@@ -1,9 +1,6 @@
 package cn.canlnac.OnlineCourseFronten.controller.chat;
 
-import cn.canlnac.OnlineCourseFronten.entity.Chat;
-import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.Like;
-import cn.canlnac.OnlineCourseFronten.entity.Message;
+import cn.canlnac.OnlineCourseFronten.entity.*;
 import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -176,6 +173,45 @@ public class ChatController {
             }
         }
         return map;
+    }
+
+    /*用户收藏话题*/
+    @RequestMapping("getfavorite")
+    @ResponseBody
+    public int getFavorite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        int chatId = Integer.parseInt(request.getParameter("id"));
+        Session session = SecurityUtils.getSubject().getSession();
+        Chat chat = new Chat();
+        chat.setId(chatId);
+        int isfavorite = favoriteService.isFavorite(Integer.parseInt(session.getAttribute("id").toString()),"chat",chatId);
+        if (isfavorite>0){
+            //已经收藏,所以-4
+            int del = favoriteService.delete("chat",chatId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (del > 0){
+                chat.setFavoriteCount(-4);
+                chatService.update(chat);
+            }
+        } else {
+            //还没收藏,所以收藏+4
+            Favorite favorite = new Favorite();
+            int crt = favoriteService.create("chat",chatId,Integer.parseInt(session.getAttribute("id").toString()));
+            if (crt > 0){
+                chat.setFavoriteCount(4);
+                chatService.update(chat);
+                //消息
+                Message message = new Message();
+                message.setIsRead('N');
+                message.setType("chat");
+                message.setToUserId(chatService.findByID(chatId).getUserId());
+                message.setFromUserId(Integer.parseInt(session.getAttribute("id").toString()));
+                message.setActionType("favorite");
+                message.setPositionId(chatId);
+                message.setContent("有人收藏你的话题");
+                messageService.create(message);
+            }
+        }
+        return favoriteService.count("chat",chatId);
     }
 
     /*用户点赞话题*/
