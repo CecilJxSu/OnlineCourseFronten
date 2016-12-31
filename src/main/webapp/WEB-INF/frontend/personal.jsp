@@ -61,40 +61,7 @@
             </div>
             <%--收藏end--%>
             <%--通知--%>
-            <div id="notice-list" class="comment-notice-list notice-list" style="display:none">
-                <div note-id="633468" class="notice">
-                    <div class="notice-box clearfix" style="display: flex;">
-                        <p class="notice-type ">猿问</p>
-                        <div class="notice-show-box">
-                            <p class="notice-con ">
-                                你的提问<a target="_blank" href="">求学习js数组目录！</a>有新回答
-                            </p>
-                            <h5 class="notice-date">2016-12-26 16:40:04</h5>
-                        </div>
-                        <div class="del-box clearfix">
-                            <a href="javascript:void(0)" class="del-notice" title="删除此通知">
-                                <i class="icon icon-del"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div note-id="606200" class="notice">
-                    <div class="notice-box clearfix" style="display: flex;">
-                        <p class="notice-type  already-read ">猿问</p>
-                        <div class="notice-show-box">
-                            <p class="notice-con pass ">
-                                你的提问<a target="_blank" href="">现在学java前景好吗？</a>有新回答
-                            </p>
-                            <h5 class="notice-date">2016-12-13 17:01:38</h5>
-                        </div>
-                        <div class="del-box clearfix">
-                            <a href="javascript:void(0)" class="del-notice" title="删除此通知">
-                                <i class="icon icon-del"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+            <div id="notice-list" class="comment-notice-list notice-list comment-message-list" style="display:none">
             </div>
             <%--通知end--%>
             <!-- 分页 -->
@@ -128,6 +95,7 @@
                             break;
             case 'notices':$('#favorite-list').css('display','none');$('#course-list').css('display','none');$('#notice-list').css('display','block');
                             $('#course').removeClass('active');$('#favorite').removeClass('active');$('#notices').addClass('active');
+                            nowPage = 1;main_message();
                             break;
 
         }    })
@@ -140,6 +108,7 @@
     var maxPage = 1;
 
     //ajax入口
+    //课程
     function main_course() {
         var url = '/OnlineCourseFronten/message/course/get';
         var data = {
@@ -147,6 +116,7 @@
         };
         getData_course(url,data);
     }
+    //收藏
     function main_favorite() {
         var url = '/OnlineCourseFronten/message/favorite/get';
         var data = {
@@ -154,13 +124,24 @@
         };
         getData_favorite(url,data);
     }
+    //消息
+    function main_message() {
+        var url = '/OnlineCourseFronten/message/message/get';
+        var data = {
+            nowPage : nowPage
+        };
+        getData_message(url,data);
+    }
 
     //页面加载完成时触发
     $(function () {
         main_course();
+//        main_favorite();
+//        main_message();
     });
 
     //ajax(不可动)
+    //课程
     function getData_course(url,data){
         $.ajax({
             url:url,//路径
@@ -181,6 +162,7 @@
             }
         });
     }
+    //收藏
     function getData_favorite(url,data){
         $.ajax({
             url:url,//路径
@@ -195,6 +177,27 @@
                 maxPage = data.totalPage;
                 pageChange();
                 jsonToHtml_favorite(data);
+            },
+            error:function (e) {
+                errBack();
+            }
+        });
+    }
+    //消息
+    function getData_message(url,data){
+        $.ajax({
+            url:url,//路径
+            type:'post',
+            cache:false,
+            dataType:'json',
+            data:data,
+            beforeSend: function(){
+                beforeSend();
+            },
+            success:function (data) {
+                maxPage = data.totalPage;
+                pageChange();
+                jsonToHtml_message(data);
             },
             error:function (e) {
                 errBack();
@@ -274,6 +277,7 @@
     }
 
     //将回传的数据转成html，放进相应位置(自己实现)
+    //课程
     function jsonToHtml_course(data) {
         var html = '';
         $.each( data.returnDate, function(index, content)
@@ -307,6 +311,7 @@
         });
         $('.comment-course-list').html(html);
     }
+    //收藏
     function jsonToHtml_favorite(data) {
         var html = '';
             html+='<ul class="clearfix">\n';
@@ -361,12 +366,116 @@
             html +='</ul>\n';
         $('.comment-favorite-list').html(html);
     }
+    //消息
+    function jsonToHtml_message(data) {
+        var html = '';
+        $.each( data.returnDate, function(index, content)
+        {
+            if (content.messages.isRead=='N'){
+                html += '<div note-id="" class="notice">';
+                html += '<div class="notice-box clearfix" style="display: flex;">';
+                if (content.messages.type=='course')
+                    html += '<p class="notice-type ">课程</p>';
+                else if (content.messages.type=='chat')
+                    html += '<p class="notice-type ">话题</p>';
+                else if (content.messages.type=='comment')
+                    html += '<p class="notice-type ">评论</p>';
+                else if (content.messages.type=='system')
+                    html += '<p class="notice-type ">系统</p>';
+                else if (content.messages.type=='user')
+                    html += '<p class="notice-type ">用户</p>';
+
+                html += '<div class="notice-show-box">';
+
+                if (content.messages.type=='course')
+                    html += '<p class="notice-con ">课程消息<a onclick="read(this)" data-id="'+content.messages.id+'" target="_blank" href="/OnlineCourseFronten/learn/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='chat')
+                    html += '<p class="notice-con ">你的话题<a onclick="read(this)" data-id="'+content.messages.id+'" target="_blank" href="/OnlineCourseFronten/commentdetail/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='comment')
+                    html += '<p class="notice-con ">你的评论<a onclick="read(this)" data-id="'+content.messages.id+'" target="_blank" href="/OnlineCourseFronten/reply/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='system')
+                    html += '<p class="notice-con ">系统消息<a onclick="read(this)" data-id="'+content.messages.id+'" target="_blank" href="#">'+content.title+'</a>';
+                else if (content.messages.type=='user')
+                    html += '<p class="notice-con ">用户消息<a onclick="read(this)" data-id="'+content.messages.id+'" target="_blank" href="#">'+content.title+'</a>';
+
+                if (content.messages.actionType=='like')
+                    html += '有新的赞';
+                else if (content.messages.actionType=='favorite')
+                    html += '有新收藏';
+                else if (content.messages.actionType=='following')
+                    html += '有新关注';
+                else if (content.messages.actionType=='reply')
+                    html += '有新回复';
+                else if (content.messages.actionType=='comment')
+                    html += '有新评论';
+                html += '</p>';
+                html += '<h5 class="notice-date">'+new Date(content.messages.date).Format("yyyy-MM-dd hh:mm:ss")+'</h5>';
+                html += '</div>';
+                html += '<div class="del-box clearfix"> ';
+                html += '<a onclick="deleteMessage('+content.messages.id+')" href="javascript:void(0)" class="del-notice" title="删除此通知">';
+                html += '<i class="icon icon-del"></i>';
+                html += '</a>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+            } else {
+                html += '<div note-id="" class="notice"> ';
+                html += '<div class="notice-box clearfix" style="display: flex;">';
+                if (content.messages.type=='course')
+                    html += '<p class="notice-type already-read">课程</p>';
+                else if (content.messages.type=='chat')
+                    html += '<p class="notice-type already-read">话题</p>';
+                else if (content.messages.type=='comment')
+                    html += '<p class="notice-type already-read">评论</p>';
+                else if (content.messages.type=='system')
+                    html += '<p class="notice-type already-read">系统</p>';
+                else if (content.messages.type=='user')
+                    html += '<p class="notice-type already-read">用户</p>';
+
+                html += '<div class="notice-show-box">';
+
+                if (content.messages.type=='course')
+                    html += '<p class="notice-con pass">课程消息<a target="_blank" href="/OnlineCourseFronten/learn/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='chat')
+                    html += '<p class="notice-con pass">你的话题<a target="_blank" href="/OnlineCourseFronten/commentdetail/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='comment')
+                    html += '<p class="notice-con pass">你的评论<a target="_blank" href="/OnlineCourseFronten/reply/show?id='+content.messages.positionId+'">'+content.title+'</a>';
+                else if (content.messages.type=='system')
+                    html += '<p class="notice-con pass">系统消息<a target="_blank" href="#">'+content.title+'</a>';
+                else if (content.messages.type=='user')
+                    html += '<p class="notice-con pass">用户消息<a target="_blank" href="#">'+content.title+'</a>';
+
+                if (content.messages.actionType=='like')
+                    html += '有新的赞';
+                else if (content.messages.actionType=='favorite')
+                    html += '有新收藏';
+                else if (content.messages.actionType=='following')
+                    html += '有新关注';
+                else if (content.messages.actionType=='reply')
+                    html += '有新回复';
+                else if (content.messages.actionType=='comment')
+                    html += '有新评论';
+                html += '</p>';
+                html += '<h5 class="notice-date">'+new Date(content.messages.date).Format("yyyy-MM-dd hh:mm:ss")+'</h5>';
+                html += '</div>';
+                html += '<div class="del-box clearfix">';
+                html += '<a onclick="deleteMessage('+content.messages.id+')" href="javascript:void(0)" class="del-notice" title="删除此通知">';
+                html += '<i class="icon icon-del"></i>';
+                html += '</a>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+            }
+        });
+        $('.comment-message-list').html(html);
+    }
 
 
     //错误回掉
     function errBack() {
         $('.comment-course-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
         $('.comment-favorite-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
+        $('.comment-message-list').html('<div style="text-align:center; width:100%;">暂无数据</div>');
     }
 
 
@@ -374,10 +483,52 @@
     function beforeSend() {
         $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
         $('.comment-favorite-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+        $('.comment-message-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+    }
+    /************** end：课程分页列表***********/
 
+    /**
+     *  点击链接时，设置已读
+     */
+    function read(e) {
+        $.ajax({
+            url:'/OnlineCourseFronten/message/message/read',//路径
+            type:'post',
+            cache:false,
+            dataType:false,
+            data:{
+                id  : $(e).attr('data-id')
+            },
+            success:function (data) {
+                main_message();
+            },
+            error:function (e) {
+                ;
+            }
+        });
     }
 
-    /************** end：课程分页列表***********/
+    /**
+     *  删除消息
+     */
+    function deleteMessage(id){
+        $.ajax({
+            url:'/OnlineCourseFronten/message/message/delete',//路径
+            type:'post',
+            cache:false,
+            dataType:false,
+            data:{
+                id  : id
+            },
+            success:function (data) {
+                main_message();
+            },
+            error:function (e) {
+                alert('删除失败');
+            }
+        });
+    }
+
     /*点赞*/
     function like(e,chatId) {
         $.ajax({
@@ -416,6 +567,25 @@
         });
     }
     /*点赞*/
+
+    /**
+     * 时间对象的格式化;
+     */
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 </script>
 </body>
 </html>

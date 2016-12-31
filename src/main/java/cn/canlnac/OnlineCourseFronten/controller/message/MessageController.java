@@ -1,9 +1,6 @@
 package cn.canlnac.OnlineCourseFronten.controller.message;
 
-import cn.canlnac.OnlineCourseFronten.entity.Chat;
-import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.Favorite;
-import cn.canlnac.OnlineCourseFronten.entity.Profile;
+import cn.canlnac.OnlineCourseFronten.entity.*;
 import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -31,27 +28,22 @@ public class MessageController {
     private CourseService courseService;
     @Autowired
     private CatalogService catalogService;
-
     @Autowired
-    FavoriteService favoriteService;
-
+    private FavoriteService favoriteService;
     @Autowired
-    ChatService chatService;
-
+    private ChatService chatService;
     @Autowired
-    ProfileService profileService;
-
+    private ProfileService profileService;
     @Autowired
-    UserService userService;
-
+    private UserService userService;
     @Autowired
-    WatchService watchService;
-
+    private WatchService watchService;
     @Autowired
-    LikeService likeService;
-
+    private LikeService likeService;
     @Autowired
-    CommentService commentService;
+    private CommentService commentService;
+    @Autowired
+    private MessageService messageService;
 
 
     @RequestMapping("show")
@@ -60,6 +52,11 @@ public class MessageController {
         return "/frontend/personal";
     }
 
+    /**
+     * 获取课程
+     * @param nowPage   当前页码
+     * @return
+     */
     @RequestMapping("course/get")
     @ResponseBody
     public Map getCourse(@RequestParam("nowPage") int nowPage){
@@ -83,6 +80,86 @@ public class MessageController {
 
         //获取总条数
         int totalNum = courseService.countChooseCourse(userId);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map map = new HashMap();
+        map.put("returnDate",returnDate);
+        map.put("totalPage",totalPage>0?totalPage:1);
+        return map;
+    }
+
+    /**
+     * 消息设为已读
+     * @param id    消息id
+     * @return
+     */
+    @RequestMapping("message/read")
+    @ResponseBody
+    public String readMessage(@RequestParam("id") int id){
+        return messageService.setRead(id)>0?"success":null;
+    }
+
+    /**
+     * 删除消息
+     * @param id    消息id
+     * @return
+     */
+    @RequestMapping("message/delete")
+    @ResponseBody
+    public String deleteMessage(@RequestParam("id") int id){
+        return messageService.delete(id)>0?"success":null;
+    }
+
+    /**
+     * 获取消息
+     * @param nowPage   当前页码
+     * @return
+     */
+    @RequestMapping("message/get")
+    @ResponseBody
+    public Map getMessage(@RequestParam("nowPage") int nowPage){
+        //获取用户id
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+
+        List<Message> messagesN = messageService.getMessages(start,count,userId,"N");
+        List<Message> messages = new ArrayList<Message>();
+        messages.addAll(messagesN);
+        if (messagesN.size()<count && messagesN.size()>0){
+            List<Message> messagesY = messageService.getMessages(0,count-messagesN.size(),userId,"Y");
+            messages.addAll(messagesY);
+        } else if (messagesN.size()==0){
+            List<Message> messagesY = messageService.getMessages(start,count-messagesN.size(),userId,"Y");
+            messages.addAll(messagesY);
+        }
+
+        //填充其他数据
+        List<Map> returnDate = new ArrayList<Map>();
+        for (Message message : messages){
+            Map unit = new HashMap();
+            unit.put("messages",message);
+            if (message.getType().equals("course")){
+                unit.put("title",courseService.findByID(message.getPositionId()).getName());
+            } else if (message.getType().equals("chat")){
+                unit.put("title",chatService.findByID(message.getPositionId()).getTitle());
+            } else if (message.getType().equals("comment")){
+                unit.put("title",commentService.findByID(message.getPositionId()).getContent());
+            } else if (message.getType().equals("system")){
+                unit.put("title",message.getContent());
+            } else if (message.getType().equals("user")){
+                unit.put("title",message.getContent());
+            }
+            returnDate.add(unit);
+        }
+
+        //获取总条数
+        int totalNum = messageService.count(userId,"N")+messageService.count(userId,"Y");
         //计算总页数
         int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
 
