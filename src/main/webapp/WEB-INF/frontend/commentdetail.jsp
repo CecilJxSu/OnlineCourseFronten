@@ -46,13 +46,6 @@
                                 <p>${chat.html}</p>
                             </div>
                             <%--内容end--%>
-                            <%--用户发表图片--%>
-                            <div class="commentimg qa-disscus rich-text">
-                                <c:forEach var="picture" items="${PUobject}">
-                                    <img src="/OnlineCourseFronten/file/get?url=<c:out value='${picture}'/>">
-                                </c:forEach>
-                            </div>
-                            <%--用户发表图片--%>
                         </div>
                     </div>
 

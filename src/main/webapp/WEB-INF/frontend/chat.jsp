@@ -31,15 +31,6 @@
                     <!--<a href="/wenda/waitreply">等待回答</a>-->
 
                 </div>
-                <!--推荐位-->
-                <ul class="recommend">
-                    <li>
-                        <i class="icon-flag2"></i>
-                        <a href="http://www.imooc.com/wenda/detail/337758" data-ast="yuanwenindex_1_862" target="_blank" title="遇见好答案--Python编程问答专场（配套图书免费送）">
-                            遇见好答案--Python编程问答专场（配套图书免费送）
-                        </a>
-                    </li>
-                </ul>
                 <!--左侧列表内容-->
                 <div class="wenda-list">
                     <%--加载内容--%>
