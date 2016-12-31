@@ -79,6 +79,17 @@ public class CommentController {
                 chat.setId(targetId);
                 chat.setCommentCount(3);
                 chatService.update(chat);
+
+                //消息
+                Message message = new Message();
+                message.setIsRead('N');
+                message.setType("chat");
+                message.setToUserId(chatService.findByID(targetId).getUserId());
+                message.setFromUserId(userId);
+                message.setActionType("comment");
+                message.setPositionId(targetId);
+                message.setContent("有人评论了你的话题");
+                messageService.create(message);
             }
 
             Map map = new HashMap();
