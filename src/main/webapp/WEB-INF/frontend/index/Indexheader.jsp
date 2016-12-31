@@ -5,6 +5,7 @@
     String userName = session.getAttribute("userName")!=null?session.getAttribute("userName").toString():null;
     String userStatus = session.getAttribute("userStatus")!=null?session.getAttribute("userStatus").toString():null;
     String iconUrl = session.getAttribute("iconUrl")!=null?session.getAttribute("iconUrl").toString():null;
+    String message = session.getAttribute("message")!=null?session.getAttribute("message").toString():null;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +84,12 @@
                         <%--<i class="bellimg msg_remind"></i>--%>
                         <a id="bell" target="_blank" href="/OnlineCourseFronten/message/show">
                             <i class="icon-notifi"></i>
-                            <span class="bellfont msg_icon">1</span>
+                            <c:if test="${message!=null && message!=0}">
+                                <span class="bellfont msg_icon"><c:out value="${message}"/></span>
+                            </c:if>
+                            <c:if test="${message==null || message==0}">
+                                <span class="bellfont msg_icon"></span>
+                            </c:if>
                         </a>
                         <%--<div class="bell hide">
                             <ul><li><a>消息</a></li></ul>

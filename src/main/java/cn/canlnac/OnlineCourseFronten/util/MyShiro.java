@@ -1,7 +1,9 @@
 package cn.canlnac.OnlineCourseFronten.util;
 
+import cn.canlnac.OnlineCourseFronten.entity.Message;
 import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.MessageService;
 import cn.canlnac.OnlineCourseFronten.service.ProfileService;
 import cn.canlnac.OnlineCourseFronten.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -30,6 +32,8 @@ public class MyShiro extends AuthorizingRealm{
     private UserService userService;
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private MessageService messageService;
 
     /**
      * 权限认证
@@ -72,6 +76,7 @@ public class MyShiro extends AuthorizingRealm{
             session.setAttribute("userName",user.getUsername());
             session.setAttribute("id",user.getId());
             session.setAttribute("userStatus",user.getUserStatus());
+            session.setAttribute("message",messageService.count(user.getId(),"N"));
 
             Profile profile = profileService.findByUserID(user.getId());
             if (profile!=null){

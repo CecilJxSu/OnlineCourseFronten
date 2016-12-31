@@ -96,8 +96,14 @@ public class MessageController {
      */
     @RequestMapping("message/read")
     @ResponseBody
-    public String readMessage(@RequestParam("id") int id){
-        return messageService.setRead(id)>0?"success":null;
+    public String readMessage(@RequestParam("id") int id,HttpServletRequest request){
+        if (messageService.setRead(id)>0){
+            Session session = SecurityUtils.getSubject().getSession();
+            session.setAttribute("message",messageService.count(Integer.parseInt(session.getAttribute("id").toString()),"N"));
+            return "success";
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -107,8 +113,14 @@ public class MessageController {
      */
     @RequestMapping("message/delete")
     @ResponseBody
-    public String deleteMessage(@RequestParam("id") int id){
-        return messageService.delete(id)>0?"success":null;
+    public String deleteMessage(@RequestParam("id") int id,HttpServletRequest request){
+        if (messageService.delete(id)>0){
+            Session session = SecurityUtils.getSubject().getSession();
+            session.setAttribute("message",messageService.count(Integer.parseInt(session.getAttribute("id").toString()),"N"));
+            return "success";
+        } else {
+            return null;
+        }
     }
 
     /**
