@@ -26,14 +26,50 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <!-- 配置我们在登录页登录成功后的跳转地址，如果你访问的是非/login地址，则跳到您访问的地址 -->
         <property name="successUrl" value="/user"/>
         <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->
-        <property name="unauthorizedUrl" value="/403"/>
+        <property name="unauthorizedUrl" value="/404"/>
         <!-- 权限配置 -->
         <property name="filterChainDefinitions">
             <value>
                 /index/user=anon
-                /video/show=authc,roleOrFilter[student,teacher,admin]
-                <!--/user/profile/show=authc,roleOrFilter[student,teacher,admin]-->
+                /register/register=anon
+                /login=anon
+                /logout=authc,roleOrFilter[student,teacher,admin]
+                /index/user/hot-new=anon
                 /index/teach=roles[teacher]
+                /index/root=authc,roleOrFilter[teacher,admin]
+                /file/get=anon
+                /file/save=authc,roleOrFilter[student,teacher,admin]
+                /file/save/files=authc,roleOrFilter[student,teacher,admin]
+                /user/**=authc,roleOrFilter[student,teacher,admin]
+                /root/user/show=roles[admin]
+                /root/user/manage/get=roles[admin]
+                /root/user/manage/modify=roles[admin]
+                /reply/**=authc,roleOrFilter[student,teacher,admin]
+                /message/**=authc,roleOrFilter[student,teacher,admin]
+                /root/learnrecord/**=roles[teacher]
+                /root/document/**=roles[teacher]
+                /course/**=anon
+                /learn/show=anon
+                /root/course/show=roles[teacher]
+                /root/course/add=roles[teacher]
+                /root/course/delete=roles[teacher]
+                /root/course/update=roles[teacher]
+                /root/course/get=roles[teacher]
+                /root/course/manage/show=roles[teacher]
+                /root/course/manage/get=roles[teacher]
+                /root/course/manage/status/change=roles[teacher]
+                /root/course/sources/all/get=roles[teacher]
+                /root/course/modify/show=roles[teacher]
+                /root/course/adminmanage/**=roles[admin]
+                /comment/**=authc,roleOrFilter[student,teacher,admin]
+                /chat/**=authc,roleOrFilter[student,teacher,admin]
+                /commentdetail/**=authc,roleOrFilter[student,teacher,admin]
+                /createcomment/**=authc,roleOrFilter[student,teacher,admin]
+                /video/**=authc,roleOrFilter[student,teacher,admin]
+                /root/catalog/**=roles[teacher]
+
+
+                <!--/user/profile/show=authc,roleOrFilter[student,teacher,admin]-->
                 <!-- anon表示此地址不需要任何权限即可访问 -->
                 <!--/static/**=anon-->
                 <!--&lt;!&ndash; perms[user:query]表示访问此连接需要权限为user:query的用户 &ndash;&gt;-->
@@ -45,7 +81,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                 <!--/user/del/**=roles[admin]-->
                 <!--/user/edit/**=roles[manager]-->
                 <!--&lt;!&ndash;所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login&ndash;&gt;-->
-                <!--/** = authc-->
+                /** = authc
             </value>
         </property>
     </bean>
