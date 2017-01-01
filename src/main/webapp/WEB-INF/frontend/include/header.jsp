@@ -41,7 +41,7 @@
                 <a href="${pageContext.request.contextPath}/course/show" target="_self">课程</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/chat/show" target="_self">话题</a>
+                <a id="chat" href="#" data-url="${pageContext.request.contextPath}/chat/show" target="_self">话题</a>
             </li>
         </ul>
         <div id="login-area">
@@ -173,7 +173,7 @@
 
         <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
             <div class="search-area" data-search="top-banner">
-                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off" value="<c:out value='${search}'/>" placeholder="搜索输入"/>
+                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off" value="<c:out value='${search}'/>" placeholder="请输入课程名/系名"/>
                 <input type="hidden" class="btn_search" data-search-btn="search-btn">
                 <ul class="search-area-result" data-suggest-result="suggest-result" style=""></ul>
             </div>
@@ -347,6 +347,21 @@
     $('.showhide-search').on('click',function () {
         location.href = "/OnlineCourseFronten/course/show?search="+$('.search-input').val();
     });
+
+    /************** start：观看话题是需要登录才行***********/
+    $('#chat').on('click', function () {
+        dump($(this));
+    });
+    function dump(e) {
+        //判断是否登录
+        if ($('#js-signin-btn').length && $('#js-signin-btn').length > 0) {
+            $('#js-signin-btn').trigger('click');
+            $('#signin-globle-error').html("您还未登录");
+        } else {
+            window.location.href=$(e).attr("data-url");
+        }
+    }
+    /************** end：观看话题是需要登录才行***********/
 </script>
 <script src="${pageContext.request.contextPath}/static/public/js/index/md5.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
