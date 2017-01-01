@@ -22,24 +22,6 @@
                 <a href="javascript:;" class="sort-item active" name="hot">最热</a>|
                 <a href="javascript:;" class="sort-item" name="new">最新</a>
             </div>
-            <div class="l">
-            <span class="tool-item" style="display: none;">
-                <a class="follow-learn tool-chk" href="javascript:void(0);">跟我学</a>
-            </span>
-            </div>
-            <div class="tool-right r">
-             <span class="tool-item total-num">
-                  共<b>193</b>个课程
-             </span>
-                <span class="tool-item tool-pager">
-                <span class="pager-num">
-                    <b class="pager-cur">2</b>/<em class="pager-total">8</em>
-                </span>
-                <a href="/course/list?c=fe&amp;page=1" class="pager-action pager-prev "><i class="icon-left2"></i></a>
-                <a href="/course/list?c=fe&amp;page=3" class="pager-action pager-next"><i class="icon-right2"></i></a>
-            </span>
-            </div>
-
         </div>
         <!--最新最热标签end-->
         <!--展示课程-->

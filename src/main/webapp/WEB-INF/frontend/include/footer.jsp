@@ -14,15 +14,15 @@
     <div class="waper">
         <div class="footerwaper clearfix">
             <div class="followus r">
-                <a class="followus-weixin" href="javascript:;" target="_blank" title="微信">
+                <!-- <a class="followus-weixin" href="javascript:;" target="_blank" title="微信">
                     <div class="flw-weixin-box"></div>
                 </a>
                 <a class="followus-weibo" href="http://weibo.com/u/3306361973" target="_blank" title="新浪微博"></a>
-                <a class="followus-qzone" href="http://user.qzone.qq.com/1059809142/" target="_blank" title="QQ空间"></a>
+                <a class="followus-qzone" href="http://user.qzone.qq.com/1059809142/" target="_blank" title="QQ空间"></a> -->
             </div>
             <div class="footer_intro l">
                 <div class="footer_link">
-                    <ul>
+                    <!-- <ul>
                         <li><a href="http://www.imooc.com/" target="_blank">网站首页</a></li>
                         <li><a href="/about/cooperate" target="_blank" title="企业合作">企业合作</a></li>
                         <li><a href="/about/job" target="_blank">人才招聘</a></li>
@@ -32,9 +32,9 @@
                         <li><a href="/user/feedback" target="_blank">意见反馈</a></li>
                         <li><a href="http://daxue.imooc.com/" target="_blank">慕课大学</a></li>
                         <li><a href="/about/friendly" target="_blank">友情链接</a></li>
-                        <!--  <li><a href="/corp/index" target="_blank">合作专区</a></li>
-                         <li><a href="/about/us" target="_blank">关于我们</a></li> -->
-                    </ul>
+                         <li><a href="/corp/index" target="_blank">合作专区</a></li>
+                         <li><a href="/about/us" target="_blank">关于我们</a></li>
+                    </ul> -->
                 </div>
                 <p>Copyright © 2016 canlnac.cn All Rights Reserved | 粤ICP备 16017948号-1</p>
             </div>

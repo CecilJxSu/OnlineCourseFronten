@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/global.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/public/css/createcomment/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/wangEditor/css/wangEditor.min.css">
-    <title>createcomment</title>
+    <title>话题创建 | 课程学习网</title>
 </head>
 <body>
 <%--头部--%>
@@ -89,12 +89,12 @@
 
         <!--右边内容-->
         <div class="other-right">
-            <h4>想及时沟通，请加慕粉QQ群！</h4>
+            <h4>想及时沟通，请加课程学习网QQ群！</h4>
             <ul>
-                <li>慕课网Android讨论群: 232465453</li>
-                <li>慕课网Java开发讨论群: 6200344</li>
-                <li>慕课网Web前端讨论群③: 249860541</li>
-                <li>慕课网PHP开发讨论群②: 102741309</li>
+                <li>课程学习网Android讨论群: ********</li>
+                <li>课程学习网Java开发讨论群: ********</li>
+                <li>课程学习网Web前端讨论群③: ********</li>
+                <li>课程学习网PHP开发讨论群②: ********</li>
             </ul>
         </div>
         <!--右边内容end-->
