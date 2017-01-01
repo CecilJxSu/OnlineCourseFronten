@@ -39,7 +39,7 @@ function checkAndSubmit() {
         dataType:'json',
         data:{
             username    :   username,
-            password    :   password
+            password    :   md5(password).toUpperCase()
         },
         success:function (data) {
             if (data.msg == "errName"){
@@ -116,7 +116,7 @@ function signin() {
         dataType:'json',
         data:{
             username    :   username,
-            password    :   password
+            password    :   md5(password).toUpperCase()
         },
         success:function (data) {
             if (data.msg=="success"){

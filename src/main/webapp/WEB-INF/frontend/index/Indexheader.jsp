@@ -273,6 +273,7 @@
 <!--登陆与注册-->
 <!--加载js-->
 <script src="${pageContext.request.contextPath}/static/public/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/public/js/index/md5.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
 <script type="text/javascript">
     $(function () {

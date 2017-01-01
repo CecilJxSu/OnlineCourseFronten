@@ -348,6 +348,7 @@
         location.href = "/OnlineCourseFronten/course/show?search="+$('.search-input').val();
     });
 </script>
+<script src="${pageContext.request.contextPath}/static/public/js/index/md5.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/public/js/index/signin-signup.js"></script>
 </body>
 </html>
