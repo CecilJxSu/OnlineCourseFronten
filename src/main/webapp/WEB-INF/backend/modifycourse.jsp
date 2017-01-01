@@ -75,40 +75,39 @@
                     <div role="tabpanel" class="tab-pane active" id="profile10">
                         <div class="container-padding">
                             <div class="panel-body">
-                                    <form id="chapter" class="form-horizontal">
-                                        <input name="id" type="hidden" value="<c:out value='${chapter.id}'/>">
-                                        <div class="courseform">
-                                            <label class="col-sm-2 control-label form-label">课程名</label>
-                                            <div class="col-sm-10">
-                                                <c:out value="${courseName}"/>
-                                            </div>
+                                <form id="chapter" class="form-horizontal">
+                                    <input name="id" type="hidden" value="<c:out value='${chapter.id}'/>">
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">课程名</label>
+                                        <div class="col-sm-10">
+                                            <c:out value="${courseName}"/>
                                         </div>
-                                        <div class="courseform">
-                                            <label class="col-sm-2 control-label form-label">章号</label>
-                                            <div class="xz col-sm-10">
-                                                <i>第</i><input type="number" id="chapter_index" name="index" class="form-control" style="width: 50px;" value="<c:out value='${chapter.index}'/>"><i>章</i>
-                                            </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">章号</label>
+                                        <div class="xz col-sm-10">
+                                            <i>第</i><input type="number" id="chapter_index" name="index" class="form-control" style="width: 50px;" value="<c:out value='${chapter.index}'/>"><i>章</i>
                                         </div>
-                                        <div class="courseform">
-                                            <label class="col-sm-2 control-label form-label">章名称</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" id="chapter_name" name="name" class="form-control" value="<c:out value='${chapter.name}'/>"/>
-                                            </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">章名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="chapter_name" name="name" class="form-control" value="<c:out value='${chapter.name}'/>"/>
                                         </div>
-                                        <div class="courseform">
-                                            <label class="col-sm-2 control-label form-label">章简介</label>
-                                            <div class="col-sm-10">
-                                                <textarea class="form-control" name="introduction" rows="3"  placeholder="课程简介"><c:out value="${chapter.introduction}"/></textarea>
-                                            </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">章简介</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="introduction" rows="3"  placeholder="课程简介"><c:out value="${chapter.introduction}"/></textarea>
                                         </div>
-                                        <div class="courseform">
-                                            <div class="col-sm-12 text-right" style="padding-top:20px;">
-                                                <a id="btn-success-chapter" href="#" class="btn btn-success">提交</a>
-                                            </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <div class="col-sm-12 text-right" style="padding-top:20px;">
+                                            <a id="btn-success-chapter" href="#" class="btn btn-success">提交</a>
                                         </div>
-
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     </c:if>

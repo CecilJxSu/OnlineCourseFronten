@@ -206,7 +206,7 @@
             html += '<td style="text-align:center;">'+content.name+'</td>';
             html += '<td style="text-align:center;">'+content.introduction+'</td>';
             html += '<td style="text-align:center;">';
-            html += '<a class="btn btn-info" href="/OnlineCourseFronten/root/course/modify/show?id='+content.id+'">修改</a> ';
+            html += '<a class="btn btn-info" href="/OnlineCourseFronten/root/course/modify/show?id='+content.id+'&type=chapter">修改</a> ';
             html += '<a class="btn btn-danger" onclick="deleteC(this)" data-id="'+content.id+'">删除</a>';
             html += '</td></tr>';
         });

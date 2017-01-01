@@ -30,7 +30,7 @@ public class FileController {
      * @return
      */
     public static String getSourcesDirectory(HttpServletRequest request){
-        String SourcesDirectory = request.getSession(true).getServletContext().getRealPath("/")+"/uploadFiles/";
+        String SourcesDirectory = request.getSession(true).getServletContext().getRealPath("/")+"/../uploadFiles/";//"/usr/local/tomcat/webapps/files/";
         File file =new File(SourcesDirectory);
         if  (!file .exists()  && !file .isDirectory())
         {

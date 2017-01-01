@@ -214,7 +214,7 @@
                 html += '<a class="btn btn-warning" onclick="draft(this)" data-id="'+content.id+'">草稿</a> ';
             else
                 html += '<a class="btn btn-success" onclick="draft(this)" data-id="'+content.id+'">发布</a> ';
-            html += '<a class="btn btn-info" href="/OnlineCourseFronten/root/course/modify/show?id='+content.id+'">修改</a> ';
+            html += '<a class="btn btn-info" href="/OnlineCourseFronten/root/course/modify/show?id='+content.id+'&type=course">修改</a> ';
             html += '<a class="btn btn-danger" onclick="deleteC(this)" data-id="'+content.id+'">删除</a>';
             html += '</td></tr>';
         });

@@ -63,7 +63,7 @@ public class CreatecommentController {
         if (pics.size()>0){
             List<String> picurls = new ArrayList<String>();
             //限定9张预览图
-            for (int i=0;i<9;i++){
+            for (int i=0;i<9 && i<pics.size();i++){
                 picurls.add(pics.get(i).substring(pics.get(i).indexOf("=")+1));
             }
             ObjectMapper mapper = new ObjectMapper(); //json转换器

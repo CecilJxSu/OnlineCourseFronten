@@ -242,7 +242,7 @@ public class RootCourseController {
      * @return
      */
     @RequestMapping("modify/show")
-    public ModelAndView modifycourse(@RequestParam("id") int id) {
+    public ModelAndView modifycourse(@RequestParam("id") int id,@RequestParam("type") String type) {
         ModelAndView modelAndView = new ModelAndView();
 
         //获取作者ID
@@ -250,18 +250,18 @@ public class RootCourseController {
         int userId = Integer.parseInt(session.getAttribute("id").toString());
 
         Course course = courseService.findByID(id);
-        if (course!=null && course.getUserId()==userId){
+        if (type.equals("course") && course!=null && course.getUserId()==userId){
             modelAndView.addObject("course",course);
         }
 
         Catalog catalog = catalogService.findByID(id);
 
-        if (catalog!=null && catalog.getParentId()==0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
+        if (type.equals("chapter") && catalog!=null && catalog.getParentId()==0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
             modelAndView.addObject("courseName",courseService.findByID(catalog.getCourseId()).getName());
             modelAndView.addObject("chapter",catalog);
         }
 
-        if (catalog!=null && catalog.getParentId()!=0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
+        if (type.equals("section") && catalog!=null && catalog.getParentId()!=0 && courseService.findByID(catalog.getCourseId()).getUserId()==userId){
             modelAndView.addObject("courseName",courseService.findByID(catalog.getCourseId()).getName());
             modelAndView.addObject("chapterName",catalogService.findByID(catalog.getParentId()).getName());
             modelAndView.addObject("section",catalog);
