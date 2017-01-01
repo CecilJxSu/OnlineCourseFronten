@@ -248,16 +248,20 @@
     <div class="course-right clearfix">
 
         <div class="js-recom-box">
-            <div class="box  mb40"><h4>相关学习路径</h4>
+            <div class="box  mb40"><h4>其他资源下载</h4>
                 <ul class="js-planrecom other-list">
-                    <li><a href="/course/programdetail/pid/11" target="_blank"> <span class="name autowrap">PHP开发工程师闯关记--初识PHP</span>
-                    </a></li>
-                    <li><a href="/course/programdetail/pid/21" target="_blank"> <span
-                            class="name autowrap">电商网站全站开发攻略</span> </a></li>
-                    <li><a href="/course/programdetail/pid/27" target="_blank"> <span class="name autowrap">从零开始学习ThinkPHP框架</span>
-                    </a></li>
-                    <li><a href="/course/programdetail/pid/34" target="_blank"> <span
-                            class="name autowrap">PHP工程师</span> </a></li>
+                    <c:if test="${otherDocuments==null}">
+                        <li><a href="#"><span class="name autowrap">无其他资源</span></a></li>
+                    </c:if>
+                    <c:if test="${otherDocuments!=null}">
+                        <c:forEach var="document" items="${otherDocuments}">
+                            <li>
+                                <a href="/OnlineCourseFronten/file/get?url=<c:out value='${document.url}'/>" target="_blank">
+                                    <span class="name autowrap"><c:out value='${document.name}'/></span>
+                                </a>
+                            </li>
+                        </c:forEach>
+                    </c:if>
                 </ul>
             </div>
             <div class="box  mb40"><h4>推荐课程</h4>

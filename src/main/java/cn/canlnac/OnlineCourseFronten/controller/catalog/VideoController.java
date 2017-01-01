@@ -1,13 +1,7 @@
 package cn.canlnac.OnlineCourseFronten.controller.catalog;
 
-import cn.canlnac.OnlineCourseFronten.entity.Catalog;
-import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.LearnRecord;
-import cn.canlnac.OnlineCourseFronten.entity.Watch;
-import cn.canlnac.OnlineCourseFronten.service.CatalogService;
-import cn.canlnac.OnlineCourseFronten.service.CourseService;
-import cn.canlnac.OnlineCourseFronten.service.LearnRecordService;
-import cn.canlnac.OnlineCourseFronten.service.WatchService;
+import cn.canlnac.OnlineCourseFronten.entity.*;
+import cn.canlnac.OnlineCourseFronten.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("video")
@@ -32,15 +27,16 @@ public class VideoController {
     private WatchService watchService;
     @Autowired
     private LearnRecordService learnRecordService;
+    @Autowired
+    private DocumentService documentService;
 
     /**
      * 进入视频观看页面
      * @param id
      * @return
-     * @throws Exception
      */
     @RequestMapping("show")
-    public ModelAndView showIndex(@RequestParam(value = "id") int id) throws Exception {
+    public ModelAndView showIndex(@RequestParam(value = "id") int id) {
         Catalog catalog = catalogService.findByID(id);
         //课程表观看+1
         Course course = new Course();
@@ -50,9 +46,13 @@ public class VideoController {
         //添加观看表记录
         Session session = SecurityUtils.getSubject().getSession();
         watchService.create("catalog",id,(Integer) session.getAttribute("id"));
+        //其他资源
+        List<Document> otherDocuments = documentService.getDocuments(0,documentService.count("catalog",id,null),"date","catalog",id,null);
+        otherDocuments = otherDocuments.size()>0?otherDocuments:null;
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("catalog",catalog);
+        modelAndView.addObject("otherDocuments",otherDocuments);
         modelAndView.setViewName("/frontend/video");
 
         return modelAndView;

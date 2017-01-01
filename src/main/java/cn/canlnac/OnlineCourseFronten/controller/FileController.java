@@ -1,5 +1,8 @@
 package cn.canlnac.OnlineCourseFronten.controller;
 
+import cn.canlnac.OnlineCourseFronten.entity.Document;
+import cn.canlnac.OnlineCourseFronten.service.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +26,8 @@ import java.util.*;
 @Controller
 @RequestMapping("file")
 public class FileController {
+    @Autowired
+    private DocumentService documentService;
 
     /**
      * 得到静态资源目录路径，目录不存在就创建
@@ -30,7 +35,8 @@ public class FileController {
      * @return
      */
     public static String getSourcesDirectory(HttpServletRequest request){
-        String SourcesDirectory = request.getSession(true).getServletContext().getRealPath("/")+"/../uploadFiles/";//"/usr/local/tomcat/webapps/files/";
+        String SourcesDirectory = request.getSession(true).getServletContext().getRealPath("/")+"/../uploadFiles/";
+        //String SourcesDirectory = "/usr/local/tomcat/webapps/files/";
         File file =new File(SourcesDirectory);
         if  (!file .exists()  && !file .isDirectory())
         {
@@ -48,9 +54,15 @@ public class FileController {
      * @throws IOException
      */
     @RequestMapping("get")
-    public static void getFile(@RequestParam(value="url")String url,HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void getFile(@RequestParam(value="url")String url,HttpServletRequest request,HttpServletResponse response) throws IOException {
         File file = new File(getSourcesDirectory(request)+url);
         if (file.isFile() && file.exists()){
+
+            List<Document> document = documentService.findByUrl(url);
+            if (document.size()>0){
+                response.setHeader("Content-Disposition","attachment;filename="+ document.get(0).getName());
+            }
+
             //文件存在
             long len = file.length();
             byte[] bytes = new byte[(int)len];
