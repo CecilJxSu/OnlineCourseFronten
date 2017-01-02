@@ -79,7 +79,7 @@
     <!--根据条件，统计登录用户数目-->
     <select id="count" resultType="Integer">
         SELECT COUNT(*)
-        FROM USER
+        FROM user
         <where>
             <if test="conditions.status != null">
                 AND status IN

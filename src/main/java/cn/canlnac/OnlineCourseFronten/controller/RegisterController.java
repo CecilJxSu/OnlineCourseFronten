@@ -1,6 +1,8 @@
 package cn.canlnac.OnlineCourseFronten.controller;
 
+import cn.canlnac.OnlineCourseFronten.entity.Profile;
 import cn.canlnac.OnlineCourseFronten.entity.User;
+import cn.canlnac.OnlineCourseFronten.service.ProfileService;
 import cn.canlnac.OnlineCourseFronten.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ import java.util.Map;
 public class RegisterController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProfileService profileService;
 
     @RequestMapping("register")
     @ResponseBody
@@ -28,7 +32,6 @@ public class RegisterController {
         System.out.println(username+":"+password);
         User user = userService.findByUsername(username);
         if (user!=null){
-            System.out.println(1);
             map.put("msg","errName");
             return map;
         }
@@ -40,11 +43,14 @@ public class RegisterController {
 
         int count = userService.create(newUser);
         if (count == 1){
-            System.out.println(2);
+            Profile profile = new Profile();
+            profile.setUserId(newUser.getId());
+            profile.setUniversityId("");
+            profile.setNickname("");
+            profileService.create(profile);
             map.put("msg","success");
             return map;
         } else {
-            System.out.println(3);
             return null;
         }
     }
