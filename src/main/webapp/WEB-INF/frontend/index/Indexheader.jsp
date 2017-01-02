@@ -23,7 +23,7 @@
 <div id="header">
     <div class="page-container" id="nav">
         <div class="logo" id="logo">
-            <a href="javascript:;" target="_self" class="hide-text">课程学习网</a>
+            <a style="background-size:contain;" href="javascript:;" target="_self" class="hide-text">课程学习网</a>
         </div>
         <button type="button" class="navbar-toggle visible-xs-block js-show-menu">
             <i class="icon-menu"></i>
