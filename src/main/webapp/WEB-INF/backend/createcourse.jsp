@@ -37,6 +37,9 @@
                     <li role="presentation" class="">
                         <a href="#messages10" aria-controls="messages10" role="tab" data-toggle="tab" class="" aria-expanded="false">节</a>
                     </li>
+                    <li role="presentation" class="">
+                        <a href="#test" aria-controls="messages10" role="tab" data-toggle="tab" class="" aria-expanded="false">小测</a>
+                    </li>
                 </ul>
 
 
@@ -194,6 +197,87 @@
                         </div>
                     </div>
                     <%--节end--%>
+                    <%--小测--%>
+                    <div role="tabpanel" class="tab-pane" id="test">
+                        <div class="container-padding">
+                            <div class="panel-body">
+                                <form id="testsection" class="form-horizontal">
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">课程</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="course_id" id="test_section_course_id">
+                                                <option value ="">请选择课程</option>
+                                                <c:forEach var="course" items="${courses}">
+                                                    <option value ="<c:out value="${course.id}"/>"><c:out value="${course.name}"/></option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">章</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="parent_id" id="test_parent_id">
+                                                <option value ="">请选择章</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">节</label>
+                                        <div class="xz col-sm-10 ">
+                                            <i>第</i><input type="text" name="index" id="test_section_index" class="form-control" style="width: 50px;" ><i>节</i>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">小测名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control" id="test_section_name" >
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">小测上传</label>
+                                        <div class="col-sm-10">
+                                            <input id="test_upload" class="uploadinput" type="file" name="test_upload" multiple accept="application/msword">
+                                        </div>
+                                    </div>
+                                    <%--<div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">预览图</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="document_img_id" id="test_document_img_id">
+                                                <option value ="">请选择预览图</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="courseform">
+                                        <label class="col-sm-2 control-label form-label">其他资源</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="document_ids" id="test_document_id">
+                                                <option value ="">请选择其他资源</option>
+                                            </select>
+                                        </div>
+                                    </div>--%>
+                                    <div class="courseform testfrom">
+                                        <div class="col-sm-12 text-left" style="padding-top:20px;">
+                                            <a id="test_mould" href="javascript:void(0);" class="btn btn-success">小测模板下载</a>
+                                        </div>
+                                        <div class="col-sm-12 text-left" style="padding-top:20px;">
+                                            <a id="test_preview" href="javascript:void(0);" class="btn btn-success">小测预览</a>
+                                        </div>
+                                        <%--显示更多资源--%>
+                                        <div class="more">
+                                        </div>
+                                        <%--显示更多资源end--%>
+                                    </div>
+                                    <div class="courseform">
+                                        <div class="col-sm-12 text-right" style="padding-top:20px;">
+                                            <a id="test_btn-success-section" href="#" class="btn btn-success">提交</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%--小测end--%>
                 </div>
 
 

@@ -4095,6 +4095,9 @@ Widgets
   margin-right: 294px;
   margin-left: 198px;
 }
+.testfrom{
+  display: -webkit-inline-box;
+}
 .courseform div{
   margin-bottom: 18px;
 }
@@ -4169,8 +4172,9 @@ Widgets
     text-decoration: none;
 }
 /*学习记录*/
-.learnselect{
-  width: 40%;
+
+.managediv .learnselect{
+  width: 30%;
   margin: 25px;
 }
 /*用户管理*/

@@ -89,6 +89,7 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/root/course/show" target="iframe">创建课程</a></li>
                     <li><a href="${pageContext.request.contextPath}/root/course/manage/show" target="iframe">课程管理 </a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/test/manage/show" target="iframe">小测管理 </a></li>
                 </ul>
             </li>
             <li>
