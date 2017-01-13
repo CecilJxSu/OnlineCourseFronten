@@ -23,6 +23,7 @@
     Shiro
     json
     commons-fileupload
+    poi：解析excel
   -->
   <build>
     <finalName>OnlineCourseFronten</finalName>
@@ -239,6 +240,12 @@
       <version>2.4</version>
     </dependency>
 
+    <!-- poi -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.15</version>
+    </dependency>
 
   </dependencies>
 

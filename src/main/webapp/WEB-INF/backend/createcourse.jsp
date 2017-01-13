@@ -236,28 +236,18 @@
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">小测上传</label>
                                         <div class="col-sm-10">
-                                            <input id="test_upload" class="uploadinput" type="file" name="test_upload" multiple accept="application/msword">
-                                        </div>
-                                    </div>
-                                    <%--<div class="courseform">
-                                        <label class="col-sm-2 control-label form-label">预览图</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="document_img_id" id="test_document_img_id">
-                                                <option value ="">请选择预览图</option>
-                                            </select>
+                                            <input id="test_upload" class="uploadinput" type="file" name="test_upload" multiple accept="application/xlsx">
                                         </div>
                                     </div>
                                     <div class="courseform">
-                                        <label class="col-sm-2 control-label form-label">其他资源</label>
+                                        <label class="col-sm-2 control-label form-label">小测总分</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="document_ids" id="test_document_id">
-                                                <option value ="">请选择其他资源</option>
-                                            </select>
+                                            <input type="text" name="score" class="form-control" id="test_section_score" >
                                         </div>
-                                    </div>--%>
+                                    </div>
                                     <div class="courseform testfrom">
                                         <div class="col-sm-12 text-left" style="padding-top:20px;">
-                                            <a id="test_mould" href="javascript:void(0);" class="btn btn-success">小测模板下载</a>
+                                            <a id="test_mould" href="/OnlineCourseFronten/static/staticWEB/小测模板.xlsx" class="btn btn-success">小测模板下载</a>
                                         </div>
                                         <div class="col-sm-12 text-left" style="padding-top:20px;">
                                             <a id="test_preview" href="javascript:void(0);" class="btn btn-success">小测预览</a>
@@ -272,9 +262,10 @@
                                             <a id="test_btn-success-section" href="#" class="btn btn-success">提交</a>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
+                            <%--小测预览--%>
+                            <div id="test_preview_show" class="panel-body"></div>
                         </div>
                     </div>
                     <%--小测end--%>
@@ -473,6 +464,131 @@
         });
     });
     /*** end: 创建节时的资源和章的获取 ***/
+
+
+    /*** start: 创建小测时，章的获取 ***/
+    $('#test_section_course_id').change(function () {
+        //获取章
+        $.ajax({
+            url: "/OnlineCourseFronten/root/catalog/chapter/get",
+            type: "post",
+            data: {
+                course_id: $('#test_section_course_id').val()
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var html = '<option value ="">请选择章</option>';
+                $.each(data, function (index, content) {
+                    html += '<option value ="' + content.id + '">第' + content.index + '章 ' + content.name + '</option>';
+                });
+                $('#test_parent_id').html(html);
+            },
+            error: function (e) {
+                $('#test_parent_id').html('<option value ="">请选择章</option>');
+            }
+        });
+    });
+    /*** end: 创建小测时，章的获取 ***/
+
+    var qa = null;
+    /*** start:小测预览 ***/
+    $('#test_preview').on('click',function () {
+        //上传
+        var form = new FormData(document.getElementById("testsection"));
+
+        $.ajax({
+            url:"/OnlineCourseFronten/root/test/preview",
+            type:"post",
+            data:form,
+            cache:false,
+            processData : false,
+            //必须false才会自动加上正确的Content-Type
+            contentType : false ,
+            dataType:'json',
+            beforeSend: function(){
+                qa = null;
+                $('#test_preview_show').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
+            },
+            success:function(data){
+                qa=data;
+                var html = '';
+                $.each( data.questions, function(index1, questions){
+                    if (index1=='SingleChoice'){
+                        html += '<h>单项选择题</h>';
+                    } else if (index1=='IndefiniteItemMultipleChoice'){
+                        html += '<h>不定项选择题</h>';
+                    }
+                    $.each( questions, function(index2, question){
+                        html += '<p>'+question.topic+'</p>';
+                        html += '<p>';
+                        $.each( question.option, function(index3, option){
+                            html += '<span style="margin-right: 30px;">'+index3+'. '+option+'</span>';
+                        });
+                        html += '</p>';
+                        html += '<p>答案:'+question.answer+'</p>';
+                        html += '<p>解析:'+question.resolve+'</p><br>';
+                    });
+                });
+                $('#test_preview_show').html(html);
+            },
+            error:function(e){
+                qa = null;
+                alert('上传失败或试题格式不正确');
+            }
+        });
+    });
+    /*** end:小测预览 ***/
+
+    /*** start: 小测提交 ***/
+    $('#test_btn-success-section').on('click',function () {
+        if($('#test_section_course_id').val()==''){
+            alert('请先选择课程');
+            return false;
+        }
+        if($('#test_parent_id').val()==''){
+            alert('请先选择章');
+            return false;
+        }
+        if($('#test_section_index').val()==''){
+            alert('请先填写节号');
+            return false;
+        }
+        if($('#test_section_name').val()==''){
+            alert('请先填写测试名称');
+            return false;
+        }
+        if(qa==null){
+            alert('请先上传');
+            return false;
+        }
+        if($('#test_section_score').val()==''){
+            alert('请先填写测试总分');
+            return false;
+        }
+
+        //上传
+        var form = new FormData(document.getElementById("testsection"));
+        $.ajax({
+            url: "/OnlineCourseFronten/root/test/create",
+            type: "post",
+            data: form,
+            cache:false,
+            processData : false,
+            //必须false才会自动加上正确的Content-Type
+            contentType : false,
+            dataType: false,
+            success: function (data) {
+                alert('小测创建成功');
+                $('#testsection')[0].reset();
+                $('#test_preview_show').html('');
+            },
+            error: function (e) {
+                alert('小测创建失败');
+            }
+        });
+    });
+    /*** end: 小测提交 ***/
 </script>
 </body>
 </html>
