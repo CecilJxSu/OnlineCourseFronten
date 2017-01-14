@@ -116,20 +116,45 @@ public class RootTestController {
             //创建一个新的题目集合
             //创建一个新的选项集合
             //进入新题目类型时，做旧题目块结尾处理
+            //题目条数归零
             if (sheet.get(i).get(0).equals("单项选择题(Single choice)")){
+                if (questionList!=null){
+                    questions.put(questionName,questionList);
+                    answers.put(questionName,answerList);
+                    totalNums.put(questionName,totalNum);
+                }
+
                 questionList = new ArrayList<Map>();
                 option = new HashMap();
                 questionName = "SingleChoice";
                 answerList = new ArrayList<String>();
+                totalNum=0;
             } else if (sheet.get(i).get(0).equals("不定项选择题(Indefinite item multiple choice)")){
-                questions.put(questionName,questionList);
-                answers.put(questionName,answerList);
-                totalNums.put(questionName,totalNum);
+                if (questionList!=null){
+                    questions.put(questionName,questionList);
+                    answers.put(questionName,answerList);
+                    totalNums.put(questionName,totalNum);
+                }
+
                 questionList = new ArrayList<Map>();
                 option = new HashMap();
                 questionName = "IndefiniteItemMultipleChoice";
                 answerList = new ArrayList<String>();
+                totalNum=0;
+            } else if (sheet.get(i).get(0).equals("判断题(True or False)")){
+                if (questionList!=null){
+                    questions.put(questionName,questionList);
+                    answers.put(questionName,answerList);
+                    totalNums.put(questionName,totalNum);
+                }
+
+                questionList = new ArrayList<Map>();
+                option = new HashMap();
+                questionName = "TrueOrFalse";
+                answerList = new ArrayList<String>();
+                totalNum=0;
             }
+
             //创建一个新的题目单元
             //往题目单元中添加题目
             //题目条数+1

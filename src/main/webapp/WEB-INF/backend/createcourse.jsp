@@ -515,9 +515,11 @@
                 var html = '';
                 $.each( data.questions, function(index1, questions){
                     if (index1=='SingleChoice'){
-                        html += '<h>单项选择题</h>';
+                        html += '<h><b>单项选择题</b></h>';
                     } else if (index1=='IndefiniteItemMultipleChoice'){
-                        html += '<h>不定项选择题</h>';
+                        html += '<h><b>不定项选择题</b></h>';
+                    } else if (index1=='TrueOrFalse'){
+                        html += '<h><b>判断题</b></h>';
                     }
                     $.each( questions, function(index2, question){
                         html += '<p>'+question.topic+'</p>';
@@ -527,7 +529,7 @@
                         });
                         html += '</p>';
                         html += '<p>答案:'+question.answer+'</p>';
-                        html += '<p>解析:'+question.resolve+'</p><br>';
+                        html += '<p style="color: #c81414">解析:'+question.resolve+'</p><br>';
                     });
                 });
                 $('#test_preview_show').html(html);
@@ -535,6 +537,7 @@
             error:function(e){
                 qa = null;
                 alert('上传失败或试题格式不正确');
+                $('#test_preview_show').html('');
             }
         });
     });
