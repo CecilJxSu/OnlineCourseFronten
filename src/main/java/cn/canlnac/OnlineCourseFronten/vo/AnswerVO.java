@@ -7,8 +7,9 @@ import java.util.List;
  */
 public class AnswerVO {
     public String type;
-    public List<List<String>> answers;
     public double totalScore;
+    public List<List<String>> answers;
+
 
     public String getType() {
         return type;
@@ -16,6 +17,14 @@ public class AnswerVO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(double totalScore) {
+        this.totalScore = totalScore;
     }
 
     public List<List<String>> getAnswers() {
@@ -26,11 +35,12 @@ public class AnswerVO {
         this.answers = answers;
     }
 
-    public double getTotalScore() {
-        return totalScore;
-    }
-
-    public void setTotalScore(double totalScore) {
-        this.totalScore = totalScore;
+    @Override
+    public String toString() {
+        return "{" +
+                "type='" + type + '\'' +
+                ", totalScore=" + totalScore +
+                ", answers=" + answers +
+                '}';
     }
 }

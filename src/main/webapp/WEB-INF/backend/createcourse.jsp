@@ -239,12 +239,6 @@
                                             <input id="test_upload" class="uploadinput" type="file" name="test_upload" multiple accept="application/xlsx">
                                         </div>
                                     </div>
-                                    <div class="courseform">
-                                        <label class="col-sm-2 control-label form-label">小测总分</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="score" class="form-control" id="test_section_score" >
-                                        </div>
-                                    </div>
                                     <div class="courseform testfrom">
                                         <div class="col-sm-12 text-left" style="padding-top:20px;">
                                             <a id="test_mould" href="/OnlineCourseFronten/static/staticWEB/小测模板.xlsx" class="btn btn-success">小测模板下载</a>
@@ -565,10 +559,7 @@
             alert('请先上传');
             return false;
         }
-        if($('#test_section_score').val()==''){
-            alert('请先填写测试总分');
-            return false;
-        }
+
 
         //上传
         var form = new FormData(document.getElementById("testsection"));

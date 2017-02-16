@@ -19,13 +19,13 @@
         <h1><c:out value="${catalog.name}"/>
         </h1>
         <c:if test="${answer != null}">
-            <span style="color: #c81414;text-align: center"><c:out value="${answer.total}"/></span>
+            <span style="color: #f01414;text-align: center;font-size: 1.3em;">成绩: <c:out value="${answer.total}"/></span>
         </c:if>
         <%--显示小测名称end--%>
     </div>
     <%--顶部end--%>
     <%--内容:还未进行小测--%>
-    <c:if test="${answer == null}">
+    <c:if test="${answer == null && userStatus == 'student'}">
     <div class="content" style="margin-left: 10%;">
         <form action="" method="post">
             <input hidden name="id" id="id" value="${catalog.id}">
@@ -79,6 +79,67 @@
     </div>
     </c:if>
     <%--内容:还未进行小测--%>
+    <%--内容:已进行小测--%>
+    <c:if test="${answer != null}">
+        <div class="content" style="margin-left: 10%;">
+            <form action="" method="post">
+                    <%--小测显示内容--%>
+                <c:forEach var="testUnit" items="${test}">
+                    <c:forEach var="answerVO" items="${answerVOs}">
+                        <c:if test="${answerVO.type == testUnit.type}">
+                            <br>
+                            <div class="test_content">
+                                <p><b><c:out value="${testUnit.type}"/></b> ( 共 <c:out value="${testUnit.score}"/> 分, 得分: <c:out value="${answerVO.totalScore}"/> )</p>
+                            </div>
+                            <c:set var="index" value="0"/>
+                            <c:forEach var="question" items="${testUnit.questions}">
+                                <div class="test_content">
+                                    <p><c:out value="${index+1}"/>、<c:out value="${question.question}"/></p>
+                                    <c:forEach var="item" items="${question.item}">
+                                        <c:out value="${item.key}"/>、<c:out value="${item.value}"/>
+                                        <br>
+                                    </c:forEach>
+                                    <p>你的答案: <c:out value="${answerVO.answers[index]}"/></p>
+                                    <p>正确答案: <c:out value="${question.answer}"/></p>
+                                    <p style="color: #f01414">解析: <c:out value="${question.explains}"/></p>
+                                </div><br>
+                                <c:set var="index" value="${index+1}"/>
+                            </c:forEach>
+                        </c:if>
+                    </c:forEach>
+                </c:forEach>
+                    <%--小测显示内容end--%>
+            </form>
+        </div>
+    </c:if>
+    <%--内容:已进行小测--%>
+    <%--内容:非学生--%>
+    <c:if test="${userStatus != 'student'}">
+        <div class="content" style="margin-left: 10%;">
+            <form action="" method="post">
+                    <%--小测显示内容--%>
+                <c:forEach var="testUnit" items="${test}">
+                    <br>
+                    <div class="test_content">
+                        <p><b><c:out value="${testUnit.type}"/></b> ( 共 <c:out value="${testUnit.score}"/> 分 )</p>
+                    </div>
+                    <c:forEach var="question" items="${testUnit.questions}">
+                        <div class="test_content">
+                            <p><c:out value="${index+1}"/>、<c:out value="${question.question}"/></p>
+                            <c:forEach var="item" items="${question.item}">
+                                <c:out value="${item.key}"/>、<c:out value="${item.value}"/>
+                                <br>
+                            </c:forEach>
+                            <p>正确答案: <c:out value="${question.answer}"/></p>
+                            <p style="color: #f01414">解析: <c:out value="${question.explains}"/></p>
+                        </div><br>
+                        <c:set var="index" value="${index+1}"/>
+                    </c:forEach>
+                </c:forEach><%--小测显示内容end--%>
+            </form>
+        </div>
+    </c:if>
+    <%--内容:非学生--%>
 </div>
 <%--尾部--%>
 <jsp:include page="include/footer.jsp"></jsp:include>
@@ -94,12 +155,13 @@
     });
 
 //    提交按钮
-    var obj = {};
+    var obj = new Array();
     $('#test_btn-success').on('click',function () {
         var checkInput = true;
         $('.test-count').each(function () {
             var s = $(this).attr("id");
-            obj[s] = new Array();
+            var unit = {type:s,totalScore:0};
+            unit.answers = new Array();
             for (var e=1;e<=$(this).attr("value");e++){
                 if ($("input[name='"+s+e+"']:checked").val()==null){
                     alert("请先完成小测！");
@@ -107,16 +169,21 @@
                     return false;
                 } else {
                     if ($("input[name='"+s+e+"']:checked").length < 2){
-                        obj[s].push($("input[name='"+s+e+"']:checked").val());
+                        var tmp = new Array();
+                        tmp.push($("input[name='"+s+e+"']:checked").val());
+                        unit.answers.push(tmp);
                     } else {
-                        var tmp = "";
+                        var str = "";
                         $("input[name='"+s+e+"']:checked").each(function () {
-                            tmp += $(this).val();
+                            str += $(this).val();
                         });
-                        obj[s].push(tmp);
+                        var tmp = new Array();
+                        tmp.push(str);
+                        unit.answers.push(tmp);
                     }
                 }
             }
+            obj.push(unit);
         });
         //提交表单
         if (checkInput)

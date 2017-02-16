@@ -201,7 +201,6 @@ public class RootTestController {
      * @param parentId      章id
      * @param index         节号
      * @param name          小测名称
-     * @param score         总分
      * @return
      */
     @RequestMapping("create")
@@ -210,8 +209,7 @@ public class RootTestController {
                          @RequestParam("course_id") int courseId,
                          @RequestParam("parent_id") int parentId,
                          @RequestParam("index") int index,
-                         @RequestParam("name") String name,
-                         @RequestParam("score") float score){
+                         @RequestParam("name") String name){
         String json = null;
         try {
             ObjectMapper mapper = new ObjectMapper(); //json转换器
@@ -228,7 +226,6 @@ public class RootTestController {
             Question question = new Question();
             question.setCatalogId(catalog.getId());
             question.setQuestions(json);
-            question.setTotal(score);
             if (questionService.create(question)>0){
                 return "success";
             } else {

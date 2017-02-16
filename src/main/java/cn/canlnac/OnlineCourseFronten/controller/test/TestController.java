@@ -2,9 +2,11 @@ package cn.canlnac.OnlineCourseFronten.controller.test;
 
 import cn.canlnac.OnlineCourseFronten.entity.Answer;
 import cn.canlnac.OnlineCourseFronten.entity.Catalog;
+import cn.canlnac.OnlineCourseFronten.entity.LearnRecord;
 import cn.canlnac.OnlineCourseFronten.entity.Question;
 import cn.canlnac.OnlineCourseFronten.service.AnswerService;
 import cn.canlnac.OnlineCourseFronten.service.CatalogService;
+import cn.canlnac.OnlineCourseFronten.service.LearnRecordService;
 import cn.canlnac.OnlineCourseFronten.service.QuestionService;
 import cn.canlnac.OnlineCourseFronten.vo.AnswerVO;
 import cn.canlnac.OnlineCourseFronten.vo.QuestionVO;
@@ -13,17 +15,18 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -35,7 +38,10 @@ public class TestController {
     private AnswerService answerService;
     @Autowired
     private CatalogService catalogService;
+    @Autowired
+    private LearnRecordService learnRecordService;
 
+    final Gson gson=new Gson();
 
     /**
      * 进入小测页面
@@ -47,10 +53,11 @@ public class TestController {
         ModelAndView modelAndView = new ModelAndView();
         Session session = SecurityUtils.getSubject().getSession();
         int userId = Integer.parseInt(session.getAttribute("id").toString());
+        modelAndView.addObject("userStatus",session.getAttribute("userStatus").toString());
         Question question = questionService.findByCatalogId(id);
         Catalog catalog = catalogService.findByID(id);
 
-        Gson gson=new Gson();
+
         List<TestUnit> test= new ArrayList<TestUnit>();
         Type Gtype = new TypeToken<ArrayList<TestUnit>>() {}.getType();
         test=gson.fromJson(question.getQuestions(), Gtype);
@@ -74,30 +81,64 @@ public class TestController {
 
     @RequestMapping("exam")
     public ModelAndView exam(@RequestParam("id") int catalogId,@RequestParam("answers") String answersStr){
-        Gson gson=new Gson();
-        Map<String,List<String>> answers = new HashMap<String, List<String>>();
-        Type GStype = new TypeToken<HashMap<String, List<String>>>() {}.getType();
-        answers=gson.fromJson(answersStr, GStype);
+        List<AnswerVO> answerVOs = new ArrayList<AnswerVO>();
+        Type GStype = new TypeToken<ArrayList<AnswerVO>>(){}.getType();
+        answerVOs = gson.fromJson(answersStr, GStype);
 
         Question question = questionService.findByCatalogId(catalogId);
         List<TestUnit> test= new ArrayList<TestUnit>();
         Type Gtype = new TypeToken<ArrayList<TestUnit>>() {}.getType();
         test=gson.fromJson(question.getQuestions(), Gtype);
 
+        //统计总成绩
+        double total = 0;
+
         for (int i=0;i<test.size();i++){
             String type = test.get(i).getType();
             double score = test.get(i).getScore();
             List<QuestionVO> questionVOs = test.get(i).getQuestions();
-            int n = 0;
-            for (;n<questionVOs.size();n++){
-                System.out.println(questionVOs.get(n).answer.toString());
+            List<List<String>> userAnswer = null;
+            for (int m=0;m<answerVOs.size();m++){
+                if (answerVOs.get(m).getType().equals(type)) {
+                    userAnswer = answerVOs.get(m).getAnswers();
+                    int y = 0;
+                    int count = 0;
+                    for(QuestionVO questionVO:questionVOs){
+                        if (questionVO.getAnswer().equals(userAnswer.get(count)))
+                            y++;
+                        count++;
+                    }
+                    answerVOs.get(m).setTotalScore(score*y/count);
+                    total = total+score*y/count;
+                }
             }
         }
-        System.out.println(test);
-        System.out.println(answers);
+
+        //创建Answer对象，存入数据库
+        Answer answer = new Answer();
+        answer.setQuestionId(question.getId());
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        answer.setUserId(userId);
+        String json = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper(); //json转换器
+            json = mapper.writeValueAsString(answerVOs); //将上传图片转换成json
+        } catch (IOException e) {
+            return null;
+        }
+        answer.setAnswer(json);
+        answer.setTotal((float) total);
+        answerService.create(answer);
+
+        LearnRecord learnRecord = new LearnRecord();
+        learnRecord.setCatalogId(catalogId);
+        learnRecord.setUserId(userId);
+        learnRecord.setLastPosition(0);
+        learnRecord.setProgress(1);
+        learnRecordService.create(learnRecord);
 
 
-
-        return showIndex(catalogId);
+        return new ModelAndView("redirect:/test/show?id="+catalogId);
     }
 }
