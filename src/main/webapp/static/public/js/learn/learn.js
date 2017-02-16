@@ -26,30 +26,36 @@ $('.J-media-item').on('click', function () {
     dump($(this).attr("id"));
 });
 function dump(id) {
-    ///OnlineCourseFronten/video/show?id=
     //判断是否登录
     if ($('#js-signin-btn').length && $('#js-signin-btn').length > 0) {
         $('#js-signin-btn').trigger('click');
         $('#signin-globle-error').html("您还未登录");
     } else {
-        var form = $('<form></form>');
-        // 设置属性
-        form.attr('action', "/OnlineCourseFronten/video/show");
-        form.attr('method', 'post');
-        // form的target属性决定form在哪个页面提交
-        // _self -> 当前页面 _blank -> 新页面
-        form.attr('target', '_blank');
-        // 创建Input
-        var my_input = $('<input type="text" name="id"/>');
-        my_input.attr('value', id);
-        // 附加到Form
-        form.append(my_input);
-        // 提交表单
-        form.submit();
-        // 注意return false取消链接的默认动作
-        //return false;
+        if ($('#'+id).hasClass("test")){
+            $.StandardPost('/OnlineCourseFronten/test/show',{id:id});
+        } else {
+            $.StandardPost('/OnlineCourseFronten/video/show',{id:id});
+        }
     }
 }
+//模拟表单Post提交
+$.extend({
+    StandardPost:function(url,args){
+        var body = $(document.body), form = $("<form method='post'></form>"), input;
+        // _self -> 当前页面 _blank -> 新页面
+        form.attr('target', '_blank');
+        form.attr({"action":url});
+        $.each(args,function(key,value){
+            input = $("<input type='hidden'>");
+            input.attr({"name":key});
+            input.val(value);
+            form.append(input);
+        });
+        form.appendTo(document.body);
+        form.submit();
+        document.body.removeChild(form[0]);
+    }
+});
 /************** end：观看视频是需要登录才行***********/
 
 

@@ -513,23 +513,23 @@
             success:function(data){
                 qa=data;
                 var html = '';
-                $.each( data.questions, function(index1, questions){
-                    if (index1=='SingleChoice'){
-                        html += '<h><b>单项选择题</b></h>';
-                    } else if (index1=='IndefiniteItemMultipleChoice'){
-                        html += '<h><b>不定项选择题</b></h>';
-                    } else if (index1=='TrueOrFalse'){
-                        html += '<h><b>判断题</b></h>';
+                $.each( data, function(index1, questions){
+                    if (questions.type=='单选题'){
+                        html += '<h><b>单选题</b>(共'+questions.score+'分)</h>';
+                    } else if (questions.type=='多选题'){
+                        html += '<h><b>多选题</b>(共'+questions.score+'分)</h>';
+                    } else if (questions.type=='判断题'){
+                        html += '<h><b>判断题</b>(共'+questions.score+'分)</h>';
                     }
-                    $.each( questions, function(index2, question){
-                        html += '<p>'+question.topic+'</p>';
+                    $.each( questions.questions, function(index2, question){
+                        html += '<p>'+question.question+'</p>';
                         html += '<p>';
-                        $.each( question.option, function(index3, option){
+                        $.each( question.item, function(index3, option){
                             html += '<span style="margin-right: 30px;">'+index3+'. '+option+'</span>';
                         });
                         html += '</p>';
                         html += '<p>答案:'+question.answer+'</p>';
-                        html += '<p style="color: #c81414">解析:'+question.resolve+'</p><br>';
+                        html += '<p style="color: #c81414">解析:'+question.explains+'</p><br>';
                     });
                 });
                 $('#test_preview_show').html(html);

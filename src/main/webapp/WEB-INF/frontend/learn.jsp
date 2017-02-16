@@ -128,8 +128,14 @@
                             <ul class="video">
                                 <c:forEach var="section" items="${units.sections}">
                                     <li data-media-id="52">
+                                        <c:if test="${section.parentId!=0 && section.url==null}">
+                                        <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item test">
+                                            <i class="icon-test type">第<c:out value="${section.index}"/>节</i>
+                                        </c:if>
+                                        <c:if test="${section.parentId!=0 && section.url!=null}">
                                         <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item">
                                             <i class="icon-code type">第<c:out value="${section.index}"/>节</i>
+                                        </c:if>
                                             <c:out value="${section.name}"/>
                                             <c:if test="${section.progress==1}">
                                                 <button class="r moco-btn moco-btn-red preview-btn">已完成</button>

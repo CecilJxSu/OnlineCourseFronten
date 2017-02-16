@@ -6,6 +6,9 @@ import cn.canlnac.OnlineCourseFronten.entity.Question;
 import cn.canlnac.OnlineCourseFronten.service.CatalogService;
 import cn.canlnac.OnlineCourseFronten.service.QuestionService;
 import cn.canlnac.OnlineCourseFronten.util.ExcelReader;
+import cn.canlnac.OnlineCourseFronten.vo.TestUnit;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,14 +75,14 @@ public class RootTestController {
      */
     @RequestMapping("preview")
     @ResponseBody
-    public Map preview(HttpServletRequest request){
+    public List<Map> preview(HttpServletRequest request){
         return resolve(request);
     }
 
     /**
      * 解析小测试题
      */
-    public Map resolve(HttpServletRequest request){
+    public List<Map> resolve(HttpServletRequest request){
         String path = "";
         try {
             List<Map> lm = FileController.saveFlie(request);
@@ -92,111 +96,102 @@ public class RootTestController {
         //解析excel表，由于一个excel中只设一个sheet表，所以只取解析后的第一个
         ArrayList<ArrayList<String>> sheet = ExcelReader.parseExcel(FileController.getSourcesDirectory(request)+path).get(0);
 
-        //questions指代题目
-        Map questions = new HashMap();
-        //questionList指代题目集合，例如：单项选择题下所有题目为一个集合
-        List<Map> questionList = null;
-        //questionUnits指代一条完整的题目，例如：包括题目、选项、答案、解析
-        Map questionUnits = null;
+        //试卷
+        List<Map> test = new ArrayList<Map>();
+        //试卷单元模块
+        Map testUnit = null;
 
-        //Option指代选项
-        Map option = null;
-        //用于记录当前题目快的类型名称
-        String questionName = null;
+        //题目类型
+        String type = null;
+        //每大题总分
+        double score = 0 ;
+        //题目集合
+        List<Map> questions = new ArrayList<Map>();
 
-        //answers指代答案
-        Map answers = new HashMap();
-        //answerList指代答案集合，例如：单项选择题下所有答案为一个集合
-        List<String> answerList = null;
+        //题目单元
+        Map questionUnit = null;
 
-        //answers指代各类型题目总条数
-        Map totalNums = new HashMap();
-        int totalNum = 0;
+        //选项集合
+        Map item = null;
+
         for (int i=0;i<sheet.size();i++){
+            //创建试卷单元模块
+            //题目类型、每大题总分放进试卷单元模块
             //创建一个新的题目集合
-            //创建一个新的选项集合
             //进入新题目类型时，做旧题目块结尾处理
-            //题目条数归零
-            if (sheet.get(i).get(0).equals("单项选择题(Single choice)")){
-                if (questionList!=null){
-                    questions.put(questionName,questionList);
-                    answers.put(questionName,answerList);
-                    totalNums.put(questionName,totalNum);
+            if (sheet.get(i).get(0).equals("单选题")){
+                if (questions.size()>0){
+                    testUnit.put("questions",questions);
+                    test.add(testUnit);
                 }
-
-                questionList = new ArrayList<Map>();
-                option = new HashMap();
-                questionName = "SingleChoice";
-                answerList = new ArrayList<String>();
-                totalNum=0;
-            } else if (sheet.get(i).get(0).equals("不定项选择题(Indefinite item multiple choice)")){
-                if (questionList!=null){
-                    questions.put(questionName,questionList);
-                    answers.put(questionName,answerList);
-                    totalNums.put(questionName,totalNum);
+                testUnit = new HashMap();
+                type = "单选题";
+                score = Double.parseDouble(sheet.get(i).get(2));
+                testUnit.put("type",type);
+                testUnit.put("score",score);
+                questions = new ArrayList<Map>();
+            } else if (sheet.get(i).get(0).equals("多选题")){
+                if (questions.size()>0){
+                    testUnit.put("questions",questions);
+                    test.add(testUnit);
                 }
-
-                questionList = new ArrayList<Map>();
-                option = new HashMap();
-                questionName = "IndefiniteItemMultipleChoice";
-                answerList = new ArrayList<String>();
-                totalNum=0;
-            } else if (sheet.get(i).get(0).equals("判断题(True or False)")){
-                if (questionList!=null){
-                    questions.put(questionName,questionList);
-                    answers.put(questionName,answerList);
-                    totalNums.put(questionName,totalNum);
+                testUnit = new HashMap();
+                type = "多选题";
+                score = Double.parseDouble(sheet.get(i).get(2));
+                testUnit.put("type",type);
+                testUnit.put("score",score);
+                questions = new ArrayList<Map>();
+            } else if (sheet.get(i).get(0).equals("判断题")){
+                if (questions.size()>0){
+                    testUnit.put("questions",questions);
+                    test.add(testUnit);
                 }
-
-                questionList = new ArrayList<Map>();
-                option = new HashMap();
-                questionName = "TrueOrFalse";
-                answerList = new ArrayList<String>();
-                totalNum=0;
+                testUnit = new HashMap();
+                type = "判断题";
+                score = Double.parseDouble(sheet.get(i).get(2));
+                testUnit.put("type",type);
+                testUnit.put("score",score);
+                questions = new ArrayList<Map>();
             }
 
             //创建一个新的题目单元
+            //往题目单元中添加题目类型
             //往题目单元中添加题目
-            //题目条数+1
-            if (sheet.get(i).get(0).equals("题目(topic)")){
-                questionUnits = new HashMap();
-                questionUnits.put("topic",sheet.get(i).get(1));
-                totalNum++;
+            //清空选项集合
+            if (sheet.get(i).get(0).equals("题目")){
+                questionUnit = new HashMap();
+                questionUnit.put("type",type);
+                questionUnit.put("question",sheet.get(i).get(1));
+                item = new HashMap();
             }
             //设置选项集合
             if (Pattern.compile("[a-zA-Z]").matcher(sheet.get(i).get(0)).matches()){
-                option.put(sheet.get(i).get(0),sheet.get(i).get(1));
+                item.put(sheet.get(i).get(0),sheet.get(i).get(1));
             }
             //往题目单元中添加选项集合
             //往题目单元中添加答案
-            //往答案集合中添加答案
-            if (sheet.get(i).get(0).equals("答案(answer)")){
-                questionUnits.put("option",option);
-                questionUnits.put("answer",sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
-                answerList.add(sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
+            if (sheet.get(i).get(0).equals("答案")){
+                questionUnit.put("item",item);
+                List answer = new ArrayList();
+                answer.add(sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
+                questionUnit.put("answer",answer);
             }
             //往题目单元中添加解析
             //将题目单元加入题目集合
-            if (sheet.get(i).get(0).equals("解析(resolve)")){
-                questionUnits.put("resolve",sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
-                questionList.add(questionUnits);
+            if (sheet.get(i).get(0).equals("解析")){
+                questionUnit.put("explains",sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
+                questions.add(questionUnit);
             }
             //为最后一个单元格，做题目块结尾处理
             if (i+1==sheet.size()){
-                questions.put(questionName,questionList);
-                answers.put(questionName,answerList);
-                totalNums.put(questionName,totalNum);
+                testUnit.put("questions",questions);
+                test.add(testUnit);
             }
         }
 
-        Map questionsAndanswers = new HashMap();
-        questionsAndanswers.put("questions",questions);
-        questionsAndanswers.put("answers",answers);
-        questionsAndanswers.put("totalNums",totalNums);
-
         //对于excel文件不做保留，在此进行删除
         FileController.deleteFile(path,request);
-        return questionsAndanswers;
+        return test;
     }
 
     /**
@@ -230,7 +225,6 @@ public class RootTestController {
         catalog.setIndex(index);
         catalog.setName(name);
         if (catalogService.create(catalog)>0){
-            System.out.println(json.length());
             Question question = new Question();
             question.setCatalogId(catalog.getId());
             question.setQuestions(json);
