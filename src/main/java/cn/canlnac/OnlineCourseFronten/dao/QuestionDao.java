@@ -3,6 +3,8 @@ package cn.canlnac.OnlineCourseFronten.dao;
 import cn.canlnac.OnlineCourseFronten.entity.Question;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * 章节的小测数据接口
  */
@@ -23,11 +25,13 @@ public interface QuestionDao {
     Question findById(int id);
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 根据章节ID获取问题
      * @param catalogId 章节ID
      * @return          问题
      */
-    Question findByCatalogId(int catalogId);
+    //Question findByCatalogId(int catalogId);
+    List<Question> findByCatalogId(int catalogId);
 
     /**
      * 更新问题

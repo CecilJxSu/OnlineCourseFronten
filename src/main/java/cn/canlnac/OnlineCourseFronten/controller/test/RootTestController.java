@@ -195,20 +195,50 @@ public class RootTestController {
     }
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 创建小测
      * @param request
      * @param courseId      课程id
      * @param parentId      章id
-     * @param index         节号
      * @param name          小测名称
      * @return
      */
     @RequestMapping("create")
     @ResponseBody
+//    public String create(HttpServletRequest request,
+//                         @RequestParam("course_id") int courseId,
+//                         @RequestParam("parent_id") int parentId,
+//                         @RequestParam("index") int index,
+//                         @RequestParam("name") String name){
+//        String json = null;
+//        try {
+//            ObjectMapper mapper = new ObjectMapper(); //json转换器
+//            json = mapper.writeValueAsString(resolve(request)); //将上传图片转换成json
+//        } catch (IOException e) {
+//            return null;
+//        }
+//        Catalog catalog = new Catalog();
+//        catalog.setCourseId(courseId);
+//        catalog.setParentId(parentId);
+//        catalog.setIndex(index);
+//        catalog.setName(name);
+//        if (catalogService.create(catalog)>0){
+//            Question question = new Question();
+//            question.setCatalogId(catalog.getId());
+//            question.setQuestions(json);
+//            if (questionService.create(question)>0){
+//                return "success";
+//            } else {
+//                catalogService.delete(catalog.getId());
+//                return null;
+//            }
+//        } else {
+//            return null;
+//        }
+//    }
     public String create(HttpServletRequest request,
                          @RequestParam("course_id") int courseId,
                          @RequestParam("parent_id") int parentId,
-                         @RequestParam("index") int index,
                          @RequestParam("name") String name){
         String json = null;
         try {
@@ -217,21 +247,12 @@ public class RootTestController {
         } catch (IOException e) {
             return null;
         }
-        Catalog catalog = new Catalog();
-        catalog.setCourseId(courseId);
-        catalog.setParentId(parentId);
-        catalog.setIndex(index);
-        catalog.setName(name);
-        if (catalogService.create(catalog)>0){
-            Question question = new Question();
-            question.setCatalogId(catalog.getId());
-            question.setQuestions(json);
-            if (questionService.create(question)>0){
-                return "success";
-            } else {
-                catalogService.delete(catalog.getId());
-                return null;
-            }
+        Question question = new Question();
+        question.setCatalogId(parentId);
+        question.setName(name);
+        question.setQuestions(json);
+        if (questionService.create(question)>0){
+            return "success";
         } else {
             return null;
         }

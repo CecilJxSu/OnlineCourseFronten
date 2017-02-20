@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * 章节的小测事务接口实现
  */
@@ -35,11 +37,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 根据章节ID获取问题
      * @param catalogId 章节ID
      * @return          问题
      */
-    public Question findByCatalogId(int catalogId) {
+//    public Question findByCatalogId(int catalogId) {
+//        return questionDao.findByCatalogId(catalogId);
+//    }
+    public List<Question> findByCatalogId(int catalogId) {
         return questionDao.findByCatalogId(catalogId);
     }
 

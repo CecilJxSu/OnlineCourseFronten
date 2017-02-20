@@ -37,16 +37,23 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 获取回答
-     * @param catalogId 章节ID
+     * @param questonId 小测ID
      * @param userId    用户ID
      * @return          回答
      */
+//    public Answer getAnswer(
+//            int catalogId,
+//            int userId
+//    ) {
+//        return answerDao.getAnswer(catalogId, userId);
+//    }
     public Answer getAnswer(
-            int catalogId,
+            int questonId,
             int userId
     ) {
-        return answerDao.getAnswer(catalogId, userId);
+        return answerDao.getAnswer(questonId, userId);
     }
 
     /**

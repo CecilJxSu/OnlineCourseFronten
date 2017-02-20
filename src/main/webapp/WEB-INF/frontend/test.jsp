@@ -16,7 +16,7 @@
     <%--顶部--%>
     <div class="test" style="text-align: -webkit-center;">
         <%--显示小测名称--%>
-        <h1><c:out value="${catalog.name}"/>
+        <h1><c:out value="${question.name}"/>
         </h1>
         <c:if test="${answer != null}">
             <span style="color: #f01414;text-align: center;font-size: 1.3em;">成绩: <c:out value="${answer.total}"/></span>
@@ -28,7 +28,7 @@
     <c:if test="${answer == null && userStatus == 'student'}">
     <div class="content" style="margin-left: 10%;">
         <form action="" method="post">
-            <input hidden name="id" id="id" value="${catalog.id}">
+            <input hidden name="id" id="id" value="${question.id}">
             <%--小测显示内容--%>
             <c:forEach var="testUnit" items="${test}">
                 <br>
