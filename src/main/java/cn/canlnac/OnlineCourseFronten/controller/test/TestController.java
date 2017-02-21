@@ -1,8 +1,6 @@
 package cn.canlnac.OnlineCourseFronten.controller.test;
 
 import cn.canlnac.OnlineCourseFronten.entity.Answer;
-import cn.canlnac.OnlineCourseFronten.entity.Catalog;
-import cn.canlnac.OnlineCourseFronten.entity.LearnRecord;
 import cn.canlnac.OnlineCourseFronten.entity.Question;
 import cn.canlnac.OnlineCourseFronten.service.AnswerService;
 import cn.canlnac.OnlineCourseFronten.service.CatalogService;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
