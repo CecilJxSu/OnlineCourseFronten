@@ -23,13 +23,18 @@ public interface AnswerService {
     int update(Answer answer);
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 获取回答
-     * @param catalogId 章节ID
+     * @param questonId 小测ID
      * @param userId    用户ID
      * @return          回答
      */
+//    Answer getAnswer(
+//            int catalogId,
+//            int userId
+//    );
     Answer getAnswer(
-            int catalogId,
+            int questonId,
             int userId
     );
 

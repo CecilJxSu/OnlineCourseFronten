@@ -27,12 +27,12 @@ public interface AnswerDao {
 
     /**
      * 获取回答
-     * @param catalogId 章节ID
+     * @param questionId 小测ID
      * @param userId    用户ID
      * @return          回答
      */
     Answer getAnswer(
-            @Param("catalogId") int catalogId,
+            @Param("questionId") int questionId,
             @Param("userId") int userId
     );
 

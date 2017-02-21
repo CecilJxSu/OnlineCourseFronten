@@ -20,18 +20,18 @@ $(function () {
 
 /************** start：观看视频是需要登录才行***********/
 $('.moco-btn,.l,.learn-btn,.green-btn,.red-btn').on('click', function () {
-    dump($(this).children('a').attr("id"));
+    dump($(this).children('a').attr("id"),$(this).children('a').hasClass("test")?'test':'video');
 });
 $('.J-media-item').on('click', function () {
-    dump($(this).attr("id"));
+    dump($(this).attr("id"),$(this).hasClass("test")?'test':'video');
 });
-function dump(id) {
+function dump(id,type) {
     //判断是否登录
     if ($('#js-signin-btn').length && $('#js-signin-btn').length > 0) {
         $('#js-signin-btn').trigger('click');
         $('#signin-globle-error').html("您还未登录");
     } else {
-        if ($('#'+id).hasClass("test")){
+        if (type=='test'){
             $.StandardPost('/OnlineCourseFronten/test/show',{id:id});
         } else {
             $.StandardPost('/OnlineCourseFronten/video/show',{id:id});

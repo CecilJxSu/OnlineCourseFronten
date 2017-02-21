@@ -62,7 +62,7 @@ public class AnswerDaoTest {
         question.setCatalogId(1);
         question.setQuestions("jjsdfjlsjfjlfjsdf");
         questionDao.create(question);
-        questionId = questionDao.findByCatalogId(1).getId();
+        questionId = questionDao.findByCatalogId(1).get(0).getId();
         create();
 
         Answer answer = answerDao.getAnswer(1, 1);

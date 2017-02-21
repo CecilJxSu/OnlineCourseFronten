@@ -221,12 +221,13 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="courseform">
-                                        <label class="col-sm-2 control-label form-label">节</label>
-                                        <div class="xz col-sm-10 ">
-                                            <i>第</i><input type="text" name="index" id="test_section_index" class="form-control" style="width: 50px;" ><i>节</i>
-                                        </div>
-                                    </div>
+                                    <%--因为与移动端逻辑同步，注释测方法，改用B--%>
+                                    <%--<div class="courseform">--%>
+                                        <%--<label class="col-sm-2 control-label form-label">节</label>--%>
+                                        <%--<div class="xz col-sm-10 ">--%>
+                                            <%--<i>第</i><input type="text" name="index" id="test_section_index" class="form-control" style="width: 50px;" ><i>节</i>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
                                     <div class="courseform">
                                         <label class="col-sm-2 control-label form-label">小测名称</label>
                                         <div class="col-sm-10">
@@ -547,10 +548,11 @@
             alert('请先选择章');
             return false;
         }
-        if($('#test_section_index').val()==''){
-            alert('请先填写节号');
-            return false;
-        }
+        //因为与移动端逻辑同步，注释测方法
+//        if($('#test_section_index').val()==''){
+//            alert('请先填写节号');
+//            return false;
+//        }
         if($('#test_section_name').val()==''){
             alert('请先填写测试名称');
             return false;

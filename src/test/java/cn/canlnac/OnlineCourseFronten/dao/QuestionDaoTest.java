@@ -38,7 +38,7 @@ public class QuestionDaoTest {
     @Test
     public void testUpdate(){
         testCreate();
-        int id = questionDao.findByCatalogId(1).getId();
+        int id = questionDao.findByCatalogId(1).get(0).getId();
 
         Question question = new Question();
         question.setId(id);
@@ -51,7 +51,7 @@ public class QuestionDaoTest {
     @Test
     public void testDelete(){
         testCreate();
-        int id = questionDao.findByCatalogId(1).getId();
+        int id = questionDao.findByCatalogId(1).get(0).getId();
 
         int i = questionDao.delete(id);
         assertEquals(1,i);
@@ -61,7 +61,7 @@ public class QuestionDaoTest {
     public void testFindById(){
         testCreate();
 
-        Question question1 = questionDao.findByCatalogId(1);
+        Question question1 = questionDao.findByCatalogId(1).get(0);
         Question question2 = questionDao.findById(question1.getId());
         System.out.println(question1.toString());
         System.out.println(question2.toString());
@@ -72,7 +72,7 @@ public class QuestionDaoTest {
     public void testFindByCatalogId(){
         testCreate();
 
-        Question question = questionDao.findByCatalogId(1);
+        Question question = questionDao.findByCatalogId(1).get(0);
         System.out.println(question.toString());
     }
 }

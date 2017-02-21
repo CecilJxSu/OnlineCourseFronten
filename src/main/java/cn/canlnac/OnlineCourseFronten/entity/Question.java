@@ -12,6 +12,7 @@ public class Question {
     private int id;
     private Date date;
     private int catalogId;
+    private String name;
     private float total;
     private String questions;
 
@@ -38,6 +39,17 @@ public class Question {
 
     public void setCatalogId(int catalogId) {
         this.catalogId = catalogId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name != null)
+            this.name = name;
+        else
+            this.name = "测试";
     }
 
     public float getTotal() {

@@ -42,11 +42,10 @@
 
     <!--获取回答-->
     <select id="getAnswer" resultMap="answer">
-        SELECT a.id,a.date,a.question_id,a.user_id,a.answer,a.total
-        FROM answer a,question q
-        WHERE q.id = a.question_id
-              AND q.catalog_id = #{catalogId}
-              AND a.user_id = #{userId}
+        SELECT *
+        FROM answer
+        WHERE question_id = ${questionId}
+              AND user_id = #{userId}
     </select>
 
     <!--统计用户的回答数-->

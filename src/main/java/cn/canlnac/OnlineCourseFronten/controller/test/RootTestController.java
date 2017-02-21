@@ -22,10 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -173,7 +170,12 @@ public class RootTestController {
             if (sheet.get(i).get(0).equals("答案")){
                 questionUnit.put("item",item);
                 List answer = new ArrayList();
-                answer.add(sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
+                if (sheet.get(i).get(1).length()>1){
+                    answer = Arrays.asList(sheet.get(i).get(1).split("-\\|-"));
+                } else {
+                    answer.add(sheet.get(i).get(1)==null?"":sheet.get(i).get(1));
+                }
+                System.out.println(answer);
                 questionUnit.put("answer",answer);
             }
             //往题目单元中添加解析
@@ -195,11 +197,11 @@ public class RootTestController {
     }
 
     /**
+     * 因为与移动端逻辑同步，注释测方法，改用B
      * 创建小测
      * @param request
      * @param courseId      课程id
      * @param parentId      章id
-     * @param index         节号
      * @param name          小测名称
      * @return
      */
@@ -208,30 +210,26 @@ public class RootTestController {
     public String create(HttpServletRequest request,
                          @RequestParam("course_id") int courseId,
                          @RequestParam("parent_id") int parentId,
-                         @RequestParam("index") int index,
                          @RequestParam("name") String name){
+        List<Map> test = resolve(request);
+        double total = 0;
+        for (Map map:test) {
+            total += Double.parseDouble(map.get("score").toString());
+        }
         String json = null;
         try {
             ObjectMapper mapper = new ObjectMapper(); //json转换器
-            json = mapper.writeValueAsString(resolve(request)); //将上传图片转换成json
+            json = mapper.writeValueAsString(test); //将上传图片转换成json
         } catch (IOException e) {
             return null;
         }
-        Catalog catalog = new Catalog();
-        catalog.setCourseId(courseId);
-        catalog.setParentId(parentId);
-        catalog.setIndex(index);
-        catalog.setName(name);
-        if (catalogService.create(catalog)>0){
-            Question question = new Question();
-            question.setCatalogId(catalog.getId());
-            question.setQuestions(json);
-            if (questionService.create(question)>0){
-                return "success";
-            } else {
-                catalogService.delete(catalog.getId());
-                return null;
-            }
+        Question question = new Question();
+        question.setCatalogId(parentId);
+        question.setName(name);
+        question.setQuestions(json);
+        question.setTotal((float) total);
+        if (questionService.create(question)>0){
+            return "success";
         } else {
             return null;
         }

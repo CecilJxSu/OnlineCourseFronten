@@ -130,7 +130,7 @@
                                     <li data-media-id="52">
                                         <c:if test="${section.parentId!=0 && section.url==null}">
                                         <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item test">
-                                            <i class="icon-test type">第<c:out value="${section.index}"/>节</i>
+                                            <i class="icon-test type"></i>
                                         </c:if>
                                         <c:if test="${section.parentId!=0 && section.url!=null}">
                                         <a id="<c:out value='${section.id}'/>" href="#" class="J-media-item">
