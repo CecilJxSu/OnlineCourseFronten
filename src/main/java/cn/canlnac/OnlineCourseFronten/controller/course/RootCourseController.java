@@ -174,6 +174,10 @@ public class RootCourseController {
         status.add("public");
         status.add("draft");
         conditions.put("status", status);
+        //获取作者ID
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        conditions.put("userId",userId);
 
         List<Course> courses = courseService.getList(start,count,"date",conditions);
 
