@@ -45,10 +45,6 @@
                                 <select class="learnselect form-control" name="parent_id" id="parent_id">
                                     <option value="">请选择章</option>
                                 </select>
-                                <label>节:</label>
-                                <select class="learnselect form-control" name="section_id" id="section_id">
-                                    <option value="">请选择节</option>
-                                </select>
                                 <input class="manageinput btn btn-success" type="button" value="查询" onclick="main()">
                             </div>
                         </form>
@@ -60,19 +56,17 @@
                                     <table id="example0" class="table display dataTable no-footer" role="grid" aria-describedby="example0_info" >
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc"  style="text-align:center;">账号</th>
-                                                <th class="sorting"  style="text-align:center;">学号</th>
-                                                <th class="sorting"  style="text-align:center;">姓名</th>
-                                                <th class="sorting"  style="text-align:center;">邮箱</th>
-                                                <th class="sorting"  style="text-align:center;">系别(专业)</th>
-                                                <th class="sorting"  style="text-align:center;">学习进度</th>
+                                                <th class="sorting_asc"  style="text-align:center;">名称</th>
+                                                <th class="sorting"  style="text-align:center;">创建日期</th>
+                                                <th class="sorting"  style="text-align:center;">总分</th>
+                                                <th class="sorting"  style="text-align:center;">操作</th>
                                             </tr>
                                         </thead>
                                         <tbody class="comment-course-list">
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_paginate paging_full_numbers page" id="example0_paginate">
-                                    </div>
+                                    <%--<div class="dataTables_paginate paging_full_numbers page" id="example0_paginate">--%>
+                                    <%--</div>--%>
                                 </div>
 
 
@@ -118,31 +112,6 @@
             }
         });
     });
-    function getSection() {
-        //获取节
-        $.ajax({
-            url: "/OnlineCourseFronten/root/catalog/chapter/section/get",
-            type: "post",
-            data: {
-                parent_id: $('#parent_id').val()
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (data) {
-                var html = '';
-                $.each(data, function (index, content) {
-                    html += '<option value ="' + content.id + '">第' + content.index + '节 ' + content.name + '</option>';
-                });
-                $('#section_id').html(html);
-            },
-            error: function (e) {
-                $('#section_id').html('<option value ="">请选择节</option>');
-            }
-        });
-    }
-    $('#parent_id').change(function () {
-        getSection();
-    });
     /************** start：分页列表***********/
     //默认当前页(不可动)
     var nowPage = 1;
@@ -151,10 +120,9 @@
 
     //ajax入口
     function main() {
-        var url = '/OnlineCourseFronten/root/learnrecord/get';
+        var url = '/OnlineCourseFronten/root/test/get';
         var data = {
-            nowPage     : nowPage,
-            section_id  :   $('#section_id').val()
+            catalog_id  :   $('#parent_id').val()
         };
         getData(url,data);
     }
@@ -171,8 +139,8 @@
                 beforeSend();
             },
             success:function (data) {
-                maxPage = data.totalPage;
-                pageChange();
+//                maxPage = data.totalPage;
+//                pageChange();
                 jsonToHtml(data);
             },
             error:function (e) {
@@ -255,20 +223,19 @@
     //将回传的数据转成html，放进相应位置(自己实现)
     function jsonToHtml(data) {
         var html = '';
-        $.each( data.returnData, function(index, content)
+        $.each( data.questions, function(index, content)
         {
             if (index%2==1)
                 html += '<tr role="row" class="odd">';
             else
                 html += '<tr role="row" class="even">';
-            html += '<td style="text-align:center;" class="sorting_1">'+content.username+'</td>';
-            html += '<td style="text-align:center;">'+content.universityId+'</td>';
-            html += '<td style="text-align:center;">'+content.realname+'</td>';
-            html += '<td style="text-align:center;">'+content.email+'</td>';
-            html += '<td style="text-align:center;">'+content.department+'('+content.major+')</td>';
-            html += '<td><div class="progress"><div class="progress-bar" style="width: '+(Number(content.progress*100)).toFixed(2)+'%;">';
-            html += '<span>'+(Number(content.progress*100)).toFixed(2)+'%</span>';
-            html += '</div></div></td></tr>';
+            html += '<td style="text-align:center;" class="sorting_1">'+content.name+'</td>';
+            html += '<td style="text-align:center;">'+new Date(content.date).Format("yyyy-MM-dd")+'</td>';
+            html += '<td style="text-align:center;">'+content.total+'</td>';
+            html += '<td style="text-align:center;">';
+            html += '<a class="btn btn-info" href="/OnlineCourseFronten/test/show?id='+content.id+'">查看</a> ';
+            html += '<a class="btn btn-danger" onclick="deleteC(this)" data-id="'+content.id+'">删除</a>';
+            html += '</td></tr>';
         });
         $('.comment-course-list').html(html);
     }
@@ -284,6 +251,49 @@
         $('.comment-course-list').html('<div style="text-align:center; width:100%;"><img style="height: 80px;" src="/OnlineCourseFronten/static/staticWEB/img/box.gif"></div>');
     }
     /************** end：分页列表***********/
+
+    /**
+     * 时间对象的格式化;
+     */
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    /**
+     * 删除小测
+     */
+    function deleteC(e) {
+        if(confirm("确定删除该测试？")){
+            $.ajax({
+                url:'/OnlineCourseFronten/root/test/delete',//路径
+                type:'post',
+                cache:false,
+                dataType:false,
+                data:{
+                    id : $(e).attr('data-id')
+                },
+                success:function (data) {
+                    alert("删除成功");
+                    main();
+                },
+                error:function (e) {
+                    alert("删除失败！");
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>

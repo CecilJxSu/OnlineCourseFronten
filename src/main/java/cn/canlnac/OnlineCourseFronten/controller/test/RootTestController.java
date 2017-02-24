@@ -2,13 +2,17 @@ package cn.canlnac.OnlineCourseFronten.controller.test;
 
 import cn.canlnac.OnlineCourseFronten.controller.FileController;
 import cn.canlnac.OnlineCourseFronten.entity.Catalog;
+import cn.canlnac.OnlineCourseFronten.entity.Course;
 import cn.canlnac.OnlineCourseFronten.entity.Question;
 import cn.canlnac.OnlineCourseFronten.service.CatalogService;
+import cn.canlnac.OnlineCourseFronten.service.CourseService;
 import cn.canlnac.OnlineCourseFronten.service.QuestionService;
 import cn.canlnac.OnlineCourseFronten.util.ExcelReader;
 import cn.canlnac.OnlineCourseFronten.vo.TestUnit;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +40,8 @@ public class RootTestController {
     private CatalogService catalogService;
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private CourseService courseService;
 
 
     /**
@@ -53,16 +60,51 @@ public class RootTestController {
 
     /**
      * 进入小测管理页面
-     * @param request
-     * @param response
-     * @param model
      * @return
-     * @throws Exception
      */
     @RequestMapping("manage/show")
-    public String manage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+    public ModelAndView manage() {
+        ModelAndView modelAndView = new ModelAndView();
 
-        return "/backend/testmanage";
+        //获取作者ID
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        List<Course> courses = new ArrayList<Course>();
+        for (Course course:courseService.findByUserId(userId)) {
+            if (!course.getStatus().equals("delete"))
+                courses.add(course);
+        }
+        modelAndView.addObject("courses",courses);
+
+        modelAndView.setViewName("/backend/testmanage");
+        return modelAndView;
+    }
+
+    /**
+     * 获取小测
+     * @param catalogId  章id
+     * @return
+     */
+    @RequestMapping("get")
+    @ResponseBody
+    public Map getTest(@RequestParam("catalog_id") int catalogId){
+        List<Question> questions = questionService.findByCatalogId(catalogId);
+
+        Map map = new HashMap();
+        map.put("questions",questions);
+        return map;
+    }
+
+    /**
+     * 删除小测（删除小测后，学生的小测记录任然保存）
+     * @param id  小测id
+     * @return
+     */
+    @RequestMapping("delete")
+    @ResponseBody
+    public String delete(@RequestParam("id") int id){
+        int i = questionService.delete(id);
+        return i>0?"success":null;
     }
 
     /**
