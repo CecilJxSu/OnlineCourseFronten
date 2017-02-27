@@ -161,11 +161,14 @@ public class MessageController {
             } else if (message.getType().equals("chat")){
                 unit.put("title",chatService.findByID(message.getPositionId()).getTitle());
             } else if (message.getType().equals("comment")){
+                String str = commentService.findByID(message.getPositionId()).getContent();
                 unit.put("title",commentService.findByID(message.getPositionId()).getContent());
             } else if (message.getType().equals("system")){
                 unit.put("title",message.getContent());
             } else if (message.getType().equals("user")){
                 unit.put("title",message.getContent());
+            } else {
+                unit.put("title","welcome");
             }
             returnDate.add(unit);
         }

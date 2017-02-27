@@ -41,7 +41,7 @@
                 <a href="${pageContext.request.contextPath}/course/show" target="_self">课程</a>
             </li>
             <li>
-                <a id="chat" href="#" data-url="${pageContext.request.contextPath}/chat/show" target="_self">话题</a>
+                <a id="chat" href="${pageContext.request.contextPath}/chat/show" target="_self">话题</a>
             </li>
         </ul>
         <div id="login-area">
