@@ -65,6 +65,8 @@ public class FileController {
 
             //文件存在
             long len = file.length();
+            //将文件大小添加进返回头部中
+            response.setContentLength((int) len);
             byte[] bytes = new byte[(int)len];
 
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
