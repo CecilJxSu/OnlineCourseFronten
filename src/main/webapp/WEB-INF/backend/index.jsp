@@ -102,6 +102,7 @@
             <li><a href="#"><span class="icon color10"><i class="fa fa-shopping-cart"></i></span>学习记录<span class="caret"></span></a>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/root/learnrecord/show" target="iframe">学习记录</a></li>
+                    <li><a href="${pageContext.request.contextPath}/root/test/score/show" target="iframe">测试记录</a></li>
                 </ul>
             </li>
             </c:if>

@@ -55,4 +55,26 @@ public interface AnswerDao {
             @Param("count") int count,
             @Param("userId") int userId
     );
+
+    /**
+     * 获取某测试的回答
+     * @param start         分页开始位置
+     * @param count         分页返回数目
+     * @param questionId    测试id
+     * @return
+     */
+    List<Answer> getAnswersByQuestionId(
+            @Param("start") int start,
+            @Param("count") int count,
+            @Param("questionId") int questionId
+    );
+
+    /**
+     * 获取某测试的回答总条数
+     * @param questionId    测试id
+     * @return
+     */
+    int getCountByQuestionId(
+            @Param("questionId") int questionId
+    );
 }

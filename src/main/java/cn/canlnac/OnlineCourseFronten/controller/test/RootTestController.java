@@ -1,12 +1,8 @@
 package cn.canlnac.OnlineCourseFronten.controller.test;
 
 import cn.canlnac.OnlineCourseFronten.controller.FileController;
-import cn.canlnac.OnlineCourseFronten.entity.Catalog;
-import cn.canlnac.OnlineCourseFronten.entity.Course;
-import cn.canlnac.OnlineCourseFronten.entity.Question;
-import cn.canlnac.OnlineCourseFronten.service.CatalogService;
-import cn.canlnac.OnlineCourseFronten.service.CourseService;
-import cn.canlnac.OnlineCourseFronten.service.QuestionService;
+import cn.canlnac.OnlineCourseFronten.entity.*;
+import cn.canlnac.OnlineCourseFronten.service.*;
 import cn.canlnac.OnlineCourseFronten.util.ExcelReader;
 import cn.canlnac.OnlineCourseFronten.vo.TestUnit;
 import com.google.gson.Gson;
@@ -37,11 +33,15 @@ import java.util.regex.Pattern;
 @RequestMapping("root/test")
 public class RootTestController {
     @Autowired
-    private CatalogService catalogService;
-    @Autowired
     private QuestionService questionService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private AnswerService answerService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ProfileService profileService;
 
 
     /**
@@ -277,4 +277,66 @@ public class RootTestController {
         }
     }
 
+    /**
+     * 进入测试记录展示页面
+     * @return
+     */
+    @RequestMapping("score/show")
+    public ModelAndView scoreShow(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        Session session = SecurityUtils.getSubject().getSession();
+        int userId = Integer.parseInt(session.getAttribute("id").toString());
+        List<Course> courses = new ArrayList<Course>();
+        for (Course course:courseService.findByUserId(userId)) {
+            if (!course.getStatus().equals("delete")){
+                courses.add(course);
+            }
+        }
+        modelAndView.addObject("courses",courses);
+
+        modelAndView.setViewName("/backend/scoreShow");
+        return modelAndView;
+    }
+
+    /**
+     * 测试记录列表获取
+     * @param nowPage
+     * @param testId
+     * @return
+     */
+    @RequestMapping("score/list/get")
+    @ResponseBody
+    public Map scoreListGet(@RequestParam("nowPage") int nowPage,
+                            @RequestParam("test_id") int testId){
+        //每页显示10条
+        int count = 10;
+        //分页开始位置
+        int start = (nowPage-1)*count;
+
+        List<Map> returnData = new ArrayList<Map>();
+        for (Answer answer: answerService.getAnswersByTestId(start,count,testId)){
+            Map unit = new HashMap();
+            unit.put("username",userService.findByID(answer.getUserId()).getUsername());
+            unit.put("total",answer.getTotal());
+            unit.put("date",answer.getDate());
+            Profile profile = profileService.findByUserID(answer.getUserId());
+            unit.put("universityId",profile.getUniversityId());
+            unit.put("realname",profile.getRealname());
+            unit.put("department",profile.getDepartment());
+            unit.put("major",profile.getMajor());
+            returnData.add(unit);
+        }
+
+        //获取总条数
+        int totalNum = answerService.getCountByTestId(testId);
+        //计算总页数
+        int totalPage = totalNum%count==0?totalNum/count:totalNum/count+1;
+
+        Map map = new HashMap();
+        map.put("returnData",returnData);
+        map.put("totalPage",totalPage>0?totalPage:1);
+
+        return map;
+    }
 }

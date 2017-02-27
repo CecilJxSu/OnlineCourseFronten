@@ -57,4 +57,26 @@ public interface AnswerService {
             int count,
             int userId
     );
+
+    /**
+     * 获取某测试的回答
+     * @param start     分页开始位置
+     * @param count     分页返回数目
+     * @param testId    测试id
+     * @return
+     */
+    List<Answer> getAnswersByTestId(
+            int start,
+            int count,
+            int testId
+    );
+
+    /**
+     * 获取某测试的回答总条数
+     * @param testId    测试id
+     * @return
+     */
+    int getCountByTestId(
+            int testId
+    );
 }

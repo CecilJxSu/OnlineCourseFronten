@@ -79,4 +79,30 @@ public class AnswerServiceImpl implements AnswerService {
     ) {
         return answerDao.getAnswers(start, count, userId);
     }
+
+    /**
+     * 获取某测试的回答
+     * @param start     分页开始位置
+     * @param count     分页返回数目
+     * @param testId    测试id
+     * @return
+     */
+    public List<Answer> getAnswersByTestId(
+            int start,
+            int count,
+            int testId
+    ) {
+        return answerDao.getAnswersByQuestionId(start, count, testId);
+    }
+
+    /**
+     * 获取某测试的回答总条数
+     * @param testId    测试id
+     * @return
+     */
+    public int getCountByTestId(
+            int testId
+    ){
+        return answerDao.getCountByQuestionId(testId);
+    }
 }
