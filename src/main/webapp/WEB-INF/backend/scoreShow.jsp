@@ -49,6 +49,9 @@
                                 <select class="learnselect form-control" name="test_id" id="test_id">
                                     <option value="">请选择测试</option>
                                 </select>
+                            </div>
+
+                            <div>
                                 <input class="manageinput btn btn-success" type="button" value="查询" onclick="main()">
                             </div>
                         </form>

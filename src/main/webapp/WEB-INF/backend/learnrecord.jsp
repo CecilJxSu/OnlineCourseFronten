@@ -49,8 +49,12 @@
                                 <select class="learnselect form-control" name="section_id" id="section_id">
                                     <option value="">请选择节</option>
                                 </select>
+                            </div>
+
+                            <div>
                                 <input class="manageinput btn btn-success" type="button" value="查询" onclick="main()">
                             </div>
+
                         </form>
                         <%--查询条件end--%>
                         <%--显示查询内容--%>
