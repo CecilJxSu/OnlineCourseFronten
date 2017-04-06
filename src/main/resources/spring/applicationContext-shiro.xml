@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置权限管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- ref对应我们写的realm  MyShiro -->
+        <property name="realm" ref="myShiro"/>
+        <!-- 使用下面配置的缓存管理器 -->
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+
+    <bean id="myShiro" class="cn.canlnac.OnlineCourseFronten.util.MyShiro"/>
+
+    <!--自定义的filter 用于验证用户身份-->
+    <bean id="roleOrFilter" class="cn.canlnac.OnlineCourseFronten.util.CustomRolesAuthorizationFilter"></bean>
+
+    <!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 调用我们配置的权限管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 配置我们的登录请求地址 -->
+        <property name="loginUrl" value="/index/user"/>
+        <!-- 配置我们在登录页登录成功后的跳转地址，如果你访问的是非/login地址，则跳到您访问的地址 -->
+        <property name="successUrl" value="/user"/>
+        <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->
+        <property name="unauthorizedUrl" value="/404"/>
+        <!-- 权限配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /index/user=anon
+                /register/register=anon
+                /login=anon
+                /logout=authc,roleOrFilter[student,teacher,admin]
+                /index/user/hot-new=anon
+                /index/teach=roles[teacher]
+                /index/root=authc,roleOrFilter[teacher,admin]
+                /file/get=anon
+                /file/save=authc,roleOrFilter[student,teacher,admin]
+                /file/save/files=authc,roleOrFilter[student,teacher,admin]
+                /user/**=authc,roleOrFilter[student,teacher,admin]
+                /root/user/show=roles[admin]
+                /root/user/manage/get=roles[admin]
+                /root/user/manage/modify=roles[admin]
+                /reply/**=authc,roleOrFilter[student,teacher,admin]
+                /message/**=authc,roleOrFilter[student,teacher,admin]
+                /root/learnrecord/**=roles[teacher]
+                /root/document/**=roles[teacher]
+                /course/**=anon
+                /learn/show=anon
+                /root/course/show=roles[teacher]
+                /root/course/add=roles[teacher]
+                /root/course/delete=roles[teacher]
+                /root/course/update=roles[teacher]
+                /root/course/get=roles[teacher]
+                /root/course/manage/show=roles[teacher]
+                /root/course/manage/get=roles[teacher]
+                /root/course/manage/status/change=roles[teacher]
+                /root/course/sources/all/get=roles[teacher]
+                /root/course/modify/show=roles[teacher]
+                /root/course/adminmanage/**=roles[admin]
+                /comment/**=authc,roleOrFilter[student,teacher,admin]
+                /chat/**=authc,roleOrFilter[student,teacher,admin]
+                /commentdetail/**=authc,roleOrFilter[student,teacher,admin]
+                /createcomment/**=authc,roleOrFilter[student,teacher,admin]
+                /video/**=authc,roleOrFilter[student,teacher,admin]
+                /root/catalog/**=roles[teacher]
+
+
+                <!--/user/profile/show=authc,roleOrFilter[student,teacher,admin]-->
+                <!-- anon表示此地址不需要任何权限即可访问 -->
+                <!--/static/**=anon-->
+                <!--&lt;!&ndash; perms[user:query]表示访问此连接需要权限为user:query的用户 &ndash;&gt;-->
+                <!--/user=perms[user:query]-->
+                <!--&lt;!&ndash; roles[manager]表示访问此连接需要用户的角色为manager &ndash;&gt;-->
+                <!--/user/add=roles[manager]-->
+                <!--/user/add=roles["admin,guest"]admin且guest时通过-->
+                <!--/video/show=authc,roleOrFilter[student,teacher,admin]只要有其中一个即可通过-->
+                <!--/user/del/**=roles[admin]-->
+                <!--/user/edit/**=roles[manager]-->
+                <!--&lt;!&ndash;所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login&ndash;&gt;-->
+                <!--/** = authc-->
+            </value>
+        </property>
+    </bean>
+
+
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+</beans>

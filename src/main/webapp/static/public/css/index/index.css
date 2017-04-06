@@ -4928,7 +4928,8 @@ p {
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    left: 244px
+    /*left: 244px*/
+    left: 0px
 }
 
 .g-banner .next:hover, .g-banner .prev:hover {
@@ -5015,3 +5016,67 @@ p {
 .outwrap-content .contentwrap .moco-course-wrap {
     margin: 20px 20px 0 0
 }
+/*header样式*/
+.bellfont{
+    display: block;
+    background: none;
+    color: #FF004C;
+    font-weight: 900;
+}
+.bellimg{
+    display: inline;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #f01414;
+    right: 11px;
+    top: 14px;
+    border-radius: 50%;
+}
+.bellcss{
+    background: rgba(254, 254, 254, 0.78);
+    width: 150px;
+    color: rgba(0, 2, 7, 0.8);
+    font-size: 12px;
+    border-radius: 4px;
+    box-shadow: 1px -8px 12px rgba(171, 177, 178, 0.4);
+}
+.bell{
+    width: 180px;
+    background: rgba(254, 254, 254, 0.78);
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.13);
+    border-radius: 4px;
+}
+.bell li{
+    padding: 2px 0px  2px 0px;
+    color: darkgrey;
+}
+.bell ul li a{
+    height: 40px;
+    line-height: 40px;
+}
+.bell ul{
+    padding: 7px;
+}
+.bell:after, .bell:before {
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    bottom: 100%;
+    position: absolute;
+    width: 0;
+}
+.bell:after {
+    border-width: 10px;
+    border-bottom-color: rgb(253, 253, 253);
+    top: -19px;
+    left: 20px;
+}
+.bell:before {
+    border-width: 12px;
+    border-bottom-color: rgba(0, 0, 0, 0.13);
+    top: -22px;
+    left: 19px;
+}*
+/*header样式end*/
